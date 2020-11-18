@@ -1,0 +1,39 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.OnOffCommand" ,
+	"enable":false,
+	"targetsWidgets":["tfIndirizzoDtCatastali","cbSceltaIndDtCatastali"],
+	"targetsMenuElement":[]
+}
+] 
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.NOPCommand" }
+],
+	"esiti":["OK","KO"],
+	"nomeMetodo":"salvaDatiGenerali",
+	"appDataToStore":[]
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.NOPCommand" }
+],
+	"esiti":["OK","KO"],
+	"nomeMetodo":"bDtCatastaliAvantiSalva",
+	"appDataToStore":["appDatacertificatore"]
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.NOPCommand" }
+],
+	"esiti":["OK","KO"],
+	"nomeMetodo":"controlloIndirizzo",
+	"appDataToStore":[]
+}
+] 
+}

@@ -1,0 +1,46 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ClearAppDataCommand" ,
+	"attributesToBeRemovedFromSession":["idRigaSelezionata"]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":true,
+	"targetsWidgets":["bStampaReport","btStampaAce","bDownloadModulo","bDettApe","bReInitAPE","bReConsAPE","bVisuraCit"],
+	"targetsMenuElement":[]
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":false,
+	"targetsWidgets":["bPagaAvanti","bImportaDati","bStampaReport","btStampaAce","bDownloadModulo","bDettApe","bReInitAPE","bReConsAPE","bVisuraCit"],
+	"targetsMenuElement":[]
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":false,
+	"targetsWidgets":["bImportaDati"],
+	"targetsMenuElement":[]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":true,
+	"targetsWidgets":["bStampaReport","btStampaAce","bDownloadModulo","bDettApe","bReInitAPE"],
+	"targetsMenuElement":[]
+}
+] 
+}
+],
+	"esiti":["MOSTRA_MOD","NASCONDI_MOD","NASCONDI_IMPORT"],
+	"nomeMetodo":"switchPulsanteScaricaMod",
+	"appDataToStore":[]
+}
+] 
+}
+],
+	"esiti":["OK"],
+	"nomeMetodo":"initListaAttestati",
+	"appDataToStore":["appDatachiaviAttestati","appDatacodAttestatoSelezionato"]
+}

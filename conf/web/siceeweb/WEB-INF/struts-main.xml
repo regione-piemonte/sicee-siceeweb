@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="main" extends="jsp-package" namespace="/base/main">
+
+		
+<action name="cpHome" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.main.CpHomeAction">
+	<result name="input">/jsp/cpHome.jsp</result>
+	<result name="success">/jsp/cpHome.jsp</result>
+	
+	<result name="GO_TO_BackPage" type="chain">
+		<param name="actionName">${backActionName}</param>
+		<param name="namespace">${backNamespace}</param>
+	</result>
+	
+	<result name="GO_TO_EX_verificaApe" type="redirect">
+		<param name="location">verificaApeJasper.do</param>
+	</result>
+</action>
+
+<action name="cpPagamento" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.main.CpPagamentoAction">
+	<result name="input">/jsp/cpPagamento.jsp</result>
+	<result name="success">/jsp/cpPagamento.jsp</result>
+	
+	<result name="GO_TO_cpHome" type="chain">
+		<param name="actionName">cpHome</param>
+		<param name="namespace">/base/main</param>
+	</result>
+	<result name="GO_TO_BackPage" type="chain">
+		<param name="actionName">${backActionName}</param>
+		<param name="namespace">${backNamespace}</param>
+	</result>
+	
+	<result name="GO_TO_EX_MDP" type="redirect">
+		<param name="location">${appDatamdpURL}</param>
+	</result>
+	<result name="GO_TO_EX_OKBB" type="redirect">
+		<param name="location">cpEsitoPagamenti!handleHvPagamentoOK_CLICKED.do</param>
+	</result>
+</action>
+
+<action name="cpPagamentoNew" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.main.CpPagamentoNewAction">
+	<result name="input">/jsp/cpPagamentoNew.jsp</result>
+	<result name="success">/jsp/cpPagamentoNew.jsp</result>
+	
+	<result name="GO_TO_cpTransaz" type="chain">
+		<param name="actionName">cpTransaz</param>
+		<param name="namespace">/base/gestcertificatore</param>
+	</result>
+	<result name="GO_TO_BackPage" type="chain">
+		<param name="actionName">${backActionName}</param>
+		<param name="namespace">${backNamespace}</param>
+	</result>
+	
+	<result name="GO_TO_EX_MDPNEW" type="redirect">
+		<param name="location">${appDatamdpNewURL}</param>
+	</result>
+</action>
+
+<action name="cpPagamentoDettNew" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.main.CpPagamentoDettNewAction">
+	<result name="input">/jsp/cpPagamentoDettNew.jsp</result>
+	<result name="success">/jsp/cpPagamentoDettNew.jsp</result>
+	
+	<result name="GO_TO_cpTransaz" type="chain">
+		<param name="actionName">cpTransaz</param>
+		<param name="namespace">/base/gestcertificatore</param>
+	</result>
+	<result name="GO_TO_BackPage" type="chain">
+		<param name="actionName">${backActionName}</param>
+		<param name="namespace">${backNamespace}</param>
+	</result>
+	
+	<result name="GO_TO_EX_STAMPA_RICEVUTA_RT" type="redirect">
+		<param name="location">/base/cpRicevutaRicarica.do</param>
+	</result>
+</action>
+
+<action name="cpEsitoPagamenti" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.main.CpEsitoPagamentiAction">
+	<result name="input">/jsp/cpEsitoPagamenti.jsp</result>
+	<result name="success">/jsp/cpEsitoPagamenti.jsp</result>
+	
+	<result name="GO_TO_cpHome" type="chain">
+		<param name="actionName">cpHome</param>
+		<param name="namespace">/base/main</param>
+	</result>
+	<result name="GO_TO_cpHome" type="chain">
+		<param name="actionName">cpHome</param>
+		<param name="namespace">/base/main</param>
+	</result>
+	<result name="GO_TO_cpHome" type="chain">
+		<param name="actionName">cpHome</param>
+		<param name="namespace">/base/main</param>
+	</result>
+	<result name="GO_TO_cpHome" type="chain">
+		<param name="actionName">cpHome</param>
+		<param name="namespace">/base/main</param>
+	</result>
+	<result name="GO_TO_BackPage" type="chain">
+		<param name="actionName">${backActionName}</param>
+		<param name="namespace">${backNamespace}</param>
+	</result>
+	
+	<result name="GO_TO_EX_STAMPA_RICEVUTA_REGISTRAZIONE" type="redirect">
+		<param name="location">/base/cpRicevutaPagamentiRegistrazione.do</param>
+	</result>
+	<result name="GO_TO_EX_STAMPA_RICEVUTA_ACE" type="redirect">
+		<param name="location">/base/cpRicevutaPagamenti.do</param>
+	</result>
+	<result name="SHOW_dlgPagamentoEsitoOk">/jsp/dialogpanels/cpEsitoPagamenti_dlgPagamentoEsitoOk.jsp</result>
+	<result name="SHOW_dlgPagamentoEsitoKO">/jsp/dialogpanels/cpEsitoPagamenti_dlgPagamentoEsitoKO.jsp</result>
+	<result name="SHOW_dlgPagamentoEsitoABORT">/jsp/dialogpanels/cpEsitoPagamenti_dlgPagamentoEsitoABORT.jsp</result>
+	<result name="SHOW_dlgPagamentoEsitoANOMAL">/jsp/dialogpanels/cpEsitoPagamenti_dlgPagamentoEsitoANOMAL.jsp</result>
+</action>
+
+<action name="cpEsitoPagamentiNew" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.main.CpEsitoPagamentiNewAction">
+	<result name="input">/jsp/cpEsitoPagamentiNew.jsp</result>
+	<result name="success">/jsp/cpEsitoPagamentiNew.jsp</result>
+	
+	<result name="GO_TO_cpTransaz" type="chain">
+		<param name="actionName">cpTransaz</param>
+		<param name="namespace">/base/gestcertificatore</param>
+	</result>
+	<result name="GO_TO_cpTransaz" type="chain">
+		<param name="actionName">cpTransaz</param>
+		<param name="namespace">/base/gestcertificatore</param>
+	</result>
+	<result name="GO_TO_cpTransaz" type="chain">
+		<param name="actionName">cpTransaz</param>
+		<param name="namespace">/base/gestcertificatore</param>
+	</result>
+	<result name="GO_TO_cpHome" type="chain">
+		<param name="actionName">cpHome</param>
+		<param name="namespace">/base/main</param>
+	</result>
+	<result name="GO_TO_BackPage" type="chain">
+		<param name="actionName">${backActionName}</param>
+		<param name="namespace">${backNamespace}</param>
+	</result>
+	
+	<result name="GO_TO_EX_MDPNEW" type="redirect">
+		<param name="location">${appDatamdpNewURL}</param>
+	</result>
+	<result name="SHOW_dlgPagamentoEsitoWISPKO">/jsp/dialogpanels/cpEsitoPagamentiNew_dlgPagamentoEsitoWISPKO.jsp</result>
+	<result name="SHOW_dlgPagamentoEsitoOK">/jsp/dialogpanels/cpEsitoPagamentiNew_dlgPagamentoEsitoOK.jsp</result>
+	<result name="SHOW_dlgPagamentoEsitoKO">/jsp/dialogpanels/cpEsitoPagamentiNew_dlgPagamentoEsitoKO.jsp</result>
+	<result name="SHOW_dlgPagamentoEsitoBACK">/jsp/dialogpanels/cpEsitoPagamentiNew_dlgPagamentoEsitoBACK.jsp</result>
+</action>
+
+<action name="cpNonAbilitato" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.main.CpNonAbilitatoAction">
+	<result name="input">/jsp/cpNonAbilitato.jsp</result>
+	<result name="success">/jsp/cpNonAbilitato.jsp</result>
+	
+	<result name="GO_TO_BackPage" type="chain">
+		<param name="actionName">${backActionName}</param>
+		<param name="namespace">${backNamespace}</param>
+	</result>
+	
+	<result name="GO_TO_EX_pres" type="redirect">
+		<param name="location">http://www.sistemapiemonte.it/cms/privati/ambiente-e-energia/servizi/536</param>
+	</result>
+</action>
+
+<action name="cpRobot" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.main.CpRobotAction">
+	<result name="input">/jsp/cpRobot.jsp</result>
+	<result name="success">/jsp/cpRobot.jsp</result>
+	
+	<result name="GO_TO_BackPage" type="chain">
+		<param name="actionName">${backActionName}</param>
+		<param name="namespace">${backNamespace}</param>
+	</result>
+	
+</action>
+
+<action name="cpEsci" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.main.CpEsciAction">
+	<result name="input">/jsp/cpEsci.jsp</result>
+	<result name="success">/jsp/cpEsci.jsp</result>
+	
+	<result name="GO_TO_cpHome" type="chain">
+		<param name="actionName">cpHome</param>
+		<param name="namespace">/base/main</param>
+	</result>
+	<result name="GO_TO_BackPage" type="chain">
+		<param name="actionName">${backActionName}</param>
+		<param name="namespace">${backNamespace}</param>
+	</result>
+	
+	<result name="GO_TO_EX_pres" type="redirect">
+		<param name="location">/secure/Logout!ssoLogout.do</param>
+	</result>
+</action>
+
+<action name="cpDisabled" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.main.CpDisabledAction">
+	<result name="input">/jsp/cpDisabled.jsp</result>
+	<result name="success">/jsp/cpDisabled.jsp</result>
+	
+	<result name="GO_TO_BackPage" type="chain">
+		<param name="actionName">${backActionName}</param>
+		<param name="namespace">${backNamespace}</param>
+	</result>
+	
+</action>
+
+<action name="cpBloccoUtente" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.main.CpBloccoUtenteAction">
+	<result name="input">/jsp/cpBloccoUtente.jsp</result>
+	<result name="success">/jsp/cpBloccoUtente.jsp</result>
+	
+	<result name="GO_TO_BackPage" type="chain">
+		<param name="actionName">${backActionName}</param>
+		<param name="namespace">${backNamespace}</param>
+	</result>
+	
+</action>
+
+<action name="cpVisuraCIT" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.main.CpVisuraCITAction">
+	<result name="input">/jsp/cpVisuraCIT.jsp</result>
+	<result name="success">/jsp/cpVisuraCIT.jsp</result>
+	
+	<result name="GO_TO_cpGestCertificazioni" type="chain">
+		<param name="actionName">cpGestCertificazioni</param>
+		<param name="namespace">/base/gestattestati</param>
+	</result>
+	<result name="GO_TO_BackPage" type="chain">
+		<param name="actionName">${backActionName}</param>
+		<param name="namespace">${backNamespace}</param>
+	</result>
+	
+	<result name="GO_TO_EX_scaricaLibretto" type="redirect">
+		<param name="location">/base/scaricaLibretto.do</param>
+	</result>
+</action>
+
+		<!--PROTECTED REGION ID(R-69127981) ENABLED START-->
+		<!-- inserire qui la dichiarazione di azioni aggiuntive hand-written -->
+	<action name="Logout" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.LogoutAction"/>	
+	
+	<!-- NUOVO MODULO IN SOLA LETTURA -->
+		<action name="verificaApeJasper" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.pdf.VerificaApeJasper">
+			<result name="downloadFile" type="stream">
+	    		<param name="contentType">${contentType}</param>
+		    	<param name="inputName">inputStream</param>		   
+		    	<param name="bufferSize">3072</param>
+		    	<param name="contentDisposition">${contentDisposition}</param>
+			</result>			
+			<result name="KO" type="chain">cpHome</result>
+		</action>
+		<!--PROTECTED REGION END-->
+
+	</package>
+</struts>

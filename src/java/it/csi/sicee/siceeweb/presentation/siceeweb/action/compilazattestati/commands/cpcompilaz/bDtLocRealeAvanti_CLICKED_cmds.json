@@ -1,0 +1,30 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ActivateMultiPanelItemCommand" ,
+	"containerName":"pWizCompilazLiv1",
+	"contentPanelName":"cpCompilaz",
+	"itemName": "pDatiClEnerg"}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ActivateMultiPanelItemCommand" ,
+	"containerName":"pWizClEnerg",
+	"contentPanelName":"cpCompilaz",
+	"itemName": "pDatiLocTeorica"}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.RefreshViewCommand" ,
+	"targetPanels": ["pWizCompilazLiv1"], 
+	"targetWidgets":["menu"],
+	"currentPanelName":"cpCompilaz" 
+}
+] 
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.RefreshViewCommand" ,
+	"targetPanels": ["pWizCompilazLiv1"], 
+	"targetWidgets":["menu"],
+	"currentPanelName":"cpCompilaz" 
+}
+],
+	"esiti":["OK","KO"],
+	"nomeMetodo":"bDtLocRealeAvantiSalva",
+	"appDataToStore":["appDatacertificatore"]
+}

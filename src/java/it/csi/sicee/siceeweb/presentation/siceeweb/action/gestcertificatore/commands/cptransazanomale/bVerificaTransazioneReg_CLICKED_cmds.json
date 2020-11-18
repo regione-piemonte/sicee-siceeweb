@@ -1,0 +1,25 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ShowDialogCommand" ,
+	"name":"dlgEsitoTransazioneRegOK"
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ShowDialogCommand" ,
+	"name":"dlgEsitoTransazioneKO"
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.RefreshViewCommand" ,
+	"targetPanels": ["pErrListTransReg"], 
+	"targetWidgets":["menu"],
+	"currentPanelName":"cpTransazAnomale" 
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ShowDialogCommand" ,
+	"name":"dlgEsitoTransazioneMIDDLE"
+}
+],
+	"esiti":["OK","KO","NOP","MIDDLE"],
+	"nomeMetodo":"verificaTransazioneReg",
+	"appDataToStore":[]
+}

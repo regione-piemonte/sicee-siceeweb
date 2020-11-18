@@ -1,0 +1,30 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.RefreshViewCommand" ,
+	"targetPanels": ["pCenter"], 
+	"targetWidgets":["tblAttestati"],
+	"currentPanelName":"cpRisultatoRicercaAce" 
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.JumpCommand" ,
+	"name": "cpCompilaz", 
+	"pushCurrent":false
+}
+] 
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.JumpCommand" ,
+	"name": "cpCompilazApe", 
+	"pushCurrent":false
+}
+] 
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.NOPCommand" }
+],
+	"esiti":["OK_OLD","OK","KO"],
+	"nomeMetodo":"visualizzaAttestato",
+	"appDataToStore":["appDatacertificato","appDatatempRaccomandazioni","appDatatempDtCatastaliSecondari"]
+}

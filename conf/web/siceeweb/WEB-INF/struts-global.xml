@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.objectFactory" value="org.apache.struts2.spring.StrutsSpringObjectFactory" />
+	<constant name="struts.ui.theme" value="csi" />
+	<constant name="struts.action.extension" value="do" />
+	
+	<constant name="struts.i18n.reload" value="false" />
+	<constant name="struts.custom.i18n.resources" value="globalMessages
+			,it/csi/sicee/siceeweb/presentation/siceeweb/action/gestattestati/CpPrenotazAttestatiAction
+			,it/csi/sicee/siceeweb/presentation/siceeweb/action/gestattestati/CpGestCertificazioniAction
+			,it/csi/sicee/siceeweb/presentation/siceeweb/action/gestattestati/CpRicercaAceInviatiAction
+			,it/csi/sicee/siceeweb/presentation/siceeweb/action/gestattestati/CpRisultatoRicercaAceAction
+			,it/csi/sicee/siceeweb/presentation/siceeweb/action/gestattestati/CpGestInvioCertificatoAction
+			,it/csi/sicee/siceeweb/presentation/siceeweb/action/gestattestati/CpGestInvioCurriculumAction
+			,it/csi/sicee/siceeweb/presentation/siceeweb/action/gestattestati/CpDatiCertificazioniAction
+			,it/csi/sicee/siceeweb/presentation/siceeweb/action/gestattestati/CpDuplicaAceAction
+			,it/csi/sicee/siceeweb/presentation/siceeweb/action/gestattestati/CpDettaglioAttestatoAction
+			,it/csi/sicee/siceeweb/presentation/siceeweb/action/gestattestati/CpDettaglioSostituzioniAction
+			,it/csi/sicee/siceeweb/presentation/siceeweb/action/compilazattestati/CpCompilazAction
+			,it/csi/sicee/siceeweb/presentation/siceeweb/action/compilazattestati/CpImportaXmlAction
+			,it/csi/sicee/siceeweb/presentation/siceeweb/action/compilazattestatiape/CpCompilazApeAction
+			,it/csi/sicee/siceeweb/presentation/siceeweb/action/compilazattestatiape/CpImpXml2015Action
+			,it/csi/sicee/siceeweb/presentation/siceeweb/action/gestcertificatore/CpTransazAction
+			,it/csi/sicee/siceeweb/presentation/siceeweb/action/gestcertificatore/CpRegistrazAction
+			,it/csi/sicee/siceeweb/presentation/siceeweb/action/gestcertificatore/CpDatiCertificatoreAction
+			,it/csi/sicee/siceeweb/presentation/siceeweb/action/gestcertificatore/CpTransazAnomaleAction
+			,it/csi/sicee/siceeweb/presentation/siceeweb/action/gestcertificatore/CpVerificaMailAction
+			,it/csi/sicee/siceeweb/presentation/siceeweb/action/gestcertificatore/CpGestioneDialogMailAction
+			,it/csi/sicee/siceeweb/presentation/siceeweb/action/gestcertificatore/CpAttesaRTAction
+			,it/csi/sicee/siceeweb/presentation/siceeweb/action/annullasostcert/CpAnnullaSostAceHomeAction
+			,it/csi/sicee/siceeweb/presentation/siceeweb/action/annullasostcert/CpSelezionaTipoRicercaAnnullaSostAction
+			,it/csi/sicee/siceeweb/presentation/siceeweb/action/annullasostcert/CpRicercaAceAnnullaSostAction
+			,it/csi/sicee/siceeweb/presentation/siceeweb/action/annullasostcert/CpRiepilogoAceAnnullaSostAction
+			,it/csi/sicee/siceeweb/presentation/siceeweb/action/annullasostcert/CpEsitoAceAnnullaSostAction
+			,it/csi/sicee/siceeweb/presentation/siceeweb/action/monitoraggio/CpMonitoraggioAction
+			,it/csi/sicee/siceeweb/presentation/siceeweb/action/main/CpHomeAction
+			,it/csi/sicee/siceeweb/presentation/siceeweb/action/main/CpPagamentoAction
+			,it/csi/sicee/siceeweb/presentation/siceeweb/action/main/CpPagamentoNewAction
+			,it/csi/sicee/siceeweb/presentation/siceeweb/action/main/CpPagamentoDettNewAction
+			,it/csi/sicee/siceeweb/presentation/siceeweb/action/main/CpEsitoPagamentiAction
+			,it/csi/sicee/siceeweb/presentation/siceeweb/action/main/CpEsitoPagamentiNewAction
+			,it/csi/sicee/siceeweb/presentation/siceeweb/action/main/CpNonAbilitatoAction
+			,it/csi/sicee/siceeweb/presentation/siceeweb/action/main/CpRobotAction
+			,it/csi/sicee/siceeweb/presentation/siceeweb/action/main/CpEsciAction
+			,it/csi/sicee/siceeweb/presentation/siceeweb/action/main/CpDisabledAction
+			,it/csi/sicee/siceeweb/presentation/siceeweb/action/main/CpBloccoUtenteAction
+			,it/csi/sicee/siceeweb/presentation/siceeweb/action/main/CpVisuraCITAction
+	" />
+	<constant name="struts.multipart.parser" value="org.apache.struts2.dispatcher.multipart.JakartaMultiPartRequest" />
+	<!-- costanti per il fileUpload interceptor: settare solo se necessarie -->
+	<constant name="struts.multipart.maxSize" value="26214400" />
+	<!--<constant name="struts.multipart.saveDir" value="/tmp" />-->
+
+
+	<!-- jsp-package: TUTTI I PACKAGE DEVONO DERIVARE DA QUESTO -->
+	<package name="jsp-package" extends="struts-default">
+		<interceptors>
+			<interceptor name="tableSelection" class="it.csi.sicee.siceeweb.presentation.siceeweb.interceptor.TableSelectionInterceptor"/>
+			<interceptor name="methodProtection" class="it.csi.sicee.siceeweb.presentation.siceeweb.interceptor.MethodProtectionInterceptor">
+				<param name="excludeMethods">execute,localLogout,ssoLogout</param>
+			</interceptor>
+			<!-- l'esclusione dei parametri serve per evitare una XSS vulnerability -->
+			<interceptor name="paramsInterceptor" class="it.csi.sicee.siceeweb.presentation.siceeweb.interceptor.ParametersInterceptor">
+				<param name="excludeParams">actionMessages,actionErrors,fieldErrors</param>
+			</interceptor>
+
+			<interceptor-stack name="jsp-stack">
+				<interceptor-ref name="exception" />
+				<interceptor-ref name="i18n" />
+				<interceptor-ref name="chain" />
+				<interceptor-ref name="servletConfig" />
+			 	<interceptor-ref name="scopedModelDriven"/> 
+				<interceptor-ref name="modelDriven"/>
+				<interceptor-ref name="checkbox" />
+				<interceptor-ref name="tableSelection" />
+				<interceptor-ref name="staticParams" />
+				<interceptor-ref name="fileUpload">
+       				<param name="maximumSize">26214400</param>
+  	    		</interceptor-ref>
+				<!-- richiamare gli interceptor token e tokenSession dopo di questo -->
+				<interceptor-ref name="paramsInterceptor" />
+				<interceptor-ref name="conversionError"/>
+				<interceptor-ref name="prepare" />
+				<interceptor-ref name="validation" />
+				<interceptor-ref name="workflow" />
+				<interceptor-ref name="methodProtection" />
+			</interceptor-stack>
+			
+	
+		</interceptors>
+
+		<default-interceptor-ref name="jsp-stack"/>
+
+		<!-- gestione globale delle eccezioni e altri result globalmente validi -->
+		<global-results>
+		
+			<result name="BACK_TO_HOME" type="chain">
+			   <param name="actionName">HomePage</param>
+			    <param name="namespace">/secure</param>
+			</result>
+		
+			<result name="errorRuntime">/jsp/error/applicationError.jsp</result>
+			<!-- result per la restituizione di dati alle compoenenti rich U.I -->
+			<result name="provideData" type="stream">
+  				<param name="contentType">text/plain;charset=UTF-8</param>
+  				<param name="inputName">dataProviderStream</param>
+  				<param name="bufferSize">1024</param>
+  				<param name="allowCaching">false</param>
+			</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="errorRuntime" exception="java.lang.RuntimeException"/>
+		</global-exception-mappings>
+
+	</package>
+
+
+	<!-- DEFAULT PACKAGE (ELEMENTI COMUNI A TUTTO L'APPLICATIVO) -->
+	<package name="default" extends="jsp-package" namespace="/base">
+		<action name="notFoundError">
+			<result>/jsp/error/notFound.jsp</result>
+		</action>
+		<action name="fatalError">
+			<result>/jsp/error/fatalError.jsp</result>
+		</action>
+		<action name="sessionExpired">
+			<result>/jsp/error/sessionExpired.jsp</result>
+		</action>
+		<action name="javascriptError">
+			<result>/jsp/error/javascriptError.jsp</result>
+		</action>
+	</package>
+
+
+	<!-- SECURE PACKAGE -->
+	<package name="secure" extends="jsp-package" namespace="/secure">
+		<!-- HOME PAGE -->
+		<action name="HomePage" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.HomeAction">
+			<result name="GO_TO_cpHome" type="chain">
+			    <param name="actionName">cpHome</param>
+			    <param name="namespace">/base/main</param>
+			</result>
+			<result name="GO_TO_cpRegistraz" type="chain">
+			    <param name="actionName">cpRegistraz</param>
+			    <param name="namespace">/base/gestcertificatore</param>
+			</result>
+			<result name="GO_TO_cpNonAbilitato" type="chain">
+			    <param name="actionName">cpNonAbilitato</param>
+			    <param name="namespace">/base/main</param>
+			</result>
+			<result name="GO_TO_cpBloccoUtente" type="chain">
+			    <param name="actionName">cpBloccoUtente</param>
+			    <param name="namespace">/base/main</param>
+			</result>
+			<result name="GO_TO_cpVerificaMail" type="chain">
+			    <param name="actionName">cpVerificaMail</param>
+			    <param name="namespace">/base/gestcertificatore</param>
+			</result>
+			<result name="GO_TO_cpDisabled" type="chain">
+			    <param name="actionName">cpDisabled</param>
+			    <param name="namespace">/base/main</param>
+			</result>
+			<result name="GO_TO_EX_OK_PAG" type="redirect">
+				<param name="location">/base/main/cpEsitoPagamenti!handleHvPagamentoOK_CLICKED.do</param>
+			</result>
+			<result name="GO_TO_EX_KO_PAG" type="redirect">
+				<param name="location">/base/main/cpEsitoPagamenti!handleHvPagamentoKO_CLICKED.do</param>
+			</result>
+			<result name="GO_TO_EX_ABORT" type="redirect">
+				<param name="location">/base/main/cpEsitoPagamenti!handleHvPagamentoABORT_CLICKED.do</param>
+			</result>
+			<result name="GO_TO_EX_ANOMAL" type="redirect">
+				<param name="location">/base/main/cpEsitoPagamenti!handleHvPagamentoANOMAL_CLICKED.do</param>
+			</result>
+			<result name="GO_TO_EX_OK" type="redirect">
+				<param name="location">/base/gestcertificatore/cpGestioneDialogMail!handleHvEsitoMailOK_CLICKED.do</param>
+			</result>
+			<result name="GO_TO_EX_KO" type="redirect">
+				<param name="location">/base/gestcertificatore/cpGestioneDialogMail!handleHvEsitoMailKO_CLICKED.do</param>
+			</result>
+		</action>
+
+
+		<!-- LOGOUT (LOCAL/SSO) -->
+		<action name="Logout" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.LogoutAction">
+			<result name="confirmLogout">/jsp/error/confirmLogout.jsp</result>
+			<result name="SSO_LOGOUT" type="redirect">
+				<param name="location">@LOGOUT_URL@</param>
+			</result>
+			<result name="LOCAL_LOGOUT" type="redirect">
+				<param name="location">@LOCAL_LOGOUT_URL@</param>
+			</result>
+		</action>
+
+		<!-- MENU -->
+		<action name="goToMnuhomeFromMenu" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.MenuAction" method="goToMnuhome">
+			<result name="GO_TO_cpHome" type="chain">
+				<param name="actionName">cpHome</param>
+				<param name="namespace">/base/main</param>
+			</result>
+		</action>
+
+		<action name="goToMnuGstDatiCertFromMenu" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.MenuAction" method="goToMnuGstDatiCert">
+			<result name="GO_TO_cpDatiCertificatore" type="chain">
+				<param name="actionName">cpDatiCertificatore</param>
+				<param name="namespace">/base/gestcertificatore</param>
+			</result>
+			<result name="GO_TO_cpRegistraz" type="chain">
+				<param name="actionName">cpRegistraz</param>
+				<param name="namespace">/base/gestcertificatore</param>
+			</result>
+			<result name="GO_TO_cpTransaz" type="chain">
+				<param name="actionName">cpTransaz</param>
+				<param name="namespace">/base/gestcertificatore</param>
+			</result>
+			<result name="GO_TO_cpTransazAnomale" type="chain">
+				<param name="actionName">cpTransazAnomale</param>
+				<param name="namespace">/base/gestcertificatore</param>
+			</result>
+			<result name="GO_TO_cpGestInvioCurriculum" type="chain">
+				<param name="actionName">cpGestInvioCurriculum</param>
+				<param name="namespace">/base/gestattestati</param>
+			</result>
+		</action>
+
+		<action name="goToMnuRegDatiCertFromMenu" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.MenuAction" method="goToMnuRegDatiCert">
+			<result name="GO_TO_cpRegistraz" type="chain">
+				<param name="actionName">cpRegistraz</param>
+				<param name="namespace">/base/gestcertificatore</param>
+			</result>
+		</action>
+		<action name="goToMnuTransDatiCertFromMenu" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.MenuAction" method="goToMnuTransDatiCert">
+			<result name="GO_TO_cpTransaz" type="chain">
+				<param name="actionName">cpTransaz</param>
+				<param name="namespace">/base/gestcertificatore</param>
+			</result>
+		</action>
+		<action name="goToMnuTransAnomaleDatiCertFromMenu" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.MenuAction" method="goToMnuTransAnomaleDatiCert">
+			<result name="GO_TO_cpTransazAnomale" type="chain">
+				<param name="actionName">cpTransazAnomale</param>
+				<param name="namespace">/base/gestcertificatore</param>
+			</result>
+		</action>
+		<action name="goToMnuInvioCurriculumFromMenu" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.MenuAction" method="goToMnuInvioCurriculum">
+			<result name="GO_TO_cpGestInvioCurriculum" type="chain">
+				<param name="actionName">cpGestInvioCurriculum</param>
+				<param name="namespace">/base/gestattestati</param>
+			</result>
+		</action>
+		<action name="goToMnuGstCertFromMenu" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.MenuAction" method="goToMnuGstCert">
+			<result name="GO_TO_cpDatiCertificazioni" type="chain">
+				<param name="actionName">cpDatiCertificazioni</param>
+				<param name="namespace">/base/gestattestati</param>
+			</result>
+			<result name="GO_TO_cpPrenotazAttestati" type="chain">
+				<param name="actionName">cpPrenotazAttestati</param>
+				<param name="namespace">/base/gestattestati</param>
+			</result>
+			<result name="GO_TO_cpRicercaAceInviati" type="chain">
+				<param name="actionName">cpRicercaAceInviati</param>
+				<param name="namespace">/base/gestattestati</param>
+			</result>
+			<result name="GO_TO_cpGestCertificazioni" type="chain">
+				<param name="actionName">cpGestCertificazioni</param>
+				<param name="namespace">/base/gestattestati</param>
+			</result>
+			<result name="GO_TO_cpAnnullaSostAceHome" type="chain">
+				<param name="actionName">cpAnnullaSostAceHome</param>
+				<param name="namespace">/base/annullaSostCert</param>
+			</result>
+		</action>
+
+		<action name="goToMnuPrenotAttestatiFromMenu" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.MenuAction" method="goToMnuPrenotAttestati">
+			<result name="GO_TO_cpPrenotazAttestati" type="chain">
+				<param name="actionName">cpPrenotazAttestati</param>
+				<param name="namespace">/base/gestattestati</param>
+			</result>
+		</action>
+		<action name="goToMnuRicercaACEFromMenu" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.MenuAction" method="goToMnuRicercaACE">
+			<result name="GO_TO_cpRicercaAceInviati" type="chain">
+				<param name="actionName">cpRicercaAceInviati</param>
+				<param name="namespace">/base/gestattestati</param>
+			</result>
+		</action>
+		<action name="goToMnuGestACEFromMenu" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.MenuAction" method="goToMnuGestACE">
+			<result name="GO_TO_cpGestCertificazioni" type="chain">
+				<param name="actionName">cpGestCertificazioni</param>
+				<param name="namespace">/base/gestattestati</param>
+			</result>
+		</action>
+		<action name="goToMnuAnnullaACEFromMenu" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.MenuAction" method="goToMnuAnnullaACE">
+			<result name="GO_TO_cpAnnullaSostAceHome" type="chain">
+				<param name="actionName">cpAnnullaSostAceHome</param>
+				<param name="namespace">/base/annullaSostCert</param>
+			</result>
+		</action>
+
+		<action name="goToVAmbienteFromMenu" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.MenuAction" method="goToVAmbiente">
+			<result name="GO_TO_cpMonitoraggio" type="chain">
+				<param name="actionName">cpMonitoraggio</param>
+				<param name="namespace">/base/monitoraggio</param>
+			</result>
+		</action>
+	</package>
+
+</struts>

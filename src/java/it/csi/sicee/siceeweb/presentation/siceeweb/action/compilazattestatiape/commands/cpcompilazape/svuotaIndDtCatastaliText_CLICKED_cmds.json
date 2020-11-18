@@ -1,0 +1,29 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.OnOffCommand" ,
+	"enable":true,
+	"targetsWidgets":["cbProvDtCatastali","cbComDtCatastali"],
+	"targetsMenuElement":[]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":false,
+	"targetsWidgets":["cbSceltaIndDtCatastali","tfIndirizzoDtCatastali","svuotaIndDtCatastaliText"],
+	"targetsMenuElement":[]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":true,
+	"targetsWidgets":["tfRicercaIndirizzo","vVerifIndDtCatastali"],
+	"targetsMenuElement":[]
+}
+] 
+}
+],
+	"esiti":["OK"],
+	"nomeMetodo":"svuotaIndirizzo",
+	"appDataToStore":[]
+}
+] 
+}

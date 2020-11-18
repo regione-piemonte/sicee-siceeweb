@@ -1,0 +1,39 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.JumpCommand" ,
+	"name": "cpTransaz", 
+	"pushCurrent":false
+}
+] 
+}
+],
+	"esiti":["OK"],
+	"nomeMetodo":"preparaDatiPagamentoIscrizione",
+	"appDataToStore":["appDatadatiPagamento"]
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ActivateMultiPanelItemCommand" ,
+	"containerName":"pWizRegistraz",
+	"contentPanelName":"cpRegistraz",
+	"itemName": "pDatiAnag"}
+] 
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.NOPCommand" }
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ShowDialogCommand" ,
+	"name":"dlgCompletataRegistrazioneOk"
+}
+] 
+}
+],
+	"esiti":["PAGAMENTO","NON_PAGAMENTO","STAY","COMPLETA_REGISTRAZIONE"],
+	"nomeMetodo":"bDtRiepilogoAvantiSalva",
+	"appDataToStore":["appDatacertificatore"]
+}

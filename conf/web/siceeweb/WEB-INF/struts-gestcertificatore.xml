@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="gestcertificatore" extends="jsp-package" namespace="/base/gestcertificatore">
+
+		
+<action name="cpTransaz" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.gestcertificatore.CpTransazAction">
+	<result name="input">/jsp/cpTransaz.jsp</result>
+	<result name="success">/jsp/cpTransaz.jsp</result>
+	
+	<result name="GO_TO_cpPagamentoNew" type="chain">
+		<param name="actionName">cpPagamentoNew</param>
+		<param name="namespace">/base/main</param>
+	</result>
+	<result name="GO_TO_cpPagamentoDettNew" type="chain">
+		<param name="actionName">cpPagamentoDettNew</param>
+		<param name="namespace">/base/main</param>
+	</result>
+	<result name="GO_TO_cpAttesaRT" type="chain">
+		<param name="actionName">cpAttesaRT</param>
+		<param name="namespace">/base/gestcertificatore</param>
+	</result>
+	<result name="GO_TO_BackPage" type="chain">
+		<param name="actionName">${backActionName}</param>
+		<param name="namespace">${backNamespace}</param>
+	</result>
+	
+	<result name="GO_TO_EX_STAMPA_RICEVUTA_REG" type="redirect">
+		<param name="location">/base/cpRicevutaPagamentiRegistrazione.do</param>
+	</result>
+	<result name="GO_TO_EX_STAMPA_RICEVUTA_ACE" type="redirect">
+		<param name="location">/base/cpRicevutaPagamenti.do</param>
+	</result>
+</action>
+
+<action name="cpRegistraz" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.gestcertificatore.CpRegistrazAction">
+	<result name="input">/jsp/cpRegistraz.jsp</result>
+	<result name="success">/jsp/cpRegistraz.jsp</result>
+	
+	<result name="GO_TO_cpTransaz" type="chain">
+		<param name="actionName">cpTransaz</param>
+		<param name="namespace">/base/gestcertificatore</param>
+	</result>
+	<result name="GO_TO_cpHome" type="chain">
+		<param name="actionName">cpHome</param>
+		<param name="namespace">/base/main</param>
+	</result>
+	<result name="GO_TO_BackPage" type="chain">
+		<param name="actionName">${backActionName}</param>
+		<param name="namespace">${backNamespace}</param>
+	</result>
+	
+	<result name="GO_TO_EX_KO" type="redirect">
+		<param name="location">/base/gestcertificatore/cpGestioneDialogMail!handleHvEsitoMailMSG_CLICKED.do</param>
+	</result>
+	<result name="GO_TO_EX_OK" type="redirect">
+		<param name="location">/base/scaricaDocumento.do</param>
+	</result>
+	<result name="GO_TO_EX_OK" type="redirect">
+		<param name="location">/base/scaricaDocumento.do</param>
+	</result>
+	<result name="GO_TO_EX_OK" type="redirect">
+		<param name="location">/base/scaricaDocumento.do</param>
+	</result>
+	<result name="SHOW_dlgPagamentoEsitoOk">/jsp/dialogpanels/cpEsitoPagamenti_dlgPagamentoEsitoOk.jsp</result>
+	<result name="SHOW_dlgCompletataRegistrazioneOk">/jsp/dialogpanels/cpRegistraz_dlgCompletataRegistrazioneOk.jsp</result>
+</action>
+
+<action name="cpDatiCertificatore" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.gestcertificatore.CpDatiCertificatoreAction">
+	<result name="input">/jsp/cpDatiCertificatore.jsp</result>
+	<result name="success">/jsp/cpDatiCertificatore.jsp</result>
+	
+	<result name="GO_TO_BackPage" type="chain">
+		<param name="actionName">${backActionName}</param>
+		<param name="namespace">${backNamespace}</param>
+	</result>
+	
+</action>
+
+<action name="cpTransazAnomale" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.gestcertificatore.CpTransazAnomaleAction">
+	<result name="input">/jsp/cpTransazAnomale.jsp</result>
+	<result name="success">/jsp/cpTransazAnomale.jsp</result>
+	
+	<result name="GO_TO_cpHome" type="chain">
+		<param name="actionName">cpHome</param>
+		<param name="namespace">/base/main</param>
+	</result>
+	<result name="GO_TO_cpHome" type="chain">
+		<param name="actionName">cpHome</param>
+		<param name="namespace">/base/main</param>
+	</result>
+	<result name="GO_TO_cpHome" type="chain">
+		<param name="actionName">cpHome</param>
+		<param name="namespace">/base/main</param>
+	</result>
+	<result name="GO_TO_cpHome" type="chain">
+		<param name="actionName">cpHome</param>
+		<param name="namespace">/base/main</param>
+	</result>
+	<result name="GO_TO_BackPage" type="chain">
+		<param name="actionName">${backActionName}</param>
+		<param name="namespace">${backNamespace}</param>
+	</result>
+	
+	<result name="GO_TO_EX_STAMPA_RICEVUTA_ACE" type="redirect">
+		<param name="location">/base/cpRicevutaPagamenti.do</param>
+	</result>
+	<result name="GO_TO_EX_STAMPA_RICEVUTA_REG" type="redirect">
+		<param name="location">/base/cpRicevutaPagamentiRegistrazione.do</param>
+	</result>
+	<result name="SHOW_dlgEsitoTransazioneRegOK">/jsp/dialogpanels/cpTransazAnomale_dlgEsitoTransazioneRegOK.jsp</result>
+	<result name="SHOW_dlgEsitoTransazioneKO">/jsp/dialogpanels/cpTransazAnomale_dlgEsitoTransazioneKO.jsp</result>
+	<result name="SHOW_dlgEsitoTransazioneMIDDLE">/jsp/dialogpanels/cpTransazAnomale_dlgEsitoTransazioneMIDDLE.jsp</result>
+	<result name="SHOW_dlgEsitoTransazioneAceOK">/jsp/dialogpanels/cpTransazAnomale_dlgEsitoTransazioneAceOK.jsp</result>
+</action>
+
+<action name="cpVerificaMail" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.gestcertificatore.CpVerificaMailAction">
+	<result name="input">/jsp/cpVerificaMail.jsp</result>
+	<result name="success">/jsp/cpVerificaMail.jsp</result>
+	
+	<result name="GO_TO_BackPage" type="chain">
+		<param name="actionName">${backActionName}</param>
+		<param name="namespace">${backNamespace}</param>
+	</result>
+	
+</action>
+
+<action name="cpGestioneDialogMail" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.gestcertificatore.CpGestioneDialogMailAction">
+	<result name="input">/jsp/cpGestioneDialogMail.jsp</result>
+	<result name="success">/jsp/cpGestioneDialogMail.jsp</result>
+	
+	<result name="GO_TO_BackPage" type="chain">
+		<param name="actionName">${backActionName}</param>
+		<param name="namespace">${backNamespace}</param>
+	</result>
+	
+	<result name="GO_TO_EX_HOME" type="redirect">
+		<param name="location">/</param>
+	</result>
+	<result name="GO_TO_EX_KO" type="redirect">
+		<param name="location">http://www.sistemapiemonte.it/cms/privati/ambiente-e-energia/servizi/536</param>
+	</result>
+	<result name="GO_TO_EX_VERIFICA" type="redirect">
+		<param name="location">http://www.sistemapiemonte.it/cms/privati/ambiente-e-energia/servizi/856-sistema-informativo-per-le-prestazioni-energetiche-degli-edifici-sipee</param>
+	</result>
+	<result name="SHOW_dlgVerificaMailEsitoOk">/jsp/dialogpanels/cpGestioneDialogMail_dlgVerificaMailEsitoOk.jsp</result>
+	<result name="SHOW_dlgVerificaMailEsitoKo">/jsp/dialogpanels/cpGestioneDialogMail_dlgVerificaMailEsitoKo.jsp</result>
+	<result name="SHOW_dlgMsgConfermaMail">/jsp/dialogpanels/cpGestioneDialogMail_dlgMsgConfermaMail.jsp</result>
+</action>
+
+<action name="cpAttesaRT" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.gestcertificatore.CpAttesaRTAction">
+	<result name="input">/jsp/cpAttesaRT.jsp</result>
+	<result name="success">/jsp/cpAttesaRT.jsp</result>
+	
+	<result name="GO_TO_cpTransaz" type="chain">
+		<param name="actionName">cpTransaz</param>
+		<param name="namespace">/base/gestcertificatore</param>
+	</result>
+	<result name="GO_TO_BackPage" type="chain">
+		<param name="actionName">${backActionName}</param>
+		<param name="namespace">${backNamespace}</param>
+	</result>
+	
+	<result name="GO_TO_EX_STAMPA_ATTESA_RT" type="redirect">
+		<param name="location">/base/cpRicevutaRicarica.do</param>
+	</result>
+</action>
+
+		<!--PROTECTED REGION ID(R818253661) ENABLED START-->
+		<!-- inserire qui la dichiarazione di azioni aggiuntive hand-written -->
+		<!--PROTECTED REGION END-->
+
+	</package>
+</struts>

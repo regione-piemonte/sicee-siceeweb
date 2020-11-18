@@ -1,0 +1,26 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.security.ComplexUISecConstraint",
+  "constrainedBehavior": 2,
+  "defaultState": true,
+  "nomeContainer": "cpTransaz",
+  "nomeWidget": "bPagaIscrizioneAnnuale",
+  "constraints": [
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.security.CustomUISecConstraint",
+  "constrainedBehavior": 2,
+  "defaultState": true,
+  "nomeContainer": "cpTransaz",
+  "nomeWidget": "bPagaIscrizioneAnnuale",
+	"methodNameSuffix": "IsAbilGestisciPagaIscrizione"
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.security.DeclarativeUIConstraint",
+  "constrainedBehavior": 2,
+  "defaultState": true,
+  "nomeContainer": "cpTransaz",
+  "nomeWidget": "bPagaIscrizioneAnnuale",
+	"language": "beanshell",
+	"script": "model.appDatatransazioneCredito != null && model.appDatatransazioneCredito.size() > 0"
+}
+
+
+  ]
+}

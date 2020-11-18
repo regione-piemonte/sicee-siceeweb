@@ -1,0 +1,18 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.security.ComplexUISecConstraint",
+  "constrainedBehavior": 1,
+  "defaultState": true,
+  "nomeContainer": "_menu",
+  "nomeWidget": "mnuRicercaACE",
+  "constraints": [
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.security.CustomUISecConstraint",
+  "constrainedBehavior": 1,
+  "defaultState": true,
+  "nomeContainer": "_menu",
+  "nomeWidget": "mnuRicercaACE",
+	"methodNameSuffix": "RegistratoVisualizzaDuplicaAce"
+}
+
+
+  ]
+}

@@ -1,0 +1,14 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.JumpExtCommand" ,
+	"locationCode":"OK",
+	"runtimeUrlProviderAppData":"",
+	"staticUrl":"/base/scaricaDocumento.do",
+	"binaryStream":false 
+}
+],
+	"esiti":["OK"],
+	"nomeMetodo":"scaricaCurriculumVitae",
+	"appDataToStore":[]
+}

@@ -1,0 +1,52 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":true,
+	"targetsWidgets":["btnCarrelloEliminaOld"],
+	"targetsMenuElement":[]
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":false,
+	"targetsWidgets":["btnCarrelloEliminaOld"],
+	"targetsMenuElement":[]
+}
+],
+	"esiti":["BOTTONE_OLD_VIS","BOTTONE_OLD_NON_VIS"],
+	"nomeMetodo":"gestisciIngressoVisBotEliminaOld",
+	"appDataToStore":[]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":true,
+	"targetsWidgets":["btnCarrelloEliminaNew"],
+	"targetsMenuElement":[]
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":false,
+	"targetsWidgets":["btnCarrelloEliminaNew"],
+	"targetsMenuElement":[]
+}
+],
+	"esiti":["BOTTONE_NEW_VIS","BOTTONE_NEW_NON_VIS"],
+	"nomeMetodo":"gestisciIngressoVisBotEliminaNew",
+	"appDataToStore":[]
+}
+] 
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.NOPCommand" }
+],
+	"esiti":["PRIMO_INGRESSO_SI","PRIMO_INGRESSO_NO"],
+	"nomeMetodo":"gestisciRiepilogoCarrelloPrimoIngresso",
+	"appDataToStore":[]
+}
+] 
+}

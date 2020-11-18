@@ -1,0 +1,96 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":true,
+	"targetsWidgets":["btnScegliAceOld"],
+	"targetsMenuElement":[]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":false,
+	"targetsWidgets":["btnScegliAceNew"],
+	"targetsMenuElement":[]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.OnOffCommand" ,
+	"enable":true,
+	"targetsWidgets":["tfCertificatore"],
+	"targetsMenuElement":[]
+}
+] 
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":false,
+	"targetsWidgets":["btnScegliAceOld"],
+	"targetsMenuElement":[]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":true,
+	"targetsWidgets":["btnScegliAceNew"],
+	"targetsMenuElement":[]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.OnOffCommand" ,
+	"enable":false,
+	"targetsWidgets":["tfCertificatore"],
+	"targetsMenuElement":[]
+}
+] 
+}
+],
+	"esiti":["ACE_OLD","ACE_NEW"],
+	"nomeMetodo":"gestisciInitAnnullaSost",
+	"appDataToStore":[]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.NOPCommand" }
+],
+	"esiti":["OK"],
+	"nomeMetodo":"gestisciCombo",
+	"appDataToStore":[]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":true,
+	"targetsWidgets":["btnVisualizzaCarrello"],
+	"targetsMenuElement":[]
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":false,
+	"targetsWidgets":["btnVisualizzaCarrello"],
+	"targetsMenuElement":[]
+}
+],
+	"esiti":["CARRELLO_VIS","CARRELLO_NON_VIS"],
+	"nomeMetodo":"gestisciVisCarrello",
+	"appDataToStore":[]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":false,
+	"targetsWidgets":["tblRisultatoRicercaAceInviati","btnCarrello"],
+	"targetsMenuElement":[]
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.NOPCommand" }
+],
+	"esiti":["PRIMO_INGRESSO_SI","PRIMO_INGRESSO_NO"],
+	"nomeMetodo":"gestisciInitAnnullaSostPrimoIngresso",
+	"appDataToStore":[]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.NOPCommand" }
+],
+	"esiti":["OKPRECARICA"],
+	"nomeMetodo":"precaricaFiltroRicercaACE",
+	"appDataToStore":[]
+}
+] 
+}

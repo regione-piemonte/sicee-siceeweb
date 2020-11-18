@@ -1,0 +1,56 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.RefreshViewCommand" ,
+	"targetPanels": ["pCenter"], 
+	"targetWidgets":["ptNotaA"],
+	"currentPanelName":"cpRicercaAceAnnullaSost" 
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":true,
+	"targetsWidgets":["btnCarrello"],
+	"targetsMenuElement":[]
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":false,
+	"targetsWidgets":["btnCarrello"],
+	"targetsMenuElement":[]
+}
+],
+	"esiti":["BOTTONE_AGG_VIS_FILTRO","BOTTONE_AGG_NON_VIS_FILTRO"],
+	"nomeMetodo":"gestisciVisibBotAggiungiByFiltro",
+	"appDataToStore":[]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":true,
+	"targetsWidgets":["tblRisultatoRicercaAceInviati"],
+	"targetsMenuElement":[]
+}
+] 
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.RefreshViewCommand" ,
+	"targetPanels": ["pCenter"], 
+	"targetWidgets":["ptNotaA"],
+	"currentPanelName":"cpRicercaAceAnnullaSost" 
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":false,
+	"targetsWidgets":["tblRisultatoRicercaAceInviati","btnCarrello"],
+	"targetsMenuElement":[]
+}
+] 
+}
+],
+	"esiti":["OK","KO"],
+	"nomeMetodo":"ricercaAceByFiltro",
+	"appDataToStore":[]
+}
+] 
+}

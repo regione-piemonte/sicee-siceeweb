@@ -1,0 +1,17 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.security.ComplexUISecConstraint",
+  "constrainedBehavior": 2,
+  "defaultState": true,
+  "nomeContainer": "cpRisultatoRicercaAce",
+  "nomeWidget": "bStampaReport",
+  "constraints": [
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.security.DummyUISecConstraint",
+  "constrainedBehavior": 2,
+  "defaultState": true,
+  "nomeContainer": "cpRisultatoRicercaAce",
+  "nomeWidget": "bStampaReport",
+  "fixedValue": true
+}
+
+  ]
+}

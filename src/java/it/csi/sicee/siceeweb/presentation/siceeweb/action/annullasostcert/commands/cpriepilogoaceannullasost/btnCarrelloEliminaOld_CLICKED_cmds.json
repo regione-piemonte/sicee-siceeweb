@@ -1,0 +1,43 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.RefreshViewCommand" ,
+	"targetPanels": ["pCenter"], 
+	"targetWidgets":["ptMotivazione"],
+	"currentPanelName":"cpRiepilogoAceAnnullaSost" 
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":true,
+	"targetsWidgets":["btnCarrelloEliminaOld"],
+	"targetsMenuElement":[]
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":false,
+	"targetsWidgets":["btnCarrelloEliminaOld"],
+	"targetsMenuElement":[]
+}
+],
+	"esiti":["BOTTONE_OLD_VIS","BOTTONE_OLD_NON_VIS"],
+	"nomeMetodo":"gestisciVisBotEliminaOld",
+	"appDataToStore":[]
+}
+] 
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.RefreshViewCommand" ,
+	"targetPanels": ["pCenter"], 
+	"targetWidgets":["ptMotivazione"],
+	"currentPanelName":"cpRiepilogoAceAnnullaSost" 
+}
+],
+	"esiti":["OK","KO"],
+	"nomeMetodo":"eliminaOldDalCarrello",
+	"appDataToStore":[]
+}
+] 
+}

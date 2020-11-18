@@ -1,0 +1,38 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":false,
+	"targetsWidgets":["bStampaRicevutaReg"],
+	"targetsMenuElement":[]
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":false,
+	"targetsWidgets":["bStampaRicevutaAce"],
+	"targetsMenuElement":[]
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":true,
+	"targetsWidgets":["bStampaRicevutaReg","bStampaRicevutaAce"],
+	"targetsMenuElement":[]
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":false,
+	"targetsWidgets":["bStampaRicevutaReg","bStampaRicevutaAce"],
+	"targetsMenuElement":[]
+}
+],
+	"esiti":["NASCONDI_REG","NASCONDI_ACE","MOSTRA_ALL","NASCONDI_ALL"],
+	"nomeMetodo":"switchPulsanteScaricaMod",
+	"appDataToStore":[]
+}
+],
+	"esiti":["OK"],
+	"nomeMetodo":"initListaTransazioni",
+	"appDataToStore":["appDatatransazioneAce","appDatatransazioneRegistrazione"]
+}

@@ -1,0 +1,24 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ScreenStateCommand" ,
+	"widgetsOn":["menu","fileCarica","btnIndietro","btnCaricaXmlRO"],
+	"widgetsOff":["btnCaricaXml","btnConferma"],
+	"widgetsShown":["menu","fileCarica","btnIndietro","btnCaricaXmlRO"],
+	"widgetsHidden":["btnCaricaXml","btnConferma"]
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ScreenStateCommand" ,
+	"widgetsOn":["menu","fileCarica","btnIndietro","btnConferma","btnCaricaXmlRO"],
+	"widgetsOff":["btnCaricaXml"],
+	"widgetsShown":["menu","fileCarica","btnIndietro","btnConferma","btnCaricaXmlRO"],
+	"widgetsHidden":["btnCaricaXml"]
+}
+],
+	"esiti":["CARICA_XML","PROSEGUI"],
+	"nomeMetodo":"switchScreenState",
+	"appDataToStore":[]
+}
+] 
+}

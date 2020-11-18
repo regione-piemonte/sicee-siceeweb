@@ -1,0 +1,13 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.RefreshViewCommand" ,
+	"targetPanels": ["pCenter"], 
+	"targetWidgets":["hvPagamentoOK"],
+	"currentPanelName":"cpEsitoPagamentiNew" 
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.JumpCommand" ,
+	"name": "cpTransaz", 
+	"pushCurrent":false
+}
+] 
+}

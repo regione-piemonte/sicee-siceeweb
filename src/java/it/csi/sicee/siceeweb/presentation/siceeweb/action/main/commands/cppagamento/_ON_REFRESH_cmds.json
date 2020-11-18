@@ -1,0 +1,70 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":false,
+	"targetsWidgets":["rbsTipoPagamento"],
+	"targetsMenuElement":[]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":false,
+	"targetsWidgets":["tfCRO","txtEseguitoda","tfCognomeEsecutore","tfNomeEsecutore"],
+	"targetsMenuElement":[]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":true,
+	"targetsWidgets":["txtModPagaCC","cbGestoreModalitaPagamento"],
+	"targetsMenuElement":[]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":false,
+	"targetsWidgets":["txtModPagaBB"],
+	"targetsMenuElement":[]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.OnOffCommand" ,
+	"enable":false,
+	"targetsWidgets":["calDataValuta"],
+	"targetsMenuElement":[]
+}
+] 
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":false,
+	"targetsWidgets":["rbsTipoPagamento"],
+	"targetsMenuElement":[]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":true,
+	"targetsWidgets":["tfCRO","txtEseguitoda","tfCognomeEsecutore","tfNomeEsecutore"],
+	"targetsMenuElement":[]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":true,
+	"targetsWidgets":["txtModPagaBB"],
+	"targetsMenuElement":[]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":false,
+	"targetsWidgets":["txtModPagaCC"],
+	"targetsMenuElement":[]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.OnOffCommand" ,
+	"enable":true,
+	"targetsWidgets":["calDataValuta"],
+	"targetsMenuElement":[]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.OnOffCommand" ,
+	"enable":false,
+	"targetsWidgets":["cbGestoreModalitaPagamento"],
+	"targetsMenuElement":[]
+}
+] 
+}
+],
+	"esiti":["CC_ONLY","BB_ONLY"],
+	"nomeMetodo":"abilitaTipiPagamentoPossibili",
+	"appDataToStore":["appDatadatiPagamento"]
+}

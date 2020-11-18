@@ -1,0 +1,18 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.security.ComplexUISecConstraint",
+  "constrainedBehavior": 2,
+  "defaultState": true,
+  "nomeContainer": "cpImpXml2015",
+  "nomeWidget": "btnCaricaXmlRO",
+  "constraints": [
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.security.CustomUISecConstraint",
+  "constrainedBehavior": 2,
+  "defaultState": true,
+  "nomeContainer": "cpImpXml2015",
+  "nomeWidget": "btnCaricaXmlRO",
+	"methodNameSuffix": "GestisciVisBotCaricaXmlRO"
+}
+
+
+  ]
+}

@@ -1,0 +1,1200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportProva" language="groovy" pageWidth="595" pageHeight="842" columnWidth="570" leftMargin="15" rightMargin="10" topMargin="10" bottomMargin="14">
+	<property name="ireport.zoom" value="2.200000000000001"/>
+	<property name="ireport.x" value="184"/>
+	<property name="ireport.y" value="15"/>
+	<parameter name="PATH_IMG" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["D:\\progetti\\test\\jasperReport2\\src\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="IMG_PRINC" class="java.lang.Object" isForPrompting="false"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="smileInverno" class="java.lang.String">
+		<fieldDescription><![CDATA[smileInverno]]></fieldDescription>
+	</field>
+	<field name="edifEnergZero" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[edifEnergZero]]></fieldDescription>
+	</field>
+	<field name="descClassificazione" class="java.lang.String">
+		<fieldDescription><![CDATA[descClassificazione]]></fieldDescription>
+	</field>
+	<field name="volLordoRisc" class="java.lang.String">
+		<fieldDescription><![CDATA[volLordoRisc]]></fieldDescription>
+	</field>
+	<field name="serClimaEstivo" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[serClimaEstivo]]></fieldDescription>
+	</field>
+	<field name="idMotivazione" class="java.lang.String">
+		<fieldDescription><![CDATA[idMotivazione]]></fieldDescription>
+	</field>
+	<field name="idOggetto" class="java.lang.Integer">
+		<fieldDescription><![CDATA[idOggetto]]></fieldDescription>
+	</field>
+	<field name="coordinate" class="java.lang.String">
+		<fieldDescription><![CDATA[coordinate]]></fieldDescription>
+	</field>
+	<field name="annoCostruzione" class="java.lang.Integer">
+		<fieldDescription><![CDATA[annoCostruzione]]></fieldDescription>
+	</field>
+	<field name="smileEstate" class="java.lang.String">
+		<fieldDescription><![CDATA[smileEstate]]></fieldDescription>
+	</field>
+	<field name="interno" class="java.lang.String">
+		<fieldDescription><![CDATA[interno]]></fieldDescription>
+	</field>
+	<field name="indirizzo" class="java.lang.String">
+		<fieldDescription><![CDATA[indirizzo]]></fieldDescription>
+	</field>
+	<field name="supUtileRaffr" class="java.lang.String">
+		<fieldDescription><![CDATA[supUtileRaffr]]></fieldDescription>
+	</field>
+	<field name="descComune" class="java.lang.String">
+		<fieldDescription><![CDATA[descComune]]></fieldDescription>
+	</field>
+	<field name="volLordoRaffr" class="java.lang.String">
+		<fieldDescription><![CDATA[volLordoRaffr]]></fieldDescription>
+	</field>
+	<field name="epglnrenEdEsistenti" class="java.lang.String">
+		<fieldDescription><![CDATA[epglnrenEdEsistenti]]></fieldDescription>
+	</field>
+	<field name="piano" class="java.lang.String">
+		<fieldDescription><![CDATA[piano]]></fieldDescription>
+	</field>
+	<field name="frecciaClasse" class="java.lang.String">
+		<fieldDescription><![CDATA[frecciaClasse]]></fieldDescription>
+	</field>
+	<field name="epglnren" class="java.lang.String">
+		<fieldDescription><![CDATA[epglnren]]></fieldDescription>
+	</field>
+	<field name="residenziale" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[residenziale]]></fieldDescription>
+	</field>
+	<field name="numeroUI" class="java.lang.Integer">
+		<fieldDescription><![CDATA[numeroUI]]></fieldDescription>
+	</field>
+	<field name="catasto" class="java.util.Collection">
+		<fieldDescription><![CDATA[catasto]]></fieldDescription>
+	</field>
+	<field name="validoFinaAl" class="java.lang.String">
+		<fieldDescription><![CDATA[validoFinaAl]]></fieldDescription>
+	</field>
+	<field name="serAcquaCalda" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[serAcquaCalda]]></fieldDescription>
+	</field>
+	<field name="descMotivazioneAltro" class="java.lang.String">
+		<fieldDescription><![CDATA[descMotivazioneAltro]]></fieldDescription>
+	</field>
+	<field name="serVentola" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[serVentola]]></fieldDescription>
+	</field>
+	<field name="classeEnergetica" class="java.lang.String">
+		<fieldDescription><![CDATA[classeEnergetica]]></fieldDescription>
+	</field>
+	<field name="serClimaInvernale" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[serClimaInvernale]]></fieldDescription>
+	</field>
+	<field name="serIlluminazione" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[serIlluminazione]]></fieldDescription>
+	</field>
+	<field name="zonaClimatica" class="java.lang.String">
+		<fieldDescription><![CDATA[zonaClimatica]]></fieldDescription>
+	</field>
+	<field name="descRegione" class="java.lang.String">
+		<fieldDescription><![CDATA[descRegione]]></fieldDescription>
+	</field>
+	<field name="numCertificato" class="java.lang.String">
+		<fieldDescription><![CDATA[numCertificato]]></fieldDescription>
+	</field>
+	<field name="epglnrenEdNuovi" class="java.lang.String">
+		<fieldDescription><![CDATA[epglnrenEdNuovi]]></fieldDescription>
+	</field>
+	<field name="serTrasporto" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[serTrasporto]]></fieldDescription>
+	</field>
+	<field name="classeEdNuovi" class="java.lang.String">
+		<fieldDescription><![CDATA[classeEdNuovi]]></fieldDescription>
+	</field>
+	<field name="classeEdEsistenti" class="java.lang.String">
+		<fieldDescription><![CDATA[classeEdEsistenti]]></fieldDescription>
+	</field>
+	<field name="supUtileRisc" class="java.lang.String">
+		<fieldDescription><![CDATA[supUtileRisc]]></fieldDescription>
+	</field>
+	<variable name="CHECK_NO" class="java.lang.String">
+		<variableExpression><![CDATA[$P{PATH_IMG}+"check_no.png"]]></variableExpression>
+	</variable>
+	<variable name="CHECK_SI" class="java.lang.String">
+		<variableExpression><![CDATA[$P{PATH_IMG}+"check_si.png"]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="16" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="320" height="13"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Appendice B - Format di Attestato di Prestazione Energetica (APE)]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="70" splitType="Stretch">
+			<rectangle>
+				<reportElement x="66" y="0" width="389" height="64" backcolor="#336900"/>
+				<graphicElement>
+					<pen lineWidth="2.0" lineColor="#336900"/>
+				</graphicElement>
+			</rectangle>
+			<image onErrorType="Icon">
+				<reportElement x="3" y="3" width="63" height="61"/>
+				<imageExpression><![CDATA[$P{PATH_IMG}+"logoRegione.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="188" y="3" width="156" height="28" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ATTESTATO DI PRESTAZIONE
+ENERGETICA DEGLI EDIFICI]]></text>
+			</staticText>
+			<frame>
+				<reportElement x="66" y="43" width="389" height="21" forecolor="#FFFFFF"/>
+				<staticText>
+					<reportElement x="228" y="0" width="72" height="20" forecolor="#FFFFFF"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[VALIDO FINO AL:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="300" y="0" width="81" height="20" forecolor="#FFFFFF"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="7"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{validoFinaAl}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="14" y="0" width="102" height="20" forecolor="#FFFFFF"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[CODICE IDENTIFICATIVO:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="116" y="0" width="100" height="20" forecolor="#FFFFFF"/>
+					<textElement markup="none">
+						<font fontName="DejaVu Sans" size="7" isPdfEmbedded="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{numCertificato}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<image>
+				<reportElement x="455" y="0" width="99" height="64"/>
+				<imageExpression><![CDATA[$P{PATH_IMG}+"logoAPE.png"]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="701" splitType="Stretch">
+			<rectangle>
+				<reportElement x="1" y="0" width="555" height="5" backcolor="#336900"/>
+				<graphicElement>
+					<pen lineWidth="2.0" lineColor="#336900"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="5" width="102" height="14" forecolor="#FFFFFF" backcolor="#336900"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[DATI GENERALI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="116" y="83" width="250" height="20"/>
+				<textElement/>
+				<text><![CDATA[QUESTA E UNA PROVA]]></text>
+			</staticText>
+			<elementGroup>
+				<rectangle>
+					<reportElement x="1" y="24" width="554" height="103" backcolor="#FFFFFF"/>
+					<graphicElement>
+						<pen lineWidth="2.0" lineColor="#336900"/>
+					</graphicElement>
+				</rectangle>
+				<staticText>
+					<reportElement x="11" y="29" width="100" height="15" forecolor="#336900"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Destinazione d'uso]]></text>
+				</staticText>
+				<image vAlign="Middle">
+					<reportElement x="29" y="46" width="10" height="10"/>
+					<imageExpression><![CDATA[$F{residenziale}? $V{CHECK_SI} : $V{CHECK_NO}]]></imageExpression>
+				</image>
+				<staticText>
+					<reportElement x="42" y="44" width="100" height="14"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="7"/>
+					</textElement>
+					<text><![CDATA[Residenziale]]></text>
+				</staticText>
+				<image vAlign="Middle">
+					<reportElement x="29" y="60" width="10" height="10"/>
+					<imageExpression><![CDATA[$F{residenziale}? $V{CHECK_NO} : $V{CHECK_SI}]]></imageExpression>
+				</image>
+				<staticText>
+					<reportElement x="42" y="58" width="100" height="14"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="7"/>
+					</textElement>
+					<text><![CDATA[Non residenziale]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="11" y="74" width="112" height="14"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Classificazione D.P.R. 412/93: ]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="11" y="86" width="220" height="35"/>
+					<box>
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="7"/>
+						<paragraph leftIndent="2" rightIndent="2"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{descClassificazione}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="234" y="24" width="1" height="103" forecolor="#336900"/>
+				</line>
+				<staticText>
+					<reportElement x="239" y="29" width="116" height="15" forecolor="#336900"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Oggetto dell'attestato]]></text>
+				</staticText>
+				<image vAlign="Middle">
+					<reportElement x="242" y="46" width="9" height="9"/>
+					<imageExpression><![CDATA[$F{idOggetto}==0?$V{CHECK_SI} : $V{CHECK_NO}]]></imageExpression>
+				</image>
+				<staticText>
+					<reportElement x="255" y="44" width="100" height="14"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="7"/>
+					</textElement>
+					<text><![CDATA[Intero edificio]]></text>
+				</staticText>
+				<image vAlign="Middle">
+					<reportElement x="242" y="60" width="9" height="9"/>
+					<imageExpression><![CDATA[$F{idOggetto}==1?$V{CHECK_SI} : $V{CHECK_NO}]]></imageExpression>
+				</image>
+				<staticText>
+					<reportElement x="255" y="58" width="100" height="14"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="7"/>
+					</textElement>
+					<text><![CDATA[Unità immobiliare]]></text>
+				</staticText>
+				<image vAlign="Middle">
+					<reportElement x="242" y="74" width="9" height="9"/>
+					<imageExpression><![CDATA[$F{idOggetto}==2?$V{CHECK_SI} : $V{CHECK_NO}]]></imageExpression>
+				</image>
+				<staticText>
+					<reportElement x="255" y="72" width="111" height="14"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="7"/>
+					</textElement>
+					<text><![CDATA[Gruppo di unità immobiliari]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="255" y="86" width="124" height="23"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="7"/>
+					</textElement>
+					<text><![CDATA[numero di unità immobiliari di cui è composto l'edificio:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="255" y="111" width="100" height="13"/>
+					<box>
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="7"/>
+						<paragraph leftIndent="2"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{numeroUI}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement mode="Transparent" x="390" y="29" width="1" height="92" forecolor="#336900" backcolor="#336900"/>
+				</line>
+				<image vAlign="Middle">
+					<reportElement x="402" y="32" width="9" height="9"/>
+					<imageExpression><![CDATA[$F{idMotivazione}.equals('100')?$V{CHECK_SI} : $V{CHECK_NO}]]></imageExpression>
+				</image>
+				<staticText>
+					<reportElement x="415" y="30" width="100" height="14"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="7"/>
+					</textElement>
+					<text><![CDATA[Nuova costruzione]]></text>
+				</staticText>
+				<image vAlign="Middle">
+					<reportElement x="402" y="46" width="9" height="9"/>
+					<imageExpression><![CDATA[$F{idMotivazione}.equals('101')?$V{CHECK_SI} : $V{CHECK_NO}]]></imageExpression>
+				</image>
+				<staticText>
+					<reportElement x="415" y="44" width="100" height="14"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="7"/>
+					</textElement>
+					<text><![CDATA[Passaggio di proprietà]]></text>
+				</staticText>
+				<image vAlign="Middle">
+					<reportElement x="402" y="60" width="9" height="9"/>
+					<imageExpression><![CDATA[$F{idMotivazione}.equals('102')?$V{CHECK_SI} : $V{CHECK_NO}]]></imageExpression>
+				</image>
+				<staticText>
+					<reportElement x="415" y="58" width="100" height="14"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="7"/>
+					</textElement>
+					<text><![CDATA[Locazione]]></text>
+				</staticText>
+				<image vAlign="Middle">
+					<reportElement x="402" y="74" width="9" height="9"/>
+					<imageExpression><![CDATA[$F{idMotivazione}.equals('103')?$V{CHECK_SI} : $V{CHECK_NO}]]></imageExpression>
+				</image>
+				<staticText>
+					<reportElement x="415" y="72" width="100" height="14"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="7"/>
+					</textElement>
+					<text><![CDATA[Ristrutturazione importante]]></text>
+				</staticText>
+				<image vAlign="Middle">
+					<reportElement x="402" y="88" width="9" height="9"/>
+					<imageExpression><![CDATA[$F{idMotivazione}.equals('104')?$V{CHECK_SI} : $V{CHECK_NO}]]></imageExpression>
+				</image>
+				<staticText>
+					<reportElement x="415" y="86" width="100" height="14"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="7"/>
+					</textElement>
+					<text><![CDATA[Riqualificazione energetica]]></text>
+				</staticText>
+				<image vAlign="Middle">
+					<reportElement x="402" y="102" width="9" height="9"/>
+					<imageExpression><![CDATA[$F{idMotivazione}.equals('105')?$V{CHECK_SI} : $V{CHECK_NO}]]></imageExpression>
+				</image>
+				<staticText>
+					<reportElement x="415" y="100" width="20" height="14"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="7"/>
+					</textElement>
+					<text><![CDATA[Altro:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="435" y="100" width="115" height="13"/>
+					<box>
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="7"/>
+						<paragraph leftIndent="2"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{descMotivazioneAltro}]]></textFieldExpression>
+				</textField>
+			</elementGroup>
+			<elementGroup>
+				<frame>
+					<reportElement x="1" y="130" width="554" height="130" forecolor="#336900" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="2.0"/>
+						<leftPen lineWidth="2.0"/>
+						<bottomPen lineWidth="0.0" lineColor="#336900"/>
+						<rightPen lineWidth="2.0"/>
+					</box>
+					<staticText>
+						<reportElement x="10" y="5" width="100" height="15" forecolor="#336900"/>
+						<textElement>
+							<font fontName="DejaVu Sans" size="8" isBold="true"/>
+						</textElement>
+						<text><![CDATA[Dati identificativi]]></text>
+					</staticText>
+					<image>
+						<reportElement x="10" y="26" width="112" height="98"/>
+						<imageExpression><![CDATA[$P{IMG_PRINC}]]></imageExpression>
+					</image>
+					<staticText>
+						<reportElement x="152" y="26" width="54" height="14"/>
+						<textElement verticalAlignment="Middle">
+							<font fontName="DejaVu Sans" size="7"/>
+						</textElement>
+						<text><![CDATA[Regione:]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="209" y="26" width="115" height="13"/>
+						<box>
+							<pen lineWidth="1.0"/>
+							<topPen lineWidth="1.0"/>
+							<leftPen lineWidth="1.0"/>
+							<bottomPen lineWidth="1.0"/>
+							<rightPen lineWidth="1.0"/>
+						</box>
+						<textElement verticalAlignment="Middle">
+							<font fontName="DejaVu Sans" size="7"/>
+							<paragraph leftIndent="2"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{descRegione}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement x="152" y="43" width="54" height="14"/>
+						<textElement verticalAlignment="Middle">
+							<font fontName="DejaVu Sans" size="7"/>
+						</textElement>
+						<text><![CDATA[Comune:]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="209" y="43" width="115" height="13"/>
+						<box>
+							<pen lineWidth="1.0"/>
+							<topPen lineWidth="1.0"/>
+							<leftPen lineWidth="1.0"/>
+							<bottomPen lineWidth="1.0"/>
+							<rightPen lineWidth="1.0"/>
+						</box>
+						<textElement verticalAlignment="Middle">
+							<font fontName="DejaVu Sans" size="7"/>
+							<paragraph leftIndent="2"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{descComune}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement x="152" y="60" width="54" height="14"/>
+						<textElement verticalAlignment="Middle">
+							<font fontName="DejaVu Sans" size="7"/>
+						</textElement>
+						<text><![CDATA[Indirizzo:]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="209" y="60" width="115" height="13"/>
+						<box>
+							<pen lineWidth="1.0"/>
+							<topPen lineWidth="1.0"/>
+							<leftPen lineWidth="1.0"/>
+							<bottomPen lineWidth="1.0"/>
+							<rightPen lineWidth="1.0"/>
+						</box>
+						<textElement verticalAlignment="Middle">
+							<font fontName="DejaVu Sans" size="7"/>
+							<paragraph leftIndent="2"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{indirizzo}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement x="152" y="77" width="54" height="14"/>
+						<textElement verticalAlignment="Middle">
+							<font fontName="DejaVu Sans" size="7"/>
+						</textElement>
+						<text><![CDATA[Piano:]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="209" y="77" width="115" height="13"/>
+						<box>
+							<pen lineWidth="1.0"/>
+							<topPen lineWidth="1.0"/>
+							<leftPen lineWidth="1.0"/>
+							<bottomPen lineWidth="1.0"/>
+							<rightPen lineWidth="1.0"/>
+						</box>
+						<textElement verticalAlignment="Middle">
+							<font fontName="DejaVu Sans" size="7"/>
+							<paragraph leftIndent="2"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{piano}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement x="152" y="94" width="54" height="14"/>
+						<textElement verticalAlignment="Middle">
+							<font fontName="DejaVu Sans" size="7"/>
+						</textElement>
+						<text><![CDATA[Interno:]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="209" y="94" width="115" height="13"/>
+						<box>
+							<pen lineWidth="1.0"/>
+							<topPen lineWidth="1.0"/>
+							<leftPen lineWidth="1.0"/>
+							<bottomPen lineWidth="1.0"/>
+							<rightPen lineWidth="1.0"/>
+						</box>
+						<textElement verticalAlignment="Middle">
+							<font fontName="DejaVu Sans" size="7"/>
+							<paragraph leftIndent="2"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{interno}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement x="152" y="111" width="57" height="14"/>
+						<textElement verticalAlignment="Middle">
+							<font fontName="DejaVu Sans" size="7"/>
+						</textElement>
+						<text><![CDATA[Coordinate GIS:]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="209" y="111" width="115" height="13"/>
+						<box>
+							<pen lineWidth="1.0"/>
+							<topPen lineWidth="1.0"/>
+							<leftPen lineWidth="1.0"/>
+							<bottomPen lineWidth="1.0"/>
+							<rightPen lineWidth="1.0"/>
+						</box>
+						<textElement verticalAlignment="Middle">
+							<font fontName="DejaVu Sans" size="7"/>
+							<paragraph leftIndent="2"/>
+						</textElement>
+					</textField>
+					<line>
+						<reportElement mode="Transparent" x="333" y="17" width="1" height="109" forecolor="#336900" backcolor="#336900"/>
+					</line>
+					<staticText>
+						<reportElement x="343" y="26" width="115" height="14"/>
+						<textElement verticalAlignment="Middle">
+							<font fontName="DejaVu Sans" size="7"/>
+						</textElement>
+						<text><![CDATA[Zona climatica:]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="458" y="26" width="66" height="13"/>
+						<box>
+							<pen lineWidth="1.0"/>
+							<topPen lineWidth="1.0"/>
+							<leftPen lineWidth="1.0"/>
+							<bottomPen lineWidth="1.0"/>
+							<rightPen lineWidth="1.0"/>
+						</box>
+						<textElement verticalAlignment="Middle">
+							<font fontName="DejaVu Sans" size="7"/>
+							<paragraph leftIndent="2"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{zonaClimatica}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement x="343" y="43" width="115" height="14"/>
+						<textElement verticalAlignment="Middle">
+							<font fontName="DejaVu Sans" size="7"/>
+						</textElement>
+						<text><![CDATA[Anno di costruzione:]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="458" y="43" width="66" height="13"/>
+						<box>
+							<pen lineWidth="1.0"/>
+							<topPen lineWidth="1.0"/>
+							<leftPen lineWidth="1.0"/>
+							<bottomPen lineWidth="1.0"/>
+							<rightPen lineWidth="1.0"/>
+						</box>
+						<textElement verticalAlignment="Middle">
+							<font fontName="DejaVu Sans" size="7"/>
+							<paragraph leftIndent="2"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{annoCostruzione}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement x="343" y="60" width="115" height="14"/>
+						<textElement verticalAlignment="Middle">
+							<font fontName="DejaVu Sans" size="7"/>
+						</textElement>
+						<text><![CDATA[Superficie utile riscaldata (m²) :]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="458" y="60" width="66" height="13"/>
+						<box>
+							<pen lineWidth="1.0"/>
+							<topPen lineWidth="1.0"/>
+							<leftPen lineWidth="1.0"/>
+							<bottomPen lineWidth="1.0"/>
+							<rightPen lineWidth="1.0"/>
+						</box>
+						<textElement verticalAlignment="Middle">
+							<font fontName="DejaVu Sans" size="7"/>
+							<paragraph leftIndent="2"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{supUtileRisc}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement x="343" y="77" width="115" height="14"/>
+						<textElement verticalAlignment="Middle">
+							<font fontName="DejaVu Sans" size="7"/>
+						</textElement>
+						<text><![CDATA[Superficie utile raffrescata (m²):]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="458" y="77" width="66" height="13"/>
+						<box>
+							<pen lineWidth="1.0"/>
+							<topPen lineWidth="1.0"/>
+							<leftPen lineWidth="1.0"/>
+							<bottomPen lineWidth="1.0"/>
+							<rightPen lineWidth="1.0"/>
+						</box>
+						<textElement verticalAlignment="Middle">
+							<font fontName="DejaVu Sans" size="7"/>
+							<paragraph leftIndent="2"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{supUtileRaffr}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement x="343" y="94" width="115" height="14"/>
+						<textElement verticalAlignment="Middle">
+							<font fontName="DejaVu Sans" size="7"/>
+						</textElement>
+						<text><![CDATA[Volume lordo riscaldato (m3):]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="458" y="94" width="66" height="13"/>
+						<box>
+							<pen lineWidth="1.0"/>
+							<topPen lineWidth="1.0"/>
+							<leftPen lineWidth="1.0"/>
+							<bottomPen lineWidth="1.0"/>
+							<rightPen lineWidth="1.0"/>
+						</box>
+						<textElement verticalAlignment="Middle">
+							<font fontName="DejaVu Sans" size="7"/>
+							<paragraph leftIndent="2"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{volLordoRisc}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement x="343" y="111" width="115" height="14"/>
+						<textElement verticalAlignment="Middle">
+							<font fontName="DejaVu Sans" size="7"/>
+						</textElement>
+						<text><![CDATA[Volume lordo raffescato (m3):]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="458" y="111" width="66" height="13"/>
+						<box>
+							<pen lineWidth="1.0"/>
+							<topPen lineWidth="1.0"/>
+							<leftPen lineWidth="1.0"/>
+							<bottomPen lineWidth="1.0"/>
+							<rightPen lineWidth="1.0"/>
+						</box>
+						<textElement verticalAlignment="Middle">
+							<font fontName="DejaVu Sans" size="7"/>
+							<paragraph leftIndent="2"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{volLordoRaffr}]]></textFieldExpression>
+					</textField>
+				</frame>
+			</elementGroup>
+			<subreport>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="1" y="260" width="553" height="54"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{catasto})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "rep_attestato_catasto.jasper"]]></subreportExpression>
+			</subreport>
+			<frame>
+				<reportElement positionType="Float" x="1" y="314" width="554" height="5"/>
+				<box>
+					<pen lineColor="#336900"/>
+					<topPen lineColor="#336900"/>
+					<leftPen lineWidth="2.0" lineColor="#336900"/>
+					<bottomPen lineWidth="2.0" lineColor="#336900"/>
+					<rightPen lineWidth="2.0" lineColor="#336900"/>
+				</box>
+			</frame>
+			<frame>
+				<reportElement positionType="Float" x="1" y="322" width="554" height="63"/>
+				<box>
+					<topPen lineWidth="2.0" lineColor="#336900"/>
+					<leftPen lineWidth="2.0" lineColor="#336900"/>
+					<bottomPen lineWidth="2.0" lineColor="#336900"/>
+					<rightPen lineWidth="2.0" lineColor="#336900"/>
+				</box>
+				<staticText>
+					<reportElement positionType="Float" x="10" y="5" width="131" height="15" forecolor="#336900"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Servizi energetici presenti]]></text>
+				</staticText>
+				<image vAlign="Middle">
+					<reportElement positionType="Float" x="18" y="24" width="10" height="10"/>
+					<imageExpression><![CDATA[$F{serClimaInvernale}? $V{CHECK_SI} : $V{CHECK_NO}]]></imageExpression>
+				</image>
+				<image vAlign="Middle">
+					<reportElement positionType="Float" x="35" y="20" width="24" height="18"/>
+					<imageExpression><![CDATA[$P{PATH_IMG}+"ServiziClimaInvernale.jpg"]]></imageExpression>
+				</image>
+				<staticText>
+					<reportElement positionType="Float" x="59" y="22" width="100" height="14"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="7"/>
+					</textElement>
+					<text><![CDATA[Climatizzazione invernale]]></text>
+				</staticText>
+				<image vAlign="Middle">
+					<reportElement positionType="Float" x="18" y="45" width="10" height="10"/>
+					<imageExpression><![CDATA[$F{serClimaEstivo}? $V{CHECK_SI} : $V{CHECK_NO}]]></imageExpression>
+				</image>
+				<image vAlign="Middle">
+					<reportElement positionType="Float" x="35" y="41" width="24" height="18"/>
+					<imageExpression><![CDATA[$P{PATH_IMG}+"ServiziClimaEstivo.jpg"]]></imageExpression>
+				</image>
+				<staticText>
+					<reportElement positionType="Float" x="59" y="43" width="100" height="14"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="7" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Climatizzazione estiva]]></text>
+				</staticText>
+				<image vAlign="Middle">
+					<reportElement positionType="Float" x="183" y="24" width="10" height="10"/>
+					<imageExpression><![CDATA[$F{serVentola}? $V{CHECK_SI} : $V{CHECK_NO}]]></imageExpression>
+				</image>
+				<image vAlign="Middle">
+					<reportElement positionType="Float" x="200" y="20" width="24" height="18"/>
+					<imageExpression><![CDATA[$P{PATH_IMG}+"ServiziVentola.png"]]></imageExpression>
+				</image>
+				<staticText>
+					<reportElement positionType="Float" x="224" y="22" width="100" height="14"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="7"/>
+					</textElement>
+					<text><![CDATA[Ventilazione meccanica]]></text>
+				</staticText>
+				<image vAlign="Middle">
+					<reportElement positionType="Float" x="183" y="45" width="10" height="10"/>
+					<imageExpression><![CDATA[$F{serAcquaCalda}? $V{CHECK_SI} : $V{CHECK_NO}]]></imageExpression>
+				</image>
+				<image vAlign="Middle">
+					<reportElement positionType="Float" x="200" y="41" width="24" height="18"/>
+					<imageExpression><![CDATA[$P{PATH_IMG}+"ServiziAcquaCalda.jpg"]]></imageExpression>
+				</image>
+				<staticText>
+					<reportElement positionType="Float" x="224" y="43" width="100" height="14"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="7"/>
+					</textElement>
+					<text><![CDATA[Prod. acqua calda sanitaria]]></text>
+				</staticText>
+				<image vAlign="Middle">
+					<reportElement positionType="Float" x="348" y="24" width="10" height="10"/>
+					<imageExpression><![CDATA[$F{serIlluminazione}? $V{CHECK_SI} : $V{CHECK_NO}]]></imageExpression>
+				</image>
+				<image vAlign="Middle">
+					<reportElement positionType="Float" x="365" y="20" width="24" height="18"/>
+					<imageExpression><![CDATA[$P{PATH_IMG}+"ServiziIlluminazione.jpg"]]></imageExpression>
+				</image>
+				<staticText>
+					<reportElement positionType="Float" x="389" y="22" width="100" height="14"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="7"/>
+					</textElement>
+					<text><![CDATA[Illuminazione]]></text>
+				</staticText>
+				<image vAlign="Middle">
+					<reportElement positionType="Float" x="348" y="45" width="10" height="10"/>
+					<imageExpression><![CDATA[$F{serTrasporto}? $V{CHECK_SI} : $V{CHECK_NO}]]></imageExpression>
+				</image>
+				<image vAlign="Middle">
+					<reportElement positionType="Float" x="365" y="41" width="24" height="18"/>
+					<imageExpression><![CDATA[$P{PATH_IMG}+"ServiziTrasporto.jpg"]]></imageExpression>
+				</image>
+				<staticText>
+					<reportElement positionType="Float" x="389" y="43" width="100" height="14"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="7"/>
+					</textElement>
+					<text><![CDATA[Trasporto di persone o cose]]></text>
+				</staticText>
+			</frame>
+			<rectangle>
+				<reportElement positionType="Float" x="1" y="388" width="555" height="5" backcolor="#336900"/>
+				<graphicElement>
+					<pen lineWidth="2.0" lineColor="#336900"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="393" width="102" height="14" forecolor="#FFFFFF" backcolor="#336900"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[DATI GENERALI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="407" width="555" height="20"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<text><![CDATA[La sezione riporta l'indice di prestazione energetica globale non rinnovabile in funzione del fabbricato e dei servizi energetici presenti, nonché la prestazione
+energetica del fabbricato, al netto del rendimento degli impianti presenti.]]></text>
+			</staticText>
+			<frame>
+				<reportElement positionType="Float" x="1" y="427" width="554" height="274"/>
+				<box>
+					<topPen lineWidth="2.0" lineColor="#336900"/>
+					<leftPen lineWidth="2.0" lineColor="#336900"/>
+					<bottomPen lineWidth="2.0" lineColor="#336900"/>
+					<rightPen lineWidth="2.0" lineColor="#336900"/>
+				</box>
+				<staticText>
+					<reportElement positionType="Float" x="3" y="5" width="132" height="9" forecolor="#336900"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Prestazione energetica del fabbricato]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="Float" mode="Opaque" x="4" y="18" width="77" height="20" backcolor="#CCCCCC"/>
+					<box>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[INVERNO]]></text>
+				</staticText>
+				<image scaleImage="FillFrame">
+					<reportElement positionType="Float" x="4" y="38" width="77" height="119"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<imageExpression><![CDATA[$P{PATH_IMG}+"inverno_lungo.png"]]></imageExpression>
+				</image>
+				<image>
+					<reportElement positionType="Float" x="4" y="157" width="77" height="48" isRemoveLineWhenBlank="true"/>
+					<box>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<imageExpression><![CDATA[$P{PATH_IMG}+$F{smileInverno}]]></imageExpression>
+				</image>
+				<staticText>
+					<reportElement positionType="Float" mode="Opaque" x="84" y="18" width="77" height="20" backcolor="#CCCCCC"/>
+					<box>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[ESTATE]]></text>
+				</staticText>
+				<image scaleImage="FillFrame">
+					<reportElement positionType="Float" x="84" y="38" width="77" height="119"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<imageExpression><![CDATA[$P{PATH_IMG}+"estate_lungo.png"]]></imageExpression>
+				</image>
+				<image>
+					<reportElement positionType="Float" x="84" y="157" width="77" height="48" isRemoveLineWhenBlank="true"/>
+					<box>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<imageExpression><![CDATA[$P{PATH_IMG}+$F{smileEstate}]]></imageExpression>
+				</image>
+				<line>
+					<reportElement positionType="Float" mode="Transparent" x="167" y="0" width="1" height="274" forecolor="#336900" backcolor="#336900"/>
+				</line>
+				<staticText>
+					<reportElement positionType="Float" x="184" y="5" width="125" height="9" forecolor="#336900"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="6" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Prestazione energetica globale]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="Float" x="220" y="22" width="74" height="16"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Più efficiente]]></text>
+				</staticText>
+				<image>
+					<reportElement positionType="Float" x="202" y="22" width="15" height="16"/>
+					<imageExpression><![CDATA[$P{PATH_IMG}+"piu.png"]]></imageExpression>
+				</image>
+				<image>
+					<reportElement positionType="Float" x="173" y="38" width="152" height="201"/>
+					<imageExpression><![CDATA[$P{PATH_IMG}+"barre_classe.png"]]></imageExpression>
+				</image>
+				<image>
+					<reportElement positionType="Float" x="210" y="218" width="29" height="9"/>
+					<imageExpression><![CDATA[$P{PATH_IMG}+"meno.png"]]></imageExpression>
+				</image>
+				<staticText>
+					<reportElement positionType="Float" x="229" y="214" width="90" height="16"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Meno efficiente]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="Float" mode="Opaque" x="338" y="4" width="90" height="28" forecolor="#FFFFFF" backcolor="#336900"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="6" isBold="true"/>
+						<paragraph leftIndent="2"/>
+					</textElement>
+					<text><![CDATA[EDIFICIO
+A ENERGIA
+QUASI ZERO]]></text>
+				</staticText>
+				<image vAlign="Middle">
+					<reportElement positionType="Float" x="401" y="9" width="20" height="21"/>
+					<imageExpression><![CDATA[$F{edifEnergZero}? $V{CHECK_SI} : $V{CHECK_NO}]]></imageExpression>
+				</image>
+				<line>
+					<reportElement positionType="Float" mode="Transparent" x="435" y="0" width="1" height="274" forecolor="#336900" backcolor="#336900"/>
+				</line>
+				<image scaleImage="FillFrame" hAlign="Right">
+					<reportElement positionType="Float" x="325" y="38" width="106" height="176"/>
+					<imageExpression><![CDATA[$P{PATH_IMG}+$F{frecciaClasse}]]></imageExpression>
+				</image>
+				<staticText>
+					<reportElement positionType="Float" mode="Opaque" x="346" y="43" width="77" height="21" backcolor="#CCCCCC"/>
+					<box>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[CLASSE]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="Float" mode="Opaque" x="346" y="63" width="77" height="16" backcolor="#CCCCCC"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[ENERGETICA
+]]></text>
+				</staticText>
+				<textField isBlankWhenNull="false">
+					<reportElement positionType="Float" mode="Opaque" x="346" y="79" width="77" height="30" backcolor="#CCCCCC"/>
+					<box>
+						<topPen lineWidth="0.75" lineStyle="Solid"/>
+						<leftPen lineWidth="0.75" lineStyle="Solid"/>
+						<bottomPen lineWidth="0.75" lineStyle="Solid"/>
+						<rightPen lineWidth="0.75" lineStyle="Solid"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="15" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{classeEnergetica}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement positionType="Float" mode="Opaque" x="346" y="124" width="77" height="21"/>
+					<box>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="7" isBold="false"/>
+					</textElement>
+					<text><![CDATA[EPgl,nren
+(kWh/m²anno):]]></text>
+				</staticText>
+				<textField isBlankWhenNull="false">
+					<reportElement positionType="Float" mode="Opaque" x="346" y="145" width="77" height="21"/>
+					<box>
+						<pen lineStyle="Solid"/>
+						<topPen lineWidth="0.75" lineStyle="Solid"/>
+						<leftPen lineWidth="0.75" lineStyle="Solid"/>
+						<bottomPen lineWidth="0.75" lineStyle="Solid"/>
+						<rightPen lineWidth="0.75" lineStyle="Solid"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="7" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{epglnren}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement positionType="Float" x="440" y="5" width="110" height="50" forecolor="#336900"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="6" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Riferimenti
+
+Gli immobili simili avrebbero
+in media la seguente
+classificazione:
+]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="Float" x="441" y="59" width="110" height="9"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="6" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Se nuovi:]]></text>
+				</staticText>
+				<image scaleImage="FillFrame">
+					<reportElement positionType="Float" x="441" y="74" width="110" height="78"/>
+					<imageExpression><![CDATA[$P{PATH_IMG}+"blocco_verde.png"]]></imageExpression>
+				</image>
+				<textField isBlankWhenNull="false">
+					<reportElement positionType="Float" mode="Opaque" x="478" y="80" width="37" height="21"/>
+					<box>
+						<pen lineStyle="Solid"/>
+						<topPen lineWidth="0.75" lineStyle="Solid"/>
+						<leftPen lineWidth="0.75" lineStyle="Solid"/>
+						<bottomPen lineWidth="0.75" lineStyle="Solid"/>
+						<rightPen lineWidth="0.75" lineStyle="Solid"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="7" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{classeEdNuovi}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement positionType="Float" mode="Opaque" x="450" y="104" width="96" height="15"/>
+					<box>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="7" isBold="false"/>
+					</textElement>
+					<text><![CDATA[EPgl,nren(kWh/m²anno):]]></text>
+				</staticText>
+				<textField isBlankWhenNull="false">
+					<reportElement positionType="Float" mode="Opaque" x="450" y="119" width="96" height="18"/>
+					<box>
+						<pen lineStyle="Solid"/>
+						<topPen lineWidth="0.75" lineStyle="Solid"/>
+						<leftPen lineWidth="0.75" lineStyle="Solid"/>
+						<bottomPen lineWidth="0.75" lineStyle="Solid"/>
+						<rightPen lineWidth="0.75" lineStyle="Solid"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{epglnrenEdNuovi}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement positionType="Float" x="440" y="154" width="110" height="9"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="6" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Se esistenti:]]></text>
+				</staticText>
+				<image scaleImage="FillFrame">
+					<reportElement positionType="Float" x="440" y="169" width="110" height="78"/>
+					<imageExpression><![CDATA[$P{PATH_IMG}+"blocco_giallo.png"]]></imageExpression>
+				</image>
+				<textField isBlankWhenNull="false">
+					<reportElement positionType="Float" mode="Opaque" x="478" y="175" width="37" height="21"/>
+					<box>
+						<pen lineStyle="Solid"/>
+						<topPen lineWidth="0.75" lineStyle="Solid"/>
+						<leftPen lineWidth="0.75" lineStyle="Solid"/>
+						<bottomPen lineWidth="0.75" lineStyle="Solid"/>
+						<rightPen lineWidth="0.75" lineStyle="Solid"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="7" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{classeEdEsistenti}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement positionType="Float" mode="Opaque" x="450" y="199" width="96" height="15"/>
+					<box>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="7" isBold="false"/>
+					</textElement>
+					<text><![CDATA[EPgl,nren(kWh/m²anno):]]></text>
+				</staticText>
+				<textField isBlankWhenNull="false">
+					<reportElement positionType="Float" mode="Opaque" x="450" y="214" width="96" height="18"/>
+					<box>
+						<pen lineStyle="Solid"/>
+						<topPen lineWidth="0.75" lineStyle="Solid"/>
+						<leftPen lineWidth="0.75" lineStyle="Solid"/>
+						<bottomPen lineWidth="0.75" lineStyle="Solid"/>
+						<rightPen lineWidth="0.75" lineStyle="Solid"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="7" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{epglnrenEdEsistenti}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<staticText>
+				<reportElement x="560" y="88" width="10" height="407"/>
+				<textElement rotation="Left">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Attestato non utilizzabile ai fini della vendita o locazione di edifici (D.lgs 192/2005 art. 6)]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="21" splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>

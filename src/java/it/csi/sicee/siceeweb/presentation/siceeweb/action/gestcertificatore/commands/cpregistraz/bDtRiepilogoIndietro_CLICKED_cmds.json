@@ -1,0 +1,23 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ActivateMultiPanelItemCommand" ,
+	"containerName":"pWizRegistraz",
+	"contentPanelName":"cpRegistraz",
+	"itemName": "pOrdine"}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.RefreshViewCommand" ,
+	"targetPanels": ["pWizRegistraz","pUp"], 
+	"targetWidgets":["menu"],
+	"currentPanelName":"cpRegistraz" 
+}
+] 
+}
+],
+	"esiti":["OK"],
+	"nomeMetodo":"indietroRiepilogo",
+	"appDataToStore":[]
+}
+] 
+}

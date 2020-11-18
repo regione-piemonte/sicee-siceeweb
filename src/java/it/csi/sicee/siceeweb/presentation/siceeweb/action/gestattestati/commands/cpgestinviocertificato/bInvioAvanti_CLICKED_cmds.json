@@ -1,0 +1,25 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ShowDialogCommand" ,
+	"name":"dlgInvioEsitoOK"
+}
+] 
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.NOPCommand" }
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.NOPCommand" }
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ShowDialogCommand" ,
+	"name":"dlgInvioEsitoSostituzioneOK"
+}
+] 
+}
+],
+	"esiti":["OK","KO","KO_CHECK","OK_SOSTITUZIONE"],
+	"nomeMetodo":"invioAttestato",
+	"appDataToStore":["appDatacertificato"]
+}

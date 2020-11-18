@@ -1,0 +1,132 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":false,
+	"targetsWidgets":["tfIndirizzoDtCatastali"],
+	"targetsMenuElement":[]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":false,
+	"targetsWidgets":["svuotaIndDtCatastaliText"],
+	"targetsMenuElement":[]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":true,
+	"targetsWidgets":["selezionaIndirizzo"],
+	"targetsMenuElement":[]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":true,
+	"targetsWidgets":["cbSceltaIndDtCatastali"],
+	"targetsMenuElement":[]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":true,
+	"targetsWidgets":["svuotaIndDtCatastaliCombo"],
+	"targetsMenuElement":[]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.OnOffCommand" ,
+	"enable":true,
+	"targetsWidgets":["svuotaIndDtCatastaliCombo"],
+	"targetsMenuElement":[]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.OnOffCommand" ,
+	"enable":true,
+	"targetsWidgets":["cbSceltaIndDtCatastali"],
+	"targetsMenuElement":[]
+}
+] 
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.RefreshViewCommand" ,
+	"targetPanels": ["pWizCompilazLiv1"], 
+	"targetWidgets":["menu"],
+	"currentPanelName":"cpCompilaz" 
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ActivateMultiPanelItemCommand" ,
+	"containerName":"pWizCompilazLiv1",
+	"contentPanelName":"cpCompilaz",
+	"itemName": "pDatiAnagImmobile"}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ActivateMultiPanelItemCommand" ,
+	"containerName":"pWizAnagImmobile",
+	"contentPanelName":"cpCompilaz",
+	"itemName": "pDatiResponsabili"}
+] 
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.RefreshViewCommand" ,
+	"targetPanels": ["pWizCompilazLiv1"], 
+	"targetWidgets":["menu"],
+	"currentPanelName":"cpCompilaz" 
+}
+],
+	"esiti":["OK","KO"],
+	"nomeMetodo":"bDtCatastaliAvantiSalva",
+	"appDataToStore":["appDatacertificatore"]
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.OnOffCommand" ,
+	"enable":true,
+	"targetsWidgets":["tfIndirizzoDtCatastali"],
+	"targetsMenuElement":[]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":false,
+	"targetsWidgets":["svuotaIndDtCatastaliText"],
+	"targetsMenuElement":[]
+}
+] 
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":true,
+	"targetsWidgets":["tfIndirizzoDtCatastali"],
+	"targetsMenuElement":[]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":true,
+	"targetsWidgets":["svuotaIndDtCatastaliText"],
+	"targetsMenuElement":[]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":true,
+	"targetsWidgets":["noIndirizzo"],
+	"targetsMenuElement":[]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":false,
+	"targetsWidgets":["cbSceltaIndDtCatastali"],
+	"targetsMenuElement":[]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":false,
+	"targetsWidgets":["svuotaIndDtCatastaliCombo"],
+	"targetsMenuElement":[]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.OnOffCommand" ,
+	"enable":true,
+	"targetsWidgets":["svuotaIndDtCatastaliText"],
+	"targetsMenuElement":[]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.OnOffCommand" ,
+	"enable":false,
+	"targetsWidgets":["cbSceltaIndDtCatastali"],
+	"targetsMenuElement":[]
+}
+] 
+}
+],
+	"esiti":["SELEZIONARE_INDIRIZZO","OK","DIGITARE_INDIRIZZO","KO"],
+	"nomeMetodo":"controlloIndirizzo",
+	"appDataToStore":[]
+}
+] 
+}

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="http://www.csi.it/sicee/siceeweb/xml/appendiceC/data"
+	       xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.csi.it/sicee/siceeweb/xml/appendiceC/data"
+           elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+  <xs:element name="MOD">
+    <xs:complexType>
+      <xs:sequence>
+	    <xs:element name="anno" type="xs:string"/> 
+		<xs:element ref="prestEnergFabb"/>
+	  </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="prestEnergFabb">
+    <xs:complexType>
+      <xs:sequence>
+          <xs:element name="flagEdifEnergZero" type="xs:string"/> 
+		  <xs:element name="Epglnren" type="xs:decimal"/>
+		  <xs:element name="EpglnrenStandard" type="xs:decimal"/>
+		  <xs:element name="EPHnd" type="xs:decimal"/>
+		  <xs:element name="EPHndLimite" type="xs:decimal"/>
+		  <xs:element name="Epglren" type="xs:decimal"/>
+  		  <xs:element name="rapportoAsolAsup" type="xs:decimal"/>
+		  <xs:element name="Yie" type="xs:decimal"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+
+  </xs:schema>

@@ -1,0 +1,21 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.JumpCommand" ,
+	"name": "cpCompilazApe", 
+	"pushCurrent":false
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.NOPCommand" }
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ScreenStateCommand" ,
+	"widgetsOn":["menu","fileCarica","btnIndietro","btnConferma","btnCaricaXmlRO"],
+	"widgetsOff":["btnCaricaXml"],
+	"widgetsShown":["menu","fileCarica","btnIndietro","btnConferma","btnCaricaXmlRO"],
+	"widgetsHidden":["btnCaricaXml"]
+}
+],
+	"esiti":["OK","KO","OK_OLD"],
+	"nomeMetodo":"caricaXmlReadOnly",
+	"appDataToStore":[]
+}

@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans default-autowire="autodetect">
+	<!-- bean di business logic -->
+	
+	<!-- bean di facade -->
+	<bean id="springBackEnd" class="it.csi.sicee.siceeweb.business.BackEndFacade">
+		<property name="CPBECpPrenotazAttestati">
+			<ref bean="CPBECpPrenotazAttestati"/>
+		</property>
+		<property name="CPBECpGestCertificazioni">
+			<ref bean="CPBECpGestCertificazioni"/>
+		</property>
+		<property name="CPBECpRicercaAceInviati">
+			<ref bean="CPBECpRicercaAceInviati"/>
+		</property>
+		<property name="CPBECpRisultatoRicercaAce">
+			<ref bean="CPBECpRisultatoRicercaAce"/>
+		</property>
+		<property name="CPBECpGestInvioCertificato">
+			<ref bean="CPBECpGestInvioCertificato"/>
+		</property>
+		<property name="CPBECpGestInvioCurriculum">
+			<ref bean="CPBECpGestInvioCurriculum"/>
+		</property>
+		<property name="CPBECpDatiCertificazioni">
+			<ref bean="CPBECpDatiCertificazioni"/>
+		</property>
+		<property name="CPBECpDuplicaAce">
+			<ref bean="CPBECpDuplicaAce"/>
+		</property>
+		<property name="CPBECpDettaglioAttestato">
+			<ref bean="CPBECpDettaglioAttestato"/>
+		</property>
+		<property name="CPBECpDettaglioSostituzioni">
+			<ref bean="CPBECpDettaglioSostituzioni"/>
+		</property>
+		<property name="CPBECpCompilaz">
+			<ref bean="CPBECpCompilaz"/>
+		</property>
+		<property name="CPBECpImportaXml">
+			<ref bean="CPBECpImportaXml"/>
+		</property>
+		<property name="CPBECpCompilazApe">
+			<ref bean="CPBECpCompilazApe"/>
+		</property>
+		<property name="CPBECpImpXml2015">
+			<ref bean="CPBECpImpXml2015"/>
+		</property>
+		<property name="CPBECpTransaz">
+			<ref bean="CPBECpTransaz"/>
+		</property>
+		<property name="CPBECpRegistraz">
+			<ref bean="CPBECpRegistraz"/>
+		</property>
+		<property name="CPBECpDatiCertificatore">
+			<ref bean="CPBECpDatiCertificatore"/>
+		</property>
+		<property name="CPBECpTransazAnomale">
+			<ref bean="CPBECpTransazAnomale"/>
+		</property>
+		<property name="CPBECpVerificaMail">
+			<ref bean="CPBECpVerificaMail"/>
+		</property>
+		<property name="CPBECpGestioneDialogMail">
+			<ref bean="CPBECpGestioneDialogMail"/>
+		</property>
+		<property name="CPBECpAttesaRT">
+			<ref bean="CPBECpAttesaRT"/>
+		</property>
+		<property name="CPBECpAnnullaSostAceHome">
+			<ref bean="CPBECpAnnullaSostAceHome"/>
+		</property>
+		<property name="CPBECpSelezionaTipoRicercaAnnullaSost">
+			<ref bean="CPBECpSelezionaTipoRicercaAnnullaSost"/>
+		</property>
+		<property name="CPBECpRicercaAceAnnullaSost">
+			<ref bean="CPBECpRicercaAceAnnullaSost"/>
+		</property>
+		<property name="CPBECpRiepilogoAceAnnullaSost">
+			<ref bean="CPBECpRiepilogoAceAnnullaSost"/>
+		</property>
+		<property name="CPBECpEsitoAceAnnullaSost">
+			<ref bean="CPBECpEsitoAceAnnullaSost"/>
+		</property>
+		<property name="CPBECpMonitoraggio">
+			<ref bean="CPBECpMonitoraggio"/>
+		</property>
+		<property name="CPBECpHome">
+			<ref bean="CPBECpHome"/>
+		</property>
+		<property name="CPBECpPagamento">
+			<ref bean="CPBECpPagamento"/>
+		</property>
+		<property name="CPBECpPagamentoNew">
+			<ref bean="CPBECpPagamentoNew"/>
+		</property>
+		<property name="CPBECpPagamentoDettNew">
+			<ref bean="CPBECpPagamentoDettNew"/>
+		</property>
+		<property name="CPBECpEsitoPagamenti">
+			<ref bean="CPBECpEsitoPagamenti"/>
+		</property>
+		<property name="CPBECpEsitoPagamentiNew">
+			<ref bean="CPBECpEsitoPagamentiNew"/>
+		</property>
+		<property name="CPBECpNonAbilitato">
+			<ref bean="CPBECpNonAbilitato"/>
+		</property>
+		<property name="CPBECpRobot">
+			<ref bean="CPBECpRobot"/>
+		</property>
+		<property name="CPBECpEsci">
+			<ref bean="CPBECpEsci"/>
+		</property>
+		<property name="CPBECpDisabled">
+			<ref bean="CPBECpDisabled"/>
+		</property>
+		<property name="CPBECpBloccoUtente">
+			<ref bean="CPBECpBloccoUtente"/>
+		</property>
+		<property name="CPBECpVisuraCIT">
+			<ref bean="CPBECpVisuraCIT"/>
+		</property>
+	</bean>
+	
+	<!-- bean relativi ai singoli content panel -->
+	<bean id="CPBECpPrenotazAttestati" class="it.csi.sicee.siceeweb.business.gestattestati.CPBECpPrenotazAttestati">
+	</bean>
+	<bean id="CPBECpGestCertificazioni" class="it.csi.sicee.siceeweb.business.gestattestati.CPBECpGestCertificazioni">
+	</bean>
+	<bean id="CPBECpRicercaAceInviati" class="it.csi.sicee.siceeweb.business.gestattestati.CPBECpRicercaAceInviati">
+	</bean>
+	<bean id="CPBECpRisultatoRicercaAce" class="it.csi.sicee.siceeweb.business.gestattestati.CPBECpRisultatoRicercaAce">
+	</bean>
+	<bean id="CPBECpGestInvioCertificato" class="it.csi.sicee.siceeweb.business.gestattestati.CPBECpGestInvioCertificato">
+	</bean>
+	<bean id="CPBECpGestInvioCurriculum" class="it.csi.sicee.siceeweb.business.gestattestati.CPBECpGestInvioCurriculum">
+	</bean>
+	<bean id="CPBECpDatiCertificazioni" class="it.csi.sicee.siceeweb.business.gestattestati.CPBECpDatiCertificazioni">
+	</bean>
+	<bean id="CPBECpDuplicaAce" class="it.csi.sicee.siceeweb.business.gestattestati.CPBECpDuplicaAce">
+	</bean>
+	<bean id="CPBECpDettaglioAttestato" class="it.csi.sicee.siceeweb.business.gestattestati.CPBECpDettaglioAttestato">
+	</bean>
+	<bean id="CPBECpDettaglioSostituzioni" class="it.csi.sicee.siceeweb.business.gestattestati.CPBECpDettaglioSostituzioni">
+	</bean>
+	<bean id="CPBECpCompilaz" class="it.csi.sicee.siceeweb.business.compilazattestati.CPBECpCompilaz">
+	</bean>
+	<bean id="CPBECpImportaXml" class="it.csi.sicee.siceeweb.business.compilazattestati.CPBECpImportaXml">
+	</bean>
+	<bean id="CPBECpCompilazApe" class="it.csi.sicee.siceeweb.business.compilazattestatiape.CPBECpCompilazApe">
+	</bean>
+	<bean id="CPBECpImpXml2015" class="it.csi.sicee.siceeweb.business.compilazattestatiape.CPBECpImpXml2015">
+	</bean>
+	<bean id="CPBECpTransaz" class="it.csi.sicee.siceeweb.business.gestcertificatore.CPBECpTransaz">
+	</bean>
+	<bean id="CPBECpRegistraz" class="it.csi.sicee.siceeweb.business.gestcertificatore.CPBECpRegistraz">
+	</bean>
+	<bean id="CPBECpDatiCertificatore" class="it.csi.sicee.siceeweb.business.gestcertificatore.CPBECpDatiCertificatore">
+	</bean>
+	<bean id="CPBECpTransazAnomale" class="it.csi.sicee.siceeweb.business.gestcertificatore.CPBECpTransazAnomale">
+	</bean>
+	<bean id="CPBECpVerificaMail" class="it.csi.sicee.siceeweb.business.gestcertificatore.CPBECpVerificaMail">
+	</bean>
+	<bean id="CPBECpGestioneDialogMail" class="it.csi.sicee.siceeweb.business.gestcertificatore.CPBECpGestioneDialogMail">
+	</bean>
+	<bean id="CPBECpAttesaRT" class="it.csi.sicee.siceeweb.business.gestcertificatore.CPBECpAttesaRT">
+	</bean>
+	<bean id="CPBECpAnnullaSostAceHome" class="it.csi.sicee.siceeweb.business.annullasostcert.CPBECpAnnullaSostAceHome">
+	</bean>
+	<bean id="CPBECpSelezionaTipoRicercaAnnullaSost" class="it.csi.sicee.siceeweb.business.annullasostcert.CPBECpSelezionaTipoRicercaAnnullaSost">
+	</bean>
+	<bean id="CPBECpRicercaAceAnnullaSost" class="it.csi.sicee.siceeweb.business.annullasostcert.CPBECpRicercaAceAnnullaSost">
+	</bean>
+	<bean id="CPBECpRiepilogoAceAnnullaSost" class="it.csi.sicee.siceeweb.business.annullasostcert.CPBECpRiepilogoAceAnnullaSost">
+	</bean>
+	<bean id="CPBECpEsitoAceAnnullaSost" class="it.csi.sicee.siceeweb.business.annullasostcert.CPBECpEsitoAceAnnullaSost">
+	</bean>
+	<bean id="CPBECpMonitoraggio" class="it.csi.sicee.siceeweb.business.monitoraggio.CPBECpMonitoraggio">
+	</bean>
+	<bean id="CPBECpHome" class="it.csi.sicee.siceeweb.business.main.CPBECpHome">
+	</bean>
+	<bean id="CPBECpPagamento" class="it.csi.sicee.siceeweb.business.main.CPBECpPagamento">
+	</bean>
+	<bean id="CPBECpPagamentoNew" class="it.csi.sicee.siceeweb.business.main.CPBECpPagamentoNew">
+	</bean>
+	<bean id="CPBECpPagamentoDettNew" class="it.csi.sicee.siceeweb.business.main.CPBECpPagamentoDettNew">
+	</bean>
+	<bean id="CPBECpEsitoPagamenti" class="it.csi.sicee.siceeweb.business.main.CPBECpEsitoPagamenti">
+	</bean>
+	<bean id="CPBECpEsitoPagamentiNew" class="it.csi.sicee.siceeweb.business.main.CPBECpEsitoPagamentiNew">
+	</bean>
+	<bean id="CPBECpNonAbilitato" class="it.csi.sicee.siceeweb.business.main.CPBECpNonAbilitato">
+	</bean>
+	<bean id="CPBECpRobot" class="it.csi.sicee.siceeweb.business.main.CPBECpRobot">
+	</bean>
+	<bean id="CPBECpEsci" class="it.csi.sicee.siceeweb.business.main.CPBECpEsci">
+	</bean>
+	<bean id="CPBECpDisabled" class="it.csi.sicee.siceeweb.business.main.CPBECpDisabled">
+	</bean>
+	<bean id="CPBECpBloccoUtente" class="it.csi.sicee.siceeweb.business.main.CPBECpBloccoUtente">
+	</bean>
+	<bean id="CPBECpVisuraCIT" class="it.csi.sicee.siceeweb.business.main.CPBECpVisuraCIT">
+	</bean>
+	
+	
+	
+	<!-- helper per le funzioni di securizzazione -->
+	<bean id="springSecurityHelper" class="it.csi.sicee.siceeweb.business.SecurityHelper">
+		<!-- protocollo di interazione con il PEP (EJB|WS) utilizzato solo se la security non e' custom --> 
+		<property name="PDProtocol" value="@IRIDE_PD_PROTOCOL@" />
+	</bean>
+	
+	
+	
+	
+	<!--PROTECTED REGION ID(R585863764) ENABLED START-->
+		<!-- Inserire qui configurazioni aggiuntive da iniettare nel bean prinicipale -->
+	<bean id="certificatoreMgr" class="it.csi.sicee.siceeweb.business.facade.CertificatoreMgr">
+		<property name="siceeTCertificatoreDao">
+			<ref bean="SiceeTCertificatoreDao"/>
+		</property>
+		<property name="siceeWCertificatoreDao">
+			<ref bean="SiceeWCertificatoreDao"/>
+		</property>
+		<property name="siceeDTipoDocumentoDao">
+			<ref bean="SiceeDTipoDocumentoDao"/>
+		</property>
+		<property name="siceeTDocumentoDao">
+			<ref bean="SiceeTDocumentoDao"/>
+		</property>
+		<property name="siceeDTitoloDao">
+			<ref bean="SiceeDTitoloDao"/>
+		</property>
+		<property name="siceeTAziendaDao">
+			<ref bean="SiceeTAziendaDao"/>
+		</property>
+		<property name="siceeTEsamiDao">
+			<ref bean="SiceeTEsamiDao"/>
+		</property>
+		<property name="siceeTDatiEsamiDao">
+			<ref bean="SiceeTDatiEsamiDao"/>
+		</property>
+		<property name="siceeTCredito2018Dao">
+			<ref bean="SiceeTCredito2018Dao"/>
+		</property>
+		
+	</bean>
+	
+	<bean id="certificatoMgr" class="it.csi.sicee.siceeweb.business.facade.CertificatoMgr">
+		<property name="siceeTCertificatoDao">
+			<ref bean="SiceeTCertificatoDao"/>
+		</property>
+		<property name="siceeWCertificatoreDao">
+			<ref bean="SiceeWCertificatoreDao"/>
+		</property>
+		
+		<property name="siceeTClasseEnergeticaDao">
+			<ref bean="SiceeTClasseEnergeticaDao"/>
+		</property>
+		<property name="siceeTConsumiEdificioDao">
+			<ref bean="SiceeTConsumiEdificioDao"/>
+		</property>
+		<property name="siceeTDatiGeneraliDao">
+			<ref bean="SiceeTDatiGeneraliDao"/>
+		</property>
+		<property name="siceeTEnergiaSoprIngrDao">
+			<ref bean="SiceeTEnergiaSoprIngrDao"/>
+		</property>
+		<property name="siceeTFabbisognoDao">
+			<ref bean="SiceeTFabbisognoDao"/>
+		</property>
+		<property name="siceeTImpRiscaldamentoAcsDao">
+			<ref bean="SiceeTImpRiscaldamentoAcsDao"/>
+		</property>
+		<property name="siceeTRaccomandazioniDao">
+			<ref bean="SiceeTRaccomandazioniDao"/>
+		</property>
+		<property name="siceeTRispettoNormativeDao">
+			<ref bean="SiceeTRispettoNormativeDao"/>
+		</property>
+		<property name="siceeDGradiGiornoDao">
+			<ref bean="SiceeDGradiGiornoDao"/>
+		</property>
+		
+		<property name="siceeDClasseEnergeticaDao">
+			<ref bean="SiceeDClasseEnergeticaDao"/>
+		</property>
+		
+		
+		<property name="siceeDNormativaDao">
+			<ref bean="SiceeDNormativaDao"/>
+		</property>
+		
+		<property name="optimizedSiceeTCerticatoDao">
+			<ref bean="OptimizedSiceeTCerticatoDao"/>
+		</property>
+		
+
+		<property name="siceeTAltreInfoDao">
+			<ref bean="SiceeTAltreInfoDao"/>
+		</property>
+		
+		<property name="siceeTRuoliEdificioDao">
+			<ref bean="SiceeTRuoliEdificioDao"/>
+		</property>
+		
+		<property name="siceeDPrioritaDao">
+			<ref bean="SiceeDPrioritaDao"/>
+		</property>
+		
+		<property name="siceeTExportBoDao">
+			<ref bean="SiceeTExportBoDao"/>
+		</property>
+		
+		<property name="siceeTSostituzioneDao">
+			<ref bean="SiceeTSostituzioneDao"/>
+		</property>
+
+		<property name="siceeDCarattEdificioDao">
+			<ref bean="SiceeDCarattEdificioDao"/>
+		</property>
+
+		<property name="siceeDTipoEdificioDao">
+			<ref bean="SiceeDTipoEdificioDao"/>
+		</property>
+		
+		<property name="siceeTSiapeDao">
+			<ref bean="SiceeTSiapeDao"/>
+		</property>
+		
+		<property name="siceeTActaDao">
+			<ref bean="SiceeTActaDao"/>
+		</property>
+		
+		<property name="siceeTCredito2018Dao">
+			<ref bean="SiceeTCredito2018Dao"/>
+		</property>
+		
+	</bean>
+	
+	<bean id="transazioneRegistrazMgr" class="it.csi.sicee.siceeweb.business.facade.TransazioneRegistrazMgr">
+		<property name="siceeTTransazioneRegistrazDao">
+			<ref bean="SiceeTTransazioneRegistrazDao"/>
+		</property>
+		<property name="siceeWPrezziDao">
+			<ref bean="SiceeWPrezziDao"/>
+		</property>
+		<property name="soaIntegrationMgr">
+			<ref bean="soaIntegrationMgr"/>
+		</property>	
+	</bean>
+	
+	<bean id="transazioneAceMgr" class="it.csi.sicee.siceeweb.business.facade.TransazioneAceMgr">
+		<property name="siceeTTransazioneAceDao">
+			<ref bean="SiceeTTransazioneAceDao"/>
+		</property>
+		<property name="siceeWPrezziDao">
+			<ref bean="SiceeWPrezziDao"/>
+		</property>
+		<property name="soaIntegrationMgr">
+			<ref bean="soaIntegrationMgr"/>
+		</property>
+	</bean>
+	
+	<bean id="transazioneCreditoMgr" class="it.csi.sicee.siceeweb.business.facade.TransazioneCreditoMgr">
+		<property name="optimizedSiceeTCredito2018Dao">
+			<ref bean="OptimizedSiceeTCredito2018Dao"/>
+		</property>
+		<property name="siceeTCredito2018Dao">
+			<ref bean="SiceeTCredito2018Dao"/>
+		</property>
+		<property name="siceeTTransazione2018Dao">
+			<ref bean="SiceeTTransazione2018Dao"/>
+		</property>
+		
+		<!-- property name="siceeDTipoOp2018Dao">
+			<ref bean="SiceeDTipoOp2018Dao"/>
+		</property-->
+	</bean>
+	
+	
+	<bean id="calcoloMgr" class="it.csi.sicee.siceeweb.business.facade.CalcoloMgr">
+		<property name="siceeTLimiteqhPiemonteDao">
+			<ref bean="SiceeTLimiteqhPiemonteDao"/>
+		</property>
+		<property name="siceeRDestClasseDao">
+			<ref bean="SiceeRDestClasseDao"/>
+		</property>
+		<property name="siceeDClasseEnergeticaDao">
+			<ref bean="SiceeDClasseEnergeticaDao"/>
+		</property>
+	</bean>
+	
+	<bean id="miscMgr" class="it.csi.sicee.siceeweb.business.facade.MiscMgr">
+		<property name="siceeDTipoPagamentoDao">
+			<ref bean="SiceeDTipoPagamentoDao"/>
+		</property>
+		<property name="siceeDClasseEnergeticaDao">
+			<ref bean="SiceeDClasseEnergeticaDao"/>
+		</property>
+		<property name="siceeDDestUsoDao">
+			<ref bean="SiceeDDestUsoDao"/>
+		</property>
+		<property name="siceeDSistemaRaccDao">
+			<ref bean="SiceeDSistemaRaccDao"/>
+		</property>
+		<property name="siceeDDichiarazioneDao">
+			<ref bean="SiceeDDichiarazioneDao"/>
+		</property>
+		<property name="siceeDMotivoRilascioDao">
+			<ref bean="SiceeDMotivoRilascioDao"/>
+		</property>
+		<property name="siceeDTipoImpiantoDao">
+			<ref bean="SiceeDTipoImpiantoDao"/>
+		</property>
+		<property name="siceeDTipoEdificioDao">
+			<ref bean="SiceeDTipoEdificioDao"/>
+		</property>
+		<property name="siceeDCarattEdificioDao">
+			<ref bean="SiceeDCarattEdificioDao"/>
+		</property>
+		<property name="siceeDDatiIngressoDao">
+			<ref bean="SiceeDDatiIngressoDao"/>
+		</property>
+		<property name="siceeDCombustibileDao">
+			<ref bean="SiceeDCombustibileDao"/>
+		</property>
+		<property name="siceeDQualitaInvolucroDao">
+			<ref bean="SiceeDQualitaInvolucroDao"/>
+		</property>
+		<property name="siceeDClasseEfficienzaDao">
+			<ref bean="SiceeDClasseEfficienzaDao"/>
+		</property>
+		<property name="siceeWPrezziDao">
+			<ref bean="SiceeWPrezziDao"/>
+		</property>
+		<property name="siceeTParametriDao">
+			<ref bean="SiceeTParametriDao"/>
+		</property>
+		<property name="siceeDMappingXmlDao">
+			<ref bean="SiceeDMappingXmlDao"/>
+		</property>
+		
+		<property name="siceeDMotivoSostDao">
+			<ref bean="SiceeDMotivoSostDao"/>
+		</property>
+		
+		<property name="siceeTImportDatiLog2015Dao">
+			<ref bean="SiceeTImportDatiLog2015Dao"/>
+		</property>
+		
+	</bean>
+	
+	<bean id="soaIntegrationMgr" class="it.csi.sicee.siceeweb.business.facade.SOAIntegrationMgr">
+		<property name="siceeTDocumentoDao">
+			<ref bean="SiceeTDocumentoDao"/>
+		</property>
+		<property name="siceeTDatiFirmaDao">
+			<ref bean="SiceeTDatiFirmaDao"/>
+		</property>
+		<property name="siceeTParametriDao">
+			<ref bean="SiceeTParametriDao"/>
+		</property>		
+		<property name="siceeTVerifyReportDao">
+			<ref bean="SiceeTVerifyReportDao"/>
+		</property>
+		<property name="siceeTRifIndex2015Dao">
+			<ref bean="SiceeTRifIndex2015Dao"/>
+		</property>
+	</bean>
+	
+	<bean id="activationMgr" class="it.csi.sicee.siceeweb.business.facade.ActivationMgr">
+		</bean>	
+
+	<bean id="moduloBuilder" class="it.csi.sicee.siceeweb.business.pdf.ModuloBuilder">
+		</bean>	
+
+	<bean id="serviziMgr" class="it.csi.sicee.siceeweb.business.facade.ServiziMgr">
+		</bean>	
+
+	<bean id="validationMgr" class="it.csi.sicee.siceeweb.business.facade.ValidationMgr">
+		</bean>	
+		
+	<!--PROTECTED REGION END-->
+
+</beans>

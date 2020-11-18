@@ -1,0 +1,16 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ScreenStateCommand" ,
+	"widgetsOn":["menu","fileCarica","btnIndietro","btnConferma","btnCaricaXmlRO"],
+	"widgetsOff":["btnCaricaXml"],
+	"widgetsShown":["menu","fileCarica","btnIndietro","btnConferma","btnCaricaXmlRO"],
+	"widgetsHidden":["btnCaricaXml"]
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.NOPCommand" }
+],
+	"esiti":["OK","KO"],
+	"nomeMetodo":"caricaXml",
+	"appDataToStore":[]
+}

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="monitoraggio" extends="jsp-package" namespace="/base/monitoraggio">
+
+		
+<action name="cpMonitoraggio" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.monitoraggio.CpMonitoraggioAction">
+	<result name="input">/jsp/cpMonitoraggio.jsp</result>
+	<result name="success">/jsp/cpMonitoraggio.jsp</result>
+	
+	<result name="GO_TO_BackPage" type="chain">
+		<param name="actionName">${backActionName}</param>
+		<param name="namespace">${backNamespace}</param>
+	</result>
+	
+	<result name="GO_TO_EX_scaricaFoto" type="redirect">
+		<param name="location">scaricaFotoApe.do</param>
+	</result>
+	<result name="GO_TO_EX_scaricaApe" type="redirect">
+		<param name="location">scaricaApe.do</param>
+	</result>
+</action>
+
+		<!--PROTECTED REGION ID(R1165077223) ENABLED START-->
+		<!-- inserire qui la dichiarazione di azioni aggiuntive hand-written -->
+		
+		<!-- utilizzo la classe VerificaApe (che è utilizzata da struts-compilazattestatiape.xml) per verificare se funziona MODOL) -->
+		<action name="scaricaApe" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.pdf.VerificaApe">
+			<result name="downloadFile" type="stream">
+	    		<param name="contentType">${contentType}</param>
+		    	<param name="inputName">inputStream</param>		   
+		    	<param name="bufferSize">3072</param>
+		    	<param name="contentDisposition">${contentDisposition}</param>
+			</result>			
+			<result name="KO" type="chain">cpMonitoraggio</result>
+		</action>
+		
+		<!-- utilizzo la classe ScaricaFoto per verificare se funziona INDEX (per adesso questa classe la uso solo qui) -->
+		
+		<action name="scaricaFotoApe" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.monitoraggio.ScaricaFotoApeAction">
+        <result name="success" type="stream">
+        	<param name="inputName">inputStream</param>	   
+   	   	 	<!--param name="bufferSize">1024</param-->
+   	   	 	<param name="contentType">application/download</param>
+   	   	 <param name="contentDisposition">fotoApe</param>
+        </result>
+    </action>
+		
+		<!--PROTECTED REGION END-->
+
+	</package>
+</struts>

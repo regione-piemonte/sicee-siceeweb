@@ -1,0 +1,12 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.JumpCommand" ,
+	"name": "cpDatiCertificatore", 
+	"pushCurrent":false
+}
+],
+	"esiti":["OK"],
+	"nomeMetodo":"recuperaCertificatoreDatiCert",
+	"appDataToStore":["appDatacurrentUser","appDatacertificatore"]
+}

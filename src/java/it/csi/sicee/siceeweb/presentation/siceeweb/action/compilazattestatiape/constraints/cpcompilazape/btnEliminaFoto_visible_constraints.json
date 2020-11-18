@@ -1,0 +1,26 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.security.ComplexUISecConstraint",
+  "constrainedBehavior": 2,
+  "defaultState": true,
+  "nomeContainer": "cpCompilazApe",
+  "nomeWidget": "btnEliminaFoto",
+  "constraints": [
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.security.CustomUISecConstraint",
+  "constrainedBehavior": 2,
+  "defaultState": true,
+  "nomeContainer": "cpCompilazApe",
+  "nomeWidget": "btnEliminaFoto",
+	"methodNameSuffix": "IsAbilEliminaFoto"
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.security.DeclarativeUIConstraint",
+  "constrainedBehavior": 2,
+  "defaultState": true,
+  "nomeContainer": "cpCompilazApe",
+  "nomeWidget": "btnEliminaFoto",
+	"language": "beanshell",
+	"script": "(model.appDatacertificato.datiAnagraficiImm.dtCatastali.dtFoto != null && model.appDatacertificato.datiAnagraficiImm.dtCatastali.dtFoto.size() > 0) || model.appDatacertificato.datiAnagraficiImm.dtCatastali.nomeFoto != null"
+}
+
+
+  ]
+}

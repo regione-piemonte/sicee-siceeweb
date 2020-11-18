@@ -1,0 +1,11 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ShowDialogCommand" ,
+	"name":"dlgPagamentoEsitoABORT"
+}
+],
+	"esiti":["OK"],
+	"nomeMetodo":"recepisciPagamentoABORT",
+	"appDataToStore":["appDatacertificatore","appDatadatiPagamento","appDatamdpURL","appDataswitchPagamento"]
+}

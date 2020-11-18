@@ -1,0 +1,16 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ActivateMultiPanelItemCommand" ,
+	"containerName":"pWizCompilazLiv1",
+	"contentPanelName":"cpCompilaz",
+	"itemName": "pDatiAnagImmobile"}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ActivateMultiPanelItemCommand" ,
+	"containerName":"pWizAnagImmobile",
+	"contentPanelName":"cpCompilaz",
+	"itemName": "pDatiResponsabili"}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.JumpCommand" ,
+	"name": "cpCompilaz", 
+	"pushCurrent":false
+}
+] 
+}

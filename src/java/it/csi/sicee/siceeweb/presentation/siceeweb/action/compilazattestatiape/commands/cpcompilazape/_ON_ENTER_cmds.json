@@ -1,0 +1,110 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ActivateMultiPanelItemCommand" ,
+	"containerName":"tspApe",
+	"contentPanelName":"cpCompilazApe",
+	"itemName": "fpTspApeDatiGen"}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ScreenStateCommand" ,
+	"widgetsOn":["menu","tsApe","cbProvDtCatastali","cbComDtCatastali","tfRicercaIndirizzo","vVerifIndDtCatastali","svuotaIndDtCatastaliText","tfNCivDtCatastali","tfCAPDtCatastali","tfInternoDtCatastali","tfScalaDtCatastali","tfPianoDtCatastali","tfIndirizzoCoordN","tfIndirizzoCoordE","tfSezCatasto","tfFoglioCatasto","tfParticCatasto","tfSubaltCatasto","rbTipoScadenza","tfAnnoCostr","tfAnnoRistrutt","bSalva","bViasualizzaApe","bCompModApe","bVerificaApe","bConsolidaApe","bInviaApe","bIndietro","fileFotoCatasto","fileFotoCatastoAltre","btnEliminaFoto","btnCaricaFoto","btnCaricaFotoAltre","cbTipoFotoAltre","tfNPianiComplessivi","tfNPianiFtRisc","cbFkTipoRistrutturaz","cbFkTipolEdilizia","cbFkTipolCostrutt","cbFkProprietaEdi","tfCodFiscCoCert","tfCognomeCoCert","tfNomeCoCert","tfNumMatricolaCoCert","bCercaCfCertificatori","cbListaCf","cbFkMotivo","cbFkOggetto","cbAltroServiziEnergia","cbSistCatast","tblDichiarazioneIndipendenza"],
+	"widgetsOff":["txtObblDtCatastali","txtZonaClimatica","cbSceltaIndDtCatastali","tfIndirizzoDtCatastali","bCercaCoordinate","calDtEmissione","tfDestUso","tfCodEdificioScolastico","txtCoCertificatore","txtNoteApeDatiGen","txtNote1Foto","txtObblDtFoto","cbTipoFoto","txtObblDtFotoAltre"],
+	"widgetsShown":["tsApe","menu","txtObblDtCatastali","cbProvDtCatastali","cbComDtCatastali","txtZonaClimatica","tfRicercaIndirizzo","vVerifIndDtCatastali","tfIndirizzoDtCatastali","svuotaIndDtCatastaliText","tfNCivDtCatastali","tfCAPDtCatastali","tfInternoDtCatastali","tfScalaDtCatastali","tfPianoDtCatastali","tfIndirizzoCoordN","tfIndirizzoCoordE","tfSezCatasto","tfFoglioCatasto","tfParticCatasto","tfSubaltCatasto","calDtEmissione","rbTipoScadenza","tfAnnoCostr","tfAnnoRistrutt","bSalva","bViasualizzaApe","bCompModApe","bVerificaApe","bConsolidaApe","bInviaApe","bIndietro","txtNoteApeDatiGen","btnEliminaFoto","txtObblDtFoto","txtObblDtFotoAltre","fileFotoCatasto","btnCaricaFoto","txtNote1Foto","fileFotoCatastoAltre","cbTipoFotoAltre","btnCaricaFotoAltre","cbTipoFoto","tfNPianiComplessivi","tfNPianiFtRisc","cbFkTipoRistrutturaz","cbFkTipolEdilizia","cbFkTipolCostrutt","cbFkProprietaEdi","tfCodFiscCoCert","tfCognomeCoCert","tfNomeCoCert","tfNumMatricolaCoCert","bCercaCfCertificatori","cbListaCf","cbFkMotivo","cbFkOggetto","cbAltroServiziEnergia","txtCoCertificatore","cbSistCatast","tfDestUso","tfCodEdificioScolastico","tblDichiarazioneIndipendenza"],
+	"widgetsHidden":["cbSceltaIndDtCatastali","bCercaCoordinate"]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.OnOffCommand" ,
+	"enable":false,
+	"targetsWidgets":["cbAltroServiziEnergia"],
+	"targetsMenuElement":[]
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.OnOffCommand" ,
+	"enable":true,
+	"targetsWidgets":["cbAltroServiziEnergia"],
+	"targetsMenuElement":[]
+}
+],
+	"esiti":["VALORI","ALTRO"],
+	"nomeMetodo":"checkMotivazione",
+	"appDataToStore":[]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.OnOffCommand" ,
+	"enable":false,
+	"targetsWidgets":["cbProvDtCatastali","cbComDtCatastali","cbSceltaIndDtCatastali","tfIndirizzoDtCatastali"],
+	"targetsMenuElement":[]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":true,
+	"targetsWidgets":["cbSceltaIndDtCatastali","tfIndirizzoDtCatastali","svuotaIndDtCatastaliText"],
+	"targetsMenuElement":[]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":false,
+	"targetsWidgets":["tfRicercaIndirizzo","vVerifIndDtCatastali"],
+	"targetsMenuElement":[]
+}
+] 
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.OnOffCommand" ,
+	"enable":true,
+	"targetsWidgets":["cbProvDtCatastali","cbComDtCatastali"],
+	"targetsMenuElement":[]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":false,
+	"targetsWidgets":["cbSceltaIndDtCatastali","tfIndirizzoDtCatastali","svuotaIndDtCatastaliText"],
+	"targetsMenuElement":[]
+}
+] 
+}
+],
+	"esiti":["OK","KO"],
+	"nomeMetodo":"visualizzaComboIndirizzo",
+	"appDataToStore":[]
+}
+] 
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ScreenStateCommand" ,
+	"widgetsOn":["bViasualizzaApe","bCompModApe","bVerificaApe","bConsolidaApe","bInviaApe","tsApe","menu","bIndietro","btnEliminaFoto","fileFotoCatasto","btnCaricaFoto","fileFotoCatastoAltre","cbTipoFotoAltre","btnCaricaFotoAltre"],
+	"widgetsOff":["txtObblDtCatastali","cbProvDtCatastali","cbComDtCatastali","txtZonaClimatica","tfRicercaIndirizzo","vVerifIndDtCatastali","cbSceltaIndDtCatastali","tfIndirizzoDtCatastali","svuotaIndDtCatastaliText","tfNCivDtCatastali","tfCAPDtCatastali","tfInternoDtCatastali","tfScalaDtCatastali","tfPianoDtCatastali","tfNPianiComplessivi","tfNPianiFtRisc","tfIndirizzoCoordN","tfIndirizzoCoordE","bCercaCoordinate","cbSistCatast","tfSezCatasto","tfFoglioCatasto","tfParticCatasto","tfSubaltCatasto","calDtEmissione","rbTipoScadenza","tfAnnoCostr","tfAnnoRistrutt","tfDestUso","tfCodEdificioScolastico","cbFkTipoRistrutturaz","cbFkTipolEdilizia","cbFkTipolCostrutt","cbFkProprietaEdi","cbFkOggetto","cbFkMotivo","cbAltroServiziEnergia","tblDichiarazioneIndipendenza","txtCoCertificatore","tfCodFiscCoCert","bCercaCfCertificatori","cbListaCf","tfCognomeCoCert","tfNomeCoCert","tfNumMatricolaCoCert","txtNoteApeDatiGen","bSalva","txtNote1Foto","txtObblDtFoto","cbTipoFoto","txtObblDtFotoAltre"],
+	"widgetsShown":["txtObblDtCatastali","cbProvDtCatastali","cbComDtCatastali","txtZonaClimatica","cbSceltaIndDtCatastali","tfIndirizzoDtCatastali","tfNCivDtCatastali","tfCAPDtCatastali","tfInternoDtCatastali","tfScalaDtCatastali","tfPianoDtCatastali","tfIndirizzoCoordN","tfIndirizzoCoordE","tfSezCatasto","tfFoglioCatasto","tfParticCatasto","tfSubaltCatasto","calDtEmissione","rbTipoScadenza","tfAnnoCostr","tfAnnoRistrutt","bViasualizzaApe","bCompModApe","bVerificaApe","bConsolidaApe","bInviaApe","menu","tsApe","bIndietro","txtNoteApeDatiGen","tfNPianiComplessivi","tfNPianiFtRisc","cbFkTipoRistrutturaz","cbFkTipolEdilizia","cbFkTipolCostrutt","cbFkProprietaEdi","tfCodFiscCoCert","tfCognomeCoCert","tfNomeCoCert","tfNumMatricolaCoCert","cbFkMotivo","cbFkOggetto","cbAltroServiziEnergia","txtCoCertificatore","cbSistCatast","tfDestUso","tfCodEdificioScolastico","tblDichiarazioneIndipendenza"],
+	"widgetsHidden":["tfRicercaIndirizzo","vVerifIndDtCatastali","svuotaIndDtCatastaliText","bCercaCoordinate","bCercaCfCertificatori","cbListaCf","bSalva","btnEliminaFoto","txtNote1Foto","txtObblDtFoto","fileFotoCatasto","cbTipoFoto","btnCaricaFoto","txtObblDtFotoAltre","fileFotoCatastoAltre","cbTipoFotoAltre","btnCaricaFotoAltre"]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.NOPCommand" }
+],
+	"esiti":["OK"],
+	"nomeMetodo":"gestisciComboIndirizzo",
+	"appDataToStore":[]
+}
+] 
+}
+],
+	"esiti":["REGISTRAZIONE","VISUALIZZAZIONE"],
+	"nomeMetodo":"switchScreenState",
+	"appDataToStore":[]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.NOPCommand" }
+],
+	"esiti":["OK"],
+	"nomeMetodo":"gestisciComboGeo",
+	"appDataToStore":["appDatacertificatore","appDatacomuniCertDtCat","appDataprovinceCertDTCat","appDatasuggestIndirizzoCertCostr","appDatasuggestIndirizzoCertDirLav","appDatasuggestIndirizzoCertProgettista","appDatasuggestIndirizzoDtCat","appDataprovinceCertCostr","appDataprovinceCertDirLav","appDataprovinceCertProgettista","appDataregioniCertCostr","appDataregioniCertDirLav","appDataregioniCertProgettista","appDatacomuniCertCostr","appDatacomuniCertDirLav","appDatacomuniCertProgettista","appDataqualitaInvolucro","appDataclassiEfficienzaEnergetiche"]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ClearAppDataCommand" ,
+	"attributesToBeRemovedFromSession":["visuraCodImpiantoSelez","visuraImpianto","visuraImpiantoList","visuraRappControlloList","visuraRicerca","visuraRifCatastaleList","visuraUidLibrettoDaStampare"]
+}
+] 
+}

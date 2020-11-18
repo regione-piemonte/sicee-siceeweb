@@ -1,0 +1,13 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ShowDialogCommand" ,
+	"name":"dlgReConsApe"
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.NOPCommand" }
+],
+	"esiti":["OK","KO"],
+	"nomeMetodo":"preparaReConsolidaAPE",
+	"appDataToStore":[]
+}

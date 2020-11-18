@@ -1,0 +1,26 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.security.ComplexUISecConstraint",
+  "constrainedBehavior": 2,
+  "defaultState": true,
+  "nomeContainer": "cpTransaz",
+  "nomeWidget": "bStampaRicevutaReg",
+  "constraints": [
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.security.CustomUISecConstraint",
+  "constrainedBehavior": 2,
+  "defaultState": true,
+  "nomeContainer": "cpTransaz",
+  "nomeWidget": "bStampaRicevutaReg",
+	"methodNameSuffix": "IsAbilGestisciStampaRicevutaReg"
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.security.DeclarativeUIConstraint",
+  "constrainedBehavior": 2,
+  "defaultState": true,
+  "nomeContainer": "cpTransaz",
+  "nomeWidget": "bStampaRicevutaReg",
+	"language": "beanshell",
+	"script": "model.appDatatransazioneRegistrazione != null && model.appDatatransazioneRegistrazione.size() > 0"
+}
+
+
+  ]
+}

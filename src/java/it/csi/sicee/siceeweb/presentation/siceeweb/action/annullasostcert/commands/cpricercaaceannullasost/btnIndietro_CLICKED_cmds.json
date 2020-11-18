@@ -1,0 +1,13 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.RefreshViewCommand" ,
+	"targetPanels": ["pCenter"], 
+	"targetWidgets":["ptNotaA"],
+	"currentPanelName":"cpRicercaAceAnnullaSost" 
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.JumpCommand" ,
+	"name": "cpAnnullaSostAceHome", 
+	"pushCurrent":false
+}
+] 
+}

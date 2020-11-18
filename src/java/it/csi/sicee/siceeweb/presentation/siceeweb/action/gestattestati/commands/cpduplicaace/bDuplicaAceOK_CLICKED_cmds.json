@@ -1,0 +1,13 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.RefreshViewCommand" ,
+	"targetPanels": ["pCenter"], 
+	"targetWidgets":["txtDocAmmessi"],
+	"currentPanelName":"cpDuplicaAce" 
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.JumpCommand" ,
+	"name": "cpHome", 
+	"pushCurrent":false
+}
+] 
+}

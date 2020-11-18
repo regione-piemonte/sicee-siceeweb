@@ -1,0 +1,6 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.RefreshViewCommand" ,
+	"targetPanels": ["pCenter"], 
+	"targetWidgets":["ptNotaA"],
+	"currentPanelName":"cpRicercaAceAnnullaSost" 
+}

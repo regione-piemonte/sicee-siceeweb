@@ -1,0 +1,19 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":true,
+	"targetsWidgets":["bDuplicaAceAvanti"],
+	"targetsMenuElement":[]
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":false,
+	"targetsWidgets":["bDuplicaAceAvanti"],
+	"targetsMenuElement":[]
+}
+],
+	"esiti":["OK","KO"],
+	"nomeMetodo":"initListaAttestatiNuovi",
+	"appDataToStore":[]
+}

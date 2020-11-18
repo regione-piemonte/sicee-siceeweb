@@ -1,0 +1,25 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.RefreshViewCommand" ,
+	"targetPanels": ["pCenter"], 
+	"targetWidgets":["tbDettaglioAttestato"],
+	"currentPanelName":"cpDettaglioAttestato" 
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.JumpCommand" ,
+	"name": "cpRisultatoRicercaAce", 
+	"pushCurrent":false
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.JumpCommand" ,
+	"name": "cpGestCertificazioni", 
+	"pushCurrent":false
+}
+],
+	"esiti":["RicercaACE","Compilazione"],
+	"nomeMetodo":"indietro",
+	"appDataToStore":[]
+}
+] 
+}

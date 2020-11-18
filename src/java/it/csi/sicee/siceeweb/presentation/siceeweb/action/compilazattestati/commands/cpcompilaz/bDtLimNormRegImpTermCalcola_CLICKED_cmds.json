@@ -1,0 +1,13 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.RefreshViewCommand" ,
+	"targetPanels": ["pWizCompilazLiv1"], 
+	"targetWidgets":["menu"],
+	"currentPanelName":"cpCompilaz" 
+}
+],
+	"esiti":["OK"],
+	"nomeMetodo":"bDtLimNormRegImpTermToCalcola",
+	"appDataToStore":["appDatacertificato"]
+}

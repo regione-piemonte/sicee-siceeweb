@@ -1,0 +1,21 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.JumpExtCommand" ,
+	"locationCode":"SCARICA_ATTESTATO",
+	"runtimeUrlProviderAppData":"",
+	"staticUrl":"/base/scaricaAttestato.do",
+	"binaryStream":false 
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.JumpExtCommand" ,
+	"locationCode":"SCARICA_RICEVUTA",
+	"runtimeUrlProviderAppData":"",
+	"staticUrl":"/base/cpRicevutaInvio.do",
+	"binaryStream":false 
+}
+],
+	"esiti":["ATTESTATO","RICEVUTA"],
+	"nomeMetodo":"preparaScaricoModulo",
+	"appDataToStore":["appDatacodAttestatoDaStampare"]
+}

@@ -1,0 +1,19 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.OnOffCommand" ,
+	"enable":false,
+	"targetsWidgets":["cbAltroServiziEnergia"],
+	"targetsMenuElement":[]
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.OnOffCommand" ,
+	"enable":true,
+	"targetsWidgets":["cbAltroServiziEnergia"],
+	"targetsMenuElement":[]
+}
+],
+	"esiti":["VALORI","ALTRO"],
+	"nomeMetodo":"motivazioneChanged",
+	"appDataToStore":[]
+}

@@ -1,0 +1,9 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.RefreshViewCommand" ,
+	"targetPanels": ["pDatiFabbisogno"], 
+	"targetWidgets":["rbFabbisognoEnergia"],
+	"currentPanelName":"cpCompilaz" 
+}
+] 
+}

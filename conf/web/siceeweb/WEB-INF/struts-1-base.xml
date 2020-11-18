@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="base" extends="jsp-package" namespace="/base">
+
+		<!--PROTECTED REGION ID(R1672727510) ENABLED START-->
+		<!-- inserire qui la dichiarazione di azioni aggiuntive hand-written -->
+		
+ <action name="cpRicevutaPagamenti" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.CpRicevutaPagamentiAction">
+	<result name="report" type="stream">         
+         <param name="inputName">inputStream</param>	   
+   	   	 <!--param name="bufferSize">1024</param-->
+   	   	 <param name="contentType">application/pdf</param>
+   	   	 <param name="contentDisposition">attachment; filename=ricevuta_acquisto_ape.pdf</param>
+        </result>
+        <result name="success" />
+
+</action>
+
+<action name="cpRicevutaPagamentiRegistrazione" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.CpRicevutaPagamentiRegistrazioneAction">
+	<result name="report" type="stream">         
+         <param name="inputName">inputStream</param>	   
+   	   	 <!--param name="bufferSize">1024</param-->
+   	   	 <param name="contentType">application/pdf</param>
+   	   	 <param name="contentDisposition">attachment; filename=ricevuta_registrazione.pdf</param>
+        </result>
+        <result name="success" />
+
+</action>
+
+ <action name="cpRicevutaRicarica" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.CpRicevutaRicaricaAction">
+	<result name="report" type="stream">         
+         <param name="inputName">inputStream</param>	   
+   	   	 <!--param name="bufferSize">1024</param-->
+   	   	 <param name="contentType">application/pdf</param>
+   	   	 <param name="contentDisposition">attachment; filename=ricevuta_ricarica.pdf</param>
+        </result>
+        <result name="success" />
+
+</action>
+
+<action name="cpRicevutaInvio" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.CpRicevutaInvioAction">
+	<result name="report" type="stream">         
+         <param name="inputName">inputStream</param>	   
+   	   	 <!--param name="bufferSize">1024</param-->
+   	   	 <param name="contentType">application/pdf</param>
+   	   	 <param name="contentDisposition">attachment; filename=ricevuta_trasmissione.pdf</param>
+        </result>
+        <result name="success" />
+</action>
+
+	<action name="scaricaAttestato" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.gestattestati.ScaricaAttestatoAction">
+        <result name="success" type="stream">
+        	<param name="inputName">inputStream</param>	   
+   	   	 	<!--param name="bufferSize">1024</param-->
+   	   	 	<param name="contentType">${contentType}</param>
+   	   	 <param name="contentDisposition">${contentDisposition}</param>
+        </result>
+    </action>
+
+	<action name="scaricaIndicatore" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.gestattestati.ScaricaIndicatoreAction">
+        <result name="success" type="stream">
+        	<param name="inputName">inputStream</param>	   
+   	   	 	<!--param name="bufferSize">1024</param-->
+   	   	 	<param name="contentType">${contentType}</param>
+   	   	 <param name="contentDisposition">${contentDisposition}</param>
+        </result>
+    </action>
+    
+	<action name="stampaCopia" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.gestattestati.StampaCopiaCertificatoAction">
+        <result name="success" type="stream">
+        	<param name="inputName">inputStream</param>	   
+   	   	 	<!--param name="bufferSize">1024</param-->
+   	   	 	<param name="contentType">${contentType}</param>
+   	   	 <param name="contentDisposition">${contentDisposition}</param>
+        </result>
+    </action>
+    
+    <action name="stampaAnnullato" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.gestattestati.StampaAnnullatoCertificatoAction">
+        <result name="success" type="stream">
+        	<param name="inputName">inputStream</param>	   
+   	   	 	<!--param name="bufferSize">1024</param-->
+   	   	 	<param name="contentType">${contentType}</param>
+   	   	 <param name="contentDisposition">${contentDisposition}</param>
+        </result>
+    </action>
+
+	<action name="stampa" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.gestattestati.StampaCertificatoAction">
+        <result name="success" type="stream">
+        	<param name="inputName">inputStream</param>	   
+   	   	 	<!--param name="bufferSize">1024</param-->
+   	   	 	<param name="contentType">${contentType}</param>
+   	   	 <param name="contentDisposition">${contentDisposition}</param>
+        </result>
+    </action>
+    
+    <action name="scaricaDocumento" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.gestattestati.ScaricaDocumentoAction">
+        <result name="success" type="stream">
+        	<param name="inputName">inputStream</param>	   
+   	   	 	<!--param name="bufferSize">1024</param-->
+   	   	 	<param name="contentType">${contentType}</param>
+   	   	 <param name="contentDisposition">${contentDisposition}</param>
+        </result>
+    </action>
+
+	<action name="stampaBozza" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.compilazattestati.StampaBozzaCertificatoAction">
+        <result name="report" type="stream">         
+         <param name="inputName">inputStream</param>	   
+   	   	 <!--param name="bufferSize">1024</param-->
+   	   	 <param name="contentType">application/pdf</param>
+   	   	 <param name="contentDisposition">${contentDisposition}</param>
+        </result>
+        <result name="success" />
+    </action>
+    
+    <action name="stampaDefinitiva" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.compilazattestati.StampaDefinitivaCertificatoAction">
+        <result name="report" type="stream">         
+         <param name="inputName">inputStream</param>	   
+   	   	 <!--param name="bufferSize">1024</param-->
+   	   	 <param name="contentType">application/pdf</param>
+   	   	 <param name="contentDisposition">${contentDisposition}</param>
+        </result>
+        <result name="success" />
+    </action>
+    
+    <action name="stampaReport" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.gestattestati.StampaReportAction">
+        <result name="report" type="stream">         
+         <param name="inputName">inputStream</param>	   
+   	   	 <!--param name="bufferSize">1024</param-->
+   	   	 <param name="contentType">application/pdf</param>
+   	   	 <param name="contentDisposition">${contentDisposition}</param>
+        </result>
+        <result name="success" />
+    </action>
+    
+    <action name="scaricaLibretto" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.compilazattestatiape.ScaricaLibrettoAction">
+        <result name="success" type="stream">         
+         <param name="inputName">inputStream</param>	   
+   	   	 <!--param name="bufferSize">1024</param-->
+   	   	 <param name="contentType">${contentType}</param>
+   	   	 <param name="contentDisposition">${contentDisposition}</param>
+        </result>
+    </action>
+    
+    
+		<!--PROTECTED REGION END-->
+	</package>
+</struts>

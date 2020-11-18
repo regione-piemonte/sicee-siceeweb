@@ -1,0 +1,54 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.RefreshViewCommand" ,
+	"targetPanels": ["pCenter"], 
+	"targetWidgets":["menu"],
+	"currentPanelName":"cpImportaXml" 
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ScreenStateCommand" ,
+	"widgetsOn":["fileCaricaXml","btnCaricaXml","btnIndietro","menu"],
+	"widgetsOff":["cbProvDtCatastali","cbComDtCatastali","tfGradiGiorno","btnCalcoli","btnAnnulla","tblXmlResult","rbImporta","ptNote","btnConferma"],
+	"widgetsShown":["fileCaricaXml","btnCaricaXml","btnIndietro","menu"],
+	"widgetsHidden":["cbProvDtCatastali","cbComDtCatastali","tfGradiGiorno","btnCalcoli","btnAnnulla","tblXmlResult","rbImporta","ptNote","btnConferma"]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ClearAppDataCommand" ,
+	"attributesToBeRemovedFromSession":["tempDtCatastaliSecondari"]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.JumpCommand" ,
+	"name": "cpCompilaz", 
+	"pushCurrent":false
+}
+] 
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.RefreshViewCommand" ,
+	"targetPanels": ["pCenter"], 
+	"targetWidgets":["menu"],
+	"currentPanelName":"cpImportaXml" 
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ScreenStateCommand" ,
+	"widgetsOn":["fileCaricaXml","btnCaricaXml","btnIndietro","menu"],
+	"widgetsOff":["cbProvDtCatastali","cbComDtCatastali","tfGradiGiorno","btnCalcoli","btnAnnulla","tblXmlResult","rbImporta","ptNote","btnConferma"],
+	"widgetsShown":["fileCaricaXml","btnCaricaXml","btnIndietro","menu"],
+	"widgetsHidden":["cbProvDtCatastali","cbComDtCatastali","tfGradiGiorno","btnCalcoli","btnAnnulla","tblXmlResult","rbImporta","ptNote","btnConferma"]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.JumpCommand" ,
+	"name": "cpGestCertificazioni", 
+	"pushCurrent":false
+}
+] 
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.RefreshViewCommand" ,
+	"targetPanels": ["pCenter"], 
+	"targetWidgets":["menu"],
+	"currentPanelName":"cpImportaXml" 
+}
+],
+	"esiti":["OK","KO","NON_VALORIZZATO"],
+	"nomeMetodo":"importaXml",
+	"appDataToStore":[]
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+    SPDX-License-Identifier: EUPL-1.2
+    Copyright Regione Piemonte - 2020
+ -->
+
+<jboss-deployment-structure xmlns="urn:jboss:deployment-structure:1.2">
+	<deployment>
+		<dependencies>
+		</dependencies>
+		<exclusions>
+
+	        <module name="org.picketbox" />
+
+		</exclusions>
+	</deployment>
+</jboss-deployment-structure>

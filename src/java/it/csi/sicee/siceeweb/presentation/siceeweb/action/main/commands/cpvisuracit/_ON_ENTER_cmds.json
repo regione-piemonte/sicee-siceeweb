@@ -1,0 +1,12 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ActivateMultiPanelItemCommand" ,
+	"containerName":"mpElencoImp",
+	"contentPanelName":"cpVisuraCIT",
+	"itemName": null}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ActivateMultiPanelItemCommand" ,
+	"containerName":"mpDettImpianto",
+	"contentPanelName":"cpVisuraCIT",
+	"itemName": null}
+] 
+}

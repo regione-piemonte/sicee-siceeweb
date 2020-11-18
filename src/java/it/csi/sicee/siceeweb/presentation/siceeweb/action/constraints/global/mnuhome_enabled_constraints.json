@@ -1,0 +1,19 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.security.ComplexUISecConstraint",
+  "constrainedBehavior": 1,
+  "defaultState": true,
+  "nomeContainer": "_menu",
+  "nomeWidget": "mnuhome",
+  "constraints": [
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.security.RoleBasedUISecConstraint",
+  "constrainedBehavior": 1,
+  "defaultState": true,
+  "nomeContainer": "_menu",
+  "nomeWidget": "mnuhome",
+	"roleCode": "TITOLARE_CF",
+	"domainCode": "UTENTI_IRIDE2"
+}
+
+
+  ]
+}

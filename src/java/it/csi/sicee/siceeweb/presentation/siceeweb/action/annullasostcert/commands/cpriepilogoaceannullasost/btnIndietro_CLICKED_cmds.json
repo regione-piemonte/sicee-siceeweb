@@ -1,0 +1,25 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.RefreshViewCommand" ,
+	"targetPanels": ["pCenter"], 
+	"targetWidgets":["ptMotivazione"],
+	"currentPanelName":"cpRiepilogoAceAnnullaSost" 
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.JumpCommand" ,
+	"name": "cpRicercaAceAnnullaSost", 
+	"pushCurrent":false
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.JumpCommand" ,
+	"name": "cpSelezionaTipoRicercaAnnullaSost", 
+	"pushCurrent":false
+}
+],
+	"esiti":["RICERCA_ACE","SELEZIONA_TIPO_RICERCA"],
+	"nomeMetodo":"gestisciIndietro",
+	"appDataToStore":[]
+}
+] 
+}

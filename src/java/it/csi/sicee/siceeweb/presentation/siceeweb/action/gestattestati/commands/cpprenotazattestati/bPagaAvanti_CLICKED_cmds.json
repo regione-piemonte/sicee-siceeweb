@@ -1,0 +1,26 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.RefreshViewCommand" ,
+	"targetPanels": ["pCenter"], 
+	"targetWidgets":["rbsLotti"],
+	"currentPanelName":"cpPrenotazAttestati" 
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.JumpCommand" ,
+	"name": "cpPagamento", 
+	"pushCurrent":false
+}
+] 
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.RefreshViewCommand" ,
+	"targetPanels": ["pCenter"], 
+	"targetWidgets":["rbsLotti"],
+	"currentPanelName":"cpPrenotazAttestati" 
+}
+],
+	"esiti":["OK","KO"],
+	"nomeMetodo":"preparaPagamentoACE",
+	"appDataToStore":["appDatadatiPagamento","appDataswitchPagamento"]
+}

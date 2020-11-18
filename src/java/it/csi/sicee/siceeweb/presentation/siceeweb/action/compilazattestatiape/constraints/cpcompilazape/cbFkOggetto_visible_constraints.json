@@ -1,0 +1,17 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.security.ComplexUISecConstraint",
+  "constrainedBehavior": 2,
+  "defaultState": true,
+  "nomeContainer": "cpCompilazApe",
+  "nomeWidget": "cbFkOggetto",
+  "constraints": [
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.security.DummyUISecConstraint",
+  "constrainedBehavior": 2,
+  "defaultState": true,
+  "nomeContainer": "cpCompilazApe",
+  "nomeWidget": "cbFkOggetto",
+  "fixedValue": true
+}
+
+  ]
+}

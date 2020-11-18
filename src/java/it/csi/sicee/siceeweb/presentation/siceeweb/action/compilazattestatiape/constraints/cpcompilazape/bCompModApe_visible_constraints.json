@@ -1,0 +1,18 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.security.ComplexUISecConstraint",
+  "constrainedBehavior": 2,
+  "defaultState": false,
+  "nomeContainer": "cpCompilazApe",
+  "nomeWidget": "bCompModApe",
+  "constraints": [
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.security.CustomUISecConstraint",
+  "constrainedBehavior": 2,
+  "defaultState": false,
+  "nomeContainer": "cpCompilazApe",
+  "nomeWidget": "bCompModApe",
+	"methodNameSuffix": "GestisciVisBotCompModApe"
+}
+
+
+  ]
+}

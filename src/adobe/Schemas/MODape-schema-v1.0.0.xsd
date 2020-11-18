@@ -1,0 +1,615 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="http://www.csi.it/sicee/siceeweb/xml/attestato/data"
+	       xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.csi.it/sicee/siceeweb/xml/attestato/data"
+           elementFormDefault="qualified"
+		   attributeFormDefault="unqualified">
+
+<xs:element name="MOD">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element ref="Attestato"/>
+			<xs:element ref="system"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:element>
+
+  <xs:element name="Attestato">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="datiPrecompilati"/>
+        <xs:element ref="datiModulo"/>
+		<xs:element ref="datiGenerali"/>
+		<xs:element ref="prestEnergFabb"/>
+		<xs:element ref="prestEnergImpianti"/>
+		<xs:element ref="raccomandazioni"/>
+		<xs:element ref="altriDatiEnergetici"/>
+		<xs:element ref="altriDatiFabbricato"/>
+		<xs:element ref="dettaglioImpianti"/>
+		<xs:element ref="informazioni"/>
+		<xs:element ref="soggettoCertificatore"/>
+		<xs:element ref="sopralluoghi"/>
+		<xs:element ref="software"/>
+        <!--
+		E1 Edifici adibiti a residenza e assimilabili
+        -->
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+    <!-- DATI precompilati da web, combobox,foto -->
+  <xs:element name="datiPrecompilati">
+    <xs:complexType>
+      <xs:sequence>
+          <xs:element name="statoModulo" type="xs:string"/>  <!-- Stati previsti: BOZZA - CONTROLLATO - CONSOLIDATO - ANNULLATO - BOZZA_DA_XML -->
+		  <xs:element name="anno" type="xs:integer"/>
+		  <xs:element name="idCertificatore" type="xs:string"/>
+		  <xs:element name="progressivoCertificato" type="xs:string"/>
+		  <xs:element name="dataValidita" type="xs:string"/>
+		  <xs:element name="regione" type="xs:string"/>
+		  <xs:element name="comune" type="xs:string"/>
+		  <xs:element name="indirizzo" type="xs:string"/>
+		  <xs:element name="piano" type="xs:string"/>
+		  <xs:element name="interno" type="xs:string"/>
+		  <xs:element name="coordinateGIS" type="xs:string"/>
+		  <xs:element name="annoCostruzione" type="xs:string"/>
+		  <xs:element name="foto" type="imageJPG"/>
+		  <xs:element name="sezDatiCatastali">
+			<xs:complexType>
+				<xs:sequence>
+					<xs:element ref="rowDatiCatastali" minOccurs="1" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:element>
+		<xs:element name="certificatore">
+			<xs:complexType>
+				<xs:sequence>
+					<xs:element name="denominazione" type="xs:string"/>
+					<xs:element name="indirizzo" type="xs:string"/>
+					<xs:element name="email" type="xs:string"/>
+					<xs:element name="telefono" type="xs:string"/>
+					<xs:element name="titolo" type="xs:string"/>
+					<xs:element name="ordine" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:element>
+		<xs:element name="dataEmissione" type="xs:string"/>
+		<xs:element name="firma" type="xs:string"/>
+		
+		 <!-- precompilazione combo -->
+    	<xs:element name="elencoClassificazioni">
+    		<xs:complexType>
+    			<xs:sequence>
+    				<xs:element name="classificazione" minOccurs="1" maxOccurs="unbounded">
+    					<xs:complexType>
+    						<xs:sequence>
+    		    				<xs:element name="codice" type="xs:integer"/>
+    		    				<xs:element name="descrizione" type="xs:string"/>
+								<xs:element name="flagIsResidenziale" type="xs:string"/>
+    						</xs:sequence>
+    					</xs:complexType>
+        			</xs:element>
+    			</xs:sequence>
+    		</xs:complexType>
+    	</xs:element>
+
+	
+		<xs:element name="elencoUnitaMisura">
+    		<xs:complexType>
+    			<xs:sequence>
+    				<xs:element name="unitaMisura" minOccurs="1" maxOccurs="unbounded">
+    					<xs:complexType>
+    						<xs:sequence>
+    		    				<xs:element name="codice" type="xs:integer"/>
+    		    				<xs:element name="descrizione" type="xs:string"/>
+    						</xs:sequence>
+    					</xs:complexType>
+        			</xs:element>
+    			</xs:sequence>
+    		</xs:complexType>
+    	</xs:element>
+		
+	
+		<xs:element name="elencoClasseEnergetica">
+    		<xs:complexType>
+    			<xs:sequence>
+    				<xs:element name="classeEnergetica" minOccurs="1" maxOccurs="unbounded">
+    					<xs:complexType>
+    						<xs:sequence>
+    		    				<xs:element name="codice" type="xs:integer"/>
+    		    				<xs:element name="descrizione" type="xs:string"/>
+    						</xs:sequence>
+    					</xs:complexType>
+        			</xs:element>
+    			</xs:sequence>
+    		</xs:complexType>
+    	</xs:element>
+		
+
+		
+		
+		<xs:element name="elencoCodiciREN">
+    		<xs:complexType>
+    			<xs:sequence>
+    				<xs:element name="codiceREN" minOccurs="1" maxOccurs="unbounded">
+    					<xs:complexType>
+    						<xs:sequence>
+    		    				<xs:element name="codice" type="xs:string"/>
+    		    				<xs:element name="descrizione" type="xs:string"/>
+    						</xs:sequence>
+    					</xs:complexType>
+        			</xs:element>
+    			</xs:sequence>
+    		</xs:complexType>
+    	</xs:element>
+		
+		
+		<xs:element name="elencoCombustibiliEnEsportata">
+    		<xs:complexType>
+    			<xs:sequence>
+    				<xs:element name="combustibileEnEsportata" minOccurs="1" maxOccurs="unbounded">
+    					<xs:complexType>
+    						<xs:sequence>
+    		    				<xs:element name="codice" type="xs:integer"/>
+    		    				<xs:element name="descrizione" type="xs:string"/>
+    						</xs:sequence>
+    					</xs:complexType>
+        			</xs:element>
+    			</xs:sequence>
+    		</xs:complexType>
+    	</xs:element>
+		
+		
+		
+		<xs:element name="elencoCombustibiliDettImpianti">
+    		<xs:complexType>
+    			<xs:sequence>
+    				<xs:element name="combustibileDettImpianti" minOccurs="1" maxOccurs="unbounded">
+    					<xs:complexType>
+    						<xs:sequence>
+    		    				<xs:element name="codice" type="xs:integer"/>
+    		    				<xs:element name="descrizione" type="xs:string"/>
+    						</xs:sequence>
+    					</xs:complexType>
+        			</xs:element>
+    			</xs:sequence>
+    		</xs:complexType>
+    	</xs:element>
+		
+		
+     </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+   <xs:element name="rowDatiCatastali">
+    <xs:complexType>
+      <xs:sequence>
+			<xs:element name="flagPrincipale" type="xs:boolean"/>
+			<xs:element name="comuneCatastale" type="xs:string"/>
+            <xs:element name="sezione" type="xs:string"/>
+            <xs:element name="foglio" type="xs:string"/>
+            <xs:element name="particella" type="xs:string"/>	
+			<xs:element name="da1" type="xs:integer"/>
+            <xs:element name="a1" type="xs:integer"/>
+		    <xs:element name="da2" type="xs:integer"/>
+            <xs:element name="a2" type="xs:integer"/>
+			<xs:element name="da3" type="xs:integer"/>
+            <xs:element name="a3" type="xs:integer"/>
+			<xs:element name="da4" type="xs:integer"/>
+            <xs:element name="a4" type="xs:integer"/>
+ 			<xs:element name="subalterniSingoli">
+				<xs:complexType>
+					<xs:sequence>
+                       <xs:element ref="rowSubalterniSingoli" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="rowSubalterniSingoli">
+    <xs:complexType>
+      <xs:sequence>
+		    <xs:element name="subalterno" type="xs:string" maxOccurs="unbounded"/>
+       </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <!-- DATI FUNZIONALI AL COMPORTAMENTO DEL MODULO -->
+  <xs:element name="datiModulo">
+    <xs:complexType>
+      <xs:sequence>
+          <!--
+          <xs:element name="flagPrecompilazione" type="xs:boolean"/>
+          -->
+          <xs:element name="flagControlloBozza" type="xs:boolean"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+    <xs:element name="datiGenerali">
+    <xs:complexType>
+      <xs:sequence>
+          <xs:element name="flagResidenziale" type="xs:string"/> 
+		  <xs:element name="flagNonResidenziale" type="xs:string"/>
+		  <xs:element name="codClassificazione" type="xs:integer"/>
+		  <xs:element name="oggetto" type="xs:integer"/>
+		  <xs:element name="numeroUI" type="xs:integer"/>
+		  <xs:element name="motivazione" type="xs:integer"/>
+		  <xs:element name="motivazioneAltro" type="xs:string"/>
+		  <xs:element name="zonaClimatica" type="xs:string"/>
+		  <xs:element name="supUtileRisc" type="xs:decimal"/>
+		  <xs:element name="supUtileRaffr" type="xs:decimal"/>
+		  <xs:element name="volLordoRisc" type="xs:decimal"/>
+		  <xs:element name="volLordoRaffr" type="xs:decimal"/>
+		  <xs:element name="flagServiziClimaInv" type="xs:string"/> 
+		  <xs:element name="flagServiziClimaEst" type="xs:string"/>
+		  <xs:element name="flagServiziVent" type="xs:string"/>
+		  <xs:element name="flagServiziAcquaCalda" type="xs:string"/>
+		  <xs:element name="flagServiziLuce" type="xs:string"/>
+		  <xs:element name="flagServiziTrasporto" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="prestEnergFabb">
+    <xs:complexType>
+      <xs:sequence>
+          <xs:element name="flagEdifEnergZero" type="xs:string"/> 
+		  <xs:element name="classeEnergetica" type="xs:integer"/>
+		  <xs:element name="EpglnrenStandard" type="xs:decimal"/>
+		  <xs:element name="codClasseEdNuovi" type="xs:integer"/>
+		  <xs:element name="EpglnrenEdNuovi" type="xs:decimal"/>
+		  <xs:element name="codClasseEdEsistenti" type="xs:integer"/>
+		  <xs:element name="EpglnrenEdEsistenti" type="xs:decimal"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="prestEnergImpianti">
+    <xs:complexType>
+      <xs:sequence>
+	  
+		<xs:element name="elencoFontiEnergetiche">
+			<xs:complexType>
+				<xs:sequence>
+					<xs:element ref="rowConsumiCombustibile" minOccurs="1" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:element>
+		
+		<xs:element name="altreFontiEnergetiche">
+			<xs:complexType>
+				<xs:sequence>
+					<xs:element ref="rowConsumiCombustibile" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:element>
+		
+		<xs:element name="EpglnrenTotale" type="xs:decimal"/>
+		<xs:element name="EpglrenTotale" type="xs:decimal"/>
+		<xs:element name="EmissioniCO2" type="xs:decimal"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="rowConsumiCombustibile">
+    <xs:complexType>
+		<xs:sequence>
+			<xs:element name="flagPresente" type="xs:string"/>
+			<xs:element name="idCombustibile" type="xs:integer"/>
+			<xs:element name="descrCombustibile" type="xs:string"/>
+			<xs:element name="quantita" type="xs:decimal"/>
+            <xs:element name="ui" type="xs:integer"/>
+		</xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  
+  <xs:element name="raccomandazioni">
+    <xs:complexType>
+		<xs:sequence>
+		
+			<xs:element name="sezioneRen">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="rowRen" minOccurs="1" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="classe" type="xs:integer"/>
+            <xs:element name="EPglnrenTotale" type="xs:decimal"/>
+			<xs:element name="flagIntervConv" type="xs:string"/>
+			
+		</xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+   <xs:element name="rowRen">
+    <xs:complexType>
+		<xs:sequence>
+		    <xs:element name="codRen" type="xs:string"/>
+            <xs:element name="idRaccomandazione" type="xs:integer"/>
+			<xs:element name="tipoIntervento" type="xs:string"/>
+			<xs:element name="ristrutturazioneImportante" type="xs:string"/>
+			<xs:element name="anniRitornoInv" type="xs:decimal"/>
+			<xs:element name="EPglnren" type="xs:decimal"/>
+			<xs:element name="classe" type="xs:integer"/>
+		</xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  
+  <xs:element name="altriDatiEnergetici">
+    <xs:complexType>
+		<xs:sequence>
+			<xs:element name="energiaEsportata" type="xs:decimal"/>
+			<xs:element name="vettori">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="rowVettore"  minOccurs="1" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="rowVettore">
+    <xs:complexType>
+		<xs:sequence>
+		    <xs:element name="codVettore" type="xs:integer"/>
+			<xs:element name="descrVettore" type="xs:string"/>
+ 		</xs:sequence>
+    </xs:complexType>
+  </xs:element>
+   
+  <xs:element name="altriDatiFabbricato">
+    <xs:complexType>
+		<xs:sequence>
+		  <xs:element name="supDisperdente" type="xs:decimal"/>
+		  <xs:element name="rapportoSV" type="xs:decimal"/>
+		  <xs:element name="EPHnd" type="xs:decimal"/>
+		  <xs:element name="EPHndLimite" type="xs:decimal"/>
+  		  <xs:element name="rapportoAsolAsup" type="xs:decimal"/>
+		  <xs:element name="Yie" type="xs:decimal"/>
+    	</xs:sequence>
+    </xs:complexType>
+  </xs:element>   
+   
+   
+  <xs:element name="dettaglioImpianti">
+    <xs:complexType>
+		<xs:sequence>
+			<xs:element name="sezioneClimaInver">
+			   <xs:complexType>
+				<xs:sequence>
+					<xs:element name="elencoImpianti">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="rowImpianto"  minOccurs="1" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="efficienza" type="xs:decimal"/>
+					<xs:element name="Epren" type="xs:decimal"/>
+					<xs:element name="EPnren" type="xs:decimal"/>
+					<xs:element name="codServizioEnergetico" type="xs:integer"/>
+					</xs:sequence>
+				</xs:complexType>	
+			</xs:element>
+			
+			<xs:element name="sezioneClimaEst">
+			   <xs:complexType>
+				<xs:sequence>
+					<xs:element name="elencoImpianti">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="rowImpianto"  minOccurs="1" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="efficienza" type="xs:decimal"/>
+					<xs:element name="Epren" type="xs:decimal"/>
+					<xs:element name="EPnren" type="xs:decimal"/>
+					<xs:element name="codServizioEnergetico" type="xs:integer"/>
+					</xs:sequence>
+				</xs:complexType>	
+			</xs:element>
+			<xs:element name="sezioneAcquaCalda">
+			   <xs:complexType>
+				<xs:sequence>
+					<xs:element name="elencoImpianti">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="rowImpianto"  minOccurs="1" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="efficienza" type="xs:decimal"/>
+					<xs:element name="Epren" type="xs:decimal"/>
+					<xs:element name="EPnren" type="xs:decimal"/>
+					<xs:element name="codServizioEnergetico" type="xs:integer"/>
+					</xs:sequence>
+				</xs:complexType>	
+			</xs:element>
+			<xs:element name="sezioneImpiantiCombinati">
+			   <xs:complexType>
+				<xs:sequence>
+					<xs:element name="elencoImpianti">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="rowImpianto"  minOccurs="1" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="efficienza" type="xs:decimal"/>
+					<xs:element name="Epren" type="xs:decimal"/>
+					<xs:element name="EPnren" type="xs:decimal"/>
+					<xs:element name="codServizioEnergetico" type="xs:integer"/>
+					</xs:sequence>
+				</xs:complexType>	
+			</xs:element>
+			<xs:element name="sezioneProdFontiRinn">
+			   <xs:complexType>
+				<xs:sequence>
+					<xs:element name="elencoImpianti">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="rowImpianto"  minOccurs="1" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="efficienza" type="xs:decimal"/>
+					<xs:element name="Epren" type="xs:decimal"/>
+					<xs:element name="EPnren" type="xs:decimal"/>
+					<xs:element name="codServizioEnergetico" type="xs:integer"/>
+					</xs:sequence>
+				</xs:complexType>	
+			</xs:element>
+			<xs:element name="sezioneVentMecc">
+			   <xs:complexType>
+				<xs:sequence>
+					<xs:element name="elencoImpianti">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="rowImpianto"  minOccurs="1" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="efficienza" type="xs:decimal"/>
+					<xs:element name="Epren" type="xs:decimal"/>
+					<xs:element name="EPnren" type="xs:decimal"/>
+					<xs:element name="codServizioEnergetico" type="xs:integer"/>
+					</xs:sequence>
+				</xs:complexType>	
+			</xs:element>
+			<xs:element name="sezioneIlluminazione">
+			   <xs:complexType>
+				<xs:sequence>
+					<xs:element name="elencoImpianti">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="rowImpianto"  minOccurs="1" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="efficienza" type="xs:decimal"/>
+					<xs:element name="Epren" type="xs:decimal"/>
+					<xs:element name="EPnren" type="xs:decimal"/>
+					<xs:element name="codServizioEnergetico" type="xs:integer"/>
+					</xs:sequence>
+				</xs:complexType>	
+			</xs:element>
+			<xs:element name="sezioneTrasporto">
+			   <xs:complexType>
+				<xs:sequence>
+					<xs:element name="elencoImpianti">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="rowImpianto"  minOccurs="1" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="efficienza" type="xs:decimal"/>
+					<xs:element name="Epren" type="xs:decimal"/>
+					<xs:element name="EPnren" type="xs:decimal"/>
+					<xs:element name="codServizioEnergetico" type="xs:integer"/>
+					</xs:sequence>
+				</xs:complexType>	
+			</xs:element>
+		</xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+   <xs:element name="rowImpianto">
+    <xs:complexType>
+		<xs:sequence>
+		   <xs:element name="idDettImpianto" type="xs:integer"/>
+		   <xs:element name="tipoImpianto" type="xs:string"/>
+		   <xs:element name="annoInst" type="xs:integer"/>
+		   <xs:element name="codCatReg" type="xs:string"/>
+		   <xs:element name="combustibile" type="xs:integer"/>
+		   <xs:element name="potenza" type="xs:decimal"/>
+		</xs:sequence>
+    </xs:complexType>
+  </xs:element>
+   
+    <xs:element name="informazioni">
+	  <xs:complexType>
+		<xs:sequence>
+		   <xs:element name="note" type="xs:string"/>
+		</xs:sequence>
+     </xs:complexType>
+   </xs:element>
+   
+   
+  <xs:element name="soggettoCertificatore">
+	  <xs:complexType>
+		<xs:sequence>
+		   <xs:element name="tipoSoggetto" type="xs:integer"/>
+		   <xs:element name="dichiarIndip" type="xs:string"/>
+		   <xs:element name="flagA" type="xs:string"/> 
+		   <xs:element name="dichiarazioneA" type="xs:string"/> 
+		   <xs:element name="flagB" type="xs:string"/>
+		   <xs:element name="dichiarazioneB" type="xs:string"/> 
+		   <xs:element name="flagC" type="xs:string"/>
+		   <xs:element name="dichiarazioneC" type="xs:string"/> 
+		   <xs:element name="infoAgg" type="xs:string"/>
+		</xs:sequence>
+     </xs:complexType>
+   </xs:element>
+   
+   <xs:element name="sopralluoghi">
+	  <xs:complexType>
+		<xs:sequence>
+		   <xs:element name="flagEseguitoRilievo" type="xs:string"/>
+		</xs:sequence>
+     </xs:complexType>
+   </xs:element>
+
+    <xs:element name="software">
+	  <xs:complexType>
+		<xs:sequence>
+		   <xs:element name="domanda1" type="xs:string"/>
+		   <xs:element name="domanda2" type="xs:string"/>
+		</xs:sequence>
+     </xs:complexType>
+   </xs:element>
+   
+  <xs:element name="system">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="moduloEditabile"/>
+        <xs:element ref="btSalvaInBozza"/>
+        <xs:element ref="btSalvaEcontrolla"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="tipoOperazione">
+  	<xs:simpleType>
+		<xs:restriction base="xs:string">
+      		<xs:enumeration value="DOWNLOAD"/>
+      		<xs:enumeration value="EDIT"/>
+    	</xs:restriction>
+  	</xs:simpleType>
+  </xs:element>
+  
+  <xs:element name="moduloEditabile" type="xs:boolean"/>
+  <xs:element name="btSalvaInBozza" type="xs:boolean"/>
+  <xs:element name="btSalvaEcontrolla" type="xs:boolean"/>
+
+
+  <xs:complexType name="imageJPG">
+	<xs:simpleContent>
+		<xs:extension base="xs:hexBinary">
+			<xs:attribute name="contentType" default="image/png"/>
+			<xs:attribute name="transferEncoding" fixed="base64"/>
+		</xs:extension>
+	</xs:simpleContent>
+  </xs:complexType>
+  
+  <!-- <xs:attribute name="contentType"  fixed="image/jpeg"/> -->
+  </xs:schema>

@@ -1,0 +1,27 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ActivateMultiPanelItemCommand" ,
+	"containerName":"pWizRegistraz",
+	"contentPanelName":"cpRegistraz",
+	"itemName": "pStudio"}
+] 
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.NOPCommand" }
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.JumpExtCommand" ,
+	"locationCode":"KO",
+	"runtimeUrlProviderAppData":"",
+	"staticUrl":"/base/gestcertificatore/cpGestioneDialogMail!handleHvEsitoMailMSG_CLICKED.do",
+	"binaryStream":false 
+}
+] 
+}
+],
+	"esiti":["OK","KO","CONF_MAIL"],
+	"nomeMetodo":"bDtResAvantiSalva",
+	"appDataToStore":["appDatacertificatore"]
+}

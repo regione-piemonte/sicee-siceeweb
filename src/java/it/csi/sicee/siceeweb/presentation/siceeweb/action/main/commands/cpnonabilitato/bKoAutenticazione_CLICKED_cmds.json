@@ -1,0 +1,15 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.RefreshViewCommand" ,
+	"targetPanels": ["pCenter"], 
+	"targetWidgets":["bKoAutenticazione"],
+	"currentPanelName":"cpNonAbilitato" 
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.JumpExtCommand" ,
+	"locationCode":"pres",
+	"runtimeUrlProviderAppData":"",
+	"staticUrl":"http://www.sistemapiemonte.it/cms/privati/ambiente-e-energia/servizi/536",
+	"binaryStream":false 
+}
+] 
+}

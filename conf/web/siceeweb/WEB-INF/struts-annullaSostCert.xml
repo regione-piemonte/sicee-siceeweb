@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="annullaSostCert" extends="jsp-package" namespace="/base/annullaSostCert">
+
+		
+<action name="cpAnnullaSostAceHome" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.annullasostcert.CpAnnullaSostAceHomeAction">
+	<result name="input">/jsp/cpAnnullaSostAceHome.jsp</result>
+	<result name="success">/jsp/cpAnnullaSostAceHome.jsp</result>
+	
+	<result name="GO_TO_cpSelezionaTipoRicercaAnnullaSost" type="chain">
+		<param name="actionName">cpSelezionaTipoRicercaAnnullaSost</param>
+		<param name="namespace">/base/annullaSostCert</param>
+	</result>
+	<result name="GO_TO_BackPage" type="chain">
+		<param name="actionName">${backActionName}</param>
+		<param name="namespace">${backNamespace}</param>
+	</result>
+	
+</action>
+
+<action name="cpSelezionaTipoRicercaAnnullaSost" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.annullasostcert.CpSelezionaTipoRicercaAnnullaSostAction">
+	<result name="input">/jsp/cpSelezionaTipoRicercaAnnullaSost.jsp</result>
+	<result name="success">/jsp/cpSelezionaTipoRicercaAnnullaSost.jsp</result>
+	
+	<result name="GO_TO_cpRicercaAceAnnullaSost" type="chain">
+		<param name="actionName">cpRicercaAceAnnullaSost</param>
+		<param name="namespace">/base/annullaSostCert</param>
+	</result>
+	<result name="GO_TO_cpAnnullaSostAceHome" type="chain">
+		<param name="actionName">cpAnnullaSostAceHome</param>
+		<param name="namespace">/base/annullaSostCert</param>
+	</result>
+	<result name="GO_TO_cpRiepilogoAceAnnullaSost" type="chain">
+		<param name="actionName">cpRiepilogoAceAnnullaSost</param>
+		<param name="namespace">/base/annullaSostCert</param>
+	</result>
+	<result name="GO_TO_BackPage" type="chain">
+		<param name="actionName">${backActionName}</param>
+		<param name="namespace">${backNamespace}</param>
+	</result>
+	
+</action>
+
+<action name="cpRicercaAceAnnullaSost" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.annullasostcert.CpRicercaAceAnnullaSostAction">
+	<result name="input">/jsp/cpRicercaAceAnnullaSost.jsp</result>
+	<result name="success">/jsp/cpRicercaAceAnnullaSost.jsp</result>
+	
+	<result name="GO_TO_cpSelezionaTipoRicercaAnnullaSost" type="chain">
+		<param name="actionName">cpSelezionaTipoRicercaAnnullaSost</param>
+		<param name="namespace">/base/annullaSostCert</param>
+	</result>
+	<result name="GO_TO_cpAnnullaSostAceHome" type="chain">
+		<param name="actionName">cpAnnullaSostAceHome</param>
+		<param name="namespace">/base/annullaSostCert</param>
+	</result>
+	<result name="GO_TO_cpRiepilogoAceAnnullaSost" type="chain">
+		<param name="actionName">cpRiepilogoAceAnnullaSost</param>
+		<param name="namespace">/base/annullaSostCert</param>
+	</result>
+	<result name="GO_TO_BackPage" type="chain">
+		<param name="actionName">${backActionName}</param>
+		<param name="namespace">${backNamespace}</param>
+	</result>
+	
+	<result name="GO_TO_EX_STAMPA_ATTESTATO_COPIA" type="redirect">
+		<param name="location">/base/stampaCopia.do</param>
+	</result>
+	<result name="GO_TO_EX_STAMPA_ATTESTATO" type="redirect">
+		<param name="location">/base/stampa.do</param>
+	</result>
+</action>
+
+<action name="cpRiepilogoAceAnnullaSost" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.annullasostcert.CpRiepilogoAceAnnullaSostAction">
+	<result name="input">/jsp/cpRiepilogoAceAnnullaSost.jsp</result>
+	<result name="success">/jsp/cpRiepilogoAceAnnullaSost.jsp</result>
+	
+	<result name="GO_TO_cpRicercaAceAnnullaSost" type="chain">
+		<param name="actionName">cpRicercaAceAnnullaSost</param>
+		<param name="namespace">/base/annullaSostCert</param>
+	</result>
+	<result name="GO_TO_cpSelezionaTipoRicercaAnnullaSost" type="chain">
+		<param name="actionName">cpSelezionaTipoRicercaAnnullaSost</param>
+		<param name="namespace">/base/annullaSostCert</param>
+	</result>
+	<result name="GO_TO_cpEsitoAceAnnullaSost" type="chain">
+		<param name="actionName">cpEsitoAceAnnullaSost</param>
+		<param name="namespace">/base/annullaSostCert</param>
+	</result>
+	<result name="GO_TO_BackPage" type="chain">
+		<param name="actionName">${backActionName}</param>
+		<param name="namespace">${backNamespace}</param>
+	</result>
+	
+</action>
+
+<action name="cpEsitoAceAnnullaSost" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.annullasostcert.CpEsitoAceAnnullaSostAction">
+	<result name="input">/jsp/cpEsitoAceAnnullaSost.jsp</result>
+	<result name="success">/jsp/cpEsitoAceAnnullaSost.jsp</result>
+	
+	<result name="GO_TO_BackPage" type="chain">
+		<param name="actionName">${backActionName}</param>
+		<param name="namespace">${backNamespace}</param>
+	</result>
+	
+	<result name="GO_TO_EX_STAMPA_RICEVUTA_INVIO" type="redirect">
+		<param name="location">/base/cpRicevutaInvio.do</param>
+	</result>
+</action>
+
+		<!--PROTECTED REGION ID(R-352483274) ENABLED START-->
+		<!-- inserire qui la dichiarazione di azioni aggiuntive hand-written -->
+		<!--PROTECTED REGION END-->
+
+	</package>
+</struts>

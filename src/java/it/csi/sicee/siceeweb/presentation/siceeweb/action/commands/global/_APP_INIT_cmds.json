@@ -1,0 +1,185 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.NOPCommand" }
+],
+	"esiti":["OK"],
+	"nomeMetodo":"salvaLogAccesso",
+	"appDataToStore":[]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.JumpCommand" ,
+	"name": "cpHome", 
+	"pushCurrent":false
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.JumpCommand" ,
+	"name": "cpRegistraz", 
+	"pushCurrent":false
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.JumpCommand" ,
+	"name": "cpRegistraz", 
+	"pushCurrent":false
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.JumpCommand" ,
+	"name": "cpNonAbilitato", 
+	"pushCurrent":false
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.JumpCommand" ,
+	"name": "cpBloccoUtente", 
+	"pushCurrent":false
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.JumpCommand" ,
+	"name": "cpBloccoUtente", 
+	"pushCurrent":false
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.JumpCommand" ,
+	"name": "cpRegistraz", 
+	"pushCurrent":false
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.JumpCommand" ,
+	"name": "cpBloccoUtente", 
+	"pushCurrent":false
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.JumpCommand" ,
+	"name": "cpRegistraz", 
+	"pushCurrent":false
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.JumpCommand" ,
+	"name": "cpRegistraz", 
+	"pushCurrent":false
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.JumpCommand" ,
+	"name": "cpRegistraz", 
+	"pushCurrent":false
+}
+],
+	"esiti":["RADIATO","DECEDUTO","ASSENZA_TITOLO_STUDIO","FALSE_DICHIARAZIONI","ASSENZA_CORSO","MANCANZA_INFORMAZIONI","MANCANZA_GENERICA"],
+	"nomeMetodo":"gestisciBloccoCertificatore",
+	"appDataToStore":["appDatacertificatore","appDatacurrentUser","appDataflagAutocert","appDataflagDatiPers","appDatacerificatore"]
+}
+],
+	"esiti":["REGISTRATO","NUOVO_ISCRITTO","REGISTRATO_SCADUTO","NON_ABILITATO","BLOCCATO"],
+	"nomeMetodo":"verificaAccreditamento",
+	"appDataToStore":["appDatacertificatore","appDatacurrentUser","appDataflagAutocert","appDataflagDatiPers","appDatacerificatore"]
+}
+] 
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.JumpCommand" ,
+	"name": "cpRegistraz", 
+	"pushCurrent":false
+}
+],
+	"esiti":["OK","KO"],
+	"nomeMetodo":"verificaAggDati",
+	"appDataToStore":[]
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.JumpCommand" ,
+	"name": "cpVerificaMail", 
+	"pushCurrent":false
+}
+],
+	"esiti":["OK","KO"],
+	"nomeMetodo":"verificaAggMail",
+	"appDataToStore":["appDatamailVerifica"]
+}
+] 
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.JumpCommand" ,
+	"name": "cpDisabled", 
+	"pushCurrent":false
+}
+],
+	"esiti":["OK","KO"],
+	"nomeMetodo":"checkEnabled",
+	"appDataToStore":["appDatanumeroTransazione","appDataidTransazione"]
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.JumpExtCommand" ,
+	"locationCode":"OK_PAG",
+	"runtimeUrlProviderAppData":"",
+	"staticUrl":"/base/main/cpEsitoPagamenti!handleHvPagamentoOK_CLICKED.do",
+	"binaryStream":false 
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.JumpExtCommand" ,
+	"locationCode":"KO_PAG",
+	"runtimeUrlProviderAppData":"",
+	"staticUrl":"/base/main/cpEsitoPagamenti!handleHvPagamentoKO_CLICKED.do",
+	"binaryStream":false 
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.JumpExtCommand" ,
+	"locationCode":"ABORT",
+	"runtimeUrlProviderAppData":"",
+	"staticUrl":"/base/main/cpEsitoPagamenti!handleHvPagamentoABORT_CLICKED.do",
+	"binaryStream":false 
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.JumpExtCommand" ,
+	"locationCode":"ANOMAL",
+	"runtimeUrlProviderAppData":"",
+	"staticUrl":"/base/main/cpEsitoPagamenti!handleHvPagamentoANOMAL_CLICKED.do",
+	"binaryStream":false 
+}
+],
+	"esiti":["ESITO_PAG_OK","ESITO_PAG_KO","ESITO_PAG_ABORT","ESITO_PAG_ANOMAL"],
+	"nomeMetodo":"gestisciEsito",
+	"appDataToStore":["appDatanumeroTransazione","appDataidTransazione","appDataswitchPagamento"]
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.JumpExtCommand" ,
+	"locationCode":"OK",
+	"runtimeUrlProviderAppData":"",
+	"staticUrl":"/base/gestcertificatore/cpGestioneDialogMail!handleHvEsitoMailOK_CLICKED.do",
+	"binaryStream":false 
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.JumpExtCommand" ,
+	"locationCode":"KO",
+	"runtimeUrlProviderAppData":"",
+	"staticUrl":"/base/gestcertificatore/cpGestioneDialogMail!handleHvEsitoMailKO_CLICKED.do",
+	"binaryStream":false 
+}
+],
+	"esiti":["OK","KO"],
+	"nomeMetodo":"verificaUrlConfermaMail",
+	"appDataToStore":["appDataflgEsitoVerifica","appDatamsgEsitoVerificaMail"]
+}
+],
+	"esiti":["LOGIN","PAGAMENTO","VERIFICA_MAIL"],
+	"nomeMetodo":"verificaProvenienza",
+	"appDataToStore":["appDataisPulireTab"]
+}
+] 
+}

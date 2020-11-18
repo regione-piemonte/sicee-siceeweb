@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="gestattestati" extends="jsp-package" namespace="/base/gestattestati">
+
+		
+<action name="cpPrenotazAttestati" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.gestattestati.CpPrenotazAttestatiAction">
+	<result name="input">/jsp/cpPrenotazAttestati.jsp</result>
+	<result name="success">/jsp/cpPrenotazAttestati.jsp</result>
+	
+	<result name="GO_TO_cpPagamento" type="chain">
+		<param name="actionName">cpPagamento</param>
+		<param name="namespace">/base/main</param>
+	</result>
+	<result name="GO_TO_BackPage" type="chain">
+		<param name="actionName">${backActionName}</param>
+		<param name="namespace">${backNamespace}</param>
+	</result>
+	
+</action>
+
+<action name="cpGestCertificazioni" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.gestattestati.CpGestCertificazioniAction">
+	<result name="input">/jsp/cpGestCertificazioni.jsp</result>
+	<result name="success">/jsp/cpGestCertificazioni.jsp</result>
+	
+	<result name="GO_TO_cpImpXml2015" type="chain">
+		<param name="actionName">cpImpXml2015</param>
+		<param name="namespace">/base/compilazattestatiape</param>
+	</result>
+	<result name="GO_TO_cpCompilazApe" type="chain">
+		<param name="actionName">cpCompilazApe</param>
+		<param name="namespace">/base/compilazattestatiape</param>
+	</result>
+	<result name="GO_TO_cpCompilaz" type="chain">
+		<param name="actionName">cpCompilaz</param>
+		<param name="namespace">/base/compilazattestati</param>
+	</result>
+	<result name="GO_TO_cpGestInvioCertificato" type="chain">
+		<param name="actionName">cpGestInvioCertificato</param>
+		<param name="namespace">/base/gestattestati</param>
+	</result>
+	<result name="GO_TO_cpDettaglioAttestato" type="chain">
+		<param name="actionName">cpDettaglioAttestato</param>
+		<param name="namespace">/base/gestattestati</param>
+	</result>
+	<result name="GO_TO_cpVisuraCIT" type="chain">
+		<param name="actionName">cpVisuraCIT</param>
+		<param name="namespace">/base/main</param>
+	</result>
+	<result name="GO_TO_cpGestCertificazioni" type="chain">
+		<param name="actionName">cpGestCertificazioni</param>
+		<param name="namespace">/base/gestattestati</param>
+	</result>
+	<result name="GO_TO_cpGestCertificazioni" type="chain">
+		<param name="actionName">cpGestCertificazioni</param>
+		<param name="namespace">/base/gestattestati</param>
+	</result>
+	<result name="GO_TO_BackPage" type="chain">
+		<param name="actionName">${backActionName}</param>
+		<param name="namespace">${backNamespace}</param>
+	</result>
+	
+	<result name="GO_TO_EX_SCARICA_ATTESTATO" type="redirect">
+		<param name="location">/base/scaricaAttestato.do</param>
+	</result>
+	<result name="GO_TO_EX_SCARICA_RICEVUTA" type="redirect">
+		<param name="location">/base/cpRicevutaInvio.do</param>
+	</result>
+	<result name="GO_TO_EX_stampaDefinitivo" type="redirect">
+		<param name="location">/base/stampaDefinitiva.do</param>
+	</result>
+	<result name="SHOW_dlgReConsApe">/jsp/dialogpanels/cpGestCertificazioni_dlgReConsApe.jsp</result>
+	<result name="SHOW_dlgReInitApe">/jsp/dialogpanels/cpGestCertificazioni_dlgReInitApe.jsp</result>
+</action>
+
+<action name="cpRicercaAceInviati" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.gestattestati.CpRicercaAceInviatiAction">
+	<result name="input">/jsp/cpRicercaAceInviati.jsp</result>
+	<result name="success">/jsp/cpRicercaAceInviati.jsp</result>
+	
+	<result name="GO_TO_cpRisultatoRicercaAce" type="chain">
+		<param name="actionName">cpRisultatoRicercaAce</param>
+		<param name="namespace">/base/gestattestati</param>
+	</result>
+	<result name="GO_TO_BackPage" type="chain">
+		<param name="actionName">${backActionName}</param>
+		<param name="namespace">${backNamespace}</param>
+	</result>
+	
+</action>
+
+<action name="cpRisultatoRicercaAce" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.gestattestati.CpRisultatoRicercaAceAction">
+	<result name="input">/jsp/cpRisultatoRicercaAce.jsp</result>
+	<result name="success">/jsp/cpRisultatoRicercaAce.jsp</result>
+	
+	<result name="GO_TO_cpDettaglioSostituzioni" type="chain">
+		<param name="actionName">cpDettaglioSostituzioni</param>
+		<param name="namespace">/base/gestattestati</param>
+	</result>
+	<result name="GO_TO_cpDuplicaAce" type="chain">
+		<param name="actionName">cpDuplicaAce</param>
+		<param name="namespace">/base/gestattestati</param>
+	</result>
+	<result name="GO_TO_cpDettaglioAttestato" type="chain">
+		<param name="actionName">cpDettaglioAttestato</param>
+		<param name="namespace">/base/gestattestati</param>
+	</result>
+	<result name="GO_TO_cpCompilaz" type="chain">
+		<param name="actionName">cpCompilaz</param>
+		<param name="namespace">/base/compilazattestati</param>
+	</result>
+	<result name="GO_TO_cpCompilazApe" type="chain">
+		<param name="actionName">cpCompilazApe</param>
+		<param name="namespace">/base/compilazattestatiape</param>
+	</result>
+	<result name="GO_TO_cpRicercaAceInviati" type="chain">
+		<param name="actionName">cpRicercaAceInviati</param>
+		<param name="namespace">/base/gestattestati</param>
+	</result>
+	<result name="GO_TO_BackPage" type="chain">
+		<param name="actionName">${backActionName}</param>
+		<param name="namespace">${backNamespace}</param>
+	</result>
+	
+	<result name="GO_TO_EX_SCARICA_ATTESTATO" type="redirect">
+		<param name="location">/base/scaricaAttestato.do</param>
+	</result>
+	<result name="GO_TO_EX_SCARICA_RICEVUTA" type="redirect">
+		<param name="location">/base/cpRicevutaInvio.do</param>
+	</result>
+	<result name="GO_TO_EX_SCARICA_INDICATORE" type="redirect">
+		<param name="location">/base/scaricaIndicatore.do</param>
+	</result>
+	<result name="GO_TO_EX_STAMPA_ANNULLATO" type="redirect">
+		<param name="location">/base/stampaAnnullato.do</param>
+	</result>
+</action>
+
+<action name="cpGestInvioCertificato" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.gestattestati.CpGestInvioCertificatoAction">
+	<result name="input">/jsp/cpGestInvioCertificato.jsp</result>
+	<result name="success">/jsp/cpGestInvioCertificato.jsp</result>
+	
+	<result name="GO_TO_cpGestCertificazioni" type="chain">
+		<param name="actionName">cpGestCertificazioni</param>
+		<param name="namespace">/base/gestattestati</param>
+	</result>
+	<result name="GO_TO_cpCompilazApe" type="chain">
+		<param name="actionName">cpCompilazApe</param>
+		<param name="namespace">/base/compilazattestatiape</param>
+	</result>
+	<result name="GO_TO_cpHome" type="chain">
+		<param name="actionName">cpHome</param>
+		<param name="namespace">/base/main</param>
+	</result>
+	<result name="GO_TO_cpAnnullaSostAceHome" type="chain">
+		<param name="actionName">cpAnnullaSostAceHome</param>
+		<param name="namespace">/base/annullaSostCert</param>
+	</result>
+	<result name="GO_TO_cpHome" type="chain">
+		<param name="actionName">cpHome</param>
+		<param name="namespace">/base/main</param>
+	</result>
+	<result name="GO_TO_BackPage" type="chain">
+		<param name="actionName">${backActionName}</param>
+		<param name="namespace">${backNamespace}</param>
+	</result>
+	
+	<result name="GO_TO_EX_STAMPA_RICEVUTA_INVIO" type="redirect">
+		<param name="location">/base/cpRicevutaInvio.do</param>
+	</result>
+	<result name="SHOW_dlgInvioEsitoOK">/jsp/dialogpanels/cpGestInvioCertificato_dlgInvioEsitoOK.jsp</result>
+	<result name="SHOW_dlgInvioEsitoSostituzioneOK">/jsp/dialogpanels/cpGestInvioCertificato_dlgInvioEsitoSostituzioneOK.jsp</result>
+</action>
+
+<action name="cpGestInvioCurriculum" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.gestattestati.CpGestInvioCurriculumAction">
+	<result name="input">/jsp/cpGestInvioCurriculum.jsp</result>
+	<result name="success">/jsp/cpGestInvioCurriculum.jsp</result>
+	
+	<result name="GO_TO_cpHome" type="chain">
+		<param name="actionName">cpHome</param>
+		<param name="namespace">/base/main</param>
+	</result>
+	<result name="GO_TO_cpHome" type="chain">
+		<param name="actionName">cpHome</param>
+		<param name="namespace">/base/main</param>
+	</result>
+	<result name="GO_TO_BackPage" type="chain">
+		<param name="actionName">${backActionName}</param>
+		<param name="namespace">${backNamespace}</param>
+	</result>
+	
+	<result name="GO_TO_EX_OK" type="redirect">
+		<param name="location">/base/scaricaDocumento.do</param>
+	</result>
+	<result name="SHOW_dlgInvioEsitoOK">/jsp/dialogpanels/cpGestInvioCurriculum_dlgInvioEsitoOK.jsp</result>
+	<result name="SHOW_dlgInvioEsitoKO">/jsp/dialogpanels/cpGestInvioCurriculum_dlgInvioEsitoKO.jsp</result>
+</action>
+
+<action name="cpDatiCertificazioni" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.gestattestati.CpDatiCertificazioniAction">
+	<result name="input">/jsp/cpDatiCertificazioni.jsp</result>
+	<result name="success">/jsp/cpDatiCertificazioni.jsp</result>
+	
+	<result name="GO_TO_BackPage" type="chain">
+		<param name="actionName">${backActionName}</param>
+		<param name="namespace">${backNamespace}</param>
+	</result>
+	
+</action>
+
+<action name="cpDuplicaAce" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.gestattestati.CpDuplicaAceAction">
+	<result name="input">/jsp/cpDuplicaAce.jsp</result>
+	<result name="success">/jsp/cpDuplicaAce.jsp</result>
+	
+	<result name="GO_TO_cpRisultatoRicercaAce" type="chain">
+		<param name="actionName">cpRisultatoRicercaAce</param>
+		<param name="namespace">/base/gestattestati</param>
+	</result>
+	<result name="GO_TO_cpHome" type="chain">
+		<param name="actionName">cpHome</param>
+		<param name="namespace">/base/main</param>
+	</result>
+	<result name="GO_TO_BackPage" type="chain">
+		<param name="actionName">${backActionName}</param>
+		<param name="namespace">${backNamespace}</param>
+	</result>
+	
+	<result name="SHOW_dlgDuplicaAceEsitoOK">/jsp/dialogpanels/cpDuplicaAce_dlgDuplicaAceEsitoOK.jsp</result>
+</action>
+
+<action name="cpDettaglioAttestato" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.gestattestati.CpDettaglioAttestatoAction">
+	<result name="input">/jsp/cpDettaglioAttestato.jsp</result>
+	<result name="success">/jsp/cpDettaglioAttestato.jsp</result>
+	
+	<result name="GO_TO_cpRisultatoRicercaAce" type="chain">
+		<param name="actionName">cpRisultatoRicercaAce</param>
+		<param name="namespace">/base/gestattestati</param>
+	</result>
+	<result name="GO_TO_cpGestCertificazioni" type="chain">
+		<param name="actionName">cpGestCertificazioni</param>
+		<param name="namespace">/base/gestattestati</param>
+	</result>
+	<result name="GO_TO_BackPage" type="chain">
+		<param name="actionName">${backActionName}</param>
+		<param name="namespace">${backNamespace}</param>
+	</result>
+	
+</action>
+
+<action name="cpDettaglioSostituzioni" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.gestattestati.CpDettaglioSostituzioniAction">
+	<result name="input">/jsp/cpDettaglioSostituzioni.jsp</result>
+	<result name="success">/jsp/cpDettaglioSostituzioni.jsp</result>
+	
+	<result name="GO_TO_cpRisultatoRicercaAce" type="chain">
+		<param name="actionName">cpRisultatoRicercaAce</param>
+		<param name="namespace">/base/gestattestati</param>
+	</result>
+	<result name="GO_TO_BackPage" type="chain">
+		<param name="actionName">${backActionName}</param>
+		<param name="namespace">${backNamespace}</param>
+	</result>
+	
+</action>
+
+		<!--PROTECTED REGION ID(R-1568501254) ENABLED START-->
+		<!-- inserire qui la dichiarazione di azioni aggiuntive hand-written -->
+		<!--PROTECTED REGION END-->
+
+	</package>
+</struts>

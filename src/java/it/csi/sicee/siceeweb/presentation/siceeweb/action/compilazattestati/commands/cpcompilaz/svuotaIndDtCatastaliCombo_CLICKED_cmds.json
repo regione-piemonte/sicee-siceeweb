@@ -1,0 +1,31 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.RefreshViewCommand" ,
+	"targetPanels": ["pWizCompilazLiv1"], 
+	"targetWidgets":["menu"],
+	"currentPanelName":"cpCompilaz" 
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":false,
+	"targetsWidgets":["cbSceltaIndDtCatastali"],
+	"targetsMenuElement":[]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.OnOffCommand" ,
+	"enable":true,
+	"targetsWidgets":["tfIndirizzoDtCatastali"],
+	"targetsMenuElement":[]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":false,
+	"targetsWidgets":["svuotaIndDtCatastaliText"],
+	"targetsMenuElement":[]
+}
+] 
+}
+],
+	"esiti":["OK"],
+	"nomeMetodo":"svuotaComboDtCatastali",
+	"appDataToStore":[]
+}

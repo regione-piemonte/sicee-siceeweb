@@ -1,0 +1,26 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.security.ComplexUISecConstraint",
+  "constrainedBehavior": 2,
+  "defaultState": true,
+  "nomeContainer": "cpTransaz",
+  "nomeWidget": "bStampaRicevutaAce",
+  "constraints": [
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.security.CustomUISecConstraint",
+  "constrainedBehavior": 2,
+  "defaultState": true,
+  "nomeContainer": "cpTransaz",
+  "nomeWidget": "bStampaRicevutaAce",
+	"methodNameSuffix": "IsAbilGestisciStampaRicevutaAce"
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.security.DeclarativeUIConstraint",
+  "constrainedBehavior": 2,
+  "defaultState": true,
+  "nomeContainer": "cpTransaz",
+  "nomeWidget": "bStampaRicevutaAce",
+	"language": "beanshell",
+	"script": "model.appDatatransazioneAce != null && model.appDatatransazioneAce.size() > 0"
+}
+
+
+  ]
+}

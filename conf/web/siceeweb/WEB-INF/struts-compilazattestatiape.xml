@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="compilazattestatiape" extends="jsp-package" namespace="/base/compilazattestatiape">
+
+		
+<action name="cpCompilazApe" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.compilazattestatiape.CpCompilazApeAction">
+	<result name="input">/jsp/cpCompilazApe.jsp</result>
+	<result name="success">/jsp/cpCompilazApe.jsp</result>
+	
+	<result name="GO_TO_cpGestInvioCertificato" type="chain">
+		<param name="actionName">cpGestInvioCertificato</param>
+		<param name="namespace">/base/gestattestati</param>
+	</result>
+	<result name="GO_TO_cpRisultatoRicercaAce" type="chain">
+		<param name="actionName">cpRisultatoRicercaAce</param>
+		<param name="namespace">/base/gestattestati</param>
+	</result>
+	<result name="GO_TO_cpGestCertificazioni" type="chain">
+		<param name="actionName">cpGestCertificazioni</param>
+		<param name="namespace">/base/gestattestati</param>
+	</result>
+	<result name="GO_TO_BackPage" type="chain">
+		<param name="actionName">${backActionName}</param>
+		<param name="namespace">${backNamespace}</param>
+	</result>
+	
+	<result name="GO_TO_EX_ape" type="redirect">
+		<param name="location">compilaModificaApe.do</param>
+	</result>
+	<result name="GO_TO_EX_stampaDefinitivo" type="redirect">
+		<param name="location">/base/stampaDefinitiva.do</param>
+	</result>
+	<result name="GO_TO_EX_verificaApe" type="redirect">
+		<param name="location">verificaApe.do</param>
+	</result>
+</action>
+
+<action name="cpImpXml2015" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.compilazattestatiape.CpImpXml2015Action">
+	<result name="input">/jsp/cpImpXml2015.jsp</result>
+	<result name="success">/jsp/cpImpXml2015.jsp</result>
+	
+	<result name="GO_TO_cpCompilazApe" type="chain">
+		<param name="actionName">cpCompilazApe</param>
+		<param name="namespace">/base/compilazattestatiape</param>
+	</result>
+	<result name="GO_TO_cpGestCertificazioni" type="chain">
+		<param name="actionName">cpGestCertificazioni</param>
+		<param name="namespace">/base/gestattestati</param>
+	</result>
+	<result name="GO_TO_BackPage" type="chain">
+		<param name="actionName">${backActionName}</param>
+		<param name="namespace">${backNamespace}</param>
+	</result>
+	
+</action>
+
+		<!--PROTECTED REGION ID(R-328487158) ENABLED START-->
+		<!-- inserire qui la dichiarazione di azioni aggiuntive hand-written -->
+		<action name="compilaModificaApe" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.pdf.CompilaModificaApe">
+			<result name="downloadFile" type="stream">
+	    		<param name="contentType">${contentType}</param>
+		    	<param name="inputName">inputStream</param>		   
+		    	<param name="bufferSize">3072</param>
+		    	<param name="contentDisposition">${contentDisposition}</param>
+			</result>			
+			<result name="KO" type="chain">cpCompilazApe</result>
+		</action>
+		
+		<action name="salvaModuloApeXml" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.pdf.SalvaModuloApeXml">
+			<result name="OK" type="chain">cpCompilazApe</result>
+			<result name="KO" type="chain">cpCompilazApe</result>
+		</action>
+		<action name="annullaApe" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.pdf.AnnullaApeXml">
+			<result name="OK" type="chain">cpCompilazApe</result>
+			<result name="KO" type="chain">cpCompilazApe</result>
+		</action>
+		
+		<!-- NUOVO MODULO IN SOLA LETTURA -->
+		<action name="verificaApe" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.pdf.VerificaApe">
+			<result name="downloadFile" type="stream">
+	    		<param name="contentType">${contentType}</param>
+		    	<param name="inputName">inputStream</param>		   
+		    	<param name="bufferSize">3072</param>
+		    	<param name="contentDisposition">${contentDisposition}</param>
+			</result>			
+			<result name="KO" type="chain">cpCompilazApe</result>
+		</action>
+		
+		<!--PROTECTED REGION END-->
+
+	</package>
+</struts>

@@ -1,0 +1,17 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.security.ComplexUISecConstraint",
+  "constrainedBehavior": 1,
+  "defaultState": true,
+  "nomeContainer": "cpCompilaz",
+  "nomeWidget": "btnAnnullaAutorizzatoNormativa",
+  "constraints": [
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.security.DummyUISecConstraint",
+  "constrainedBehavior": 1,
+  "defaultState": true,
+  "nomeContainer": "cpCompilaz",
+  "nomeWidget": "btnAnnullaAutorizzatoNormativa",
+  "fixedValue": true
+}
+
+  ]
+}

@@ -1,0 +1,16 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ScreenStateCommand" ,
+	"widgetsOn":["bViasualizzaApe","bCompModApe","bVerificaApe","bConsolidaApe","bInviaApe","tsApe","menu","bIndietro","btnEliminaFoto","fileFotoCatasto","btnCaricaFoto","fileFotoCatastoAltre","cbTipoFotoAltre","btnCaricaFotoAltre"],
+	"widgetsOff":["txtObblDtCatastali","cbProvDtCatastali","cbComDtCatastali","txtZonaClimatica","tfRicercaIndirizzo","vVerifIndDtCatastali","cbSceltaIndDtCatastali","tfIndirizzoDtCatastali","svuotaIndDtCatastaliText","tfNCivDtCatastali","tfCAPDtCatastali","tfInternoDtCatastali","tfScalaDtCatastali","tfPianoDtCatastali","tfNPianiComplessivi","tfNPianiFtRisc","tfIndirizzoCoordN","tfIndirizzoCoordE","bCercaCoordinate","cbSistCatast","tfSezCatasto","tfFoglioCatasto","tfParticCatasto","tfSubaltCatasto","calDtEmissione","rbTipoScadenza","tfAnnoCostr","tfAnnoRistrutt","tfDestUso","tfCodEdificioScolastico","cbFkTipoRistrutturaz","cbFkTipolEdilizia","cbFkTipolCostrutt","cbFkProprietaEdi","cbFkOggetto","cbFkMotivo","cbAltroServiziEnergia","tblDichiarazioneIndipendenza","txtCoCertificatore","tfCodFiscCoCert","bCercaCfCertificatori","cbListaCf","tfCognomeCoCert","tfNomeCoCert","tfNumMatricolaCoCert","txtNoteApeDatiGen","bSalva","txtNote1Foto","txtObblDtFoto","cbTipoFoto","txtObblDtFotoAltre"],
+	"widgetsShown":["txtObblDtCatastali","cbProvDtCatastali","cbComDtCatastali","txtZonaClimatica","cbSceltaIndDtCatastali","tfIndirizzoDtCatastali","tfNCivDtCatastali","tfCAPDtCatastali","tfInternoDtCatastali","tfScalaDtCatastali","tfPianoDtCatastali","tfIndirizzoCoordN","tfIndirizzoCoordE","tfSezCatasto","tfFoglioCatasto","tfParticCatasto","tfSubaltCatasto","calDtEmissione","rbTipoScadenza","tfAnnoCostr","tfAnnoRistrutt","bViasualizzaApe","bCompModApe","bVerificaApe","bConsolidaApe","bInviaApe","menu","tsApe","bIndietro","txtNoteApeDatiGen","tfNPianiComplessivi","tfNPianiFtRisc","cbFkTipoRistrutturaz","cbFkTipolEdilizia","cbFkTipolCostrutt","cbFkProprietaEdi","tfCodFiscCoCert","tfCognomeCoCert","tfNomeCoCert","tfNumMatricolaCoCert","cbFkMotivo","cbFkOggetto","cbAltroServiziEnergia","txtCoCertificatore","cbSistCatast","tfDestUso","tfCodEdificioScolastico","tblDichiarazioneIndipendenza"],
+	"widgetsHidden":["tfRicercaIndirizzo","vVerifIndDtCatastali","svuotaIndDtCatastaliText","bCercaCoordinate","bCercaCfCertificatori","cbListaCf","bSalva","btnEliminaFoto","txtNote1Foto","txtObblDtFoto","fileFotoCatasto","cbTipoFoto","btnCaricaFoto","txtObblDtFotoAltre","fileFotoCatastoAltre","cbTipoFotoAltre","btnCaricaFotoAltre"]
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.NOPCommand" }
+],
+	"esiti":["OK","KO"],
+	"nomeMetodo":"consolidaCertificato",
+	"appDataToStore":[]
+}

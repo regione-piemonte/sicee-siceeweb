@@ -1,0 +1,35 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.OnOffCommand" ,
+	"enable":false,
+	"targetsWidgets":["tfStatoResEstero","tfCittaEstera","tfViaEstera","tfCivicoEstero","tfCapEstero"],
+	"targetsMenuElement":[]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.OnOffCommand" ,
+	"enable":true,
+	"targetsWidgets":["cbRegResid","cbProvResid","cbComResid","tfIndirizzoRes","vVerifIndRes","cbSceltaIndRes","tfNCivRes","tfCAPRes"],
+	"targetsMenuElement":[]
+}
+] 
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.OnOffCommand" ,
+	"enable":true,
+	"targetsWidgets":["tfStatoResEstero","tfCittaEstera","tfViaEstera","tfCivicoEstero","tfCapEstero"],
+	"targetsMenuElement":[]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.OnOffCommand" ,
+	"enable":false,
+	"targetsWidgets":["cbRegResid","cbProvResid","cbComResid","tfIndirizzoRes","vVerifIndRes","cbSceltaIndRes","tfNCivRes","tfCAPRes"],
+	"targetsMenuElement":[]
+}
+] 
+}
+],
+	"esiti":["ITALIA","ESTERO"],
+	"nomeMetodo":"switchResidenza",
+	"appDataToStore":[]
+}
