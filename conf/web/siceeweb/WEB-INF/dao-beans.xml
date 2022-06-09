@@ -200,6 +200,16 @@
 		</constructor-arg>
 	</bean>
 
+	<bean id="SiceeTDocAggiuntiva_ID_Incrementer"
+		  class="org.springframework.jdbc.support.incrementer.OracleSequenceMaxValueIncrementer">
+		<constructor-arg>
+			<ref bean="myDataSource" />
+		</constructor-arg>
+		<constructor-arg>
+			<value>SEQ_SICEE_T_DOC_AGGIUNTIVA</value>
+		</constructor-arg>
+	</bean>
+
 	<bean id="SiceeTAzienda_ID_Incrementer"
 		class="org.springframework.jdbc.support.incrementer.OracleSequenceMaxValueIncrementer">
 		<constructor-arg>
@@ -725,9 +735,29 @@
 		<property name="dataSource" ref="myDataSource" />
 		<property name="incrementer" ref="SiceeTTransazione_ID_Incrementer" />
 	</bean>
+
+	<bean id="SiceeTDocAggiuntivaDao"
+		  class="it.csi.sicee.siceeweb.business.dao.dao.spring.SiceeTDocAggiuntivaDaoImpl"
+		  scope="singleton">
+		<property name="dataSource" ref="myDataSource" />
+		<property name="incrementer" ref="SiceeTDocAggiuntiva_ID_Incrementer" />
+
+	</bean>
+
+	<bean id="SiceeDTipoDocAggDao"
+		  class="it.csi.sicee.siceeweb.business.dao.dao.spring.SiceeDTipoDocAggDaoImpl"
+		  scope="singleton">
+		<property name="dataSource" ref="myDataSource" />
+	</bean>
 	
 	<bean id="SiceeDStatoTrans2018Dao"
 		class="it.csi.sicee.siceeweb.business.dao.dao.spring.SiceeDStatoTrans2018DaoImpl"
+		scope="singleton">
+		<property name="dataSource" ref="myDataSource" />
+	</bean>
+
+	<bean id="SiceeLHashXmlImportDao"
+		class="it.csi.sicee.siceeweb.business.dao.dao.spring.SiceeLHashXmlImportDaoImpl"
 		scope="singleton">
 		<property name="dataSource" ref="myDataSource" />
 	</bean>

@@ -3861,8 +3861,10 @@ public class CPBECpCompilaz {
 
 		ArrayList<Provincia> province = new ArrayList<Provincia>();
 		province = (ArrayList<Provincia>) getSOAIntegrationMgr().getProvinceByPiemonte();
-		theModel.setAppDataprovinceCertDTCat(province);
-
+		if (province != null)
+			theModel.setAppDataprovinceCertDTCat(province);
+		else
+			theModel.setAppDataprovinceCertDTCat(new ArrayList<>());
 		String actProvSel = cert.getDatiAnagraficiImm().getDtCatastali().getCodProv();
 		ArrayList<Comune> comuni = new ArrayList<Comune>();
 

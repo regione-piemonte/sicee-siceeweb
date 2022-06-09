@@ -327,6 +327,137 @@ maxlength="20"	disabled="isWidgetDisabled('cpVisuraCIT','tfRicPdr')"
 
 			
 	
+	<div id="p_wpVisuraIndirizzo" class="widgetsPanelBlock"><!-- startFragment:p_wpVisuraIndirizzo -->
+	
+	
+<h4 class="wpLabel">Ricerca impianto per indirizzo </h4>
+<div class="widgetsPanel" id="wpVisuraIndirizzo">
+	
+	<customtag:widgetsPanel id="wpVisuraIndirizzoTbl" columns="8" tableStyleClass="formTable"
+		summary="" 
+		>
+	
+
+	
+	
+<s:if test="isWidgetVisible('cpVisuraCIT','tfRicIstat')" >
+
+	
+<customtag:widgetsPanelColumn   labelField="true" textLabel="%{getText('cpVisuraCIT.tfRicIstat.label')}" labelFor="widg_tfRicIstat" errorFor="appDatavisuraRicerca.istat" labelId="tfRicIstatLbl"
+	position="first"  >
+
+
+<!-- widget tfRicIstat -->
+<s:textfield 
+	
+	
+	name="appDatavisuraRicerca.istat" id="widg_tfRicIstat"
+maxlength="11"	disabled="isWidgetDisabled('cpVisuraCIT','tfRicIstat')"
+	size="15" cssClass="numbers"
+/>
+
+	
+</customtag:widgetsPanelColumn>
+
+</s:if>
+
+	
+<s:else>
+	<customtag:widgetsPanelColumn textValue="" colSpan="2" position="first"/>
+</s:else>
+
+
+	
+<s:if test="isWidgetVisible('cpVisuraCIT','tfRicIndirizzo')" >
+
+	
+<customtag:widgetsPanelColumn   labelField="true" textLabel="%{getText('cpVisuraCIT.tfRicIndirizzo.label')}" labelFor="widg_tfRicIndirizzo" errorFor="appDatavisuraRicerca.indirizzo" labelId="tfRicIndirizzoLbl"
+	  >
+
+
+<!-- widget tfRicIndirizzo -->
+<s:textfield 
+	
+	
+	name="appDatavisuraRicerca.indirizzo" id="widg_tfRicIndirizzo"
+maxlength="30"	disabled="isWidgetDisabled('cpVisuraCIT','tfRicIndirizzo')"
+	size="30" cssClass="numbers"
+/>
+
+	
+</customtag:widgetsPanelColumn>
+
+</s:if>
+
+	
+<s:else>
+	<customtag:widgetsPanelColumn textValue="" colSpan="2" />
+</s:else>
+
+
+	
+<s:if test="isWidgetVisible('cpVisuraCIT','tfRicCivico')" >
+
+	
+<customtag:widgetsPanelColumn   labelField="true" textLabel="%{getText('cpVisuraCIT.tfRicCivico.label')}" labelFor="widg_tfRicCivico" errorFor="appDatavisuraRicerca.civico" labelId="tfRicCivicoLbl"
+	  >
+
+
+<!-- widget tfRicCivico -->
+<s:textfield 
+	
+	
+	name="appDatavisuraRicerca.civico" id="widg_tfRicCivico"
+maxlength="11"	disabled="isWidgetDisabled('cpVisuraCIT','tfRicCivico')"
+	size="15" cssClass="numbers"
+/>
+
+	
+</customtag:widgetsPanelColumn>
+
+</s:if>
+
+	
+<s:else>
+	<customtag:widgetsPanelColumn textValue="" colSpan="2" />
+</s:else>
+
+
+	
+<s:if test="isWidgetVisible('cpVisuraCIT','vRicercaIndirizzo')" >
+
+	
+<customtag:widgetsPanelColumn colSpan="2" position="last">
+
+
+<!-- widget vRicercaIndirizzo -->
+<s:submit name="widg_vRicercaIndirizzo" id="widg_vRicercaIndirizzo" method="handleVRicercaIndirizzo_CLICKED"
+	key="cpVisuraCIT.vRicercaIndirizzo.label" cssClass="buttonWidget"
+	disabled="isWidgetDisabled('cpVisuraCIT','vRicercaIndirizzo')" />
+
+	
+</customtag:widgetsPanelColumn>
+
+</s:if>
+
+	
+<s:else>
+	<customtag:widgetsPanelColumn textValue="" colSpan="2" position="last"/>
+</s:else>
+
+
+
+	
+	
+	
+	</customtag:widgetsPanel>
+	
+</div>
+
+	<!-- endFragment:p_wpVisuraIndirizzo --></div>
+
+			
+	
 	
 	<div id="p_mpElencoImp" class="panelBlock"><!-- startFragment:p_mpElencoImp -->
 		

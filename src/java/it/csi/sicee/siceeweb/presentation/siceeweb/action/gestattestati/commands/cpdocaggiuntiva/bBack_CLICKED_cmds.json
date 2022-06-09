@@ -1,0 +1,24 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.JumpCommand" ,
+	"name": "cpCompilazApe", 
+	"pushCurrent":false
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.JumpCommand" ,
+	"name": "cpGestCertificazioni", 
+	"pushCurrent":false
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.JumpCommand" ,
+	"name": "cpRisultatoRicercaAce", 
+	"pushCurrent":false
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.NOPCommand" }
+],
+	"esiti":["OK_DETTAGLIO_APE","OK_RICERCA_APE","OK_VISUALIZZA_APE","KO"],
+	"nomeMetodo":"jumpBackDocAggiuntiva",
+	"appDataToStore":[]
+}

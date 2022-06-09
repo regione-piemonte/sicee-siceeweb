@@ -230,6 +230,16 @@ public class CpGestCertificazioniAction extends AbstractCPAction<CpGestCertifica
 	}
 
 	/**
+	 * Gestione dell'evento CLICKED sul widget [bDocAggiuntiva]
+	 */
+	@MethodProtection(level = "REJECT_SAME")
+	public String handleBDocAggiuntiva_CLICKED() throws CommandExecutionException {
+
+		return handleEventInternal("gestattestati", "cpgestcertificazioni", "bDocAggiuntiva", "CLICKED");
+
+	}
+
+	/**
 	 * Gestione dell'evento CLICKED sul widget [bDownloadModulo]
 	 */
 	@MethodProtection(level = "REJECT_SAME")

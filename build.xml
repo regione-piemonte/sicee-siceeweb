@@ -288,14 +288,15 @@
 		<!-- gestire qui i  replace delle proprie variabile d'ambiente -->
 		<!--replace file="${build}/temp/conf/ejb/business/siceeweb/META-INF/defpd_siceeorch.xml" token="@sicee.siceeorch.siceeorch.pa.url@" value="${sicee.siceeorch.siceeorch.pa.url}" /-->
 
-		<replace file="${build}/temp/conf/ejb/business/siceeweb/META-INF/defpd_modolsrv.xml" token="@url.t3@" value="${modol.pa.url}" />
-		<replace file="${build}/temp/conf/ejb/business/siceeweb/META-INF/defpd_modolpdfgeneratorsrv.xml" token="@url.t3@" value="${modol.pdf.pa.url}" />
-
 		<replace file="${build}/temp/conf/ejb/business/siceeweb/META-INF/siceeweb.properties" token="@mdp.application.id@" value="${mdp.application.id}" />
 
 		<replace file="${build}/temp/conf/ejb/business/siceeweb/META-INF/siceeweb.properties" token="@mail.host@" value="${mail.host}" />
 
 		<replace file="${build}/temp/conf/ejb/business/siceeweb/META-INF/siceeweb.properties" token="@mail.port@" value="${mail.port}" />
+
+		<replace file="${build}/temp/conf/ejb/business/siceeweb/META-INF/siceeweb.properties" token="@mail.user@" value="${mail.user}" />
+
+		<replace file="${build}/temp/conf/ejb/business/siceeweb/META-INF/siceeweb.properties" token="@mail.pwd@" value="${mail.pwd}" />
 
 		<replace file="${build}/temp/conf/ejb/business/siceeweb/META-INF/siceeweb.properties" token="@mail.mitt@" value="${mail.mitt}" />
   	

@@ -14,6 +14,7 @@ import it.csi.csi.wrapper.CSIException;
 import it.csi.csi.wrapper.SystemException;
 import it.csi.csi.wrapper.UnrecoverableException;
 import it.csi.sicee.siceeorch.dto.siceeorch.Certificatore;
+import it.csi.sicee.siceeorch.dto.siceeorch.CoordinateLOCCSI;
 import it.csi.sicee.siceeorch.dto.siceeorch.DettaglioPagamento;
 import it.csi.sicee.siceeorch.dto.siceeorch.Documento;
 import it.csi.sicee.siceeorch.dto.siceeorch.Gateway;
@@ -26,6 +27,7 @@ import it.csi.sicee.siceeorch.dto.siceeorch.Transazione;
 import it.csi.sicee.siceeorch.dto.siceeorch.VerifyReport;
 import it.csi.sicee.siceeorch.dto.siceeorch.Via;
 import it.csi.sicee.siceeorch.exception.siceeorch.DocumentoException;
+import it.csi.sicee.siceeorch.exception.siceeorch.LOCCSIException;
 import it.csi.sicee.siceeorch.exception.siceeorch.PagamentoException;
 import it.csi.sicee.siceeorch.exception.siceeorch.SiceesrvException;
 import it.csi.sicee.siceeorch.exception.siceeorch.SigitExcessiveResultsException;
@@ -2818,6 +2820,39 @@ public class SOAIntegrationMgr extends BaseMgr {
 		return ret;
 
 	}
+
+	public ArrayList<VisuraImpianto> visuraByIndirizzo(
+			String istat,String indirizzo, String civico) throws BEException, UserException {
+
+		ArrayList<VisuraImpianto> ret = null;
+		try {
+
+			Impianto[] impianti = srv.findImpiantoByIndirizzo(istat, indirizzo, civico);
+
+			if (log.isDebugEnabled())
+				log.debug("Stampo gli impianti trovati: " + impianti);
+
+			if (impianti != null && impianti.length > 0) {
+				log.debug("Stampo la lunghezza degli impianti: " + impianti.length);
+
+				ret = MapDto.mapToImpianto(impianti);
+			}
+
+			//ret = Converter.convertTo(box);
+
+		} catch (SigitExcessiveResultsException e) {
+			throw new UserException("Sono stati estratti troppi risultati");
+		} catch (SystemException e) {
+			throw new BEException("Errore in visuraByIndirizzo:" + e.getMessage(), e);
+		} catch (UnrecoverableException e) {
+			throw new BEException("Errore in visuraByIndirizzo:" + e.getMessage(), e);
+		} catch (CSIException e) {
+			throw new BEException("Errore in visuraByIndirizzo" + e.getMessage(), e);
+		}
+
+		return ret;
+
+	}
 	
 	/**
 	 * Ricerca libretto.
@@ -2874,6 +2909,34 @@ public class SOAIntegrationMgr extends BaseMgr {
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
 			throw new BEException("Errore in recuperaStampaCertificatoReadOnly: " + e, e);
+		}
+		return docPdf;
+	}
+	
+	
+	public byte[] recuperaStampaRicevutaApeReadOnly(Integer idCredito)  throws BEException {
+		byte[] docPdf = null;
+		try {
+			
+			log.info("[SOAIntegrationMgr] - idCredito: " + idCredito);
+			docPdf = srv.getStampaRicevutaApe(idCredito);
+			
+		} catch (DocumentoException e) {
+			log.error(e.getMessage(), e);
+			throw new BEException("Errore in recuperaStampaRicevutaApeReadOnly: " + e, e);
+
+		} catch (SystemException e) {
+			log.error(e.getMessage(), e);
+			throw new BEException("Errore in recuperaStampaRicevutaApeReadOnly: " + e, e);
+		} catch (UnrecoverableException e) {
+			log.error(e.getMessage(), e);
+			throw new BEException("Errore in recuperaStampaRicevutaApeReadOnly: " + e, e);
+		} catch (CSIException e) {
+			log.error(e.getMessage(), e);
+			throw new BEException("Errore in recuperaStampaRicevutaApeReadOnly: " + e, e);
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			throw new BEException("Errore in recuperaStampaRicevutaApeReadOnly: " + e, e);
 		}
 		return docPdf;
 	}
@@ -3115,5 +3178,31 @@ public class SOAIntegrationMgr extends BaseMgr {
 			log.info("[SOAIntegrationMgr::sendMailService] END");
 		}
 		return isMailInviata;
+	}
+	
+	public CoordinateLOCCSI getCoordinateLOCCSI(String comune, String indirizzo, String civico) throws BEException {
+		try {
+			return srv.getCoordinateLOCCSI(comune, indirizzo, civico);
+		} catch (CSIException e) {
+			log.error("Impossibile recuperare coordinate LOCCSI:" + e);
+			CoordinateLOCCSI coordinateLOCCSI = new CoordinateLOCCSI();
+			coordinateLOCCSI.setCoordX(0.0);
+			coordinateLOCCSI.setCoordY(0.0);
+			
+			return coordinateLOCCSI;
+		} catch (Exception e) {
+			log.error("Errore in getCoordinateLOCCSI:" + e);
+			throw new BEException("Errore in getCoordinateLOCCSI:" + e, e);
+		}
+
+	}
+
+	@Transactional
+	public String salvaDocAggiuntiva(Documento documento) throws BEException {
+		try {
+			return srv.inserisciDocumento(documento);
+		} catch (CSIException e) {
+			throw new BEException(e.getMessage(), e);
+		}
 	}
 }

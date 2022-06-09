@@ -37,6 +37,10 @@
 		<param name="actionName">cpCompilaz</param>
 		<param name="namespace">/base/compilazattestati</param>
 	</result>
+	<result name="GO_TO_cpDocAggiuntiva" type="chain">
+		<param name="actionName">cpDocAggiuntiva</param>
+		<param name="namespace">/base/gestattestati</param>
+	</result>
 	<result name="GO_TO_cpGestInvioCertificato" type="chain">
 		<param name="actionName">cpGestInvioCertificato</param>
 		<param name="namespace">/base/gestattestati</param>
@@ -73,6 +77,56 @@
 	</result>
 	<result name="SHOW_dlgReConsApe">/jsp/dialogpanels/cpGestCertificazioni_dlgReConsApe.jsp</result>
 	<result name="SHOW_dlgReInitApe">/jsp/dialogpanels/cpGestCertificazioni_dlgReInitApe.jsp</result>
+</action>
+
+<action name="cpDocAggiuntiva" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.gestattestati.CpDocAggiuntivaAction">
+	<result name="input">/jsp/cpDocAggiuntiva.jsp</result>
+	<result name="success">/jsp/cpDocAggiuntiva.jsp</result>
+	
+	<result name="GO_TO_cpUploadDocAggiuntiva" type="chain">
+		<param name="actionName">cpUploadDocAggiuntiva</param>
+		<param name="namespace">/base/gestattestati</param>
+	</result>
+	<result name="GO_TO_cpCompilazApe" type="chain">
+		<param name="actionName">cpCompilazApe</param>
+		<param name="namespace">/base/compilazattestatiape</param>
+	</result>
+	<result name="GO_TO_cpGestCertificazioni" type="chain">
+		<param name="actionName">cpGestCertificazioni</param>
+		<param name="namespace">/base/gestattestati</param>
+	</result>
+	<result name="GO_TO_cpRisultatoRicercaAce" type="chain">
+		<param name="actionName">cpRisultatoRicercaAce</param>
+		<param name="namespace">/base/gestattestati</param>
+	</result>
+	<result name="GO_TO_cpDocAggiuntiva" type="chain">
+		<param name="actionName">cpDocAggiuntiva</param>
+		<param name="namespace">/base/gestattestati</param>
+	</result>
+	<result name="GO_TO_BackPage" type="chain">
+		<param name="actionName">${backActionName}</param>
+		<param name="namespace">${backNamespace}</param>
+	</result>
+	
+	<result name="GO_TO_EX_DOWNLOAD_DOC" type="redirect">
+		<param name="location">downloadDoc.do</param>
+	</result>
+	<result name="SHOW_dlgDeleteDoc">/jsp/dialogpanels/cpDocAggiuntiva_dlgDeleteDoc.jsp</result>
+</action>
+
+<action name="cpUploadDocAggiuntiva" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.gestattestati.CpUploadDocAggiuntivaAction">
+	<result name="input">/jsp/cpUploadDocAggiuntiva.jsp</result>
+	<result name="success">/jsp/cpUploadDocAggiuntiva.jsp</result>
+	
+	<result name="GO_TO_cpDocAggiuntiva" type="chain">
+		<param name="actionName">cpDocAggiuntiva</param>
+		<param name="namespace">/base/gestattestati</param>
+	</result>
+	<result name="GO_TO_BackPage" type="chain">
+		<param name="actionName">${backActionName}</param>
+		<param name="namespace">${backNamespace}</param>
+	</result>
+	
 </action>
 
 <action name="cpRicercaAceInviati" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.gestattestati.CpRicercaAceInviatiAction">
@@ -116,6 +170,10 @@
 	</result>
 	<result name="GO_TO_cpRicercaAceInviati" type="chain">
 		<param name="actionName">cpRicercaAceInviati</param>
+		<param name="namespace">/base/gestattestati</param>
+	</result>
+	<result name="GO_TO_cpDocAggiuntiva" type="chain">
+		<param name="actionName">cpDocAggiuntiva</param>
 		<param name="namespace">/base/gestattestati</param>
 	</result>
 	<result name="GO_TO_BackPage" type="chain">
@@ -263,6 +321,15 @@
 </action>
 
 		<!--PROTECTED REGION ID(R-1568501254) ENABLED START-->
+		<action name="downloadDoc" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.pdf.DownloadDocaggiuntivaAction">
+			<result name="downloadFile" type="stream">
+				<param name="contentType">${contentType}</param>
+				<param name="inputName">inputStream</param>
+				<param name="bufferSize">1024</param>
+				<param name="contentDisposition">${contentDisposition}</param>
+			</result>
+			<result name="KO" type="chain">cpDocAggiuntiva</result>
+		</action>
 		<!-- inserire qui la dichiarazione di azioni aggiuntive hand-written -->
 		<!--PROTECTED REGION END-->
 

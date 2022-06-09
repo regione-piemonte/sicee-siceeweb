@@ -7,165 +7,38 @@
  */
 package it.csi.sicee.siceeweb.business.facade;
 
-import it.csi.csi.wrapper.CSIException;
-import it.csi.csi.wrapper.SystemException;
-import it.csi.csi.wrapper.UnrecoverableException;
-//import it.csi.modol.modolsrv.dto.XmlModel;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
+
+import it.csi.iride2.policy.base.nmsf.stub.csi.exceptions.CSIException;
+import it.csi.sicee.siceeweb.business.dao.dao.*;
+import it.csi.sicee.siceeweb.business.dao.dto.*;
+import it.csi.sicee.siceeweb.business.dao.exceptions.*;
+import it.csi.sicee.siceeweb.dto.ace.DocumentoAggiuntivo;
+import org.apache.commons.lang.StringUtils;
+import org.apache.xmlbeans.impl.util.Base64;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
+
+import it.csi.sicee.siceeorch.dto.siceeorch.CoordinateLOCCSI;
 import it.csi.sicee.siceeorch.dto.siceeorch.Documento;
+import it.csi.sicee.siceeorch.interfacecsi.siceeorch.SiceeorchSrv;
 import it.csi.sicee.siceeweb.business.BEException;
-import it.csi.sicee.siceeweb.business.dao.dao.OptimizedSiceeTCerticatoDao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeDCarattEdificioDao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeDClasseEnergeticaDao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeDCombustibileDao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeDDestUso2015Dao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeDDichiarazioneDao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeDGradiGiornoDao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeDIstruzioneDao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeDNormativaDao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeDOggettoApe2015Dao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeDPrioritaDao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeDProprietaEdif2015Dao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeDMotivoRilascioDao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeDRiqEner2015Dao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeDStatoCertDao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeDTipoImpianto2015Dao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeDTipoRistrutt2015Dao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeDTipolEdilizia2015Dao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeDTipolCostrutt2015Dao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeDTipoEdificioDao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeDTipoFoto2015Dao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeDTitoloDao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeDUnitaMisura2015Dao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeDZonaClimatica2015Dao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeRCertifServener2015Dao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeRCombDener2015Dao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeTActaDao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeTAltreInfoDao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeTCredito2018Dao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeTDatiFirmaDao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeTDatiXml2015Dao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeTDatiXmlEdReale2015Dao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeTDatiXmlEdRif2015Dao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeTAziendaDao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeTCertificatoDao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeTCertificatoreDao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeTClasseEnergeticaDao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeTConsumiEdificioDao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeTDatiGeneraliDao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeTDaticatastSecDao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeTDatiEner2015Dao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeTDetImp2015Dao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeTEnergiaSoprIngrDao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeTExportBoDao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeTFabbisognoDao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeTFoto2015Dao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeTImportDati2015Dao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeTImpdatiXml2015Dao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeTImpRiscaldamentoAcsDao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeTParametriDao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeTQtaConsumi2015Dao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeTRaccomandazioniDao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeTRaccomand2015Dao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeTRifIndex2015Dao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeTRispettoNormativeDao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeTRuoliEdificioDao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeTSiapeDao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeTSostituzioneDao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeTVerifyReportDao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeWCertificatoreDao;
-import it.csi.sicee.siceeweb.business.dao.dao.SiceeTCertXml2015Dao;
-import it.csi.sicee.siceeweb.business.dao.dao.ZTImpdatiXml2015Dao;
-import it.csi.sicee.siceeweb.business.dao.dto.OptimizedSiceeTCerticato;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeDClasseEnergetica;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeDCombustibile;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeDDichiarazione;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeDGradiGiorno;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeDDestUso2015;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeDNormativa;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeDOggettoApe2015;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeDPriorita;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeDProprietaEdif2015;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeDMotivoRilascio;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeDRiqEner2015;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeDTipoImpianto2015;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeDTipoRistrutt2015;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeDTipolEdilizia2015;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeDTipolCostrutt2015;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeDTipoFoto2015;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeDUnitaMisura2015;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeDZonaClimatica2015;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeRCertifServener2015;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeRCertifServener2015Pk;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTActa;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTAzienda;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTCertXml2015;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTCertXml2015Pk;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTAltreInfo;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTAltreInfoPk;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTCredito2018;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTDatiXml2015;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTDatiXml2015Pk;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTDatiXmlEdReale2015;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTDatiXmlEdReale2015Pk;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTDatiXmlEdRif2015;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTDatiXmlEdRif2015Pk;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTCertificato;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTCertificatoPk;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTCertificatore;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTClasseEnergetica;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTClasseEnergeticaPk;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTConsumiEdificio;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTConsumiEdificioPk;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTDaticatastSec;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTDatiEner2015;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTDatiEner2015Pk;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTDatiGenerali;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTDatiGeneraliPk;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTDaticatastSec;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTDetImp2015;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeRCombDener2015;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTEnergiaSoprIngr;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTEnergiaSoprIngrPk;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTExportBo;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTExportBoPk;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTFabbisogno;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTFabbisognoPk;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTFoto2015;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTFoto2015Pk;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTImportDati2015;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTImportDati2015Pk;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTImpdatiXml2015;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTImpdatiXml2015Pk;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTImpRiscaldamentoAcs;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTImpRiscaldamentoAcsPk;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTParametri;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTQtaConsumi2015;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTRaccomand2015;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTRaccomandazioni;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTRifIndex2015;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTRifIndex2015Pk;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTRispettoNormative;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTRispettoNormativePk;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTRuoliEdificio;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTRuoliEdificioPk;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTSiape;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTSostituzione;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTVerifyReportPk;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeWCertificatore;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeWCertificatorePk;
-import it.csi.sicee.siceeweb.business.dao.dto.SiceeTCertXml2015;
-import it.csi.sicee.siceeweb.business.dao.dto.ZTImpdatiXml2015;
-import it.csi.sicee.siceeweb.business.dao.exceptions.OptimizedSiceeTCerticatoDaoException;
-import it.csi.sicee.siceeweb.business.dao.exceptions.SiceeDGradiGiornoDaoException;
-import it.csi.sicee.siceeweb.business.dao.exceptions.SiceeDNormativaDaoException;
-import it.csi.sicee.siceeweb.business.dao.exceptions.SiceeDPrioritaDaoException;
-import it.csi.sicee.siceeweb.business.dao.exceptions.SiceeTCertificatoDaoException;
-import it.csi.sicee.siceeweb.business.dao.exceptions.SiceeTParametriDaoException;
 import it.csi.sicee.siceeweb.business.print.dto.AceDto;
 import it.csi.sicee.siceeweb.business.print.dto.DatiGenericiDto;
 import it.csi.sicee.siceeweb.dto.LabelValue;
 import it.csi.sicee.siceeweb.dto.ace.Ace;
-import it.csi.sicee.siceeweb.dto.ace.FiltroRicercaAce;
 import it.csi.sicee.siceeweb.dto.annullamento.DtAnnullamento;
 import it.csi.sicee.siceeweb.dto.annullamento.MotivoAnnullamento;
 import it.csi.sicee.siceeweb.dto.attestati.AttestatoSummary;
@@ -196,7 +69,7 @@ import it.csi.sicee.siceeweb.dto.daticert.DtResponsabili;
 import it.csi.sicee.siceeweb.dto.daticert.DtRispettoNorme;
 import it.csi.sicee.siceeweb.dto.daticert.DtTecniciGen;
 import it.csi.sicee.siceeweb.dto.daticert.SoggResponsabile;
-import it.csi.sicee.siceeweb.dto.pagamenti.DatiPagamento;
+import it.csi.sicee.siceeweb.dto.gestattestati.CpUploadDocAggiuntivaModel;
 import it.csi.sicee.siceeweb.dto.pagamenti.GestioneCreditoNew;
 import it.csi.sicee.siceeweb.dto.pagamenti.Transazione;
 import it.csi.sicee.siceeweb.dto.transazioni.TransazioneAce;
@@ -208,53 +81,21 @@ import it.csi.sicee.siceeweb.util.GenericUtil;
 import it.csi.sicee.siceeweb.util.MapDto;
 import it.csi.sicee.siceeweb.util.RaccomandazioneComparator;
 import it.csi.sicee.siceeweb.util.XmlBeanUtils;
-import it.csi.sicee.siceeweb.xml.attestato.data.AltriDatiEnergeticiDocument.AltriDatiEnergetici.Vettori;
-import it.csi.sicee.siceeweb.xml.attestato.data.AttestatoDocument.Attestato;
-import it.csi.sicee.siceeweb.xml.attestato.data.DettaglioImpiantiDocument.DettaglioImpianti.SezioneAcquaCalda;
-import it.csi.sicee.siceeweb.xml.attestato.data.DettaglioImpiantiDocument.DettaglioImpianti.SezioneClimaEst;
-import it.csi.sicee.siceeweb.xml.attestato.data.DettaglioImpiantiDocument.DettaglioImpianti.SezioneClimaInver;
-import it.csi.sicee.siceeweb.xml.attestato.data.DettaglioImpiantiDocument.DettaglioImpianti.SezioneIlluminazione;
-import it.csi.sicee.siceeweb.xml.attestato.data.DettaglioImpiantiDocument.DettaglioImpianti.SezioneImpiantiCombinati;
-import it.csi.sicee.siceeweb.xml.attestato.data.DettaglioImpiantiDocument.DettaglioImpianti.SezioneProdFontiRinn;
-import it.csi.sicee.siceeweb.xml.attestato.data.DettaglioImpiantiDocument.DettaglioImpianti.SezioneTrasporto;
-import it.csi.sicee.siceeweb.xml.attestato.data.DettaglioImpiantiDocument.DettaglioImpianti.SezioneVentMecc;
 import it.csi.sicee.siceeweb.xml.attestato.data.MODDocument;
-import it.csi.sicee.siceeweb.xml.attestato.data.PrestEnergImpiantiDocument.PrestEnergImpianti.ElencoFontiEnergetiche;
-import it.csi.sicee.siceeweb.xml.attestato.data.PrestEnergImpiantiDocument.PrestEnergImpianti.AltreFontiEnergetiche;
-import it.csi.sicee.siceeweb.xml.attestato.data.RaccomandazioniDocument.Raccomandazioni.SezioneRen;
-import it.csi.sicee.siceeweb.xml.attestato.data.RowConsumiCombustibileDocument.RowConsumiCombustibile;
 import it.csi.sicee.siceeweb.xml.attestato.data.RowImpiantoDocument.RowImpianto;
-import it.csi.sicee.siceeweb.xml.attestato.data.RowRenDocument.RowRen;
-import it.csi.sicee.siceeweb.xml.attestato.data.RowVettoreDocument.RowVettore;
-import it.csi.sicee.siceeweb.xml.attestato.data.RowDatiCatastaliDocument.RowDatiCatastali;
-import it.csi.sicee.siceeweb.xml.attestato.data.RowSubalterniSingoliDocument.RowSubalterniSingoli;
 import it.csi.sicee.siceeweb.xml.xmlapecompleto2015.data.DocumentoDocument;
-
-import java.awt.image.BufferedImage;
-import java.awt.Graphics2D;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.math.BigDecimal;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-
-import org.apache.commons.beanutils.ConvertUtils;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.xmlbeans.impl.util.Base64;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
-import org.apache.xmlbeans.impl.util.Base64;
+
+import java.io.*;
+import java.nio.file.Files;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -281,6 +122,26 @@ public class CertificatoMgr extends BaseMgr {
 	 */
 	public void setTransazioneAceMgr(TransazioneAceMgr transazioneAceMgr) {
 		this.transazioneAceMgr = transazioneAceMgr;
+	}
+
+	private SiceeTDocAggiuntivaDao siceeTDocAggiuntivaDao;
+
+	private SiceeDTipoDocAggDao siceeDTipoDocAggDao;
+
+	public SiceeTDocAggiuntivaDao getSiceeTDocAggiuntiva() {
+		return this.siceeTDocAggiuntivaDao;
+	}
+
+	public SiceeDTipoDocAggDao getSiceeDTipoDocAggDao() {
+		return siceeDTipoDocAggDao;
+	}
+
+	public void setSiceeTDocAggiuntivaDao(SiceeTDocAggiuntivaDao siceeTDocAggiuntivaDao) {
+		this.siceeTDocAggiuntivaDao = siceeTDocAggiuntivaDao;
+	}
+
+	public void setSiceeDTipoDocAggDao(SiceeDTipoDocAggDao siceeDTipoDocAggDao) {
+		this.siceeDTipoDocAggDao = siceeDTipoDocAggDao;
 	}
 
 	/** The certificatore mgr. */
@@ -815,6 +676,10 @@ public class CertificatoMgr extends BaseMgr {
 
 	/** The sicee r certif servener 2015 dao. */
 	private SiceeRCertifServener2015Dao siceeRCertifServEner2015Dao;
+	
+	/** The sicee l hash xml import dao. */
+	private SiceeLHashXmlImportDao siceeLHashXmlImportDao;
+	
 
 	public SiceeRCertifServener2015Dao getSiceeRCertifServener2015Dao() {
 		return this.siceeRCertifServEner2015Dao;
@@ -1423,6 +1288,14 @@ public class CertificatoMgr extends BaseMgr {
 	 */
 	public void setSiceeTDatiFirmaDao(SiceeTDatiFirmaDao siceeTDatiFirmaDao) {
 		this.siceeTDatiFirmaDao = siceeTDatiFirmaDao;
+	}
+	
+	public SiceeLHashXmlImportDao getSiceeLHashXmlImportDao() {
+		return siceeLHashXmlImportDao;
+	}
+
+	public void setSiceeLHashXmlImportDao(SiceeLHashXmlImportDao siceeLHashXmlImportDao) {
+		this.siceeLHashXmlImportDao = siceeLHashXmlImportDao;
 	}
 	
 	// DAO 2015
@@ -3760,7 +3633,7 @@ public class CertificatoMgr extends BaseMgr {
 	}
 
 	private SiceeTAltreInfo mapToDBAltreInfoNew(SiceeTAltreInfo obj,
-			DatiAttestato att) {
+			DatiAttestato att) throws BEException {
 //		SiceeTAltreInfo obj = new SiceeTAltreInfo();
 //		obj.setIdCertificatore(pk.getIdCertificatore());
 //		obj.setProgrCertificato(pk.getProgrCertificato());
@@ -3771,6 +3644,7 @@ public class CertificatoMgr extends BaseMgr {
 				.getMotivoRilascio()));
 		obj.setAltroServiziEnergia(BaseMgr.convertToInteger(ai.getGenerali()
 				.getAltroServiziEnergia()));
+		obj.setDataSopralluogo(DateUtil.convertToDate(ai.getSopralluoghi().getData()));
 		
 		return obj;
 	}
@@ -4132,8 +4006,6 @@ public class CertificatoMgr extends BaseMgr {
 		
 		obj.setAnnoCostruzione(BaseMgr.convertToInteger(dt.getAnnoCostr()));
 		obj.setAnnoUltRist(BaseMgr.convertToInteger(dt.getAnnoUltimaRistrutt()));
-		obj.setZonaClimatica(cat.getZonaClimatica());
-		obj.setGradiGiorno(BaseMgr.convertToInteger(cat.getGradiGiorno()));
 		
 		obj.setFkTipoRistrutturaz(BaseMgr.convertToInteger(dt.getTipoRistrutturazione()));
 		obj.setFkTipolEdilizia(BaseMgr.convertToInteger(dt.getTipolEdilizia()));
@@ -5563,6 +5435,12 @@ public class CertificatoMgr extends BaseMgr {
 			// SiceeTAltreInfo
 			altreInfo.setGenerali(aIGenerali);
 			
+			DtAISopralluoghi aiSopralluoghi = new DtAISopralluoghi();
+			
+			aiSopralluoghi.setData(DateUtil.convertToUDTDateValid(obj8.getDataSopralluogo()));
+			aiSopralluoghi.setNote(obj8.getNoteSopralluogo());
+			
+			altreInfo.setSopralluoghi(aiSopralluoghi);
 			// Alex: remmate 28/09/2016: da tenere a mente
 			//altreInfo.setFlgEdificioPerformante(BaseMgr.convertToBoolean(obj9
 					//.getFlgEdificioPerformante()));
@@ -6792,7 +6670,16 @@ public class CertificatoMgr extends BaseMgr {
 				// Nel caso in cui si sta riportando a NUOVO un ape che era in stato CONSOLIDATO, bisogna eliminare anche il pdf da INDEX
 				eliminaFileIndexByUid(siceeTRifIndex2015.getUidIndex());
 			}
-			
+
+			// DELETE FROM SICEE_T_DOC_AGGIUNTIVA
+			List<SiceeTDocAggiuntiva> docAggiuntiva= getSiceeTDocAggiuntiva().findByApe(idCertificatore,progrCertificato,anno);
+
+			for(SiceeTDocAggiuntiva doc:docAggiuntiva){
+				if(doc.getUidIndex()!=null)
+					eliminaFileIndexByUid(doc.getUidIndex());
+				getSiceeTDocAggiuntiva().delete(new SiceeTDocAggiuntivaPk(doc.getIdDocAggiuntiva()));
+			}
+
 			// Cancellazione da index delle foto
 			for (SiceeTFoto2015 foto : listaFoto) {
 				eliminaFileIndexByUid(foto.getIdentificFoto());
@@ -6879,134 +6766,6 @@ public class CertificatoMgr extends BaseMgr {
 		}
 	}
 
-	
-	@Transactional
-	public void importApe(String idCertificatore, String progrCertificato, String anno, DatiGenericiDto datiGenericiDto, String xmlModol, String fileName, String xmlDoc) throws BEException {
-		//int retval = 0;
-		try
-		{
-			log.debug("\n\n CertificatoMgr::importApe");
-			log.debug("\n>>>>>>> idCertificatore: " + idCertificatore);
-			log.debug("\n>>>>>>> progrCertificato: " + progrCertificato);
-			log.debug("\n>>>>>>> anno: " + anno);
-	
-			// UPDATE SICEE_T_CERTIFICATO
-			SiceeTCertificatoPk pk01 = new SiceeTCertificatoPk();
-			pk01.setIdCertificatore(idCertificatore);
-			pk01.setProgrCertificato(progrCertificato);
-			pk01.setAnno(anno);
-			this.getSiceeTCertificatoDao().update(pk01, datiGenericiDto.getCertificato());
-			
-			log.debug("Dentro MGR (1) datiGenericiDto.getDatiGenerali().getFkDestUso2015: "+datiGenericiDto.getDatiGenerali().getFkDestUso2015());
-
-			// UPDATE SICEE_T_DATI_GENERALI
-			SiceeTDatiGeneraliPk pk02 = new SiceeTDatiGeneraliPk();
-			pk02.setIdCertificatore(idCertificatore);
-			pk02.setProgrCertificato(progrCertificato);
-			pk02.setAnno(anno);
-			SiceeTDatiGenerali obj02 = this.getSiceeTDatiGeneraliDao().findByPrimaryKey(pk02);
-			if (obj02 == null) {
-				obj02 = new SiceeTDatiGenerali();
-				obj02.setIdCertificatore(idCertificatore);
-				obj02.setProgrCertificato(progrCertificato);
-				obj02.setAnno(anno);
-				this.getSiceeTDatiGeneraliDao().insert(obj02);
-			}
-			this.getSiceeTDatiGeneraliDao().update(pk02, datiGenericiDto.getDatiGenerali());
-			
-			// UPDATE SICEE_T_ALTRE_INFO
-			SiceeTAltreInfoPk pk03 = new SiceeTAltreInfoPk();
-			pk03.setIdCertificatore(idCertificatore);
-			pk03.setProgrCertificato(progrCertificato);
-			pk03.setAnno(anno);
-			SiceeTAltreInfo obj03 = this.getSiceeTAltreInfoDao().findByPrimaryKey(pk03);
-			if (obj03 == null) {
-				obj03 = new SiceeTAltreInfo();
-				obj03.setIdCertificatore(idCertificatore);
-				obj03.setProgrCertificato(progrCertificato);
-				obj03.setAnno(anno);
-				this.getSiceeTAltreInfoDao().insert(obj03);
-			}
-			this.getSiceeTAltreInfoDao().update(pk03, datiGenericiDto.getAltreInfo());
-
-			// UPDATE SICEE_T_CERT_XML_2015 / INSERT INTO SICEE_T_CERT_XML_2015
-			SiceeTCertXml2015 certXML = new SiceeTCertXml2015();
-			certXML.setIdCertificatore(idCertificatore);
-			certXML.setProgrCertificato(progrCertificato);
-			certXML.setAnno(anno);
-			certXML.setFlgControlloBozza("N");
-			certXML.setXmlAllegato(xmlModol);
-			SiceeTCertXml2015 certXMLonDB = this.recuperaCertXml2015(idCertificatore, progrCertificato, anno);
-			if (certXMLonDB != null) {
-				log.debug("CERTIFICATO GIA' PRESENTE SUL DB: UPDATE");
-				SiceeTCertXml2015Pk pk04 = new SiceeTCertXml2015Pk();
-				pk04.setIdCertificatore(idCertificatore);
-				pk04.setProgrCertificato(progrCertificato);
-				pk04.setAnno(anno);
-				this.getSiceeTCertXml2015Dao().update(pk04, certXML);
-			} else {
-				log.debug("CERTIFICATO NON PRESENTE SUL DB: INSERT");
-				this.getSiceeTCertXml2015Dao().insert(certXML);
-			}		
-
-			// DELETE FROM SICEE_T_DATI_XML_2015
-			SiceeTDatiXml2015Pk pk05 = new SiceeTDatiXml2015Pk();
-			pk05.setIdCertificatore(idCertificatore);
-			pk05.setProgrCertificato(progrCertificato);
-			pk05.setAnno(anno);
-			this.getSiceeTDatiXml2015Dao().delete(pk05);
-			// DELETE FROM SICEE_T_DATI_XML_ED_REALE_2015
-			SiceeTDatiXmlEdReale2015Pk pk06 = new SiceeTDatiXmlEdReale2015Pk();
-			pk06.setIdCertificatore(idCertificatore);
-			pk06.setProgrCertificato(progrCertificato);
-			pk06.setAnno(anno);
-			this.getSiceeTDatiXmlEdReale2015Dao().delete(pk06);
-			// DELETE FROM SICEE_T_DATI_XML_ED_RIF_2015
-			SiceeTDatiXmlEdRif2015Pk pk07 = new SiceeTDatiXmlEdRif2015Pk();
-			pk07.setIdCertificatore(idCertificatore);
-			pk07.setProgrCertificato(progrCertificato);
-			pk07.setAnno(anno);
-			this.getSiceeTDatiXmlEdRif2015Dao().delete(pk07);
-
-			SiceeTImportDati2015 datiOrigXML = this.getSiceeTImportDati2015Dao().findByPrimaryKey(
-					idCertificatore, progrCertificato, anno);
-			if (datiOrigXML != null) {
-				// DELETE FROM SICEE_T_IMPDATI_XML_2015
-				this.getSiceeTImpdatiXml2015Dao().delete(idCertificatore, progrCertificato, anno);
-				// DELETE FROM SICEE_T_IMPORT_DATI_2015
-				this.getSiceeTImportDati2015Dao().delete(idCertificatore, progrCertificato, anno);
-			}
-
-			// INSERT INTO SICEE_T_IMPORT_DATI_2015
-			datiOrigXML = new SiceeTImportDati2015();
-			datiOrigXML.setIdCertificatore(idCertificatore);
-			datiOrigXML.setProgrCertificato(progrCertificato);
-			datiOrigXML.setAnno(anno);
-			datiOrigXML.setNomeXml(fileName);
-			datiOrigXML.setDtCaricamento(new Date());
-			this.getSiceeTImportDati2015Dao().insert(datiOrigXML);
-
-			// INSERT INTO SICEE_T_IMPDATI_XML_2015
-			SiceeTImpdatiXml2015 origXML = new SiceeTImpdatiXml2015();
-			origXML.setIdCertificatore(idCertificatore);
-			origXML.setProgrCertificato(progrCertificato);
-			origXML.setAnno(anno);
-			origXML.setFXml(xmlDoc);
-			this.getSiceeTImpdatiXml2015Dao().insert(origXML);
-		
-			// INSERT INTO SICEE_T_DATI_XML_2015
-			this.getSiceeTDatiXml2015Dao().insert(datiGenericiDto.getDatiXml2015());
-			// INSERT INTO SICEE_T_DATI_XML_ED_REALE_2015
-			this.getSiceeTDatiXmlEdReale2015Dao().insert(datiGenericiDto.getDatiXmlEdReale2015());
-			// INSERT INTO SICEE_T_DATI_XML_ED_RIF_2015
-			this.getSiceeTDatiXmlEdRif2015Dao().insert(datiGenericiDto.getDatiXmlEdRif2015());
-		}
-		catch (Exception e) {
-			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-			log.error("Errore nell'import dell'APE: ", e);
-			throw new BEException(e.getMessage(), e);
-		}
-	}
 
 	@Transactional
 	public void importApeReadOnly(String idCertificatore, String progrCertificato, String anno, DatiGenericiDto datiGenericiDto, String fileName, String xmlDoc) throws BEException {
@@ -7057,28 +6816,6 @@ public class CertificatoMgr extends BaseMgr {
 			}
 			this.getSiceeTAltreInfoDao().update(pk03, datiGenericiDto.getAltreInfo());
 
-			/*
-			// UPDATE SICEE_T_CERT_XML_2015 / INSERT INTO SICEE_T_CERT_XML_2015
-			SiceeTCertXml2015 certXML = new SiceeTCertXml2015();
-			certXML.setIdCertificatore(idCertificatore);
-			certXML.setProgrCertificato(progrCertificato);
-			certXML.setAnno(anno);
-			certXML.setFlgControlloBozza("N");
-			certXML.setXmlAllegato(xmlModol);
-			SiceeTCertXml2015 certXMLonDB = this.recuperaCertXml2015(idCertificatore, progrCertificato, anno);
-			if (certXMLonDB != null) {
-				log.debug("CERTIFICATO GIA' PRESENTE SUL DB: UPDATE");
-				SiceeTCertXml2015Pk pk04 = new SiceeTCertXml2015Pk();
-				pk04.setIdCertificatore(idCertificatore);
-				pk04.setProgrCertificato(progrCertificato);
-				pk04.setAnno(anno);
-				this.getSiceeTCertXml2015Dao().update(pk04, certXML);
-			} else {
-				log.debug("CERTIFICATO NON PRESENTE SUL DB: INSERT");
-				this.getSiceeTCertXml2015Dao().insert(certXML);
-			}		
-			*/
-			
 			// DELETE FROM SICEE_T_DATI_XML_2015
 			SiceeTDatiXml2015Pk pk05 = new SiceeTDatiXml2015Pk();
 			pk05.setIdCertificatore(idCertificatore);
@@ -7262,6 +6999,10 @@ public class CertificatoMgr extends BaseMgr {
 			siceeTCertificato.setAnno(anno);
 			siceeTCertificato.setFkStato(Constants.CONSOLIDATO);
 
+			CoordinateLOCCSI coordinateLOCCSI = getSoaIntegrationMgr().getCoordinateLOCCSI(siceeTCertificato.getDescComune(), siceeTCertificato.getDescIndirizzo(), siceeTCertificato.getNumCivico());
+			
+			siceeTCertificato.setCoordXLongDd(coordinateLOCCSI.getCoordX());
+			siceeTCertificato.setCoordYLatDd(coordinateLOCCSI.getCoordY());
 			
 			if (operazioneDB.equalsIgnoreCase("UPDATE")) {
 				log.debug("\n>>>>>>> UPDATE del record di SICEE_T_CERTIFICATO");
@@ -7321,582 +7062,8 @@ public class CertificatoMgr extends BaseMgr {
 			}
 		}
 	}
-	
-	@Transactional
-	/*
-	public int consolidaApeOLD(String numeroAttestato,
-			DatiCertificatore cert) throws BEException {
-
-		final int SEZIONE_CLIMAINVER = 1;
-		final int SEZIONE_CLIMAEST = 2;
-		final int SEZIONE_ACQUACALDA = 3;
-		final int SEZIONE_IMPIANTICOMBINATI = 4;
-		final int SEZIONE_PRODFONTIRINN = 5;
-		final int SEZIONE_VENTMECC = 6;
-		final int SEZIONE_ILLUMINAZIONE = 7;
-		final int SEZIONE_TRASPORTO = 8;
-
-		// BEPPE
-		//Questa parte non esisterà più, verrà salvato sul DB quando si fa l'import
 		
-		int retval = 0;
-		String operazioneDB = "";
-		//AceDto dto = new AceDto();
 		
-		try
-		{
-			log.debug("\n\n CertificatoMgr::consolidaApe");
-	
-			DatiAttestato att = recuperaAttestato(cert,
-					numeroAttestato);
-			
-			DtAnagImmobile anagImmobile = att.getDatiAnagraficiImm();
-			DtCatastali cat = att.getDatiAnagraficiImm().getDtCatastali();
-			
-			String[] split = BaseMgr.recuperaChiaveAttestato(
-					cert.getIdCertificatore(), att.getNumeroAttestato());
-
-			String idCertificatore = split[Constants.PK_ID_CERTIFICATORE];
-			String progrCertificato = split[Constants.PK_PROGR];
-			String anno = split[Constants.PK_ANNO];
-			
-			SiceeTCertXml2015 certXML = getSiceeTCertXml2015Dao().findByPrimaryKey(idCertificatore, progrCertificato, anno);			
-			MODDocument modDoc = MapDto.mapToMODDocument(XmlBeanUtils.readString(certXML.getXmlAllegato()));
-	
-			//salvo i dati dell'xml sul db
-			log.debug("\n>>>>>>> salvo i dati dell'xml sul db");
-			
-			//SICEE_T_CERTIFICATO
-			SiceeTCertificato siceeTCertificato = this.getSiceeTCertificatoDao().findByPrimaryKey(idCertificatore, progrCertificato, anno);
-			operazioneDB = "UPDATE";
-			if (siceeTCertificato == null) {
-				siceeTCertificato = new SiceeTCertificato();
-				operazioneDB = "INSERT";
-			}
-			siceeTCertificato.setIdCertificatore(idCertificatore);
-			siceeTCertificato.setProgrCertificato(progrCertificato);
-			siceeTCertificato.setAnno(anno);
-			
-			Date dataScadenza = null;
-
-			if (siceeTCertificato.getFkScadenzaCert() == Constants.ID_TIPO_SCADENZA_ANNO_SUCCESSIVO)
-			{
-				dataScadenza = DateUtil.getFineAnnoSuccessivo();
-			}
-			else if (siceeTCertificato.getFkScadenzaCert() == Constants.ID_TIPO_SCADENZA_ANNO_10)
-			{
-				dataScadenza = DateUtil.getAggiungi10Anni(new Date());
-			}
-			
-			siceeTCertificato.setDtInizio(new Date());
-			siceeTCertificato.setDtScadenza(dataScadenza);
-			
-			siceeTCertificato.setFkStato(Constants.CONSOLIDATO);
-			try{siceeTCertificato.setFlgNoRaccomand(modDoc.getMOD().getAttestato().getRaccomandazioni().getFlagIntervConv());}catch (Exception e) {siceeTCertificato.setFlgNoRaccomand(null);}
-
-			if (operazioneDB.equalsIgnoreCase("UPDATE")) {
-				log.debug("\n>>>>>>> UPDATE del record di SICEE_T_CERTIFICATO");
-				SiceeTCertificatoPk pk = new SiceeTCertificatoPk();
-				pk.setIdCertificatore(idCertificatore);
-				pk.setProgrCertificato(progrCertificato);
-				pk.setAnno(anno);
-				this.getSiceeTCertificatoDao().update(pk, siceeTCertificato);
-			} else {
-				log.debug("\n>>>>>>> INSERT del record di SICEE_T_CERTIFICATO");
-				siceeTCertificato.setFlgOld(Constants.NO);
-				this.getSiceeTCertificatoDao().insert(siceeTCertificato);
-			}				
-
-			//SICEE_T_DATI_GENERALI
-			SiceeTDatiGenerali siceeTDatiGenerali = this.getSiceeTDatiGeneraliDao().findByPrimaryKey(idCertificatore, progrCertificato, anno);
-			operazioneDB = "UPDATE";
-			if (siceeTDatiGenerali == null) {
-				siceeTDatiGenerali = new SiceeTDatiGenerali();
-				operazioneDB = "INSERT";
-			}
-			siceeTDatiGenerali.setIdCertificatore(idCertificatore);
-			siceeTDatiGenerali.setProgrCertificato(progrCertificato);
-			siceeTDatiGenerali.setAnno(anno);
-			try{siceeTDatiGenerali.setFkDestUso2015(Converter.convertToInteger(modDoc.getMOD().getAttestato().getDatiGenerali().getCodClassificazione()));}catch (Exception e) {siceeTDatiGenerali.setFkDestUso2015(null);}
-			try{siceeTDatiGenerali.setFkOggettoApe(Converter.convertToInteger(modDoc.getMOD().getAttestato().getDatiGenerali().getOggetto()));}catch (Exception e) {siceeTDatiGenerali.setFkOggettoApe(null);}
-			try{siceeTDatiGenerali.setNrUm(Converter.convertToInteger(modDoc.getMOD().getAttestato().getDatiGenerali().getNumeroUI()));}catch (Exception e) {siceeTDatiGenerali.setNrUm(null);}
-			try{siceeTDatiGenerali.setSupRiscaldata(Converter.convertToDouble(modDoc.getMOD().getAttestato().getDatiGenerali().getSupUtileRisc()));}catch (Exception e) {siceeTDatiGenerali.setSupRiscaldata(null);}
-			try{siceeTDatiGenerali.setSupRaffrescata(Converter.convertToDouble(modDoc.getMOD().getAttestato().getDatiGenerali().getSupUtileRaffr()));}catch (Exception e) {siceeTDatiGenerali.setSupRaffrescata(null);}
-			try{siceeTDatiGenerali.setVolLordoRiscaldato(Converter.convertToDouble(modDoc.getMOD().getAttestato().getDatiGenerali().getVolLordoRisc()));}catch (Exception e) {siceeTDatiGenerali.setVolLordoRiscaldato(null);}
-			try{siceeTDatiGenerali.setVolLordoRaffrescato(Converter.convertToDouble(modDoc.getMOD().getAttestato().getDatiGenerali().getVolLordoRaffr()));}catch (Exception e) {siceeTDatiGenerali.setVolLordoRaffrescato(null);}
-			try{siceeTDatiGenerali.setSupDisperdente(Converter.convertToDouble(modDoc.getMOD().getAttestato().getAltriDatiFabbricato().getSupDisperdente()));}catch (Exception e) {siceeTDatiGenerali.setSupDisperdente(null);}
-
-			if (operazioneDB.equalsIgnoreCase("UPDATE")) {
-				log.debug("\n>>>>>>> UPDATE del record di SICEE_T_DATI_GENERALI");
-				SiceeTDatiGeneraliPk pk = new SiceeTDatiGeneraliPk();
-				pk.setIdCertificatore(idCertificatore);
-				pk.setProgrCertificato(progrCertificato);
-				pk.setAnno(anno);
-				this.getSiceeTDatiGeneraliDao().update(pk, siceeTDatiGenerali);
-			} else {
-				log.debug("\n>>>>>>> INSERT del record di SICEE_T_DATI_GENERALI");
-				this.getSiceeTDatiGeneraliDao().insert(siceeTDatiGenerali);
-			}				
-
-			//SICEE_T_ALTRE_INFO
-			SiceeTAltreInfo siceeTAltreInfo = this.getSiceeTAltreInfoDao().findByPrimaryKey(idCertificatore, progrCertificato, anno);
-			operazioneDB = "UPDATE";
-			if (siceeTAltreInfo == null) {
-				siceeTAltreInfo = new SiceeTAltreInfo();
-				operazioneDB = "INSERT";
-			}
-			siceeTAltreInfo.setIdCertificatore(idCertificatore);
-			siceeTAltreInfo.setProgrCertificato(progrCertificato);
-			siceeTAltreInfo.setAnno(anno);
-			try{siceeTAltreInfo.setFkMotivo(Converter.convertToInteger(modDoc.getMOD().getAttestato().getDatiGenerali().getMotivazione()));}catch (Exception e) {siceeTAltreInfo.setFkMotivo(null);}
-			try{siceeTAltreInfo.setMotivoAltro(modDoc.getMOD().getAttestato().getDatiGenerali().getMotivazioneAltro());}catch (Exception e) {siceeTAltreInfo.setMotivoAltro(null);}
-			try{siceeTAltreInfo.setInfoMiglPrestEnerg(modDoc.getMOD().getAttestato().getInformazioni().getNote());}catch (Exception e) {siceeTAltreInfo.setInfoMiglPrestEnerg(null);}
-			try{siceeTAltreInfo.setFkRuoloCert(Converter.convertToInteger(modDoc.getMOD().getAttestato().getSoggettoCertificatore().getTipoSoggetto()));}catch (Exception e) {siceeTAltreInfo.setFkRuoloCert(null);}
-			
-			//try{siceeTAltreInfo.setDichInpipendenza(modDoc.getMOD().getAttestato().getSoggettoCertificatore().getDichiarIndip());}catch (Exception e) {siceeTAltreInfo.setDichInpipendenza(null);}
-			
-			try{siceeTAltreInfo.setUltInfo(modDoc.getMOD().getAttestato().getSoggettoCertificatore().getInfoAgg());}catch (Exception e) {siceeTAltreInfo.setUltInfo(null);}
-			try{siceeTAltreInfo.setFlgSopralluogo(decodModolCheckBox(modDoc.getMOD().getAttestato().getSopralluoghi().getFlagEseguitoRilievo()));}catch (Exception e) {siceeTAltreInfo.setFlgSopralluogo(null);}
-			try{siceeTAltreInfo.setFlgSw1(decodModolCheckBox(modDoc.getMOD().getAttestato().getSoftware().getDomanda1()));}catch (Exception e) {siceeTAltreInfo.setFlgSw1(null);}
-			try{siceeTAltreInfo.setFlgSw2(decodModolCheckBox(modDoc.getMOD().getAttestato().getSoftware().getDomanda2()));}catch (Exception e) {siceeTAltreInfo.setFlgSw2(null);}
-
-			if (operazioneDB.equalsIgnoreCase("UPDATE")) {
-				log.debug("\n>>>>>>> UPDATE del record di SICEE_T_ALTRE_INFO");
-				SiceeTAltreInfoPk pk = new SiceeTAltreInfoPk();
-				pk.setIdCertificatore(idCertificatore);
-				pk.setProgrCertificato(progrCertificato);
-				pk.setAnno(anno);
-				this.getSiceeTAltreInfoDao().update(pk, siceeTAltreInfo);
-			} else {
-				log.debug("\n>>>>>>> INSERT del record di SICEE_T_ALTRE_INFO");
-				this.getSiceeTAltreInfoDao().insert(siceeTAltreInfo);
-			}				
-	
-			//SICEE_T_DATI_ENER_2015
-			SiceeTDatiEner2015 siceeTDatiEner2015 = this.getSiceeTDatiEner2015Dao().findByPrimaryKey(idCertificatore, progrCertificato, anno);
-			operazioneDB = "UPDATE";
-			if (siceeTDatiEner2015 == null) {
-				siceeTDatiEner2015 = new SiceeTDatiEner2015();
-				operazioneDB = "INSERT";
-			}
-			siceeTDatiEner2015.setIdCertificatore(idCertificatore);
-			siceeTDatiEner2015.setProgrCertificato(progrCertificato);
-			siceeTDatiEner2015.setAnno(anno);
-			try{siceeTDatiEner2015.setFlgClimatInvernale(modDoc.getMOD().getAttestato().getDatiGenerali().getFlagServiziClimaInv());}catch (Exception e) {siceeTDatiEner2015.setFlgClimatInvernale(null);}
-			try{siceeTDatiEner2015.setFlgClimatEstiva(modDoc.getMOD().getAttestato().getDatiGenerali().getFlagServiziClimaEst());}catch (Exception e) {siceeTDatiEner2015.setFlgClimatEstiva(null);}
-			try{siceeTDatiEner2015.setFlgVentilMeccanica(modDoc.getMOD().getAttestato().getDatiGenerali().getFlagServiziVent());}catch (Exception e) {siceeTDatiEner2015.setFlgVentilMeccanica(null);}
-			try{siceeTDatiEner2015.setFlgProdH2oSanitaria(modDoc.getMOD().getAttestato().getDatiGenerali().getFlagServiziAcquaCalda());}catch (Exception e) {siceeTDatiEner2015.setFlgProdH2oSanitaria(null);}
-			try{siceeTDatiEner2015.setFlgIlluminazione(modDoc.getMOD().getAttestato().getDatiGenerali().getFlagServiziLuce());}catch (Exception e) {siceeTDatiEner2015.setFlgIlluminazione(null);}
-			try{siceeTDatiEner2015.setFlgTrasportoPersCose(modDoc.getMOD().getAttestato().getDatiGenerali().getFlagServiziTrasporto());}catch (Exception e) {siceeTDatiEner2015.setFlgTrasportoPersCose(null);}
-
-			try{siceeTDatiEner2015.setFlgEdifE0(modDoc.getMOD().getAttestato().getPrestEnergFabb().getFlagEdifEnergZero());}catch (Exception e) {siceeTDatiEner2015.setFlgEdifE0(null);}
-			try{siceeTDatiEner2015.setEpglNrenRif(Converter.convertToDouble(modDoc.getMOD().getAttestato().getPrestEnergFabb().getEpglnrenStandard()));}catch (Exception e) {siceeTDatiEner2015.setEpglNrenRif(null);}
-			try{siceeTDatiEner2015.setFkClasseEnergetica(Converter.convertToInteger(modDoc.getMOD().getAttestato().getPrestEnergFabb().getClasseEnergetica()));}catch (Exception e) {siceeTDatiEner2015.setFkClasseEnergetica(null);}
-			try{siceeTDatiEner2015.setFkClasseEnerNuovi(Converter.convertToInteger(modDoc.getMOD().getAttestato().getPrestEnergFabb().getCodClasseEdNuovi()));}catch (Exception e) {siceeTDatiEner2015.setFkClasseEnerNuovi(null);}
-			
-			if (siceeTDatiEner2015.getFkClasseEnerNuovi().intValue() == -1)
-				siceeTDatiEner2015.setFkClasseEnerNuovi(null);
-			
-			try{siceeTDatiEner2015.setEpglNrenNuovi(Converter.convertToDouble(modDoc.getMOD().getAttestato().getPrestEnergFabb().getEpglnrenEdNuovi()));}catch (Exception e) {siceeTDatiEner2015.setEpglNrenNuovi(null);}
-			try{siceeTDatiEner2015.setFkClasseEnerEsistenti(Converter.convertToInteger(modDoc.getMOD().getAttestato().getPrestEnergFabb().getCodClasseEdEsistenti()));}catch (Exception e) {siceeTDatiEner2015.setFkClasseEnerEsistenti(null);}
-			
-			if (siceeTDatiEner2015.getFkClasseEnerEsistenti().intValue() == -1)
-				siceeTDatiEner2015.setFkClasseEnerEsistenti(null);
-			
-			try{siceeTDatiEner2015.setEpglNrenEsistenti(Converter.convertToDouble(modDoc.getMOD().getAttestato().getPrestEnergFabb().getEpglnrenEdEsistenti()));}catch (Exception e) {siceeTDatiEner2015.setEpglNrenEsistenti(null);}
-			
-			try{siceeTDatiEner2015.setEpglNrenGlobale(Converter.convertToDouble(modDoc.getMOD().getAttestato().getPrestEnergImpianti().getEpglnrenTotale()));}catch (Exception e) {siceeTDatiEner2015.setEpglNrenGlobale(null);}
-			try{siceeTDatiEner2015.setEpglRenGlobale(Converter.convertToDouble(modDoc.getMOD().getAttestato().getPrestEnergImpianti().getEpglrenTotale()));}catch (Exception e) {siceeTDatiEner2015.setEpglRenGlobale(null);}
-			try{siceeTDatiEner2015.setEmissioniCo2(Converter.convertToDouble(modDoc.getMOD().getAttestato().getPrestEnergImpianti().getEmissioniCO2()));}catch (Exception e) {siceeTDatiEner2015.setEmissioniCo2(null);}
-			try{siceeTDatiEner2015.setFkCeRaccTotale(Converter.convertToInteger(modDoc.getMOD().getAttestato().getRaccomandazioni().getClasse()));}catch (Exception e) {siceeTDatiEner2015.setFkCeRaccTotale(null);}
-			
-			if (siceeTDatiEner2015.getFkCeRaccTotale().intValue() == -1)
-				siceeTDatiEner2015.setFkCeRaccTotale(null);
-			
-			try{siceeTDatiEner2015.setEpglNrenRaccTotale(Converter.convertToDouble(modDoc.getMOD().getAttestato().getRaccomandazioni().getEPglnrenTotale()));}catch (Exception e) {siceeTDatiEner2015.setEpglNrenRaccTotale(null);}
-			
-			try{siceeTDatiEner2015.setEnergiaEsportata(Converter.convertToDouble(modDoc.getMOD().getAttestato().getAltriDatiEnergetici().getEnergiaEsportata()));}catch (Exception e) {siceeTDatiEner2015.setEnergiaEsportata(null);}
-
-			try{siceeTDatiEner2015.setEph(Converter.convertToDouble(modDoc.getMOD().getAttestato().getAltriDatiFabbricato().getEPHnd()));}catch (Exception e) {siceeTDatiEner2015.setEph(null);}
-			try{siceeTDatiEner2015.setEphLimite(Converter.convertToDouble(modDoc.getMOD().getAttestato().getAltriDatiFabbricato().getEPHndLimite()));}catch (Exception e) {siceeTDatiEner2015.setEphLimite(null);}
-			try{siceeTDatiEner2015.setAsolAsup(Converter.convertToDouble(modDoc.getMOD().getAttestato().getAltriDatiFabbricato().getRapportoAsolAsup()));}catch (Exception e) {siceeTDatiEner2015.setAsolAsup(null);}
-			try{siceeTDatiEner2015.setYie(Converter.convertToDouble(modDoc.getMOD().getAttestato().getAltriDatiFabbricato().getYie()));}catch (Exception e) {siceeTDatiEner2015.setYie(null);}
-
-			GenericUtil.stampa(siceeTDatiEner2015, true, 3);
-			
-			// Errore particolare: Caso in cui la classe energetica per qualche motivo non risulta calcolata
-			// Non ritorno un Fatal, ma trappo l'eccezione, la rilancio a livello più alto e faccio
-			// ritornare un messaggio più significativo e rassicurante
-			if ((siceeTDatiEner2015.getFkClasseEnergetica() == null) || (siceeTDatiEner2015.getFkClasseEnergetica().intValue() == -1)) {
-				retval = Constants.CODERR_FKCLASSEENERGETICA;
-				throw new Exception();
-			}
-			
-			if (operazioneDB.equalsIgnoreCase("UPDATE")) {
-				log.debug("\n>>>>>>> UPDATE del record di SICEE_T_DATI_ENER_2015");
-				SiceeTDatiEner2015Pk pk = new SiceeTDatiEner2015Pk();
-				pk.setIdCertificatore(idCertificatore);
-				pk.setProgrCertificato(progrCertificato);
-				pk.setAnno(anno);
-				this.getSiceeTDatiEner2015Dao().update(pk, siceeTDatiEner2015);
-			} else {
-				log.debug("\n>>>>>>> INSERT del record di SICEE_T_DATI_ENER_2015");
-				this.getSiceeTDatiEner2015Dao().insert(siceeTDatiEner2015);
-			}				
-		
-			//SICEE_T_DATI_CATAST_SEC
-			log.debug("\n>>>>>>> DELETE dei record di SICEE_T_DATI_CATAST_SEC presenti in tabella");
-			this.getSiceeTDaticatastSecDao().delete(idCertificatore, progrCertificato, anno);
-
-			List<RowDatiCatastali> rowDatiCatastaliList = modDoc.getMOD().getAttestato().getDatiPrecompilati().getSezDatiCatastali().getRowDatiCatastaliList();
-			SiceeTDaticatastSec siceeTDaticatastSec = null;
-			for(RowDatiCatastali rdc : rowDatiCatastaliList) {
-				siceeTDaticatastSec = new SiceeTDaticatastSec();
-				List<RowSubalterniSingoli> rowSubalterniSingoliList = rdc.getSubalterniSingoli().getRowSubalterniSingoliList();
-				
-				for(RowSubalterniSingoli rss : rowSubalterniSingoliList) {
-					List<String> subalternoList = rss.getSubalternoList();
-					for(String subalterno : subalternoList) {
-						if (!GenericUtil.isNullOrEmpty(subalterno)) {
-							siceeTDaticatastSec.setIdCertificatore(idCertificatore);
-							siceeTDaticatastSec.setProgrCertificato(progrCertificato);
-							siceeTDaticatastSec.setAnno(anno);
-							siceeTDaticatastSec.setCodiceComuneCatastale(rdc.getComuneCatastale());
-							siceeTDaticatastSec.setSezione(rdc.getSezione());
-							siceeTDaticatastSec.setFoglio(rdc.getFoglio());
-							siceeTDaticatastSec.setParticella(rdc.getParticella());
-							siceeTDaticatastSec.setSubalterno(subalterno);
-							// setto id/desc comune e id/desc provincia con gli stessi valori dei principali su SICEE_T_CERTIFICATO
-							siceeTDaticatastSec.setIdComune(siceeTCertificato.getIdComune());
-							siceeTDaticatastSec.setDescComune(siceeTCertificato.getDescComune());
-							siceeTDaticatastSec.setIdProv(siceeTCertificato.getIdProv());
-							siceeTDaticatastSec.setDescProv(siceeTCertificato.getDescProv());
-							log.debug("\n>>>>>>> INSERT del record di SICEE_T_DATI_CATAST_SEC --> " + subalterno);
-							this.getSiceeTDaticatastSecDao().insert(siceeTDaticatastSec);	
-						}
-					}
-				}
-				
-				if (rdc.getFlagPrincipale() == false) {
-					try {
-						int myIntInf = rdc.getDa1().intValue();
-						int myIntSup = rdc.getA1().intValue();
-						for (int i = myIntInf; i<=myIntSup; i++) {
-							siceeTDaticatastSec.setIdCertificatore(idCertificatore);
-							siceeTDaticatastSec.setProgrCertificato(progrCertificato);
-							siceeTDaticatastSec.setAnno(anno);
-							siceeTDaticatastSec.setCodiceComuneCatastale(rdc.getComuneCatastale());
-							siceeTDaticatastSec.setSezione(rdc.getSezione());
-							siceeTDaticatastSec.setFoglio(rdc.getFoglio());
-							siceeTDaticatastSec.setParticella(rdc.getParticella());
-							siceeTDaticatastSec.setSubalterno("" + i);
-							// setto id/desc comune e id/desc provincia con gli stessi valori dei principali su SICEE_T_CERTIFICATO
-							siceeTDaticatastSec.setIdComune(siceeTCertificato.getIdComune());
-							siceeTDaticatastSec.setDescComune(siceeTCertificato.getDescComune());
-							siceeTDaticatastSec.setIdProv(siceeTCertificato.getIdProv());
-							siceeTDaticatastSec.setDescProv(siceeTCertificato.getDescProv());
-							log.debug("\n>>>>>>> INSERT del record di SICEE_T_DATI_CATAST_SEC --> subalterno " + i);
-							this.getSiceeTDaticatastSecDao().insert(siceeTDaticatastSec);
-						}
-					} catch (Exception e) {}
-					try {
-						int myIntInf = rdc.getDa2().intValue();
-						int myIntSup = rdc.getA2().intValue();
-						for (int i = myIntInf; i<=myIntSup; i++) {
-							siceeTDaticatastSec.setIdCertificatore(idCertificatore);
-							siceeTDaticatastSec.setProgrCertificato(progrCertificato);
-							siceeTDaticatastSec.setAnno(anno);
-							siceeTDaticatastSec.setCodiceComuneCatastale(rdc.getComuneCatastale());
-							siceeTDaticatastSec.setSezione(rdc.getSezione());
-							siceeTDaticatastSec.setFoglio(rdc.getFoglio());
-							siceeTDaticatastSec.setParticella(rdc.getParticella());
-							siceeTDaticatastSec.setSubalterno("" + i);
-							// setto id/desc comune e id/desc provincia con gli stessi valori dei principali su SICEE_T_CERTIFICATO
-							siceeTDaticatastSec.setIdComune(siceeTCertificato.getIdComune());
-							siceeTDaticatastSec.setDescComune(siceeTCertificato.getDescComune());
-							siceeTDaticatastSec.setIdProv(siceeTCertificato.getIdProv());
-							siceeTDaticatastSec.setDescProv(siceeTCertificato.getDescProv());
-							log.debug("\n>>>>>>> INSERT del record di SICEE_T_DATI_CATAST_SEC --> subalterno " + i);
-							this.getSiceeTDaticatastSecDao().insert(siceeTDaticatastSec);
-						}
-					} catch (Exception e) {}
-					try {
-						int myIntInf = rdc.getDa3().intValue();
-						int myIntSup = rdc.getA3().intValue();
-						for (int i = myIntInf; i<=myIntSup; i++) {
-							siceeTDaticatastSec.setIdCertificatore(idCertificatore);
-							siceeTDaticatastSec.setProgrCertificato(progrCertificato);
-							siceeTDaticatastSec.setAnno(anno);
-							siceeTDaticatastSec.setCodiceComuneCatastale(rdc.getComuneCatastale());
-							siceeTDaticatastSec.setSezione(rdc.getSezione());
-							siceeTDaticatastSec.setFoglio(rdc.getFoglio());
-							siceeTDaticatastSec.setParticella(rdc.getParticella());
-							siceeTDaticatastSec.setSubalterno("" + i);
-							// setto id/desc comune e id/desc provincia con gli stessi valori dei principali su SICEE_T_CERTIFICATO
-							siceeTDaticatastSec.setIdComune(siceeTCertificato.getIdComune());
-							siceeTDaticatastSec.setDescComune(siceeTCertificato.getDescComune());
-							siceeTDaticatastSec.setIdProv(siceeTCertificato.getIdProv());
-							siceeTDaticatastSec.setDescProv(siceeTCertificato.getDescProv());
-							log.debug("\n>>>>>>> INSERT del record di SICEE_T_DATI_CATAST_SEC --> subalterno " + i);
-							this.getSiceeTDaticatastSecDao().insert(siceeTDaticatastSec);
-						}
-					} catch (Exception e) {}
-					try {
-						int myIntInf = rdc.getDa4().intValue();
-						int myIntSup = rdc.getA4().intValue();
-						for (int i = myIntInf; i<=myIntSup; i++) {
-							siceeTDaticatastSec.setIdCertificatore(idCertificatore);
-							siceeTDaticatastSec.setProgrCertificato(progrCertificato);
-							siceeTDaticatastSec.setAnno(anno);
-							siceeTDaticatastSec.setCodiceComuneCatastale(rdc.getComuneCatastale());
-							siceeTDaticatastSec.setSezione(rdc.getSezione());
-							siceeTDaticatastSec.setFoglio(rdc.getFoglio());
-							siceeTDaticatastSec.setParticella(rdc.getParticella());
-							siceeTDaticatastSec.setSubalterno("" + i);
-							// setto id/desc comune e id/desc provincia con gli stessi valori dei principali su SICEE_T_CERTIFICATO
-							siceeTDaticatastSec.setIdComune(siceeTCertificato.getIdComune());
-							siceeTDaticatastSec.setDescComune(siceeTCertificato.getDescComune());
-							siceeTDaticatastSec.setIdProv(siceeTCertificato.getIdProv());
-							siceeTDaticatastSec.setDescProv(siceeTCertificato.getDescProv());
-							log.debug("\n>>>>>>> INSERT del record di SICEE_T_DATI_CATAST_SEC --> subalterno " + i);
-							this.getSiceeTDaticatastSecDao().insert(siceeTDaticatastSec);
-						}
-					} catch (Exception e) {}
-				}
-			}
-
-			//SICEE_T_QTA_CONSUMI_2015
-			log.debug("\n>>>>>>> DELETE dei record di SICEE_T_QTA_CONSUMI_2015 presenti in tabella");
-			this.getSiceeTQtaConsumi2015Dao().delete(idCertificatore, progrCertificato, anno);
-			ElencoFontiEnergetiche efe = modDoc.getMOD().getAttestato().getPrestEnergImpianti().getElencoFontiEnergetiche();
-			List<RowConsumiCombustibile> consumiCombustibileList = efe.getRowConsumiCombustibileList();
-			AltreFontiEnergetiche afe = modDoc.getMOD().getAttestato().getPrestEnergImpianti().getAltreFontiEnergetiche();
-			RowConsumiCombustibile consumiAltroCombustibile = afe.getRowConsumiCombustibile();
-			SiceeTQtaConsumi2015 siceeTQtaConsumi2015 = null;
-			
-			boolean isImport = modDoc.getMOD().getAttestato().getDatiPrecompilati().getStatoModulo().equalsIgnoreCase(Constants.STATO_MODULO_BOZZA_DA_XML);
-			
-			for (RowConsumiCombustibile rcc : consumiCombustibileList) {
-				siceeTQtaConsumi2015 = new SiceeTQtaConsumi2015();
-				siceeTQtaConsumi2015.setIdCertificatore(idCertificatore);
-				siceeTQtaConsumi2015.setProgrCertificato(progrCertificato);
-				siceeTQtaConsumi2015.setAnno(anno);
-				try{siceeTQtaConsumi2015.setFkCombustibile(Converter.convertToInteger(rcc.getIdCombustibile()));}catch (Exception e) {siceeTQtaConsumi2015.setFkCombustibile(null);}
-				try{siceeTQtaConsumi2015.setQuantita(Converter.convertToDouble(rcc.getQuantita()));}catch (Exception e) {siceeTQtaConsumi2015.setQuantita(null);}
-				try{siceeTQtaConsumi2015.setFkUnitaMisura(Converter.convertToInteger(rcc.getUi()));}catch (Exception e) {siceeTQtaConsumi2015.setFkUnitaMisura(null);}
-				//try{siceeTQtaConsumi2015.setAltroDescrComb(rcc.getDescrCombustibile());}catch (Exception e) {siceeTQtaConsumi2015.setAltroDescrComb(null);}
-				
-				if ("S".equalsIgnoreCase(rcc.getFlagPresente())) {
-
-					if (isImport && 
-							Converter.convertToInteger(rcc.getIdCombustibile()).intValue() == Constants.ID_COMBUSTIBILE_GASOLIO)
-					{
-						// Vuol dire che devo scompattare il valore, devo salvare il valore gasolio e olioCombustibile, salvati sul modulo quando ho fatto l'import
-						
-						Double quantita = Converter.convertToDouble(modDoc.getMOD().getAttestato().getDatiPrecompilati().getGasolio());
-						
-						if (quantita != null)
-						{
-							siceeTQtaConsumi2015.setFkCombustibile(Constants.ID_COMBUSTIBILE_GASOL);
-							siceeTQtaConsumi2015.setQuantita(quantita);
-							this.getSiceeTQtaConsumi2015Dao().insert(siceeTQtaConsumi2015);
-						}
-
-						quantita = Converter.convertToDouble(modDoc.getMOD().getAttestato().getDatiPrecompilati().getOlioCombustibile());
-						
-						if (quantita != null)
-						{
-							siceeTQtaConsumi2015.setFkCombustibile(Constants.ID_COMBUSTIBILE_OLIO_COMBUSTIBILE);
-							siceeTQtaConsumi2015.setQuantita(quantita);
-							this.getSiceeTQtaConsumi2015Dao().insert(siceeTQtaConsumi2015);
-						}
-					}
-					else
-					{
-						log.debug("\n>>>>>>> INSERT del record di SICEE_T_QTA_CONSUMI_2015");
-						this.getSiceeTQtaConsumi2015Dao().insert(siceeTQtaConsumi2015);
-					}
-				}
-			}		
-			siceeTQtaConsumi2015 = new SiceeTQtaConsumi2015();
-			siceeTQtaConsumi2015.setIdCertificatore(idCertificatore);
-			siceeTQtaConsumi2015.setProgrCertificato(progrCertificato);
-			siceeTQtaConsumi2015.setAnno(anno);
-			siceeTQtaConsumi2015.setFkCombustibile(Constants.ID_COMBUSTIBILE_ALTRO);
-			try{siceeTQtaConsumi2015.setQuantita(Converter.convertToDouble(consumiAltroCombustibile.getQuantita()));}catch (Exception e) {siceeTQtaConsumi2015.setQuantita(null);}
-			try{siceeTQtaConsumi2015.setFkUnitaMisura(Converter.convertToInteger(consumiAltroCombustibile.getUi()));}catch (Exception e) {siceeTQtaConsumi2015.setFkUnitaMisura(null);}
-			try{siceeTQtaConsumi2015.setAltroDescrComb(consumiAltroCombustibile.getDescrCombustibile());}catch (Exception e) {siceeTQtaConsumi2015.setAltroDescrComb(null);}
-			if ("S".equalsIgnoreCase(consumiAltroCombustibile.getFlagPresente())) {
-				log.debug("\n>>>>>>> INSERT del record di SICEE_T_QTA_CONSUMI_2015");
-				this.getSiceeTQtaConsumi2015Dao().insert(siceeTQtaConsumi2015);
-			}
-
-			//SICEE_T_RACCOMAND_2015
-			log.debug("\n>>>>>>> DELETE dei record di SICEE_T_RACCOMAND_2015 presenti in tabella");
-			this.getSiceeTRaccomand2015Dao().delete(idCertificatore, progrCertificato, anno);
-			SezioneRen sr = modDoc.getMOD().getAttestato().getRaccomandazioni().getSezioneRen();
-			List<RowRen> renList = sr.getRowRenList();
-			SiceeTRaccomand2015 siceeTRaccomand2015 = null;
-			for (RowRen rr : renList) {
-				siceeTRaccomand2015 = new SiceeTRaccomand2015();
-				siceeTRaccomand2015.setIdCertificatore(idCertificatore);
-				siceeTRaccomand2015.setProgrCertificato(progrCertificato);
-				siceeTRaccomand2015.setAnno(anno);
-				try{siceeTRaccomand2015.setCodiceRen(rr.getCodRen());}catch (Exception e) {siceeTRaccomand2015.setCodiceRen(null);}
-				try{siceeTRaccomand2015.setTipoIntervento(rr.getTipoIntervento());}catch (Exception e) {siceeTRaccomand2015.setTipoIntervento(null);}
-				try{siceeTRaccomand2015.setFlgRistrutturazione(rr.getRistrutturazioneImportante());}catch (Exception e) {siceeTRaccomand2015.setFlgRistrutturazione(null);}
-				try{siceeTRaccomand2015.setNrAnniRitInvest(Converter.convertToDouble(rr.getAnniRitornoInv()));}catch (Exception e) {siceeTRaccomand2015.setNrAnniRitInvest(null);}
-				try{siceeTRaccomand2015.setEpglNrenSingoloInt(Converter.convertToDouble(rr.getEPglnren()));}catch (Exception e) {siceeTRaccomand2015.setEpglNrenSingoloInt(null);}
-				try{siceeTRaccomand2015.setFkClasseEnergetica(Converter.convertToInteger(rr.getClasse()));}catch (Exception e) {siceeTRaccomand2015.setFkClasseEnergetica(null);}
-				if ((siceeTRaccomand2015.getCodiceRen() != null) && (!siceeTRaccomand2015.getCodiceRen().equalsIgnoreCase("-1"))) {
-					log.debug("\n>>>>>>> INSERT del record di SICEE_T_RACCOMAND_2015");
-					this.getSiceeTRaccomand2015Dao().insert(siceeTRaccomand2015);
-				}
-			}		
-
-			//SICEE_R_COMB_DENER_2015
-			log.debug("\n>>>>>>> DELETE dei record di SICEE_R_COMB_ENER_2015 presenti in tabella");
-			this.getSiceeRCombDener2015Dao().delete(idCertificatore, progrCertificato, anno);
-			Vettori v = modDoc.getMOD().getAttestato().getAltriDatiEnergetici().getVettori();
-			List<RowVettore> vettoreList = v.getRowVettoreList();
-			SiceeRCombDener2015 siceeRCombDener2015 = null;			
-			for (RowVettore rv : vettoreList) {	
-				GenericUtil.stampa(rv, true, 3);
-					
-				siceeRCombDener2015 = new SiceeRCombDener2015();
-				siceeRCombDener2015.setIdCertificatore(idCertificatore);
-				siceeRCombDener2015.setProgrCertificato(progrCertificato);
-				siceeRCombDener2015.setAnno(anno);
-				try{siceeRCombDener2015.setIdCombustibile(Converter.convertToInteger(rv.getCodVettore()));}catch (Exception e) {siceeRCombDener2015.setIdCombustibile(null);}
-				try{siceeRCombDener2015.setDescrAltro(rv.getDescrVettore());}catch (Exception e) {siceeRCombDener2015.setDescrAltro(null);}
-
-				if ((siceeRCombDener2015.getIdCombustibile() != null) && (siceeRCombDener2015.getIdCombustibile() != -1)){
-					log.debug("\n>>>>>>> INSERT del record di SICEE_R_COMB_ENER_2015");
-					this.getSiceeRCombDener2015Dao().insert(siceeRCombDener2015);
-				}
-			}		
-
-			//SICEE_T_DET_IMP_2015
-			log.debug("\n>>>>>>> DELETE dei record di SICEE_T_DET_IMP_2015 presenti in tabella");
-			this.getSiceeTDetImp2015Dao().delete(idCertificatore, progrCertificato, anno);
-			this.getSiceeRCertifServener2015Dao().delete(idCertificatore, progrCertificato, anno);
-			List<RowImpianto> impiantoList = null;
-			Double efficienza = null;
-			Double epren = null;
-			Double epnren = null;
-			
-			SezioneClimaInver sci = modDoc.getMOD().getAttestato().getDettaglioImpianti().getSezioneClimaInver();
-			impiantoList = sci.getElencoImpianti().getRowImpiantoList();
-			try{efficienza = Converter.convertToDouble(sci.getEfficienza());}catch (Exception e) {efficienza = null;}
-			try{epren = Converter.convertToDouble(sci.getEpren());}catch (Exception e) {epren = null;}
-			try{epnren = Converter.convertToDouble(sci.getEPnren());}catch (Exception e) {epnren = null;}
-			iteraDetImp(impiantoList, efficienza, epren, epnren, idCertificatore, progrCertificato, anno, SEZIONE_CLIMAINVER);
-
-			SezioneClimaEst sce = modDoc.getMOD().getAttestato().getDettaglioImpianti().getSezioneClimaEst();
-			impiantoList = sce.getElencoImpianti().getRowImpiantoList();
-			try{efficienza = Converter.convertToDouble(sce.getEfficienza());}catch (Exception e) {efficienza = null;}
-			try{epren = Converter.convertToDouble(sce.getEpren());}catch (Exception e) {epren = null;}
-			try{epnren = Converter.convertToDouble(sce.getEPnren());}catch (Exception e) {epnren = null;}
-			iteraDetImp(impiantoList, efficienza, epren, epnren, idCertificatore, progrCertificato, anno, SEZIONE_CLIMAEST);
-			
-			SezioneAcquaCalda sac = modDoc.getMOD().getAttestato().getDettaglioImpianti().getSezioneAcquaCalda();
-			impiantoList = sac.getElencoImpianti().getRowImpiantoList();
-			try{efficienza = Converter.convertToDouble(sac.getEfficienza());}catch (Exception e) {efficienza = null;}
-			try{epren = Converter.convertToDouble(sac.getEpren());}catch (Exception e) {epren = null;}
-			try{epnren = Converter.convertToDouble(sac.getEPnren());}catch (Exception e) {epnren = null;}
-			iteraDetImp(impiantoList, efficienza, epren, epnren, idCertificatore, progrCertificato, anno, SEZIONE_ACQUACALDA);
-			
-			SezioneImpiantiCombinati sic = modDoc.getMOD().getAttestato().getDettaglioImpianti().getSezioneImpiantiCombinati();
-			impiantoList = sic.getElencoImpianti().getRowImpiantoList();
-			try{efficienza = Converter.convertToDouble(sic.getEfficienza());}catch (Exception e) {efficienza = null;}
-			try{epren = Converter.convertToDouble(sic.getEpren());}catch (Exception e) {epren = null;}
-			try{epnren = Converter.convertToDouble(sic.getEPnren());}catch (Exception e) {epnren = null;}
-			iteraDetImp(impiantoList, efficienza, epren, epnren, idCertificatore, progrCertificato, anno, SEZIONE_IMPIANTICOMBINATI);
-			
-			SezioneProdFontiRinn spfr = modDoc.getMOD().getAttestato().getDettaglioImpianti().getSezioneProdFontiRinn();
-			impiantoList = spfr.getElencoImpianti().getRowImpiantoList();
-			try{efficienza = Converter.convertToDouble(spfr.getEfficienza());}catch (Exception e) {efficienza = null;}
-			try{epren = Converter.convertToDouble(spfr.getEpren());}catch (Exception e) {epren = null;}
-			try{epnren = Converter.convertToDouble(spfr.getEPnren());}catch (Exception e) {epnren = null;}
-			iteraDetImp(impiantoList, efficienza, epren, epnren, idCertificatore, progrCertificato, anno, SEZIONE_PRODFONTIRINN);
-			
-			SezioneVentMecc svm = modDoc.getMOD().getAttestato().getDettaglioImpianti().getSezioneVentMecc();
-			impiantoList = svm.getElencoImpianti().getRowImpiantoList();
-			try{efficienza = Converter.convertToDouble(svm.getEfficienza());}catch (Exception e) {efficienza = null;}
-			try{epren = Converter.convertToDouble(svm.getEpren());}catch (Exception e) {epren = null;}
-			try{epnren = Converter.convertToDouble(svm.getEPnren());}catch (Exception e) {epnren = null;}
-			iteraDetImp(impiantoList, efficienza, epren, epnren, idCertificatore, progrCertificato, anno, SEZIONE_VENTMECC);
-			
-			SezioneIlluminazione si = modDoc.getMOD().getAttestato().getDettaglioImpianti().getSezioneIlluminazione();
-			impiantoList = si.getElencoImpianti().getRowImpiantoList();
-			try{efficienza = Converter.convertToDouble(si.getEfficienza());}catch (Exception e) {efficienza = null;}
-			try{epren = Converter.convertToDouble(si.getEpren());}catch (Exception e) {epren = null;}
-			try{epnren = Converter.convertToDouble(si.getEPnren());}catch (Exception e) {epnren = null;}
-			iteraDetImp(impiantoList, efficienza, epren, epnren, idCertificatore, progrCertificato, anno, SEZIONE_ILLUMINAZIONE);
-			
-			SezioneTrasporto st = modDoc.getMOD().getAttestato().getDettaglioImpianti().getSezioneTrasporto();
-			impiantoList = st.getElencoImpianti().getRowImpiantoList();
-			try{efficienza = Converter.convertToDouble(st.getEfficienza());}catch (Exception e) {efficienza = null;}
-			try{epren = Converter.convertToDouble(st.getEpren());}catch (Exception e) {epren = null;}
-			try{epnren = Converter.convertToDouble(st.getEPnren());}catch (Exception e) {epnren = null;}
-			iteraDetImp(impiantoList, efficienza, epren, epnren, idCertificatore, progrCertificato, anno, SEZIONE_TRASPORTO);
-
-			
-			// Valorizzo EXPORT_BO
-			
-			SiceeTExportBoPk exportpk = new SiceeTExportBoPk(idCertificatore, progrCertificato, anno);
-
-//			SiceeTCertificato siceeTCertificato,
-//			SiceeTDatiGenerali siceeTDatiGenerali, SiceeTDatiEner2015 siceeTDatiEner2015, SiceeTAltreInfo siceeTAltreInfo
-			
-			boolean isPresents = this.getSiceeTExportBoDao().findByPrimaryKey(exportpk) !=null;
-			
-			SiceeTExportBo exportBo = this.mapToDBExportBo(exportpk, siceeTCertificato, siceeTDatiGenerali, siceeTDatiEner2015, siceeTAltreInfo);
-
-			if (!isPresents) {
-				
-				this.getSiceeTExportBoDao().insert(exportBo);
-			} else {
-				this.getSiceeTExportBoDao().update(exportpk,
-						exportBo);
-			}
-			
-			// Valorizzo EXPORT_BO
-			
-			log.debug("Prima del creaPdfEConsolidaLibretto");
-			getServiziMgr().creaPdfEConsolidaCertificatoOLD(cert, idCertificatore, progrCertificato, anno, att);
-			
-			return retval;
-		}
-		catch (Exception e) {
-			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-			if (retval == Constants.CODERR_FKCLASSEENERGETICA.intValue()) {
-				// Errore gestito: ritorno il codice di errore particolare
-				log.error("Errore gestito: FK_CLASSEENERGETICA NULL");
-				return retval;
-			} else {
-				log.error("Errore in consolidamento: ", e);
-				throw new BEException(e.getMessage(), e);
-			}
-		}
-	}
-	*/
-	
-	public String decodModolCheckBox(String iValue) {
-		String oValue;
-		try {
-			if (iValue.equalsIgnoreCase("1"))
-				oValue = "S";
-			else if (iValue.equalsIgnoreCase("0"))
-				oValue = "N";
-			else
-				oValue = null;
-		} catch (Exception e) {
-				oValue = null;
-		}
-		return oValue;
-	}
-	
 	public void iteraDetImp(List<RowImpianto> impiantoList, Double efficienza, Double epren, Double epnren, String idCertificatore, String progrCertificato, String anno, int codServizioEnergetico)
 	{	
 		SiceeTDetImp2015 siceeTDetImp2015 = null;
@@ -9318,6 +8485,23 @@ public class CertificatoMgr extends BaseMgr {
 	}
 
 	
+	public byte[] recuperaStampaRicevutaApeReadOnly(Integer idCredito) throws BEException {
+
+		log.debug("idCredito: " + idCredito);
+
+		byte[] docXml = null;
+		try {
+			log.info("idCredito: " + idCredito);
+			docXml = getSoaIntegrationMgr().recuperaStampaRicevutaApeReadOnly(idCredito);
+				
+			
+		} catch (Exception e) {
+			log.error("Errore in recuperaStampaRicevutaApeReadOnly", e);
+			throw new BEException(e.getMessage(), e);
+		}
+		return docXml;
+	}
+	
 	
 	// DA ELIMINARE dopo aver processato la tabella
 	/** The sicee t imp dati xml dao. */
@@ -9388,5 +8572,99 @@ public class CertificatoMgr extends BaseMgr {
 			log.error(e);
 		}
 	}
-	
+	public ArrayList<DocumentoAggiuntivo> findDocumentiAggiuntiviByAce(String idCertificatore, String progrCertificato, String anno)
+			throws SiceeTDocAggiuntivaDaoException {
+		List<SiceeTDocAggiuntiva> docAggiuntiva= getSiceeTDocAggiuntiva().findByApe(idCertificatore,progrCertificato,anno);
+		log.debug("#######doc aggiuntiva from db: "+docAggiuntiva);
+		ArrayList<DocumentoAggiuntivo> documenti= new ArrayList<>();
+		if(!docAggiuntiva.isEmpty()){
+			documenti = mapFromDocAggiuntiva(docAggiuntiva);
+		}
+		log.debug("#######documenti: "+documenti);
+		return documenti;
+	}
+
+	public ArrayList<DocumentoAggiuntivo> mapFromDocAggiuntiva(List<SiceeTDocAggiuntiva> docAggiuntiva) throws SiceeTDocAggiuntivaDaoException {
+		ArrayList<DocumentoAggiuntivo> documenti= new ArrayList<>();
+		for(SiceeTDocAggiuntiva doc:docAggiuntiva){
+			DocumentoAggiuntivo documento = mapDocAggiuntiva(doc);
+			documenti.add(documento);
+		}
+		return documenti;
+	}
+
+	public DocumentoAggiuntivo mapDocAggiuntiva(SiceeTDocAggiuntiva doc) throws SiceeTDocAggiuntivaDaoException {
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		DocumentoAggiuntivo documento = new DocumentoAggiuntivo();
+		documento.setId(doc.getIdDocAggiuntiva());
+		documento.setNomeDocumento(doc.getNomeDocOriginale());
+		SiceeDTipoDocAgg tipoDocAgg = getSiceeDTipoDocAggDao().findByPrimaryKey(doc.getIdTipoDocAgg());
+		if(tipoDocAgg != null)
+			documento.setTipoDocumento(tipoDocAgg.getDescTipoDocAgg());
+		if(doc.getDtDelete()!=null)
+			documento.setStatoDocumento(Constants.DOC_AGGIUNTIVA_CANCELLATA);
+		else
+			documento.setStatoDocumento(Constants.DOC_AGGIUNTIVA_ATTIVA);
+
+		if(doc.getDtUpload()!=null)
+			documento.setDataUpload(format.format(doc.getDtUpload()));
+
+		return documento;
+	}
+
+	public void deleteDocumentazioneAggiuntiva(Integer idDoc,SiceeTDocAggiuntiva docAggiuntiva) throws SiceeTDocAggiuntivaDaoException {
+		getSiceeTDocAggiuntiva().update(new SiceeTDocAggiuntivaPk(idDoc),docAggiuntiva);
+	}
+
+	public ArrayList<LabelValue> getTipiDoc() throws SiceeTDocAggiuntivaDaoException {
+		log.debug("SICEE D TIPO DOC: "+getSiceeDTipoDocAggDao());
+		log.debug("SICEE D TIPO DOC: "+getSiceeDTipoDocAggDao().findAll());
+
+		List<SiceeDTipoDocAgg> tipiDoc = getSiceeDTipoDocAggDao().findAll();
+		ArrayList<LabelValue> labelValues = new ArrayList<>();
+		for(SiceeDTipoDocAgg tipo:tipiDoc){
+			LabelValue labelValue = new LabelValue();
+			labelValue.setLabel(tipo.getDescTipoDocAgg());
+			labelValue.setValue(tipo.getIdTipoDocAgg().toString());
+			labelValues.add(labelValue);
+		}
+		return labelValues;
+	}
+
+	@Transactional
+	public DocumentoAggiuntivo insertNewDocAggiuntiva(CpUploadDocAggiuntivaModel theModel, String nomeDocumento, String idCertificatore, String progrCertificato, String anno, String idTipoDoc,String codiceAttestato)
+			throws IOException, CSIException, SiceeTDocAggiuntivaDaoException, BEException {
+
+		SiceeTDocAggiuntiva docAggiuntiva = new SiceeTDocAggiuntiva();
+		docAggiuntiva.setIdCertificatore(idCertificatore);
+		docAggiuntiva.setIdTipoDocAgg(Integer.parseInt(idTipoDoc));
+		docAggiuntiva.setDtUpload(new Date());
+		docAggiuntiva.setAnno(anno);
+		docAggiuntiva.setNomeDocOriginale(nomeDocumento);
+		docAggiuntiva.setProgrCertificato(progrCertificato);
+
+		SiceeTDocAggiuntivaPk docAggiuntivaPk= getSiceeTDocAggiuntiva().insert(docAggiuntiva);
+
+		String nuovoNomeDoc = "Doc_"+idTipoDoc+"_"+docAggiuntivaPk.getIdDocAggiuntiva()+"_"+nomeDocumento;
+		docAggiuntiva.setNomeDoc(nuovoNomeDoc);
+
+		Documento documento = new Documento();
+		documento.setAnnoCertificato(anno);
+		documento.setDoc(FileUtils.readFileToByteArray(theModel.getWidg_fileDocCaricato()));
+		documento.setProgrCertificato(progrCertificato);
+		documento.setIdCertificatore(idCertificatore);
+		documento.setTipologia(Constants.DOC_AGGIUNTIVA_INDEX_TYPE);
+		documento.setNome(nuovoNomeDoc);
+		documento.setMimeType("application/pdf");
+		documento.setDataUpload(new Date());
+		documento.setEncoding("UTF-8");
+		documento.setAttestato(codiceAttestato);
+
+		String uidIndex = soaIntegrationMgr.salvaDocAggiuntiva(documento);
+		log.debug("UID index: "+uidIndex);
+		docAggiuntiva.setUidIndex(uidIndex);
+
+		getSiceeTDocAggiuntiva().update(docAggiuntivaPk,docAggiuntiva);
+		return mapDocAggiuntiva(docAggiuntiva);
+	}
 }

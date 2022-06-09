@@ -312,6 +312,85 @@ public class CPBECpVisuraCIT {
 	////////////////////////////////////////////////////////////////////////////////////
 
 	/**
+	 * Implementazione del metodo verificaIndirizzo definito in un ExecCommand del
+	 * ContentPanel cpVisuraCIT
+	 */
+	public ExecResults verificaIndirizzo(
+
+			it.csi.sicee.siceeweb.dto.main.CpVisuraCITModel theModel
+
+	) throws BEException {
+		/// definizione costanti di outcome
+		final String VERIFICAINDIRIZZO_OUTCOME_CODE__OK = //NOSONAR  Reason:EIAS
+				"OK"; //NOSONAR  Reason:EIAS
+		final String VERIFICAINDIRIZZO_OUTCOME_CODE__KO = //NOSONAR  Reason:EIAS
+				"KO"; //NOSONAR  Reason:EIAS
+		///
+		try {
+			ExecResults result = new ExecResults();
+			/*PROTECTED REGION ID(R-1168182236) ENABLED START*/
+			log.debug("STAMPO ISTAT: " + theModel.getAppDatavisuraRicerca().getIstat());
+			log.debug("STAMPO INDIRIZZO: " + theModel.getAppDatavisuraRicerca().getIndirizzo());
+			log.debug("STAMPO CIVICO: " + theModel.getAppDatavisuraRicerca().getCivico());
+
+			if (GenericUtil.isNullOrEmpty(theModel.getAppDatavisuraRicerca().getIndirizzo())) {
+				addMissingRequiredFieldError("appDatavisuraRicerca.indirizzo", result);
+
+				// impostazione del result code
+				result.setResultCode(VERIFICAINDIRIZZO_OUTCOME_CODE__KO);
+			} else if (GenericUtil.isNullOrEmpty(theModel.getAppDatavisuraRicerca().getIstat())) {
+				addMissingRequiredFieldError("appDatavisuraRicerca.istat", result);
+
+				// impostazione del result code
+				result.setResultCode(VERIFICAINDIRIZZO_OUTCOME_CODE__KO);
+			} else {
+				try {
+					ArrayList<VisuraImpianto> visImpianto = getSOAIntegrationMgr().visuraByIndirizzo(
+							theModel.getAppDatavisuraRicerca().getIstat(),
+							theModel.getAppDatavisuraRicerca().getIndirizzo(),
+							theModel.getAppDatavisuraRicerca().getCivico());
+
+					if (visImpianto != null && visImpianto.size() > 0) {
+						theModel.setAppDatavisuraImpiantoList(visImpianto);
+
+						// impostazione del result code
+						result.setResultCode(VERIFICAINDIRIZZO_OUTCOME_CODE__OK);
+					} else {
+						result.getGlobalErrors().add("Nessun impianto trovato con il parametro di ricerca inserito");
+
+						result.setResultCode(VERIFICAINDIRIZZO_OUTCOME_CODE__KO);
+
+					}
+
+				} catch (UserException ue) {
+					result.getGlobalErrors().add("Troppi impianti trovati con il parametro di ricerca inserito");
+
+					result.setResultCode(VERIFICAINDIRIZZO_OUTCOME_CODE__KO);
+				} catch (BEException e) {
+					result.getGlobalErrors().add(e.getMessage());
+					result.setResultCode(VERIFICAINDIRIZZO_OUTCOME_CODE__KO);
+				} catch (Exception e) {
+					result.getGlobalErrors().add(Messages.ERROR_RECUPERO_SERVIZIO);
+					result.setResultCode(VERIFICAINDIRIZZO_OUTCOME_CODE__KO);
+				}
+
+			}
+
+			// modifica degli attributi del model (che verranno propagati allo strato
+			// di presentation). si puo' agire anche direttamente sull'attributo "session".
+
+			result.setModel(theModel);
+			return result;
+			/*PROTECTED REGION END*/
+		} catch (Exception e) {
+			log.error("[BackEndFacade::verificaIndirizzo] Errore occorso nell'esecuzione del metodo:" + e, e);
+			throw new BEException("Errore occorso nell'esecuzione del metodo:" + e, e);
+		}
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////
+
+	/**
 	 * Implementazione del metodo visualizzaImpianto definito in un ExecCommand del
 	 * ContentPanel cpVisuraCIT
 	 */

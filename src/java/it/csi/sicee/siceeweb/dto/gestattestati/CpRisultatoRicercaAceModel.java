@@ -295,6 +295,116 @@ public class CpRisultatoRicercaAceModel extends BaseSessionAwareDTO {
 		return (java.lang.Integer) (getSession().get("appDataidRigaSelezionata"));
 	}
 
+	/**
+	 * imposta il valore dell' ApplicationData 'appDataidDocumentoSelezionato'
+	 * @param value
+	 * @generated
+	 */
+
+	public void setAppDataidDocumentoSelezionato(java.lang.Integer value) {
+		getSession().put("appDataidDocumentoSelezionato", value);
+	}
+
+	/**
+	 * legge il valore dell' ApplicationData 'appDataidDocumentoSelezionato'
+	 * @generated
+	 */
+	public java.lang.Integer getAppDataidDocumentoSelezionato() {
+		return (java.lang.Integer) (getSession().get("appDataidDocumentoSelezionato"));
+	}
+
+	/**
+	 * imposta il valore dell' ApplicationData 'appDatalistTipiDoc'
+	 * @param value
+	 * @generated
+	 */
+
+	public void setAppDatalistTipiDoc(java.util.ArrayList<it.csi.sicee.siceeweb.dto.LabelValue> value) {
+		getSession().put("appDatalistTipiDoc", value);
+	}
+
+	/**
+	 * legge il valore dell' ApplicationData 'appDatalistTipiDoc'
+	 * @generated
+	 */
+	public java.util.ArrayList<it.csi.sicee.siceeweb.dto.LabelValue> getAppDatalistTipiDoc() {
+		return (java.util.ArrayList<it.csi.sicee.siceeweb.dto.LabelValue>) (getSession().get("appDatalistTipiDoc"));
+	}
+
+	/**
+	 * imposta il valore dell' ApplicationData 'appDatalistDocumentazioneAggiuntiva'
+	 * @param value
+	 * @generated
+	 */
+
+	public void setAppDatalistDocumentazioneAggiuntiva(
+			java.util.ArrayList<it.csi.sicee.siceeweb.dto.ace.DocumentoAggiuntivo> value) {
+		getSession().put("appDatalistDocumentazioneAggiuntiva", value);
+	}
+
+	/**
+	 * legge il valore dell' ApplicationData 'appDatalistDocumentazioneAggiuntiva'
+	 * @generated
+	 */
+	public java.util.ArrayList<it.csi.sicee.siceeweb.dto.ace.DocumentoAggiuntivo> getAppDatalistDocumentazioneAggiuntiva() {
+		return (java.util.ArrayList<it.csi.sicee.siceeweb.dto.ace.DocumentoAggiuntivo>) (getSession()
+				.get("appDatalistDocumentazioneAggiuntiva"));
+	}
+
+	/**
+	 * imposta il valore dell' ApplicationData 'appDatauidDocumentoSelezionato'
+	 * @param value
+	 * @generated
+	 */
+
+	public void setAppDatauidDocumentoSelezionato(java.lang.String value) {
+		getSession().put("appDatauidDocumentoSelezionato", value);
+	}
+
+	/**
+	 * legge il valore dell' ApplicationData 'appDatauidDocumentoSelezionato'
+	 * @generated
+	 */
+	public java.lang.String getAppDatauidDocumentoSelezionato() {
+		return (java.lang.String) (getSession().get("appDatauidDocumentoSelezionato"));
+	}
+
+	/**
+	 * imposta il valore dell' ApplicationData 'appDatadocumentoAggiuntivo'
+	 * @param value
+	 * @generated
+	 */
+
+	public void setAppDatadocumentoAggiuntivo(it.csi.sicee.siceeweb.dto.ace.DocumentoAggiuntivo value) {
+		getSession().put("appDatadocumentoAggiuntivo", value);
+	}
+
+	/**
+	 * legge il valore dell' ApplicationData 'appDatadocumentoAggiuntivo'
+	 * @generated
+	 */
+	public it.csi.sicee.siceeweb.dto.ace.DocumentoAggiuntivo getAppDatadocumentoAggiuntivo() {
+		return (it.csi.sicee.siceeweb.dto.ace.DocumentoAggiuntivo) (getSession().get("appDatadocumentoAggiuntivo"));
+	}
+
+	/**
+	 * imposta il valore dell' ApplicationData 'appDatapaginaProvenienza'
+	 * @param value
+	 * @generated
+	 */
+
+	public void setAppDatapaginaProvenienza(java.lang.String value) {
+		getSession().put("appDatapaginaProvenienza", value);
+	}
+
+	/**
+	 * legge il valore dell' ApplicationData 'appDatapaginaProvenienza'
+	 * @generated
+	 */
+	public java.lang.String getAppDatapaginaProvenienza() {
+		return (java.lang.String) (getSession().get("appDatapaginaProvenienza"));
+	}
+
 	////////////////////////////////////////////////////////////////////
 	/// campi per widget semplici
 	////////////////////////////////////////////////////////////////////

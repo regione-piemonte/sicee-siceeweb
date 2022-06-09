@@ -224,8 +224,8 @@
 		</dependency-->
 		
 		<!-- Inserire qui le dipendenze aggiuntive -->
-		<dependency org="csipiemonte" name="siceeorch" rev="6.1.0" >
-			<artifact name="siceeorch-siceeorch-client-6.1.0" type="jar"/>
+		<dependency org="csipiemonte" name="siceeorch" rev="6.5.0" >
+			<artifact name="siceeorch-siceeorch-client-6.5.0" type="jar"/>
 		</dependency>
 		
 		<dependency org="csipiemonte" name="siceews" rev="1.1.0" >

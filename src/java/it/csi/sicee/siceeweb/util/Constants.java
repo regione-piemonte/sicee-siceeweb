@@ -401,6 +401,10 @@ public final class Constants {
 	/** The mail port. */
 	public static String MAIL_PORT = rb.getString("mail.port");
 
+	public static String MAIL_USER = rb.getString("mail.user");
+	
+	public static String MAIL_PWD = rb.getString("mail.pwd");
+	
 	/** The mail mitt xml. */
 	public static String MAIL_MITT_XML = "MITTENTE_EMAIL_XML";
 
@@ -639,6 +643,9 @@ public final class Constants {
 
 	public static final String SEDE_REGIONE_PIEMONTE = "SEDE_REGIONE_PIEMONTE";
 
+	/** The Constant KEY_HASH_IMPORT_XML. */
+	public static final String KEY_HASH_IMPORT_XML = "KEY_HASH_IMPORT_XML";
+
 	////costanti per individuare l'oggetto del pagamento (serve per gestire la logica di
 	//// recepimento dell'esito
 	public static final String PAGAMENTO_REGISTRAZIONE = "PAGA_REG";
@@ -652,11 +659,7 @@ public final class Constants {
 
 	public static final String SESSIONE_VAR_MESSAGGE = "messaggio";
 
-	public static final String MODOL_ENCODING = "UTF-8";
-	public static final String CODICE_APPLICAZIONE_MODOL = "SICEE";
-	public static final String CODICE_MODULO_MODOL_APE = "MODULO_APE_2015-v1.0.0";
-	public static final String CODICE_MODULO_MODOL_APE_2015 = "MODULO_APE_2015-v2.0.0";
-	public static final String CODICE_MODULO_MODOL_TARGHETTA = "MODULO_TARGHETTA_2015-v1.0.0";
+	public static final String ENCODING_UTF_8 = "UTF-8";
 
 	/** The boolean constants */
 	public static final boolean TRUE = true;
@@ -794,6 +797,12 @@ public final class Constants {
 	public static String DESC_TIPO_RICERCA_TOT = "Tutte";
 
 	public static final String RUOLO_CERTIFICATORE_LOG_ACCESSO = "SICEEWEB-CERTIFICATORE";
+
+	public static final String FILE_NO_HASH = "File senza hash";
+	public static final String FILE_NO_HASH_MATCH = "Nessun match hash";
+	public static final String DOC_AGGIUNTIVA_INDEX_TYPE = "DOC_AGGIUNTIVA";
+	public static final String DOC_AGGIUNTIVA_CANCELLATA = "CANCELLATO";
+	public static final String DOC_AGGIUNTIVA_ATTIVA = "ATTIVO";
 
 	/*PROTECTED REGION END*/
 }

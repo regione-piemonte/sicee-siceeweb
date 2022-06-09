@@ -298,6 +298,26 @@
 	
 
 
+		
+<s:if test="isWidgetVisible('cpTransaz','bRicevutaApe')" >
+
+	
+
+
+
+<!-- widget bRicevutaApe -->
+<s:submit name="widg_bRicevutaApe" id="widg_bRicevutaApe" method="handleBRicevutaApe_CLICKED"
+	key="cpTransaz.bRicevutaApe.label" cssClass="buttonWidget showReport"
+	disabled="isWidgetDisabled('cpTransaz','bRicevutaApe')" />
+
+	
+
+
+</s:if>
+
+	
+
+
 	</div>
 	
 	

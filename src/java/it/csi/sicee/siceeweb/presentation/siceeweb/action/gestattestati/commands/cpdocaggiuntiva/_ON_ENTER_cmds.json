@@ -1,0 +1,42 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":true,
+	"targetsWidgets":["bVisualizzaDocumento","bDeleteDoc","bInsertDoc"],
+	"targetsMenuElement":[]
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":false,
+	"targetsWidgets":["bVisualizzaDocumento","bDeleteDoc"],
+	"targetsMenuElement":[]
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":false,
+	"targetsWidgets":["bDeleteDoc","bInsertDoc"],
+	"targetsMenuElement":[]
+}
+,{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":true,
+	"targetsWidgets":["bVisualizzaDocumento"],
+	"targetsMenuElement":[]
+}
+] 
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.VisibilityCommand" ,
+	"show":false,
+	"targetsWidgets":["bDeleteDoc","bInsertDoc","bVisualizzaDocumento"],
+	"targetsMenuElement":[]
+}
+] 
+}
+],
+	"esiti":["OK","KO","OK_VISUALIZZA","KO_VISUALIZZA"],
+	"nomeMetodo":"initListaDocumentazione",
+	"appDataToStore":[]
+}

@@ -14,6 +14,10 @@
 		<param name="actionName">cpGestInvioCertificato</param>
 		<param name="namespace">/base/gestattestati</param>
 	</result>
+	<result name="GO_TO_cpDocAggiuntiva" type="chain">
+		<param name="actionName">cpDocAggiuntiva</param>
+		<param name="namespace">/base/gestattestati</param>
+	</result>
 	<result name="GO_TO_cpRisultatoRicercaAce" type="chain">
 		<param name="actionName">cpRisultatoRicercaAce</param>
 		<param name="namespace">/base/gestattestati</param>
@@ -46,9 +50,32 @@
 		<param name="actionName">cpCompilazApe</param>
 		<param name="namespace">/base/compilazattestatiape</param>
 	</result>
+	<result name="GO_TO_cpZonaClima" type="chain">
+		<param name="actionName">cpZonaClima</param>
+		<param name="namespace">/base/compilazattestatiape</param>
+	</result>
 	<result name="GO_TO_cpGestCertificazioni" type="chain">
 		<param name="actionName">cpGestCertificazioni</param>
 		<param name="namespace">/base/gestattestati</param>
+	</result>
+	<result name="GO_TO_BackPage" type="chain">
+		<param name="actionName">${backActionName}</param>
+		<param name="namespace">${backNamespace}</param>
+	</result>
+	
+</action>
+
+<action name="cpZonaClima" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.compilazattestatiape.CpZonaClimaAction">
+	<result name="input">/jsp/cpZonaClima.jsp</result>
+	<result name="success">/jsp/cpZonaClima.jsp</result>
+	
+	<result name="GO_TO_cpCompilazApe" type="chain">
+		<param name="actionName">cpCompilazApe</param>
+		<param name="namespace">/base/compilazattestatiape</param>
+	</result>
+	<result name="GO_TO_cpImpXml2015" type="chain">
+		<param name="actionName">cpImpXml2015</param>
+		<param name="namespace">/base/compilazattestatiape</param>
 	</result>
 	<result name="GO_TO_BackPage" type="chain">
 		<param name="actionName">${backActionName}</param>

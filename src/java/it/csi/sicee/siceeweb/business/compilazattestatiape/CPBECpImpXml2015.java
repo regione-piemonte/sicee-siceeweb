@@ -24,6 +24,7 @@ import it.csi.sicee.siceeweb.business.dao.dto.SiceeDDestUso2015;
 import it.csi.sicee.siceeweb.business.dao.dto.SiceeDGradiGiorno;
 import it.csi.sicee.siceeweb.business.dao.dto.SiceeDRiqEner2015;
 import it.csi.sicee.siceeweb.business.dao.dto.SiceeDTipoImpianto2015;
+import it.csi.sicee.siceeweb.business.dao.dto.SiceeLHashXmlImport;
 import it.csi.sicee.siceeweb.business.dao.dto.SiceeTDatiEner2015;
 import it.csi.sicee.siceeweb.business.dao.dto.SiceeTDatiXml2015;
 import it.csi.sicee.siceeweb.business.dao.dto.SiceeTDatiXmlEdReale2015;
@@ -42,6 +43,7 @@ import it.csi.sicee.siceeweb.xml.attestato.data.MODDocument;
 import it.csi.sicee.siceeweb.xml.xmlapecompleto2015.data.DocumentoDocument;
 
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -49,7 +51,9 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.math.BigDecimal;
+import java.nio.charset.StandardCharsets;
 
 //import javax.servlet.ServletContext;
 import javax.xml.parsers.DocumentBuilder;
@@ -63,6 +67,7 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.xmlbeans.XmlError;
 import org.apache.xmlbeans.XmlOptions;
 import org.apache.xmlbeans.impl.util.Base64;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.IOUtils;
 
 import com.sun.jimi.core.Jimi;
@@ -71,6 +76,7 @@ import com.sun.jimi.core.JimiReader;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import java.util.stream.Collectors;
 
 /*PROTECTED REGION END*/
 
@@ -108,6 +114,15 @@ public class CPBECpImpXml2015 {
 	// ApplicationData: [msgGenerico, scope:USER_SESSION]
 	public static final String APPDATA_MSGGENERICO_CODE = "appDatamsgGenerico";
 
+	// ApplicationData: [idComuneZonaClima, scope:USER_SESSION]
+	public static final String APPDATA_IDCOMUNEZONACLIMA_CODE = "appDataidComuneZonaClima";
+
+	// ApplicationData: [listZoneClima, scope:USER_SESSION]
+	public static final String APPDATA_LISTZONECLIMA_CODE = "appDatalistZoneClima";
+
+	// ApplicationData: [paginaProvenienza, scope:USER_SESSION]
+	public static final String APPDATA_PAGINAPROVENIENZA_CODE = "appDatapaginaProvenienza";
+
 	//////////////////////////////////////////////////////////////////////////////
 	/// Metodi associati alla U.I.
 	//////////////////////////////////////////////////////////////////////////////
@@ -141,6 +156,8 @@ public class CPBECpImpXml2015 {
 				"KO"; //NOSONAR  Reason:EIAS
 		final String CARICAXMLREADONLY_OUTCOME_CODE__OK_OLD = //NOSONAR  Reason:EIAS
 				"OK_OLD"; //NOSONAR  Reason:EIAS
+		final String CARICAXMLREADONLY_OUTCOME_CODE__OK_ZONA_CLIMA = //NOSONAR  Reason:EIAS
+				"OK_ZONA_CLIMA"; //NOSONAR  Reason:EIAS
 		///
 		try {
 			ExecResults result = new ExecResults();
@@ -157,6 +174,7 @@ public class CPBECpImpXml2015 {
 
 			DatiCertificatore cert = theModel.getAppDatacertificatore();
 			DatiAttestato att = theModel.getAppDatacertificato();
+			theModel.setAppDatalistZoneClima(null);
 
 			String[] split = BaseMgr.recuperaChiaveAttestato(cert.getIdCertificatore(), att.getNumeroAttestato());
 
@@ -187,7 +205,7 @@ public class CPBECpImpXml2015 {
 			} else {
 				retval = parseAndImportXmlFileReadOnly(theModel.getWidg_fileCarica(),
 						theModel.getWidg_fileCaricaFileName(), theModel.getWidg_fileCaricaContentType(), att, cert,
-						idCertificatore, progrCertificato, anno);
+						idCertificatore, progrCertificato, anno, theModel);
 			}
 
 			if (retval == null) {
@@ -206,13 +224,13 @@ public class CPBECpImpXml2015 {
 				// BEPPE
 				//att.get
 				//theModel.setappdataCodDichiarazioneSet();
-
 				theModel.setAppDatacertificato(att);
-
 				theModel.setAppDataprovenienzaPerReport("Compilazione");
-
+				if (theModel.getAppDatalistZoneClima() != null)
+					result.setResultCode(CARICAXMLREADONLY_OUTCOME_CODE__OK_ZONA_CLIMA);
+				else
+					result.setResultCode(CARICAXMLREADONLY_OUTCOME_CODE__OK);
 				// impostazione del result code 
-				result.setResultCode(CARICAXMLREADONLY_OUTCOME_CODE__OK);
 			} else {
 				result.getGlobalErrors().add(retval);
 				// impostazione del result code 
@@ -450,398 +468,6 @@ public class CPBECpImpXml2015 {
 		return certificatoMgr;
 	}
 
-	/*
-	private String parseAndImportXmlFile(File f, String fileName,
-			String contentType, DatiAttestato att, DatiCertificatore cert,
-			String idCertificatore, String progrCertificato, String anno) {
-	
-		log.debug("\n\n\n >>>>>>> parseAndImportXmlFile");
-	
-		//String errorTag = null;
-		//String errorMessage = null;
-		try {
-	
-			// validazione documento
-			// se viene ritornato un messaggio di errore diverso da null viene lanciata
-			// un'eccezione ad-hoc contenente la descrizione dell'errore che viene trappata
-			// e rilanciata più in alto dove viene visualizzata
-			String motivazioneErrore = null;
-			try {
-				// VALIDAZIONE-1 - questa validazione valida l'XML, è come i controlli effettuati con altri strumenti (è da mantenere!) - manda mail ad assistenza ed utente 
-				List<String> list = getMiscMgr().isFileXmlValidFileXml(f);
-				if (!BaseMgr.isNullOrEmpty(list)) {
-					getMiscMgr().sendMailPerXml(att, cert, f, list);
-					motivazioneErrore = "Il file selezionato non e' in un formato valido o non contiene un XML valido secondo lo schema XSD.";
-					motivazioneErrore = motivazioneErrore + "<BR>";
-					motivazioneErrore = motivazioneErrore
-							+ "Un'e-mail contenente gli errori e' stata inviata all'indirizzo indicato in dati di registrazione.";
-					Exception e = new Exception();
-					throw (e);
-	
-				} else if (list == null) {
-					list = new ArrayList<String>();
-					list.add("Non e' stato possibile determinare l'errore specifico; E' necessario verificare il file: probabilmente e' stato inviato un file in un formato non XML");
-					getMiscMgr().sendMailPerXml(att, cert, f, list);
-					motivazioneErrore = "Il file selezionato non e' in un formato valido o non contiene un XML valido secondo lo schema XSD.";
-					motivazioneErrore = motivazioneErrore + "<BR>";
-					motivazioneErrore = motivazioneErrore
-							+ "Un'e-mail contenente gli errori e' stata inviata all'indirizzo indicato in dati di registrazione.";
-					Exception e = new Exception();
-					throw (e);
-				}
-			} catch (Exception e) {
-				BEException bee = new BEException(motivazioneErrore, e);
-				throw bee;
-			}
-	
-			boolean esitoValidazione;
-			// recupero XML da file
-			FileInputStream fileInputStream = null;
-			byte[] xmlDoc = new byte[(int) f.length()];
-			fileInputStream = new FileInputStream(f);
-			fileInputStream.read(xmlDoc);
-			fileInputStream.close();
-	
-			// recupero documento da XML
-			// se viene ritornata un'eccezione generica nel processo di estrazione xml
-			// o viene ritornato un documento nullo, viene lanciata un'eccezione ad-hoc 
-			// contenente la descrizione dell'errore che viene trappata e rilanciata
-			// più in alto dove viene visualizzata
-	
-			DocumentoDocument docXmlApeCompleto2015 = null;
-			try {
-				docXmlApeCompleto2015 = MapDto
-						.mapImportToDocumentoDocument(XmlBeanUtils
-								.readString(new String(xmlDoc)));
-	
-				if (docXmlApeCompleto2015 == null) {
-					//log.debug("\n\n\n>>>>>>> RITORNA UN NULL !!!");
-					Exception e = new Exception();
-					throw (e);
-				}
-			} catch (Exception e) {
-				// VALIDAZIONE-2 - questa eccezione potrebbe essere il BOM (è da mantenere!) - mandare mail ad assistenza 
-	
-				BEException bee = new BEException(
-						"Il file selezionato non e' in un formato valido o non contiene un XML valido secondo lo schema XSD",
-						e);
-				throw bee;
-			}
-	
-			// VALIDAZIONE-3 - questa validazione valida il documento rimappato (è da mantenere!) - mandare mail ad assistenza ed utente 
-			// Create an XmlOptions instance and set the error listener.
-			XmlOptions validateOptions = new XmlOptions();
-			ArrayList errorList = new ArrayList();
-			validateOptions.setErrorListener(errorList);
-	
-			// Validate the XML.
-			esitoValidazione = docXmlApeCompleto2015.validate(validateOptions);
-	
-			log.debug("\n>>>>>>> esito validazione documento: "
-					+ esitoValidazione);
-	
-			// If the XML isn't valid, loop through the listener's contents,
-			// printing contained messages.
-			if (!esitoValidazione) {
-				log.error("################# INIZIO VALIDATION ERROR #####################");
-				for (int i = 0; i < errorList.size(); i++) {
-					XmlError error = (XmlError) errorList.get(i);
-	
-					log.error("Message: " + error.getMessage());
-					log.error("Location of invalid XML: "
-							+ error.getCursorLocation().xmlText());
-				}
-	
-				log.error("################# FINE VALIDATION ERROR #####################");
-	
-				Exception e = new Exception();
-				BEException bee = new BEException(
-						"Il file selezionato non contiene un XML valido secondo lo schema XSD",
-						e);
-				throw bee;
-	
-			}
-	
-			
-			// validazione documento prima versione: viene mantenuta, ma probabilmente è inutile
-	//			esitoValidazione = docXmlApeCompleto2015.validate();
-	//			log.debug("\n>>>>>>> esito validazione documento: "
-	//				+ esitoValidazione);
-	//			if (esitoValidazione == false) {
-	//			Exception e = new Exception();
-	//			BEException bee = new BEException(
-	//					"Il file selezionato non contiene un XML valido secondo lo schema XSD",
-	//					e);
-	//			throw bee;
-	//			}
-			 
-	
-			// check dati obbligatori minimali per poter procedere con l'importazione
-			// NB: Procedura diventata inutile in quanto il controllo di validazione viene fatto
-			// con una docXmlApeCompleto2015.validate(); manteniamo la traccia nel caso in cui
-			// in seguito occorresse ripristinarla
-			//errorMessage = checkDatiObbligatori(docXmlApeCompleto2015);
-			//if (errorMessage != null) {
-			//Exception e = new Exception();
-			//BEException bee = new BEException(errorMessage, e);
-			//throw bee;
-			//}
-	
-			// creazione struttura documento Modol
-			MODDocument modDoc = null;
-			modDoc = MODDocument.Factory.newInstance();
-			modDoc.addNewMOD();
-			modDoc.getMOD().addNewSystem();
-			modDoc.getMOD().addNewAttestato();
-			modDoc.getMOD().getAttestato().addNewDatiPrecompilati();
-			modDoc.getMOD().getAttestato().addNewDatiGenerali();
-			modDoc.getMOD().getAttestato().getDatiPrecompilati()
-					.addNewSezDatiCatastali();
-			modDoc.getMOD().getAttestato().getDatiPrecompilati()
-					.addNewCertificatore();
-			modDoc.getMOD().getAttestato().getDatiPrecompilati().addNewFoto();
-			modDoc.getMOD().getAttestato().addNewPrestEnergImpianti();
-			modDoc.getMOD().getAttestato().addNewPrestEnergFabb();
-			modDoc.getMOD().getAttestato().addNewRaccomandazioni();
-			modDoc.getMOD().getAttestato().getRaccomandazioni()
-					.addNewSezioneRen();
-			modDoc.getMOD().getAttestato().addNewAltriDatiEnergetici();
-			modDoc.getMOD().getAttestato().getAltriDatiEnergetici()
-					.addNewVettori();
-			modDoc.getMOD().getAttestato().addNewAltriDatiFabbricato();
-			modDoc.getMOD().getAttestato().addNewDettaglioImpianti();
-			modDoc.getMOD().getAttestato().getDettaglioImpianti()
-					.addNewSezioneClimaInver();
-			modDoc.getMOD().getAttestato().getDettaglioImpianti()
-					.getSezioneClimaInver().addNewElencoImpianti();
-			modDoc.getMOD().getAttestato().getDettaglioImpianti()
-					.addNewSezioneClimaEst();
-			modDoc.getMOD().getAttestato().getDettaglioImpianti()
-					.getSezioneClimaEst().addNewElencoImpianti();
-			modDoc.getMOD().getAttestato().getDettaglioImpianti()
-					.addNewSezioneAcquaCalda();
-			modDoc.getMOD().getAttestato().getDettaglioImpianti()
-					.getSezioneAcquaCalda().addNewElencoImpianti();
-			modDoc.getMOD().getAttestato().getDettaglioImpianti()
-					.addNewSezioneImpiantiCombinati();
-			modDoc.getMOD().getAttestato().getDettaglioImpianti()
-					.getSezioneImpiantiCombinati().addNewElencoImpianti();
-			modDoc.getMOD().getAttestato().getDettaglioImpianti()
-					.addNewSezioneProdFontiRinn();
-			modDoc.getMOD().getAttestato().getDettaglioImpianti()
-					.getSezioneProdFontiRinn().addNewElencoImpianti();
-			modDoc.getMOD().getAttestato().getDettaglioImpianti()
-					.addNewSezioneVentMecc();
-			modDoc.getMOD().getAttestato().getDettaglioImpianti()
-					.getSezioneVentMecc().addNewElencoImpianti();
-			modDoc.getMOD().getAttestato().getDettaglioImpianti()
-					.addNewSezioneIlluminazione();
-			modDoc.getMOD().getAttestato().getDettaglioImpianti()
-					.getSezioneIlluminazione().addNewElencoImpianti();
-			modDoc.getMOD().getAttestato().getDettaglioImpianti()
-					.addNewSezioneTrasporto();
-			modDoc.getMOD().getAttestato().getDettaglioImpianti()
-					.getSezioneTrasporto().addNewElencoImpianti();
-			modDoc.getMOD().getAttestato().addNewInformazioni();
-			modDoc.getMOD().getAttestato().addNewSoggettoCertificatore();
-			modDoc.getMOD().getAttestato().addNewSopralluoghi();
-			modDoc.getMOD().getAttestato().addNewSoftware();
-	
-			// creazione dell'oggetto Dati Generici e decodifiche del certificato
-			DatiGenericiDto datiGenericiDto = new DatiGenericiDto();
-			// popolamento con i dati del certificato
-			SiceeTCertificato certificato = getCertificatoMgr()
-					.recuperaCertificato(idCertificatore, progrCertificato,
-							anno);
-			datiGenericiDto.setCertificato(certificato);
-			// popolamento con i dati generali
-			SiceeTDatiGenerali datiGenerali = getCertificatoMgr()
-					.recuperaDatiGenerali(idCertificatore, progrCertificato,
-							anno);
-			datiGenericiDto.setDatiGenerali(datiGenerali);
-			// popolamento con le altre info
-			SiceeTAltreInfo altreInfo = getCertificatoMgr().recuperaAltreInfo(
-					idCertificatore, progrCertificato, anno);
-			if (altreInfo == null) {
-				altreInfo = new SiceeTAltreInfo();
-				altreInfo.setIdCertificatore(idCertificatore);
-				altreInfo.setProgrCertificato(progrCertificato);
-				altreInfo.setAnno(anno);
-			}
-			datiGenericiDto.setAltreInfo(altreInfo);
-			// creazione oggetti delle tabelle dati xml (se reimporto questi dati vengono riscritti)
-			SiceeTDatiXml2015 datiXml2015 = new SiceeTDatiXml2015();
-			datiXml2015.setIdCertificatore(idCertificatore);
-			datiXml2015.setProgrCertificato(progrCertificato);
-			datiXml2015.setAnno(anno);
-			datiGenericiDto.setDatiXml2015(datiXml2015);
-			SiceeTDatiXmlEdReale2015 datiXmlEdReale2015 = new SiceeTDatiXmlEdReale2015();
-			datiXmlEdReale2015.setIdCertificatore(idCertificatore);
-			datiXmlEdReale2015.setProgrCertificato(progrCertificato);
-			datiXmlEdReale2015.setAnno(anno);
-			datiGenericiDto.setDatiXmlEdReale2015(datiXmlEdReale2015);
-			SiceeTDatiXmlEdRif2015 datiXmlEdRif2015 = new SiceeTDatiXmlEdRif2015();
-			datiXmlEdRif2015.setIdCertificatore(idCertificatore);
-			datiXmlEdRif2015.setProgrCertificato(progrCertificato);
-			datiXmlEdRif2015.setAnno(anno);
-			datiGenericiDto.setDatiXmlEdRif2015(datiXmlEdRif2015);
-	
-			// popolamento con decodifica destinazione d'uso
-			Short codClassificazione = null;
-			try {
-				codClassificazione = docXmlApeCompleto2015.getDocumento()
-						.getApe2015().getDatiGenerali()
-						.getClassificazioneDPR412();
-			} catch (Exception e) {
-				codClassificazione = null;
-			}
-			SiceeDDestUso2015 destinazioneUso2015 = null;
-			if (codClassificazione != null)
-				destinazioneUso2015 = getCertificatoMgr().recuperaDDestUso2015(
-						codClassificazione.intValue());
-			datiGenericiDto.setDestinazioneUso2015(destinazioneUso2015);
-	
-			// popolamento con calcolo zona climatica, decodifica comune ed estrazione/decodifica provincia
-			String istatComune = null;
-			String zonaClimatica = null;
-			Comune comune = null;
-			String istatComuneCalc = null;
-			boolean isProvPiemonte = false;
-			try {
-				istatComune = docXmlApeCompleto2015.getDocumento().getApe2015()
-						.getDatiGenerali().getDatiIdentificativi()
-						.getCodiceISTAT();
-	
-				comune = getSOAIntegrationMgr().getDescrizioneComune(
-						istatComune);
-	
-				List<Provincia> provincePiemonte = getSOAIntegrationMgr()
-						.getProvinceByPiemonte();
-	
-				for (Provincia provincia : provincePiemonte) {
-					if (comune.getCodProv()
-							.equalsIgnoreCase(provincia.getCod())) {
-						isProvPiemonte = true;
-					}
-				}
-	
-				zonaClimatica = getCertificatoMgr()
-						.recuperaZonaClimaticaDaIstatComune(istatComune)
-						.getZonaClimatica();
-	
-				datiGenericiDto.setComune(comune);
-	
-				datiGenericiDto.setZonaClimatica(zonaClimatica);
-	
-				// Recupero il Codice ISTAT dei dati calcolo
-				istatComuneCalc = docXmlApeCompleto2015.getDocumento()
-						.getDatiCalcolo().getDatiGenerali().getCodiceISTAT();
-	
-			} catch (Exception e) {
-				//				BEException bee = new BEException(
-				//						"Il Codice ISTAT del Comune e' scorretto", e);
-	
-				BEException bee = new BEException(
-						"Il Codice ISTAT del Comune e' scorretto oppure potrebbero esserci problemi nell'aggancio di altri servizi",
-						e);
-	
-				throw bee;
-			}
-	
-			// Verifico ce il comune si PIEMONTESE
-			if (!isProvPiemonte) {
-				Exception e = new Exception();
-				BEException bee = new BEException(
-						"Il Codice ISTAT del Comune non appartiene ad una provincia piemontese",
-						e);
-				throw bee;
-			}
-	
-			// Beppe - verifico che il Codice ISTAT dei Documento() --> Ape2015 --> DatiGenerali --> DatiIdentificativi 
-			// sia lo stesso di Documento --> DatiCalcolo --> DatiGenerali() --> CodiceISTAT
-			if (!istatComune.equals(istatComuneCalc)) {
-				Exception e = new Exception();
-				BEException bee = new BEException(
-						"Il Codice ISTAT del Comune DatiIdentificativi e DatiCalcolo non coincidono",
-						e);
-				throw bee;
-			}
-	
-			// popolamento elenco classi energetiche attive
-			List<SiceeDClasseEnergetica> classiEnergetiche = getCertificatoMgr()
-					.recuperaElencoClasseEnergetica();
-			datiGenericiDto.setClassiEnergetiche(classiEnergetiche);
-	
-			// popolamento elenco combustibili vettori per energia esportata
-			List<SiceeDCombustibile> combustibiliEsportazione = getCertificatoMgr()
-					.recuperaElencoCombustibiliEnEsportata();
-			datiGenericiDto
-					.setCombustibiliEsportazione(combustibiliEsportazione);
-	
-			// popolamento elenco combustibili per consumo
-			List<SiceeDCombustibile> elencoConsumiCombustibile = getCertificatoMgr()
-					.recuperaElencoConsumiCombustibile();
-	
-			modDoc = MapDto.mappaImportDatiGenerici(docXmlApeCompleto2015,
-					modDoc, datiGenericiDto);
-	
-			String indirizzo = GenericUtil
-					.getIndirizzoNormalizzato(datiGenericiDto.getCertificato()
-							.getDescIndirizzo());
-			// risetto gli indirizzi normalizzati
-			datiGenericiDto.getCertificato().setDescIndirizzo(indirizzo);
-			modDoc.getMOD().getAttestato().getDatiPrecompilati()
-					.setIndirizzo(indirizzo);
-	
-			// Cerco di normalizzare l'indirizoz e di recuperarlo da TOPE
-			datiGenericiDto.getCertificato().setIdIndirizzo(
-					cercaIndirizzoStradario(istatComune, indirizzo));
-	
-			// la tabella dell'energia consumata dagli impianti va obbligatoriamente costruita
-			modDoc = MapDto.mapToElencoConsumiCombustibile(modDoc,
-					elencoConsumiCombustibile);
-			modDoc = MapDto.mappaImportPrestazioni(docXmlApeCompleto2015,
-					modDoc, datiGenericiDto);
-			modDoc = MapDto.mappaImportRaccomandazioni(docXmlApeCompleto2015,
-					modDoc, datiGenericiDto);
-	
-			List<SiceeDTipoImpianto2015> elencoTipiImpianto = getCertificatoMgr()
-					.recuperaElencoTipoImpianto2015();
-	
-			modDoc = MapDto.mappaImportDatiImpianti(docXmlApeCompleto2015,
-					modDoc, datiGenericiDto, elencoTipiImpianto);
-			modDoc = MapDto.mappaImportDatiFinali(docXmlApeCompleto2015,
-					modDoc, datiGenericiDto);
-	
-			// controllo ed eventualmente importo il file jpg se embedded nell'xml
-			checkAndImportImmagine(docXmlApeCompleto2015, att, idCertificatore,
-					progrCertificato, anno);
-	
-			// passaggio di stato dell'APE
-			datiGenericiDto.getCertificato().setFkStato(Constants.BOZZA);
-	
-			// import / update di un subset di dati dell'xml nel db
-			log.debug("\n\n>>>>>>> SEZIONE TRANSAZIONALE INIZIO");
-			getCertificatoMgr().importApe(idCertificatore, progrCertificato,
-					anno, datiGenericiDto,
-					new String(XmlBeanUtils.extractByteArray(modDoc)),
-					fileName, new String(xmlDoc));
-			log.debug("\n\n>>>>>>> SEZIONE TRANSAZIONALE FINE");
-	
-			return null;
-	
-		} catch (BEException e) {
-			log.error("parseXmlFromFile :: " + e.getMessage(), e);
-			// il messaggio della BEException contiene il nome del tag da riportare nel messaggio di errore
-			return e.getMessage();
-		} catch (Exception e) {
-			log.error("parseXmlFromFile :: " + e.getMessage(), e);
-			return e.getMessage();
-		} finally {
-			log.debug("[parseXmlFromFile] END");
-		}
-	}
-	 */
 	private String gestisciErroValidazioneXml(DatiAttestato att, DatiCertificatore cert, File f, List<String> listError,
 			int numValidazione, boolean sendUtente) throws Exception {
 		String motivazioneErrore = null;
@@ -869,13 +495,20 @@ public class CPBECpImpXml2015 {
 	}
 
 	private String parseAndImportXmlFileReadOnly(File f, String fileName, String contentType, DatiAttestato att,
-			DatiCertificatore cert, String idCertificatore, String progrCertificato, String anno) {
+			DatiCertificatore cert, String idCertificatore, String progrCertificato, String anno,
+			it.csi.sicee.siceeweb.dto.compilazattestatiape.CpImpXml2015Model theModel) {
 
 		log.debug("\n\n\n >>>>>>> parseAndImportXmlFileReadOnly");
 
 		//String errorTag = null;
 		//String errorMessage = null;
 		try {
+			theModel.setAppDatapaginaProvenienza("COMPILAZIONE");
+
+			// Devo verificare l'hash del file
+			// ATTENZIONE: per adesso è un tracciamento indormtivo, non viene bloccato,
+			// in futuro dovremmo bloccare
+			recuperaHashFile(idCertificatore, progrCertificato, anno, f);
 
 			// validazione documento
 			// se viene ritornato un messaggio di errore diverso da null viene lanciata
@@ -1042,7 +675,7 @@ public class CPBECpImpXml2015 {
 
 			// popolamento con calcolo zona climatica, decodifica comune ed estrazione/decodifica provincia
 			String istatComune = null;
-			SiceeDGradiGiorno zonaClimatica = null;
+			List<SiceeDGradiGiorno> zonaClimatica = null;
 			Comune comune = null;
 			String istatComuneCalc = null;
 			boolean isProvPiemonte = false;
@@ -1060,15 +693,28 @@ public class CPBECpImpXml2015 {
 						isProvPiemonte = true;
 					}
 				}
-
-				zonaClimatica = getCertificatoMgr().recuperaZonaClimaticaDaIstatComune(istatComune);
+				log.debug("ISTAT COMUNE: " + istatComune);
+				log.debug("COMUNE: " + comune);
+				zonaClimatica = getCertificatoMgr().getSiceeDGradiGiornoDao().findWhereIdComuneEquals(istatComune);
 
 				datiGenericiDto.setComune(comune);
 
 				if (zonaClimatica != null) {
-					datiGenericiDto.setZonaClimatica(zonaClimatica.getZonaClimatica());
-					datiGenericiDto.getDatiGenerali().setGradiGiorno(zonaClimatica.getGradiGiorno());
-
+					if (zonaClimatica.size() == 1) {
+						datiGenericiDto.getDatiGenerali().setZonaClimatica(zonaClimatica.get(0).getZonaClimatica());
+						datiGenericiDto.getDatiGenerali().setGradiGiorno(zonaClimatica.get(0).getGradiGiorno());
+						datiGenericiDto.setZonaClimatica(zonaClimatica.get(0).getZonaClimatica());
+					} else if (zonaClimatica.size() > 1) {
+						ArrayList<LabelValue> zoneClima = new ArrayList<>();
+						for (SiceeDGradiGiorno grado : zonaClimatica) {
+							LabelValue label = new LabelValue();
+							label.setValue(grado.getZonaClimatica());
+							label.setLabel(grado.getZonaClimatica());
+							zoneClima.add(label);
+						}
+						theModel.setAppDatalistZoneClima(zoneClima);
+						theModel.setAppDataidComuneZonaClima(istatComune);
+					}
 				}
 
 				// Recupero il Codice ISTAT dei dati calcolo
@@ -1251,59 +897,6 @@ public class CPBECpImpXml2015 {
 	}
 	*/
 
-	private String calcolaSmileInverno(it.csi.sicee.siceeweb.xml.attestato2015.data.MODDocument modDoc) {
-
-		String smile = null;
-
-		BigDecimal ePhnd = modDoc.getMOD().getAttestato().getAltriDatiFabbricato().getEPHnd();
-		BigDecimal ePhndLimite = modDoc.getMOD().getAttestato().getAltriDatiFabbricato().getEPHndLimite();
-
-		if (ePhnd != null && ePhndLimite != null) {
-			double vEPhnd = ePhnd.doubleValue();
-			double vEPhndLimite = ePhndLimite.doubleValue();
-
-			if (vEPhnd > 0 && vEPhndLimite > 0) {
-				if (vEPhnd <= (1 * vEPhndLimite)) {
-					smile = "smile_felice.png";
-				} else if (((1 * vEPhndLimite) < vEPhnd) && (vEPhnd <= (1.7 * vEPhndLimite))) {
-					smile = "smile_serio.png";
-				} else if (vEPhnd > (1.7 * vEPhndLimite)) {
-					smile = "smile_triste.png";
-				}
-			}
-		}
-
-		return smile;
-
-	}
-
-	private String calcolaSmileEstate(it.csi.sicee.siceeweb.xml.attestato2015.data.MODDocument modDoc) {
-
-		String smile = null;
-
-		BigDecimal asolAsup = modDoc.getMOD().getAttestato().getAltriDatiFabbricato().getRapportoAsolAsup();
-		BigDecimal yie = modDoc.getMOD().getAttestato().getAltriDatiFabbricato().getYie();
-
-		// modDoc.getMOD().getAttestato().getAltriDatiFabbricato().setRapportoAsolAsup
-
-		if (asolAsup != null && yie != null) {
-			double vAsolAsup = asolAsup.doubleValue();
-			double vYie = yie.doubleValue();
-
-			if (vAsolAsup > 0 && vYie > 0) {
-				if ((vAsolAsup <= 0.03) && (vYie <= 0.14)) {
-					smile = "smile_felice.png";
-				} else if (((vAsolAsup <= 0.03) && (vYie > 0.14)) || ((vAsolAsup > 0.03) && (vYie <= 0.14))) {
-					smile = "smile_serio.png";
-				} else if ((vAsolAsup > 0.03) && (vYie > 0.14)) {
-					smile = "smile_triste.png";
-				}
-			}
-		}
-		return smile;
-
-	}
-
 	private void checkAndImportImmagine(DocumentoDocument docXmlApeCompleto2015, DatiAttestato att,
 			String idCertificatore, String progrCertificato, String anno) throws TrackingDbBEException, BEException {
 
@@ -1404,11 +997,17 @@ public class CPBECpImpXml2015 {
 			// inserisco in index l'immagine
 			// inserisco in SICEE_T_FOTO2015 i suoi metadati
 			String uid = "";
-			uid = getSOAIntegrationMgr().salvaImmagine(idCertificatore, progrCertificato, anno, att, immagine,
-					"sipee_immagine_principale.jpg", mimeType, f.length());
-			if (uid == null) {
+
+			try {
+				uid = getSOAIntegrationMgr().salvaImmagine(idCertificatore, progrCertificato, anno, att, immagine,
+						"sipee_immagine_principale.jpg", mimeType, f.length());
+
+				if (uid == null) {
+					throw new Exception();
+				}
+
+			} catch (Exception e) {
 				f.delete();
-				Exception e = new Exception();
 				TrackingDbBEException bee = new TrackingDbBEException("Errore nel caricamento della foto su INDEX", e);
 				throw bee;
 			}
@@ -1560,6 +1159,131 @@ public class CPBECpImpXml2015 {
 			log.error("Errore nel recupero degli indirizzi", e);
 		}
 		return idIndirizzo;
+	}
+
+	private boolean recuperaHashFile(String idCertificatore, String progrCertificato, String anno, File fileXmlOrig)
+			throws TrackingDbBEException {
+		log.info("recuperaHashFile - inizio");
+		InputStream inputStream = null;
+		boolean isHashCorrect = false;
+
+		try {
+
+			inputStream = new FileInputStream(fileXmlOrig);
+
+			List<String> contentOrig = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))
+					.lines().collect(Collectors.toList());
+
+			String hashRecuperatoTmp = null;
+
+			String riga = null;
+
+			int i = contentOrig.size() - 1;
+			while (i > 0) {
+
+				//log.debug("riga i: "+i);
+				riga = contentOrig.get(i);
+				//log.debug(riga);
+				if (riga.contains("<!--")) {
+					// ultima riga
+					hashRecuperatoTmp = riga;
+					//contentOrig.set(i, keyHash);
+					break;
+				}
+
+				i--;
+			}
+
+			String hashRecuperatoFile = Constants.FILE_NO_HASH;
+			String hashCalcolatoFile = Constants.FILE_NO_HASH_MATCH;
+			StringBuilder sbFile = null;
+
+			if (hashRecuperatoTmp != null) {
+				// ho trovato l'hash nel file
+
+				String hashCalcolatoFileTmp = null;
+				// recupero le key possibili dal DB
+				String[] keysHash = getMiscMgr().getParametro(Constants.KEY_HASH_IMPORT_XML).split(",");
+
+				//log.debug("hashRecuperatoTmp: "+hashRecuperatoTmp);
+				hashRecuperatoFile = hashRecuperatoTmp.replaceAll("<!--", "").replaceAll("-->", "");
+				log.info("hashRecuperatoFile: " + hashRecuperatoFile);
+
+				for (String key : keysHash) {
+					// settare la key corrente
+					contentOrig.set(i, key);
+
+					// Devo creare una stringa dell'intero file su cui calcolare l'hash
+					sbFile = new StringBuilder();
+					for (int x = 0; x < contentOrig.size(); x++) {
+
+						String rigaContent = contentOrig.get(x);
+						//System.out.println(rigaContent);
+						sbFile.append(rigaContent);
+						if (x != contentOrig.size() - 1)
+							sbFile.append("\n");
+
+					}
+					hashCalcolatoFileTmp = DigestUtils.sha256Hex(sbFile.toString());
+					log.info("hashCalcolatoFileTmp: " + hashCalcolatoFileTmp);
+
+					//hashCalcolatoFile = DigestUtils.sha256Hex(contentOrig.toString());
+					//log.debug("hashCalcolatoFile: "+hashCalcolatoFile);
+
+					isHashCorrect = hashRecuperatoFile.equals(hashCalcolatoFileTmp);
+
+					if (isHashCorrect) {
+						hashCalcolatoFile = hashCalcolatoFileTmp;
+						// ho trovato la corrispondenza dell'hash, quindi esco
+						break;
+					}
+				}
+
+				log.info("hashCalcolatoFile: " + hashCalcolatoFile);
+
+			}
+
+			// devo inserire sul DB
+			SiceeLHashXmlImport xashXmlImport = new SiceeLHashXmlImport();
+			xashXmlImport.setIdCertificatore(idCertificatore);
+			xashXmlImport.setProgrCertificato(progrCertificato);
+			xashXmlImport.setAnno(anno);
+			xashXmlImport.setDataImport(new Date());
+			xashXmlImport.setHashFile(hashRecuperatoFile);
+			xashXmlImport.setHashMatch(hashCalcolatoFile);
+			getCertificatoMgr().getSiceeLHashXmlImportDao().insert(xashXmlImport);
+
+			// Per adesso non blocchiamo
+			/*
+			if (!isHashCorrect)
+			{
+				Exception e = new Exception();
+				TrackingDbBEException bee = new TrackingDbBEException(
+						"Il codice HASH all'interno del file non e' corretto", e);
+				throw bee;
+			}
+			*/
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			log.error("Eccezione (IOException) nel recupero dell'hash del file xml", e);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.error("Eccezione (Exception) nel recupero dell'hash del file xml", e);
+		} finally {
+			if (inputStream != null) {
+				try {
+					inputStream.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					log.error("Eccezione nella chiusura dell'inputStream del file xml", e);
+				}
+			}
+		}
+
+		log.info("recuperaHashFile - fine");
+
+		return isHashCorrect;
 	}
 
 	/*PROTECTED REGION END*/

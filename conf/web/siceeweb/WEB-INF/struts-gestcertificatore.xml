@@ -33,6 +33,9 @@
 	<result name="GO_TO_EX_STAMPA_RICEVUTA_ACE" type="redirect">
 		<param name="location">/base/cpRicevutaPagamenti.do</param>
 	</result>
+	<result name="GO_TO_EX_ricevutaApe" type="redirect">
+		<param name="location">ricevutaApe.do</param>
+	</result>
 </action>
 
 <action name="cpRegistraz" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.gestcertificatore.CpRegistrazAction">
@@ -170,6 +173,16 @@
 
 		<!--PROTECTED REGION ID(R818253661) ENABLED START-->
 		<!-- inserire qui la dichiarazione di azioni aggiuntive hand-written -->
+		<!-- NUOVO MODULO IN SOLA LETTURA -->
+		<action name="ricevutaApe" class="it.csi.sicee.siceeweb.presentation.siceeweb.action.pdf.RicevutaApe">
+			<result name="downloadFile" type="stream">
+	    		<param name="contentType">${contentType}</param>
+		    	<param name="inputName">inputStream</param>		   
+		    	<param name="bufferSize">3072</param>
+		    	<param name="contentDisposition">${contentDisposition}</param>
+			</result>			
+			<result name="KO" type="chain">cpTransaz</result>
+		</action>
 		<!--PROTECTED REGION END-->
 
 	</package>

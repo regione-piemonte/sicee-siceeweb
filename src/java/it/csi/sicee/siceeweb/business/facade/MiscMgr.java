@@ -1696,6 +1696,9 @@ public class MiscMgr extends BaseMgr {
 		email.setDestinatario(this.getParametro(Constants.EMAIL_XML));
 		email.setHost(Constants.MAIL_HOST);
 		email.setPort(Constants.MAIL_PORT);
+		email.setIdEmail(Constants.MAIL_USER);
+		email.setPassword(Constants.MAIL_PWD);
+		
 		email.setMittente(this.getParametro(Constants.MAIL_MITT_XML));
 
 		email.setOggetto(this.creaOggettoEmailXml(att, cert));
@@ -1712,6 +1715,9 @@ public class MiscMgr extends BaseMgr {
 		email.setDestinatario(cert.getDtResidenza().getEmail());
 		email.setHost(Constants.MAIL_HOST);
 		email.setPort(Constants.MAIL_PORT);
+		email.setIdEmail(Constants.MAIL_USER);
+		email.setPassword(Constants.MAIL_PWD);
+		
 		email.setMittente(this.getParametro(Constants.MAIL_MITT_XML));
 
 		email.setOggetto(this.creaOggettoEmailXml(att, cert));
@@ -1782,6 +1788,9 @@ public class MiscMgr extends BaseMgr {
 		email.setDestinatario(this.getParametro(Constants.EMAIL_XML));
 		email.setHost(Constants.MAIL_HOST);
 		email.setPort(Constants.MAIL_PORT);
+		email.setIdEmail(Constants.MAIL_USER);
+		email.setPassword(Constants.MAIL_PWD);
+		
 		email.setMittente(this.getParametro(Constants.MAIL_MITT_XML));
 
 		email.setOggetto(this.creaOggettoEmailXmlNew(att, cert, numValidazione));
@@ -1818,6 +1827,9 @@ public class MiscMgr extends BaseMgr {
 			email.setDestinatario(cert.getDtResidenza().getEmail());
 			email.setHost(Constants.MAIL_HOST);
 			email.setPort(Constants.MAIL_PORT);
+			email.setIdEmail(Constants.MAIL_USER);
+			email.setPassword(Constants.MAIL_PWD);
+			
 			email.setMittente(this.getParametro(Constants.MAIL_MITT_XML));
 	
 			email.setOggetto(this.creaOggettoEmailXmlNew(att, cert, numValidazione));
@@ -1958,6 +1970,9 @@ public class MiscMgr extends BaseMgr {
 		email.setDestinatario(emailDest);
 		email.setHost(Constants.MAIL_HOST);
 		email.setPort(Constants.MAIL_PORT);
+		email.setIdEmail(Constants.MAIL_USER);
+		email.setPassword(Constants.MAIL_PWD);
+		
 		email.setMittente(this
 				.getParametro(Constants.MITTENTE_MAIL_SOSTITUZIONE));
 
@@ -2003,6 +2018,9 @@ public class MiscMgr extends BaseMgr {
 		email.setDestinatario(mailDest);
 		email.setHost(Constants.MAIL_HOST);
 		email.setPort(Constants.MAIL_PORT);
+		email.setIdEmail(Constants.MAIL_USER);
+		email.setPassword(Constants.MAIL_PWD);
+		
 
 		email.setMittente(this
 				.getParametro(Constants.MITTENTE_MAIL_VERIFICA));
@@ -2051,7 +2069,9 @@ public class MiscMgr extends BaseMgr {
 				email.setDestinatario("assistenza.energia@csi.it");
 				email.setHost(Constants.MAIL_HOST);
 				email.setPort(Constants.MAIL_PORT);
-
+				email.setIdEmail(Constants.MAIL_USER);
+				email.setPassword(Constants.MAIL_PWD);
+				
 				email.setMittente(this
 						.getParametro(Constants.MITTENTE_MAIL_VERIFICA));
 

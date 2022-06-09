@@ -298,6 +298,16 @@ public class CpCompilazApeAction extends AbstractCPAction<CpCompilazApeModel>
 	}
 
 	/**
+	 * Gestione dell'evento CLICKED sul widget [btnSalvaDataSopralluogo]
+	 */
+	@MethodProtection(level = "REJECT_SAME")
+	public String handleBtnSalvaDataSopralluogo_CLICKED() throws CommandExecutionException {
+
+		return handleEventInternal("compilazattestatiape", "cpcompilazape", "btnSalvaDataSopralluogo", "CLICKED");
+
+	}
+
+	/**
 	 * Gestione dell'evento CLICKED sul widget [btnEliminaFoto]
 	 */
 	@MethodProtection(level = "REJECT_SAME")
@@ -384,6 +394,16 @@ public class CpCompilazApeAction extends AbstractCPAction<CpCompilazApeModel>
 	public String handleBVerificaApe_CLICKED() throws CommandExecutionException {
 
 		return handleEventInternal("compilazattestatiape", "cpcompilazape", "bVerificaApe", "CLICKED");
+
+	}
+
+	/**
+	 * Gestione dell'evento CLICKED sul widget [bDocAggiuntiva]
+	 */
+	@MethodProtection(level = "REJECT_SAME")
+	public String handleBDocAggiuntiva_CLICKED() throws CommandExecutionException {
+
+		return handleEventInternal("compilazattestatiape", "cpcompilazape", "bDocAggiuntiva", "CLICKED");
 
 	}
 

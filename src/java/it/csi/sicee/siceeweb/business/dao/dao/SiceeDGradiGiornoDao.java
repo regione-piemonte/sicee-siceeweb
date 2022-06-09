@@ -104,4 +104,5 @@ public interface SiceeDGradiGiornoDao
 	 */
 	public SiceeDGradiGiorno findByPrimaryKey(SiceeDGradiGiornoPk pk) throws SiceeDGradiGiornoDaoException;
 
+	public SiceeDGradiGiorno findByZonaEComune(String idComune,String zona) throws SiceeDGradiGiornoDaoException;
 }

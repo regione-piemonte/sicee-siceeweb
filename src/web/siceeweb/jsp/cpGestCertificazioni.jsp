@@ -391,6 +391,26 @@
 	
 
 
+		
+<s:if test="isWidgetVisible('cpGestCertificazioni','bDocAggiuntiva')" >
+
+	
+
+
+
+<!-- widget bDocAggiuntiva -->
+<s:submit name="widg_bDocAggiuntiva" id="widg_bDocAggiuntiva" method="handleBDocAggiuntiva_CLICKED"
+	key="cpGestCertificazioni.bDocAggiuntiva.label" cssClass="buttonWidget"
+	disabled="isWidgetDisabled('cpGestCertificazioni','bDocAggiuntiva')" />
+
+	
+
+
+</s:if>
+
+	
+
+
 	</div>
 	
 	

@@ -69,11 +69,11 @@ public class XmlBeanUtils {
 	}
 
     public static String readByteArray(byte[] input) throws IOException {
-    	return new String(input, Constants.MODOL_ENCODING);
+    	return new String(input, Constants.ENCODING_UTF_8);
     }
 
     public static byte[] readString(String input) throws IOException {
-    	return input.getBytes(Constants.MODOL_ENCODING);
+    	return input.getBytes(Constants.ENCODING_UTF_8);
     }
     
 }

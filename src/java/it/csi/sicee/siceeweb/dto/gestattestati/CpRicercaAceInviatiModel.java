@@ -192,6 +192,24 @@ public class CpRicercaAceInviatiModel extends BaseSessionAwareDTO {
 		return (java.lang.String) (getSession().get("appDatacodAttestatoSelezionato"));
 	}
 
+	/**
+	 * imposta il valore dell' ApplicationData 'appDatapaginaProvenienza'
+	 * @param value
+	 * @generated
+	 */
+
+	public void setAppDatapaginaProvenienza(java.lang.String value) {
+		getSession().put("appDatapaginaProvenienza", value);
+	}
+
+	/**
+	 * legge il valore dell' ApplicationData 'appDatapaginaProvenienza'
+	 * @generated
+	 */
+	public java.lang.String getAppDatapaginaProvenienza() {
+		return (java.lang.String) (getSession().get("appDatapaginaProvenienza"));
+	}
+
 	////////////////////////////////////////////////////////////////////
 	/// campi per widget semplici
 	////////////////////////////////////////////////////////////////////

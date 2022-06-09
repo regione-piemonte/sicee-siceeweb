@@ -11,6 +11,8 @@
 	<constant name="struts.custom.i18n.resources" value="globalMessages
 			,it/csi/sicee/siceeweb/presentation/siceeweb/action/gestattestati/CpPrenotazAttestatiAction
 			,it/csi/sicee/siceeweb/presentation/siceeweb/action/gestattestati/CpGestCertificazioniAction
+			,it/csi/sicee/siceeweb/presentation/siceeweb/action/gestattestati/CpDocAggiuntivaAction
+			,it/csi/sicee/siceeweb/presentation/siceeweb/action/gestattestati/CpUploadDocAggiuntivaAction
 			,it/csi/sicee/siceeweb/presentation/siceeweb/action/gestattestati/CpRicercaAceInviatiAction
 			,it/csi/sicee/siceeweb/presentation/siceeweb/action/gestattestati/CpRisultatoRicercaAceAction
 			,it/csi/sicee/siceeweb/presentation/siceeweb/action/gestattestati/CpGestInvioCertificatoAction
@@ -23,6 +25,7 @@
 			,it/csi/sicee/siceeweb/presentation/siceeweb/action/compilazattestati/CpImportaXmlAction
 			,it/csi/sicee/siceeweb/presentation/siceeweb/action/compilazattestatiape/CpCompilazApeAction
 			,it/csi/sicee/siceeweb/presentation/siceeweb/action/compilazattestatiape/CpImpXml2015Action
+			,it/csi/sicee/siceeweb/presentation/siceeweb/action/compilazattestatiape/CpZonaClimaAction
 			,it/csi/sicee/siceeweb/presentation/siceeweb/action/gestcertificatore/CpTransazAction
 			,it/csi/sicee/siceeweb/presentation/siceeweb/action/gestcertificatore/CpRegistrazAction
 			,it/csi/sicee/siceeweb/presentation/siceeweb/action/gestcertificatore/CpDatiCertificatoreAction

@@ -511,6 +511,56 @@ public class CPBECpTransaz {
 	////////////////////////////////////////////////////////////////////////////////////
 
 	/**
+	 * Implementazione del metodo gestisciRicevutaApe definito in un ExecCommand del
+	 * ContentPanel cpTransaz
+	 */
+	public ExecResults gestisciRicevutaApe(
+
+			it.csi.sicee.siceeweb.dto.gestcertificatore.CpTransazModel theModel
+
+	) throws BEException {
+		/// definizione costanti di outcome
+		final String GESTISCIRICEVUTAAPE_OUTCOME_CODE__OK = //NOSONAR  Reason:EIAS
+				"OK"; //NOSONAR  Reason:EIAS
+		final String GESTISCIRICEVUTAAPE_OUTCOME_CODE__KO = //NOSONAR  Reason:EIAS
+				"KO"; //NOSONAR  Reason:EIAS
+		///
+		try {
+			ExecResults result = new ExecResults();
+			/*PROTECTED REGION ID(R-63062510) ENABLED START*/
+			// inserire qui la logica applicativa da eseguire:
+
+			Long idTransazione = theModel.getAppDataidTransazione();
+			log.info("idTransazione: " + idTransazione);
+			if (idTransazione != null) {
+
+				SiceeTCredito2018 credito2018 = getTransazioneCreditoMgr().getCreditoById(idTransazione);
+				log.info("Credito2018: " + credito2018.toString());
+				if (credito2018.getFkTipoOp2018().equals(Constants.ID_TIPO_OP_GENERA_APE)) {
+					log.info("Control OK INIZIO");
+					result.setResultCode(GESTISCIRICEVUTAAPE_OUTCOME_CODE__OK);
+					log.info("Control OK FINE");
+				} else {
+					result.setResultCode(GESTISCIRICEVUTAAPE_OUTCOME_CODE__KO);
+					result.getGlobalErrors().add("La voce selezionata non si riferisce ad un APE");
+				}
+			}
+
+			// modifica degli attributi del model (che verranno propagati allo strato
+			// di presentation). si puo' agire anche direttamente sull'attributo "session".
+
+			result.setModel(theModel);
+			return result;
+			/*PROTECTED REGION END*/
+		} catch (Exception e) {
+			log.error("[BackEndFacade::gestisciRicevutaApe] Errore occorso nell'esecuzione del metodo:" + e, e);
+			throw new BEException("Errore occorso nell'esecuzione del metodo:" + e, e);
+		}
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////
+
+	/**
 	 * Implementazione del metodo generaApe definito in un ExecCommand del
 	 * ContentPanel cpTransaz
 	 */
@@ -564,6 +614,8 @@ public class CPBECpTransaz {
 								BaseMgr.convertToString(creditoDisp), BaseMgr.convertToString(impTot)));
 
 					} else {
+
+						gestCredito.setCreditoDisponibile(Converter.convertToFloat(creditoDisp));
 
 						getCertificatoMgr().generaACE(certificatore.getIdCertificatore(), gestCredito);
 

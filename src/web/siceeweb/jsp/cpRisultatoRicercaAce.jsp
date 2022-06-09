@@ -426,6 +426,26 @@ decorator="it.csi.sicee.siceeweb.presentation.decorator.gestattestati.CpRisultat
 	
 
 
+		
+<s:if test="isWidgetVisible('cpRisultatoRicercaAce','bDocAggiuntiva')" >
+
+	
+
+
+
+<!-- widget bDocAggiuntiva -->
+<s:submit name="widg_bDocAggiuntiva" id="widg_bDocAggiuntiva" method="handleBDocAggiuntiva_CLICKED"
+	key="cpRisultatoRicercaAce.bDocAggiuntiva.label" cssClass="buttonWidget"
+	disabled="isWidgetDisabled('cpRisultatoRicercaAce','bDocAggiuntiva')" />
+
+	
+
+
+</s:if>
+
+	
+
+
 	</div>
 	
 	

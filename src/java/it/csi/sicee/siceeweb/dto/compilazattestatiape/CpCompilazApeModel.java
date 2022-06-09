@@ -690,6 +690,44 @@ public class CpCompilazApeModel extends BaseSessionAwareDTO {
 		return (java.lang.String) (getSession().get("appDatadichiarazioneAceSostitutivo"));
 	}
 
+	/**
+	 * imposta il valore dell' ApplicationData 'appDatalistDocumentazioneAggiuntiva'
+	 * @param value
+	 * @generated
+	 */
+
+	public void setAppDatalistDocumentazioneAggiuntiva(
+			java.util.ArrayList<it.csi.sicee.siceeweb.dto.ace.DocumentoAggiuntivo> value) {
+		getSession().put("appDatalistDocumentazioneAggiuntiva", value);
+	}
+
+	/**
+	 * legge il valore dell' ApplicationData 'appDatalistDocumentazioneAggiuntiva'
+	 * @generated
+	 */
+	public java.util.ArrayList<it.csi.sicee.siceeweb.dto.ace.DocumentoAggiuntivo> getAppDatalistDocumentazioneAggiuntiva() {
+		return (java.util.ArrayList<it.csi.sicee.siceeweb.dto.ace.DocumentoAggiuntivo>) (getSession()
+				.get("appDatalistDocumentazioneAggiuntiva"));
+	}
+
+	/**
+	 * imposta il valore dell' ApplicationData 'appDatapaginaProvenienza'
+	 * @param value
+	 * @generated
+	 */
+
+	public void setAppDatapaginaProvenienza(java.lang.String value) {
+		getSession().put("appDatapaginaProvenienza", value);
+	}
+
+	/**
+	 * legge il valore dell' ApplicationData 'appDatapaginaProvenienza'
+	 * @generated
+	 */
+	public java.lang.String getAppDatapaginaProvenienza() {
+		return (java.lang.String) (getSession().get("appDatapaginaProvenienza"));
+	}
+
 	////////////////////////////////////////////////////////////////////
 	/// campi per widget semplici
 	////////////////////////////////////////////////////////////////////

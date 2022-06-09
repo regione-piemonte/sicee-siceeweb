@@ -14,8 +14,13 @@
 	"widgetsShown":["menu","fileCarica","btnIndietro","btnConferma","btnCaricaXmlRO"],
 	"widgetsHidden":["btnCaricaXml"]
 }
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.JumpCommand" ,
+	"name": "cpZonaClima", 
+	"pushCurrent":false
+}
 ],
-	"esiti":["OK","KO","OK_OLD"],
+	"esiti":["OK","KO","OK_OLD","OK_ZONA_CLIMA"],
 	"nomeMetodo":"caricaXmlReadOnly",
 	"appDataToStore":[]
 }

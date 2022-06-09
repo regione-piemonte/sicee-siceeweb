@@ -304,6 +304,16 @@ public class CpTransazAction extends AbstractCPAction<CpTransazModel>
 	}
 
 	/**
+	 * Gestione dell'evento CLICKED sul widget [bRicevutaApe]
+	 */
+	@MethodProtection(level = "REJECT_SAME")
+	public String handleBRicevutaApe_CLICKED() throws CommandExecutionException {
+
+		return handleEventInternal("gestcertificatore", "cptransaz", "bRicevutaApe", "CLICKED");
+
+	}
+
+	/**
 	 * Gestione dell'evento CLICKED sul widget [bConfGeneraApe]
 	 */
 	@MethodProtection(level = "REJECT_SAME")

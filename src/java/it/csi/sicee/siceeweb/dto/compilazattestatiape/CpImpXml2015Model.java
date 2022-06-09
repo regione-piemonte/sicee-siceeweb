@@ -178,6 +178,60 @@ public class CpImpXml2015Model extends BaseSessionAwareDTO {
 		return (java.lang.String) (getSession().get("appDatamsgGenerico"));
 	}
 
+	/**
+	 * imposta il valore dell' ApplicationData 'appDataidComuneZonaClima'
+	 * @param value
+	 * @generated
+	 */
+
+	public void setAppDataidComuneZonaClima(java.lang.String value) {
+		getSession().put("appDataidComuneZonaClima", value);
+	}
+
+	/**
+	 * legge il valore dell' ApplicationData 'appDataidComuneZonaClima'
+	 * @generated
+	 */
+	public java.lang.String getAppDataidComuneZonaClima() {
+		return (java.lang.String) (getSession().get("appDataidComuneZonaClima"));
+	}
+
+	/**
+	 * imposta il valore dell' ApplicationData 'appDatalistZoneClima'
+	 * @param value
+	 * @generated
+	 */
+
+	public void setAppDatalistZoneClima(java.util.ArrayList<it.csi.sicee.siceeweb.dto.LabelValue> value) {
+		getSession().put("appDatalistZoneClima", value);
+	}
+
+	/**
+	 * legge il valore dell' ApplicationData 'appDatalistZoneClima'
+	 * @generated
+	 */
+	public java.util.ArrayList<it.csi.sicee.siceeweb.dto.LabelValue> getAppDatalistZoneClima() {
+		return (java.util.ArrayList<it.csi.sicee.siceeweb.dto.LabelValue>) (getSession().get("appDatalistZoneClima"));
+	}
+
+	/**
+	 * imposta il valore dell' ApplicationData 'appDatapaginaProvenienza'
+	 * @param value
+	 * @generated
+	 */
+
+	public void setAppDatapaginaProvenienza(java.lang.String value) {
+		getSession().put("appDatapaginaProvenienza", value);
+	}
+
+	/**
+	 * legge il valore dell' ApplicationData 'appDatapaginaProvenienza'
+	 * @generated
+	 */
+	public java.lang.String getAppDatapaginaProvenienza() {
+		return (java.lang.String) (getSession().get("appDatapaginaProvenienza"));
+	}
+
 	////////////////////////////////////////////////////////////////////
 	/// campi per widget semplici
 	////////////////////////////////////////////////////////////////////

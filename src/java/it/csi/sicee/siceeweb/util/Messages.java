@@ -55,5 +55,11 @@ public class Messages {
 	public final static String ERROR_EMAIL_FORMAT= "indirizzo e-mail formalmente non corretto";
 
 	public final static String ERROR_RANGE_DATE_NON_SEQUENZA = "Il range indicato non e' in sequenza";
+	
+	public static final String ERROR_DATA_SOPRALLUOGO_NON_VALIDA = "Indicare una data di sopralluogo valida";
+	public static final String ERROR_DATA_SOPRALLUOGO_MANCANTE = "Occorre inserire la data in cui è avvenuto il sopralluogo";
+	public static final String ERROR_CARICAMENTO_FOTO = "Errore durante il caricamento della foto";
+	public static final String ERROR_ELIMINAZIONE_FOTO = "Errore durante l'eliminazione della foto";
+	public static final String ERROR_VALIDAZIONE_FOTO = "Errore durante la validazione della foto";
 
 }

@@ -19,7 +19,9 @@ import java.io.OutputStream;
 import java.io.Serializable;
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
+import javax.mail.Authenticator;
 import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
@@ -59,10 +61,26 @@ public class MailSender implements Serializable {
 		
 		try {
         java.util.Properties props = new java.util.Properties();        
-        props.put("mail.smtp.host", emailVo.getHost());
-        props.put("mail.smtp.port", emailVo.getPort());
-        Session session = Session.getDefaultInstance(props, null);
+//        props.put("mail.smtp.host", emailVo.getHost());
+//        props.put("mail.smtp.port", emailVo.getPort());
+//        Session session = Session.getDefaultInstance(props, null);
 
+		props.put("mail.transport.protocol", "smtp");
+		props.put("mail.smtp.host", emailVo.getHost());
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.port", emailVo.getPort());
+		props.put("mail.smtp.starttls.enable", "true");
+
+		//create Authenticator object to pass in Session.getInstance argument
+		Authenticator auth = new Authenticator() {
+			//override the getPasswordAuthentication method
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(emailVo.getIdEmail(), emailVo.getPassword());
+			}
+		};
+		
+		Session session=Session.getInstance(props,auth);
+		
         // Construct the message
         Message msg = new MimeMessage(session);
         msg.setFrom(new InternetAddress(emailVo.getMittente()));
@@ -135,7 +153,6 @@ public class MailSender implements Serializable {
 		}
                 
 	}
-	
 	
 	
 	/**

@@ -197,6 +197,16 @@ public class CpVisuraCITAction extends AbstractCPAction<CpVisuraCITModel>
 	}
 
 	/**
+	 * Gestione dell'evento CLICKED sul widget [vRicercaIndirizzo]
+	 */
+	@MethodProtection(level = "REJECT_SAME")
+	public String handleVRicercaIndirizzo_CLICKED() throws CommandExecutionException {
+
+		return handleEventInternal("main", "cpvisuracit", "vRicercaIndirizzo", "CLICKED");
+
+	}
+
+	/**
 	 * Gestione dell'evento CLICKED sul widget [bDettImpianto]
 	 */
 	@MethodProtection(level = "REJECT_SAME")

@@ -11,6 +11,12 @@
 		<property name="CPBECpGestCertificazioni">
 			<ref bean="CPBECpGestCertificazioni"/>
 		</property>
+		<property name="CPBECpDocAggiuntiva">
+			<ref bean="CPBECpDocAggiuntiva"/>
+		</property>
+		<property name="CPBECpUploadDocAggiuntiva">
+			<ref bean="CPBECpUploadDocAggiuntiva"/>
+		</property>
 		<property name="CPBECpRicercaAceInviati">
 			<ref bean="CPBECpRicercaAceInviati"/>
 		</property>
@@ -46,6 +52,9 @@
 		</property>
 		<property name="CPBECpImpXml2015">
 			<ref bean="CPBECpImpXml2015"/>
+		</property>
+		<property name="CPBECpZonaClima">
+			<ref bean="CPBECpZonaClima"/>
 		</property>
 		<property name="CPBECpTransaz">
 			<ref bean="CPBECpTransaz"/>
@@ -129,6 +138,10 @@
 	</bean>
 	<bean id="CPBECpGestCertificazioni" class="it.csi.sicee.siceeweb.business.gestattestati.CPBECpGestCertificazioni">
 	</bean>
+	<bean id="CPBECpDocAggiuntiva" class="it.csi.sicee.siceeweb.business.gestattestati.CPBECpDocAggiuntiva">
+	</bean>
+	<bean id="CPBECpUploadDocAggiuntiva" class="it.csi.sicee.siceeweb.business.gestattestati.CPBECpUploadDocAggiuntiva">
+	</bean>
 	<bean id="CPBECpRicercaAceInviati" class="it.csi.sicee.siceeweb.business.gestattestati.CPBECpRicercaAceInviati">
 	</bean>
 	<bean id="CPBECpRisultatoRicercaAce" class="it.csi.sicee.siceeweb.business.gestattestati.CPBECpRisultatoRicercaAce">
@@ -152,6 +165,8 @@
 	<bean id="CPBECpCompilazApe" class="it.csi.sicee.siceeweb.business.compilazattestatiape.CPBECpCompilazApe">
 	</bean>
 	<bean id="CPBECpImpXml2015" class="it.csi.sicee.siceeweb.business.compilazattestatiape.CPBECpImpXml2015">
+	</bean>
+	<bean id="CPBECpZonaClima" class="it.csi.sicee.siceeweb.business.compilazattestatiape.CPBECpZonaClima">
 	</bean>
 	<bean id="CPBECpTransaz" class="it.csi.sicee.siceeweb.business.gestcertificatore.CPBECpTransaz">
 	</bean>
@@ -336,6 +351,10 @@
 		
 		<property name="siceeTCredito2018Dao">
 			<ref bean="SiceeTCredito2018Dao"/>
+		</property>
+
+		<property name="siceeLHashXmlImportDao">
+			<ref bean="SiceeLHashXmlImportDao"/>
 		</property>
 		
 	</bean>

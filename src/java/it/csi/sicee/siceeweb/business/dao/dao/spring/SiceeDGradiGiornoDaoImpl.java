@@ -197,4 +197,16 @@ public class SiceeDGradiGiornoDaoImpl extends AbstractDAO implements Parameteriz
 		return findByPrimaryKey( pk.getIdComune() );
 	}
 
+	public SiceeDGradiGiorno findByZonaEComune(String idComune,String zona) throws SiceeDGradiGiornoDaoException
+	{
+		try {
+			List<SiceeDGradiGiorno> list = jdbcTemplate.query("SELECT COMUNE, ZONA_CLIMATICA, GRADI_GIORNO, ID_COMUNE FROM " + getTableName() + " WHERE ID_COMUNE = ? AND ZONA_CLIMATICA = ?", this,idComune,zona);
+			return list.size() == 0 ? null : list.get(0);
+		}
+		catch (Exception e) {
+			throw new SiceeDGradiGiornoDaoException("Query failed", e);
+		}
+
+	}
+
 }

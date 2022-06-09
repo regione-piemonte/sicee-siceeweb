@@ -36,6 +36,36 @@ function initStdEnrichments4CpVisuraCIT() {
 			 	null);
 		};
 	uiEnricherMgr.registerEnrichment(contentPanelName, "p_wpVisura", addBasicEnrichmentToTfRicPdr);
+	/// arricchimento di base per guigen::TextField [tfRicIstat]
+	var addBasicEnrichmentToTfRicIstat =
+		function(){
+			uiNRichLib.basicTextFieldNRich(
+				'widg_tfRicIstat',
+			 	false,
+			 	'it.csi.sicee.siceeweb.dto.type.UDTPositiveInteger',
+			 	null);
+		};
+	uiEnricherMgr.registerEnrichment(contentPanelName, "p_wpVisuraIndirizzo", addBasicEnrichmentToTfRicIstat);
+	/// arricchimento di base per guigen::TextField [tfRicIndirizzo]
+	var addBasicEnrichmentToTfRicIndirizzo =
+		function(){
+			uiNRichLib.basicTextFieldNRich(
+				'widg_tfRicIndirizzo',
+			 	false,
+			 	'it.csi.sicee.siceeweb.dto.type.UDTPositiveInteger',
+			 	null);
+		};
+	uiEnricherMgr.registerEnrichment(contentPanelName, "p_wpVisuraIndirizzo", addBasicEnrichmentToTfRicIndirizzo);
+	/// arricchimento di base per guigen::TextField [tfRicCivico]
+	var addBasicEnrichmentToTfRicCivico =
+		function(){
+			uiNRichLib.basicTextFieldNRich(
+				'widg_tfRicCivico',
+			 	false,
+			 	'it.csi.sicee.siceeweb.dto.type.UDTPositiveInteger',
+			 	null);
+		};
+	uiEnricherMgr.registerEnrichment(contentPanelName, "p_wpVisuraIndirizzo", addBasicEnrichmentToTfRicCivico);
 
 
 }
@@ -72,6 +102,9 @@ function initUIStructCpVisuraCIT(){
             }
 ,            {
               name: "p_wpVisura", panels: []
+            }
+,            {
+              name: "p_wpVisuraIndirizzo", panels: []
             }
 ,            {
               name: "p_mpElencoImp", panels: [

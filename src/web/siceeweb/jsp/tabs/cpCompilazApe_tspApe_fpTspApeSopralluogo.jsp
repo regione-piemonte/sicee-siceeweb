@@ -28,6 +28,166 @@
 
 			
 	
+	<div id="p_wpDataSopralluogo" class="widgetsPanelBlock"><!-- startFragment:p_wpDataSopralluogo -->
+	
+	
+
+<div class="widgetsPanel" id="wpDataSopralluogo">
+	
+	<customtag:widgetsPanel id="wpDataSopralluogoTbl" columns="6" tableStyleClass="formTable"
+		summary="" 
+		>
+	
+
+	
+	
+<s:if test="isWidgetVisible('cpCompilazApe','txtObblDataSopralluogo')" >
+
+	
+<customtag:widgetsPanelColumn  colSpan="2" position="first" >
+
+
+<!-- widget txtObblDataSopralluogo -->
+<s:text name="cpCompilazApe.txtObblDataSopralluogo.statictext.label" />
+
+	
+</customtag:widgetsPanelColumn>
+
+</s:if>
+
+	
+<s:else>
+	<customtag:widgetsPanelColumn textValue="" colSpan="2" position="first"/>
+</s:else>
+
+
+	
+<s:if test="isWidgetVisible('cpCompilazApe','wpDataSopralluogo_1_2_fictitious_')" >
+
+	
+<customtag:widgetsPanelColumn  colSpan="2"  >
+
+
+<!-- widget wpDataSopralluogo_1_2_fictitious_ -->
+
+
+	
+</customtag:widgetsPanelColumn>
+
+</s:if>
+
+	
+<s:else>
+	<customtag:widgetsPanelColumn textValue="" colSpan="2" />
+</s:else>
+
+
+	
+<s:if test="isWidgetVisible('cpCompilazApe','wpDataSopralluogo_1_3_fictitious_')" >
+
+	
+<customtag:widgetsPanelColumn  colSpan="2" position="last" >
+
+
+<!-- widget wpDataSopralluogo_1_3_fictitious_ -->
+
+
+	
+</customtag:widgetsPanelColumn>
+
+</s:if>
+
+	
+<s:else>
+	<customtag:widgetsPanelColumn textValue="" colSpan="2" position="last"/>
+</s:else>
+
+
+	
+<s:if test="isWidgetVisible('cpCompilazApe','cDataSopralluogo')" >
+
+	
+<customtag:widgetsPanelColumn   labelField="true" textLabel="%{getText('cpCompilazApe.cDataSopralluogo.label')}" labelFor="widg_cDataSopralluogo" errorFor="appDatacertificato.altreInfo.sopralluoghi.data" labelId="cDataSopralluogoLbl"
+	position="first"  >
+
+
+<!-- widget cDataSopralluogo -->
+<s:textfield 
+	
+	
+	name="appDatacertificato.altreInfo.sopralluoghi.data" id="widg_cDataSopralluogo"
+	disabled="isWidgetDisabled('cpCompilazApe','cDataSopralluogo')"
+	size="10" maxlength="10" 
+	cssClass="calendar"
+/> <div class="infoCalendar"></div>
+
+	
+</customtag:widgetsPanelColumn>
+
+</s:if>
+
+	
+<s:else>
+	<customtag:widgetsPanelColumn textValue="" colSpan="2" position="first"/>
+</s:else>
+
+
+	
+<s:if test="isWidgetVisible('cpCompilazApe','btnSalvaDataSopralluogo')" >
+
+	
+<customtag:widgetsPanelColumn colSpan="2" >
+
+
+<!-- widget btnSalvaDataSopralluogo -->
+<s:submit name="widg_btnSalvaDataSopralluogo" id="widg_btnSalvaDataSopralluogo" method="handleBtnSalvaDataSopralluogo_CLICKED"
+	key="cpCompilazApe.btnSalvaDataSopralluogo.label" cssClass="buttonWidget"
+	disabled="isWidgetDisabled('cpCompilazApe','btnSalvaDataSopralluogo')" />
+
+	
+</customtag:widgetsPanelColumn>
+
+</s:if>
+
+	
+<s:else>
+	<customtag:widgetsPanelColumn textValue="" colSpan="2" />
+</s:else>
+
+
+	
+<s:if test="isWidgetVisible('cpCompilazApe','wpDataSopralluogo_2_3_fictitious_')" >
+
+	
+<customtag:widgetsPanelColumn  colSpan="2" position="last" >
+
+
+<!-- widget wpDataSopralluogo_2_3_fictitious_ -->
+
+
+	
+</customtag:widgetsPanelColumn>
+
+</s:if>
+
+	
+<s:else>
+	<customtag:widgetsPanelColumn textValue="" colSpan="2" position="last"/>
+</s:else>
+
+
+
+	
+	
+	
+	</customtag:widgetsPanel>
+	
+</div>
+
+	<!-- endFragment:p_wpDataSopralluogo --></div>
+
+			
+	
 	
 <s:include value="/jsp/userpanels/cpCompilazApe_udPreview.jsp"></s:include>
 

@@ -228,6 +228,16 @@ public class CpRisultatoRicercaAceAction extends AbstractCPAction<CpRisultatoRic
 
 	}
 
+	/**
+	 * Gestione dell'evento CLICKED sul widget [bDocAggiuntiva]
+	 */
+	@MethodProtection(level = "REJECT_SAME")
+	public String handleBDocAggiuntiva_CLICKED() throws CommandExecutionException {
+
+		return handleEventInternal("gestattestati", "cprisultatoricercaace", "bDocAggiuntiva", "CLICKED");
+
+	}
+
 	//////////////////////////////////////////////////////////////////////////////////
 	/// metodo di data providing sull'intero ContentPanel
 	/// metodo: provide_CPDATA

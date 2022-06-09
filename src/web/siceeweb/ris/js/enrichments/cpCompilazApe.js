@@ -254,6 +254,12 @@ function initStdEnrichments4CpCompilazApe() {
 			 	null);
 		};
 	uiEnricherMgr.registerEnrichment(contentPanelName, "p_wpDatiCoCertificatore", addBasicEnrichmentToTfNumMatricolaCoCert);
+	/// arricchimento per guigen::Calendar [cDataSopralluogo]: aggiunta datepicker
+	var addDateToCDataSopralluogo = function(){
+		uiNRichLib.addDatePickerNRich("widg_cDataSopralluogo", 
+		false, false, "", false);
+	};
+	uiEnricherMgr.registerEnrichment(contentPanelName, "p_wpDataSopralluogo", addDateToCDataSopralluogo);
 
 
 
@@ -327,6 +333,9 @@ function initUIStructCpCompilazApe(){
               {
                 name: "p_pErrSopralluogo", panels: [
                 ]
+              }
+,              {
+                name: "p_wpDataSopralluogo", panels: []
               }
 ,              {
                 name: "p_udPreview", panels: [

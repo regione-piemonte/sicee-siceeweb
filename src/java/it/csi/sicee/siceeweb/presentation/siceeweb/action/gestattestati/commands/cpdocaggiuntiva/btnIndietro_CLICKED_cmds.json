@@ -1,0 +1,8 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.SequenceCommand" ,
+	"actions": [{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.JumpCommand" ,
+	"name": "cpDocAggiuntiva", 
+	"pushCurrent":false
+}
+] 
+}

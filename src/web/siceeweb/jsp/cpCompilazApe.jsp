@@ -335,6 +335,26 @@
 	
 
 
+		
+<s:if test="isWidgetVisible('cpCompilazApe','bDocAggiuntiva')" >
+
+	
+
+
+
+<!-- widget bDocAggiuntiva -->
+<s:submit name="widg_bDocAggiuntiva" id="widg_bDocAggiuntiva" method="handleBDocAggiuntiva_CLICKED"
+	key="cpCompilazApe.bDocAggiuntiva.label" cssClass="buttonWidget"
+	disabled="isWidgetDisabled('cpCompilazApe','bDocAggiuntiva')" />
+
+	
+
+
+</s:if>
+
+	
+
+
 	</div>
 	
 	

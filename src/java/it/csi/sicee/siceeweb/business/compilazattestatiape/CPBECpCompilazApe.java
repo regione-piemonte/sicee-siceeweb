@@ -39,6 +39,7 @@ import it.csi.sicee.siceeweb.business.dao.dto.SiceeDOggettoApe2015;
 import it.csi.sicee.siceeweb.business.dao.dto.SiceeTCertificatore;
 import it.csi.sicee.siceeweb.business.dao.exceptions.SiceeDGradiGiornoDaoException;
 import it.csi.sicee.siceeweb.dto.compilazattestatiape.CpCompilazApeModel;
+import it.csi.sicee.siceeweb.dto.type.UDTDateValid;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
@@ -170,6 +171,12 @@ public class CPBECpCompilazApe {
 
 	// ApplicationData: [dichiarazioneAceSostitutivo, scope:USER_SESSION]
 	public static final String APPDATA_DICHIARAZIONEACESOSTITUTIVO_CODE = "appDatadichiarazioneAceSostitutivo";
+
+	// ApplicationData: [listDocumentazioneAggiuntiva, scope:USER_SESSION]
+	public static final String APPDATA_LISTDOCUMENTAZIONEAGGIUNTIVA_CODE = "appDatalistDocumentazioneAggiuntiva";
+
+	// ApplicationData: [paginaProvenienza, scope:USER_SESSION]
+	public static final String APPDATA_PAGINAPROVENIENZA_CODE = "appDatapaginaProvenienza";
 
 	//////////////////////////////////////////////////////////////////////////////
 	/// Metodi associati alla U.I.
@@ -920,6 +927,58 @@ public class CPBECpCompilazApe {
 	////////////////////////////////////////////////////////////////////////////////////
 
 	/**
+	 * Implementazione del metodo bDtSalvaDataSopralluogo definito in un ExecCommand del
+	 * ContentPanel cpCompilazApe
+	 */
+	public ExecResults bDtSalvaDataSopralluogo(
+
+			it.csi.sicee.siceeweb.dto.compilazattestatiape.CpCompilazApeModel theModel
+
+	) throws BEException {
+		/// definizione costanti di outcome
+		final String BDTSALVADATASOPRALLUOGO_OUTCOME_CODE__OK = //NOSONAR  Reason:EIAS
+				"OK"; //NOSONAR  Reason:EIAS
+		final String BDTSALVADATASOPRALLUOGO_OUTCOME_CODE__KO = //NOSONAR  Reason:EIAS
+				"KO"; //NOSONAR  Reason:EIAS
+		///
+		try {
+			ExecResults result = new ExecResults();
+			/*PROTECTED REGION ID(R-708864922) ENABLED START*/
+			// inserire qui la logica applicativa da eseguire:
+			DatiAttestato att = theModel.getAppDatacertificato();
+			DtAltreInfo altreInfo = att.getAltreInfo();
+			DatiCertificatore cert = theModel.getAppDatacertificatore();
+
+			if (!isVisibleState(theModel)
+					&& checkIsValidDataSopralluogo(altreInfo.getSopralluoghi().getData(), result)) {
+
+				getCertificatoMgr().aggiornaDatiGenerali(cert, att, recuperaDescIndirizzoTope(theModel));
+
+				result.getGlobalMessages().add(Messages.INFO_SALVATAGGIO_CORRETTO);
+
+				result.setResultCode(BDTSALVADATASOPRALLUOGO_OUTCOME_CODE__OK);
+
+			} else {
+				result.setResultCode(BDTSALVADATASOPRALLUOGO_OUTCOME_CODE__KO);
+
+			}
+			// impostazione del result code 
+
+			// modifica degli attributi del model (che verranno propagati allo strato
+			// di presentation). si puo' agire anche direttamente sull'attributo "session".
+
+			result.setModel(theModel);
+			return result;
+			/*PROTECTED REGION END*/
+		} catch (Exception e) {
+			log.error("[BackEndFacade::bDtSalvaDataSopralluogo] Errore occorso nell'esecuzione del metodo:" + e, e);
+			throw new BEException("Errore occorso nell'esecuzione del metodo:" + e, e);
+		}
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////
+
+	/**
 	 * Implementazione del metodo bDtFotoElimina definito in un ExecCommand del
 	 * ContentPanel cpCompilazApe
 	 */
@@ -942,45 +1001,49 @@ public class CPBECpCompilazApe {
 				result.getGlobalErrors().add("E' necessario selezionare la foto da eliminare");
 			} else {
 				// Eliminazione documento da index e record da SICEE_T_FOTO_2015
+				try {
+					getCertificatoMgr().eliminaFotoDbIndexByUid(theModel.getAppDatafotoSelezionata());
 
-				getCertificatoMgr().eliminaFotoDbIndexByUid(theModel.getAppDatafotoSelezionata());
+					/*
+					getCertificatoMgr().getSiceeTFoto2015Dao()
+							.deleteByIdentificFoto(
+									theModel.getAppDatafotoSelezionata());
+					getCertificatoMgr().eliminaFotoByUid(
+							theModel.getAppDatafotoSelezionata());
+					 */
 
-				/*
-				getCertificatoMgr().getSiceeTFoto2015Dao()
-						.deleteByIdentificFoto(
-								theModel.getAppDatafotoSelezionata());
-				getCertificatoMgr().eliminaFotoByUid(
-						theModel.getAppDatafotoSelezionata());
-				 */
-
-				// Eliminazione istanza dagli appData
-				DatiAttestato att = theModel.getAppDatacertificato();
-				ArrayList<DtFoto> dtFotoList = att.getDatiAnagraficiImm().getDtCatastali().getDtFoto();
-				ArrayList<DtFoto> dtFotoListBuild = new ArrayList<DtFoto>();
-				for (DtFoto dtf : dtFotoList) {
-					if (!dtf.getUidFoto().equals(theModel.getAppDatafotoSelezionata())) {
-						dtFotoListBuild.add(dtf);
+					// Eliminazione istanza dagli appData
+					DatiAttestato att = theModel.getAppDatacertificato();
+					ArrayList<DtFoto> dtFotoList = att.getDatiAnagraficiImm().getDtCatastali().getDtFoto();
+					ArrayList<DtFoto> dtFotoListBuild = new ArrayList<DtFoto>();
+					for (DtFoto dtf : dtFotoList) {
+						if (!dtf.getUidFoto().equals(theModel.getAppDatafotoSelezionata())) {
+							dtFotoListBuild.add(dtf);
+						}
 					}
-				}
 
-				if (dtFotoListBuild.size() < dtFotoList.size()) {
-					// se la dimensione dell'ArrayList costruito è minore della dimensione di quello originario
-					// ho eliminato una foto secondaria e aggiorno gli appData delle immagini secondarie
-					att.getDatiAnagraficiImm().getDtCatastali().setDtFoto(dtFotoListBuild);
-				} else {
-					// se la dimensione dell'ArrayList costruito è uguale alla dimensione di quello originario
-					// ho eliminato la foto principale e aggiorno gli appData dell'immagine principale
-					att.getDatiAnagraficiImm().getDtCatastali().setIdFoto(null);
-					att.getDatiAnagraficiImm().getDtCatastali().setUidFoto(null);
-					att.getDatiAnagraficiImm().getDtCatastali().setDescTipoFoto(null);
-					att.getDatiAnagraficiImm().getDtCatastali().setNomeFoto(null);
-					att.getDatiAnagraficiImm().getDtCatastali().setDataUpFoto(null);
-					att.getDatiAnagraficiImm().getDtCatastali().setPreviewBase64(null);
-				}
+					if (dtFotoListBuild.size() < dtFotoList.size()) {
+						// se la dimensione dell'ArrayList costruito è minore della dimensione di quello originario
+						// ho eliminato una foto secondaria e aggiorno gli appData delle immagini secondarie
+						att.getDatiAnagraficiImm().getDtCatastali().setDtFoto(dtFotoListBuild);
+					} else {
+						// se la dimensione dell'ArrayList costruito è uguale alla dimensione di quello originario
+						// ho eliminato la foto principale e aggiorno gli appData dell'immagine principale
+						att.getDatiAnagraficiImm().getDtCatastali().setIdFoto(null);
+						att.getDatiAnagraficiImm().getDtCatastali().setUidFoto(null);
+						att.getDatiAnagraficiImm().getDtCatastali().setDescTipoFoto(null);
+						att.getDatiAnagraficiImm().getDtCatastali().setNomeFoto(null);
+						att.getDatiAnagraficiImm().getDtCatastali().setDataUpFoto(null);
+						att.getDatiAnagraficiImm().getDtCatastali().setPreviewBase64(null);
+					}
 
-				theModel.setAppDatacertificato(att);
-				theModel.setAppDatafotoSelezionata(null);
-				result.getGlobalMessages().add("Eliminazione foto avvenuta correttamente");
+					theModel.setAppDatacertificato(att);
+					theModel.setAppDatafotoSelezionata(null);
+					result.getGlobalMessages().add("Eliminazione foto avvenuta correttamente");
+				} catch (Exception e) {
+					log.error(e);
+					result.getGlobalErrors().add(Messages.ERROR_ELIMINAZIONE_FOTO);
+				}
 			}
 
 			// impostazione del result code 
@@ -1019,39 +1082,51 @@ public class CPBECpCompilazApe {
 
 			log.debug("Carico la foto");
 
-			boolean ok = checkDatiFotoCarica(theModel, result);
+			boolean ok = false;
 
-			log.debug("FOTO - stampo l'esito verifica: " + ok);
+			try {
+				ok = checkDatiFotoCarica(theModel, result);
+
+				log.debug("FOTO - stampo l'esito verifica: " + ok);
+			} catch (Exception e) {
+				log.error(e);
+				result.getGlobalErrors().add(Messages.ERROR_VALIDAZIONE_FOTO);
+			}
 
 			if (ok) {
 
-				Integer errorCaricamento = aggiornaFoto(theModel);
+				try {
+					Integer errorCaricamento = aggiornaFoto(theModel);
 
-				if (errorCaricamento != null) {
+					if (errorCaricamento != null) {
 
-					log.debug("errorCaricamento: " + errorCaricamento);
+						log.debug("errorCaricamento: " + errorCaricamento);
 
-					if (errorCaricamento.intValue() == Constants.ERRORE_INDEX.intValue()) {
-						log.debug("ERRORE INDEX");
+						if (errorCaricamento.intValue() == Constants.ERRORE_INDEX.intValue()) {
+							log.debug("ERRORE INDEX");
 
-						result.getGlobalErrors()
-								.add("Aggiornamento della foto non avvenuto correttamente. Si prega di riprovare");
-					} else if (errorCaricamento.intValue() == Constants.ERRORE_FOTO.intValue()) {
+							result.getGlobalErrors()
+									.add("Aggiornamento della foto non avvenuto correttamente. Si prega di riprovare");
+						} else if (errorCaricamento.intValue() == Constants.ERRORE_FOTO.intValue()) {
 
-						log.debug("ERRORE FOTO");
+							log.debug("ERRORE FOTO");
 
-						result.getGlobalErrors().add(
-								"Attenzione e' necessario sostituire la foto. Si consiglia di caricare la foto con le caratteristiche specificate nella nota");
+							result.getGlobalErrors().add(
+									"Attenzione e' necessario sostituire la foto. Si consiglia di caricare la foto con le caratteristiche specificate nella nota");
+						}
+
+					} else {
+
+						log.debug("Devo aggiornare la foto");
+
+						long idFoto = getCertificatoMgr().aggiornaDatiGeneraliFoto(theModel.getAppDatacertificatore(),
+								theModel.getAppDatacertificato());
+
+						result.getGlobalMessages().add("Aggiornamento foto avvenuto correttamente");
 					}
-
-				} else {
-
-					log.debug("Devo aggiornare la foto");
-
-					long idFoto = getCertificatoMgr().aggiornaDatiGeneraliFoto(theModel.getAppDatacertificatore(),
-							theModel.getAppDatacertificato());
-
-					result.getGlobalMessages().add("Aggiornamento foto avvenuto correttamente");
+				} catch (Exception e) {
+					log.error(e);
+					result.getGlobalErrors().add(Messages.ERROR_CARICAMENTO_FOTO);
 				}
 			}
 			// impostazione del result code
@@ -1091,39 +1166,51 @@ public class CPBECpCompilazApe {
 
 			log.debug("Carico la foto");
 
-			boolean ok = checkDatiFotoCaricaAltre(theModel, result);
+			boolean ok = false;
 
-			log.debug("FOTO - stampo l'esito verifica: " + ok);
+			try {
+				ok = checkDatiFotoCaricaAltre(theModel, result);
+
+				log.debug("FOTO - stampo l'esito verifica: " + ok);
+			} catch (Exception e) {
+				log.error(e);
+				result.getGlobalErrors().add(Messages.ERROR_VALIDAZIONE_FOTO);
+			}
 
 			if (ok) {
 
-				Integer errorCaricamento = aggiornaFotoAltre(theModel);
+				try {
+					Integer errorCaricamento = aggiornaFotoAltre(theModel);
 
-				if (errorCaricamento != null) {
+					if (errorCaricamento != null) {
 
-					log.debug("errorCaricamento: " + errorCaricamento);
+						log.debug("errorCaricamento: " + errorCaricamento);
 
-					if (errorCaricamento.intValue() == Constants.ERRORE_INDEX.intValue()) {
-						log.debug("ERRORE INDEX");
+						if (errorCaricamento.intValue() == Constants.ERRORE_INDEX.intValue()) {
+							log.debug("ERRORE INDEX");
 
-						result.getGlobalErrors()
-								.add("Aggiornamento della foto non avvenuto correttamente. Si prega di riprovare");
-					} else if (errorCaricamento.intValue() == Constants.ERRORE_FOTO.intValue()) {
+							result.getGlobalErrors()
+									.add("Aggiornamento della foto non avvenuto correttamente. Si prega di riprovare");
+						} else if (errorCaricamento.intValue() == Constants.ERRORE_FOTO.intValue()) {
 
-						log.debug("ERRORE FOTO");
+							log.debug("ERRORE FOTO");
 
-						result.getGlobalErrors().add(
-								"Attenzione e' necessario sostituire la foto. Si consiglia di caricare la foto con le caratteristiche specificate nella nota");
+							result.getGlobalErrors().add(
+									"Attenzione e' necessario sostituire la foto. Si consiglia di caricare la foto con le caratteristiche specificate nella nota");
+						}
+
+					} else {
+
+						log.debug("Devo aggiornare la foto");
+
+						long idFoto = getCertificatoMgr().aggiornaDatiGeneraliFotoAltre(
+								theModel.getAppDatacertificatore(), theModel.getAppDatacertificato());
+
+						result.getGlobalMessages().add("Inserimento foto avvenuto correttamente");
 					}
-
-				} else {
-
-					log.debug("Devo aggiornare la foto");
-
-					long idFoto = getCertificatoMgr().aggiornaDatiGeneraliFotoAltre(theModel.getAppDatacertificatore(),
-							theModel.getAppDatacertificato());
-
-					result.getGlobalMessages().add("Inserimento foto avvenuto correttamente");
+				} catch (Exception e) {
+					log.error(e);
+					result.getGlobalErrors().add(Messages.ERROR_CARICAMENTO_FOTO);
 				}
 			}
 
@@ -1231,8 +1318,11 @@ public class CPBECpCompilazApe {
 
 						result.setResultCode(CONSOLIDACERTIFICATO_OUTCOME_CODE__KO);
 
+					} else if (!checkIsValidDataSopralluogo(att.getAltreInfo().getSopralluoghi().getData(), result)) {
+						// Verifico che ci sia la data del sopralluogo e che sia valida
+
+						result.setResultCode(CONSOLIDACERTIFICATO_OUTCOME_CODE__KO);
 					} else {
-						// Verifico che ci sia la data del sopralluogo
 
 						// Effettuo l'aggiornamento!!!
 						// Questo metodo è stato aggiunto, perchè a volte sul DB (non si è capito il motivo) mancavano dei dati, quindi vado a completare
@@ -1434,7 +1524,8 @@ public class CPBECpCompilazApe {
 
 			theModel.getSession().put(Constants.PK_ANNO, anno);
 
-			if (checkDatiAnagrafici(theModel, result)) {
+			if (checkDatiAnagrafici(theModel, result)
+					&& checkIsValidDataSopralluogo(att.getAltreInfo().getSopralluoghi().getData(), result)) {
 				if (!isVisibleState(theModel)) {
 
 					// Questo metodo è stato aggiunto, perchè a volte sul DB (non si è capito il motivo) mancavano dei dati, quindi vado a completare
@@ -1466,6 +1557,77 @@ public class CPBECpCompilazApe {
 			/*PROTECTED REGION END*/
 		} catch (Exception e) {
 			log.error("[BackEndFacade::verificaApe] Errore occorso nell'esecuzione del metodo:" + e, e);
+			throw new BEException("Errore occorso nell'esecuzione del metodo:" + e, e);
+		}
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////
+
+	/**
+	 * Implementazione del metodo preparaAperturaDocAggiuntiva definito in un ExecCommand del
+	 * ContentPanel cpCompilazApe
+	 */
+	public ExecResults preparaAperturaDocAggiuntiva(
+
+			it.csi.sicee.siceeweb.dto.compilazattestatiape.CpCompilazApeModel theModel
+
+	) throws BEException {
+		/// definizione costanti di outcome
+		final String PREPARAAPERTURADOCAGGIUNTIVA_OUTCOME_CODE__OK = //NOSONAR  Reason:EIAS
+				"OK"; //NOSONAR  Reason:EIAS
+		final String PREPARAAPERTURADOCAGGIUNTIVA_OUTCOME_CODE__KO = //NOSONAR  Reason:EIAS
+				"KO"; //NOSONAR  Reason:EIAS
+		///
+		try {
+			ExecResults result = new ExecResults();
+			/*PROTECTED REGION ID(R-1250829084) ENABLED START*/
+			DatiAttestato datiAttestato = theModel.getAppDatacertificato();
+			String numeroCertificato = datiAttestato.getNumeroAttestato();
+
+			log.debug("num certificato: " + numeroCertificato);
+
+			//String numeroCertificato = theModel.getAppDatacodAttestatoSelezionato();
+
+			if (numeroCertificato != null) {
+
+				theModel.setAppDatacodAttestatoSelezionato(numeroCertificato);
+
+				DatiCertificatore cert = theModel.getAppDatacertificatore();
+
+				String[] split = BaseMgr.recuperaChiaveAttestato(cert.getIdCertificatore(), numeroCertificato);
+
+				String idCertificatore = split[Constants.PK_ID_CERTIFICATORE];
+				String progrCertificato = split[Constants.PK_PROGR];
+				String anno = split[Constants.PK_ANNO];
+
+				log.debug(idCertificatore);
+				log.debug(progrCertificato);
+				log.debug(anno);
+
+				if (datiAttestato.getStatus().equals(Constants.NUOVO)) {
+					result.setResultCode(PREPARAAPERTURADOCAGGIUNTIVA_OUTCOME_CODE__KO);
+					result.getGlobalErrors().add("Ape selezionato in stato nuovo.");
+				} else {
+
+					ArrayList<DocumentoAggiuntivo> documenti = getCertificatoMgr()
+							.findDocumentiAggiuntiviByAce(idCertificatore, progrCertificato, anno);
+
+					theModel.setAppDatalistDocumentazioneAggiuntiva(documenti);
+					theModel.setAppDatacertificato(datiAttestato);
+					result.setResultCode(PREPARAAPERTURADOCAGGIUNTIVA_OUTCOME_CODE__OK);
+				}
+			} else {
+				result.setResultCode(PREPARAAPERTURADOCAGGIUNTIVA_OUTCOME_CODE__KO);
+			}
+			// modifica degli attributi del model (che verranno propagati allo strato
+			// di presentation). si puo' agire anche direttamente sull'attributo "session".
+
+			result.setModel(theModel);
+			return result;
+			/*PROTECTED REGION END*/
+		} catch (Exception e) {
+			log.error("[BackEndFacade::preparaAperturaDocAggiuntiva] Errore occorso nell'esecuzione del metodo:" + e,
+					e);
 			throw new BEException("Errore occorso nell'esecuzione del metodo:" + e, e);
 		}
 	}
@@ -1565,7 +1727,6 @@ public class CPBECpCompilazApe {
 
 					theModel.setAppDatamsgGenerico(null);
 				}
-
 				result.setResultCode(SWITCHSCREENSTATE_OUTCOME_CODE__REGISTRAZIONE);
 
 				//				if (ccount == 0)
@@ -1678,7 +1839,11 @@ public class CPBECpCompilazApe {
 
 					Indirizzo indirizzo = new Indirizzo();
 					indirizzo.setCod(idIndSel);
-					indirizzo.setDescr(cat.getDescrIndirizzo());
+					if(GenericUtil.isNullOrEmpty(descIndirizzo)){
+						Indirizzo indirizzoTrovato = getCertificatoMgr().getSoaIntegrationMgr().getIndirizzoById(idIndSel);
+						indirizzo.setDescr(indirizzoTrovato.getDescr());
+					}else
+						indirizzo.setDescr(cat.getDescrIndirizzo());
 					indirizzi.add(indirizzo);
 
 					theModel.setAppDatasuggestIndirizzoDtCat(indirizzi);
@@ -1748,9 +1913,17 @@ public class CPBECpCompilazApe {
 				// Vuol dire che l'indirizzo è nello stradario
 				if (!GenericUtil.isNullOrEmpty(idIndSel)) {
 
+					if (log.isDebugEnabled()) {
+						log.debug("IND NOT NULL");
+					}
+
 					Indirizzo indirizzo = new Indirizzo();
 					indirizzo.setCod(idIndSel);
-					indirizzo.setDescr(cat.getDescrIndirizzo());
+					if(GenericUtil.isNullOrEmpty(descIndirizzo)){
+						Indirizzo indirizzoTrovato = getCertificatoMgr().getSoaIntegrationMgr().getIndirizzoById(idIndSel);
+						indirizzo.setDescr(indirizzoTrovato.getDescr());
+					}else
+						indirizzo.setDescr(cat.getDescrIndirizzo());
 					indirizzi.add(indirizzo);
 
 					theModel.setAppDatasuggestIndirizzoDtCat(indirizzi);
@@ -3061,6 +3234,34 @@ public class CPBECpCompilazApe {
 		}
 
 		return descIndTope;
+
+	}
+
+	private boolean checkIsValidDataSopralluogo(UDTDateValid dataSopralluogo, ExecResults result) {
+
+		boolean isValid = true;
+
+		if (GenericUtil.isNullOrEmpty(dataSopralluogo)) {
+			addMissingRequiredFieldError("appDatacertificato.altreInfo.sopralluoghi.data", result);
+			isValid = false;
+		} else {
+			String[] dataNascita = dataSopralluogo.getValue().split("/");
+			Calendar calDN = Calendar.getInstance();
+			calDN.set(Integer.parseInt(dataNascita[2]), Integer.parseInt(dataNascita[1]) - 1,
+					Integer.parseInt(dataNascita[0]));
+			Calendar tomorrow = Calendar.getInstance(Locale.ITALY);
+			tomorrow.add(Calendar.DATE, 1);
+			tomorrow.set(Calendar.HOUR_OF_DAY, 0);
+			tomorrow.set(Calendar.MINUTE, 0);
+			tomorrow.set(Calendar.SECOND, 0);
+			tomorrow.set(Calendar.MILLISECOND, 0);
+			if (calDN.getTimeInMillis() > tomorrow.getTimeInMillis()) {
+				result.getGlobalErrors().add(Messages.ERROR_DATA_SOPRALLUOGO_NON_VALIDA);
+				isValid = false;
+			}
+		}
+
+		return isValid;
 
 	}
 

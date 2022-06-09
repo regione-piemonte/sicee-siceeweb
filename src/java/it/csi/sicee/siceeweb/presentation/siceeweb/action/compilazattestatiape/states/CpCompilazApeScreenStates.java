@@ -35,15 +35,16 @@ public final class CpCompilazApeScreenStates {
 				"tfNPianiComplessivi", "tfNPianiFtRisc", "cbFkTipoRistrutturaz", "cbFkTipolEdilizia",
 				"cbFkTipolCostrutt", "cbFkProprietaEdi", "tfCodFiscCoCert", "tfCognomeCoCert", "tfNomeCoCert",
 				"tfNumMatricolaCoCert", "bCercaCfCertificatori", "cbListaCf", "cbFkMotivo", "cbFkOggetto",
-				"cbAltroServiziEnergia", "cbSistCatast", "tblDichiarazioneIndipendenza"};
+				"cbAltroServiziEnergia", "cbSistCatast", "tblDichiarazioneIndipendenza", "cDataSopralluogo",
+				"btnSalvaDataSopralluogo", "bDocAggiuntiva"};
 
 		/**
 		 * widget disabilitati nello stato
 		 */
 		static final String[] WIDGETS_OFF = new String[]{"txtObblDtCatastali", "txtZonaClimatica",
 				"cbSceltaIndDtCatastali", "tfIndirizzoDtCatastali", "bCercaCoordinate", "calDtEmissione", "tfDestUso",
-				"tfCodEdificioScolastico", "txtCoCertificatore", "txtNoteApeDatiGen", "txtNote1Foto", "txtObblDtFoto",
-				"cbTipoFoto", "txtObblDtFotoAltre"};
+				"tfCodEdificioScolastico", "txtCoCertificatore", "txtNoteApeDatiGen", "txtObblDataSopralluogo",
+				"txtNote1Foto", "txtObblDtFoto", "cbTipoFoto", "txtObblDtFotoAltre"};
 
 		/**
 		 * widget visibili nello stato
@@ -61,7 +62,8 @@ public final class CpCompilazApeScreenStates {
 				"cbFkTipolCostrutt", "cbFkProprietaEdi", "tfCodFiscCoCert", "tfCognomeCoCert", "tfNomeCoCert",
 				"tfNumMatricolaCoCert", "bCercaCfCertificatori", "cbListaCf", "cbFkMotivo", "cbFkOggetto",
 				"cbAltroServiziEnergia", "txtCoCertificatore", "cbSistCatast", "tfDestUso", "tfCodEdificioScolastico",
-				"tblDichiarazioneIndipendenza"};
+				"tblDichiarazioneIndipendenza", "txtObblDataSopralluogo", "cDataSopralluogo", "btnSalvaDataSopralluogo",
+				"bDocAggiuntiva"};
 
 		/**
 		 * widget nascosti nello stato
@@ -95,7 +97,7 @@ public final class CpCompilazApeScreenStates {
 		 */
 		static final String[] WIDGETS_ON = new String[]{"bViasualizzaApe", "bCompModApe", "bVerificaApe",
 				"bConsolidaApe", "bInviaApe", "tsApe", "menu", "bIndietro", "btnEliminaFoto", "fileFotoCatasto",
-				"btnCaricaFoto", "fileFotoCatastoAltre", "cbTipoFotoAltre", "btnCaricaFotoAltre"};
+				"btnCaricaFoto", "fileFotoCatastoAltre", "cbTipoFotoAltre", "btnCaricaFotoAltre", "bDocAggiuntiva"};
 
 		/**
 		 * widget disabilitati nello stato
@@ -110,8 +112,8 @@ public final class CpCompilazApeScreenStates {
 				"cbFkTipoRistrutturaz", "cbFkTipolEdilizia", "cbFkTipolCostrutt", "cbFkProprietaEdi", "cbFkOggetto",
 				"cbFkMotivo", "cbAltroServiziEnergia", "tblDichiarazioneIndipendenza", "txtCoCertificatore",
 				"tfCodFiscCoCert", "bCercaCfCertificatori", "cbListaCf", "tfCognomeCoCert", "tfNomeCoCert",
-				"tfNumMatricolaCoCert", "txtNoteApeDatiGen", "bSalva", "txtNote1Foto", "txtObblDtFoto", "cbTipoFoto",
-				"txtObblDtFotoAltre"};
+				"tfNumMatricolaCoCert", "txtNoteApeDatiGen", "bSalva", "txtObblDataSopralluogo", "cDataSopralluogo",
+				"btnSalvaDataSopralluogo", "txtNote1Foto", "txtObblDtFoto", "cbTipoFoto", "txtObblDtFotoAltre"};
 
 		/**
 		 * widget visibili nello stato
@@ -126,15 +128,16 @@ public final class CpCompilazApeScreenStates {
 				"cbFkTipoRistrutturaz", "cbFkTipolEdilizia", "cbFkTipolCostrutt", "cbFkProprietaEdi", "tfCodFiscCoCert",
 				"tfCognomeCoCert", "tfNomeCoCert", "tfNumMatricolaCoCert", "cbFkMotivo", "cbFkOggetto",
 				"cbAltroServiziEnergia", "txtCoCertificatore", "cbSistCatast", "tfDestUso", "tfCodEdificioScolastico",
-				"tblDichiarazioneIndipendenza"};
+				"tblDichiarazioneIndipendenza", "cDataSopralluogo", "bDocAggiuntiva"};
 
 		/**
 		 * widget nascosti nello stato
 		 */
 		static final String[] WIDGETS_HIDDEN = new String[]{"tfRicercaIndirizzo", "vVerifIndDtCatastali",
 				"svuotaIndDtCatastaliText", "bCercaCoordinate", "bCercaCfCertificatori", "cbListaCf", "bSalva",
-				"btnEliminaFoto", "txtNote1Foto", "txtObblDtFoto", "fileFotoCatasto", "cbTipoFoto", "btnCaricaFoto",
-				"txtObblDtFotoAltre", "fileFotoCatastoAltre", "cbTipoFotoAltre", "btnCaricaFotoAltre"};
+				"txtObblDataSopralluogo", "btnSalvaDataSopralluogo", "btnEliminaFoto", "txtNote1Foto", "txtObblDtFoto",
+				"fileFotoCatasto", "cbTipoFoto", "btnCaricaFoto", "txtObblDtFotoAltre", "fileFotoCatastoAltre",
+				"cbTipoFotoAltre", "btnCaricaFotoAltre"};
 
 		/**
 		 * Istanza del comando che permette di passare a questo stato

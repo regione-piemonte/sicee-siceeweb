@@ -1,0 +1,14 @@
+
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.ExecCommand" ,
+	"azioni":[
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.JumpCommand" ,
+	"name": "cpDocAggiuntiva", 
+	"pushCurrent":false
+}
+,
+{ "class": "it.csi.sicee.siceeweb.presentation.siceeweb.action.NOPCommand" }
+],
+	"esiti":["OK","KO"],
+	"nomeMetodo":"uploadDocAggiuntiva",
+	"appDataToStore":[]
+}

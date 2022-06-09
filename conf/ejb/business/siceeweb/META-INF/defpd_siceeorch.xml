@@ -2,7 +2,7 @@
 	<services>
 		<service name="siceeorch"
 			public-interface-class="it.csi.sicee.siceeorch.interfacecsi.siceeorch.SiceeorchSrv"
-			top-version="6.1.0">
+			top-version="6.5.0">
 			<operations>
 				<operation name="elencoRegioni" type="synch-call" since="1.0.0">
 					<param-list>
@@ -307,6 +307,14 @@
 					</param-list>
 					<ret-val type="it.csi.sicee.siceeorch.dto.siceeorch.Impianto[]" />
 				</operation>
+				<operation name="findImpiantoByIndirizzo" type="synch-call">
+					<param-list>
+						<param name="istat" type="java.lang.String"/>
+						<param name="indirizzo" type="java.lang.String"/>
+						<param name="civico" type="java.lang.String"/>
+					</param-list>
+					<ret-val type="it.csi.sicee.siceeorch.dto.siceeorch.Impianto[]"/>
+				</operation>
 				<operation name="findLibrettoByUID" type="synch-call"
 					since="1.0.0">
 					<param-list>
@@ -398,6 +406,20 @@
 						<param name="ruolo" type="java.lang.String" />
 					</param-list>
 					<ret-val type="void" />
+				</operation>
+				<operation name="getStampaRicevutaApe" type="synch-call" since="1.12.0">
+					<param-list>
+						<param name="idCredito" type="int" />
+					</param-list>
+					<ret-val type="byte[]" />
+				</operation>
+				<operation name="getCoordinateLOCCSI" type="synch-call" since="1.12.0">
+					<param-list>
+						<param name="comune" type="java.lang.String" />
+						<param name="indirizzo" type="java.lang.String" />
+						<param name="civico" type="java.lang.String" />
+					</param-list>
+					<ret-val type="it.csi.sicee.siceeorch.dto.siceeorch.CoordinateLOCCSI" />
 				</operation>
 				<!-- operazione per monitoraggio -->
 				<operation name="testResources" type="synch-call">

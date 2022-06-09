@@ -57,6 +57,9 @@ public class CPBECpRicercaAceInviati {
 	// ApplicationData: [codAttestatoSelezionato, scope:USER_SESSION]
 	public static final String APPDATA_CODATTESTATOSELEZIONATO_CODE = "appDatacodAttestatoSelezionato";
 
+	// ApplicationData: [paginaProvenienza, scope:USER_SESSION]
+	public static final String APPDATA_PAGINAPROVENIENZA_CODE = "appDatapaginaProvenienza";
+
 	//////////////////////////////////////////////////////////////////////////////
 	/// Metodi associati alla U.I.
 	//////////////////////////////////////////////////////////////////////////////
@@ -104,8 +107,8 @@ public class CPBECpRicercaAceInviati {
 					ArrayList<Ace> aceList = (ArrayList<Ace>) getSOAIntegrationMgr().findAce(filtro);
 
 					theModel.setAppDatacertificatiInviati(aceList);
-
 					// impostazione del result code
+					theModel.setAppDatapaginaProvenienza("VISUALIZZA");
 					result.setResultCode(RICERCAACEINVIATIBYCODICE_OUTCOME_CODE__OK);
 				} else {
 					result.getGlobalErrors().add(
@@ -238,6 +241,7 @@ public class CPBECpRicercaAceInviati {
 
 				theModel.setAppDatacertificatiInviati(aceList);
 
+				theModel.setAppDatapaginaProvenienza("VISUALIZZA");
 				// impostazione del result code
 				result.setResultCode(RICERCAACEBYFILTRO_OUTCOME_CODE__OK);
 			} else {

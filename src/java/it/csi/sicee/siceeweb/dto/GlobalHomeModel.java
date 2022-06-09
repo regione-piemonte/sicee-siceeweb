@@ -28,75 +28,21 @@ public class GlobalHomeModel extends BaseSessionAwareDTO {
 	////////////////////////////////////////////////////////////////////
 
 	/**
-	 * imposta il valore dell' ApplicationData 'appDataflagDatiPers'
+	 * imposta il valore dell' ApplicationData 'appDatacerificatore'
 	 * @param value
 	 * @generated
 	 */
 
-	public void setAppDataflagDatiPers(java.lang.Boolean value) {
-		getSession().put("appDataflagDatiPers", value);
+	public void setAppDatacerificatore(it.csi.sicee.siceeweb.dto.certificatore.DatiOrdine value) {
+		getSession().put("appDatacerificatore", value);
 	}
 
 	/**
-	 * legge il valore dell' ApplicationData 'appDataflagDatiPers'
+	 * legge il valore dell' ApplicationData 'appDatacerificatore'
 	 * @generated
 	 */
-	public java.lang.Boolean getAppDataflagDatiPers() {
-		return (java.lang.Boolean) (getSession().get("appDataflagDatiPers"));
-	}
-
-	/**
-	 * imposta il valore dell' ApplicationData 'appDataidTransazione'
-	 * @param value
-	 * @generated
-	 */
-
-	public void setAppDataidTransazione(java.lang.Long value) {
-		getSession().put("appDataidTransazione", value);
-	}
-
-	/**
-	 * legge il valore dell' ApplicationData 'appDataidTransazione'
-	 * @generated
-	 */
-	public java.lang.Long getAppDataidTransazione() {
-		return (java.lang.Long) (getSession().get("appDataidTransazione"));
-	}
-
-	/**
-	 * imposta il valore dell' ApplicationData 'appDataisPulireTab'
-	 * @param value
-	 * @generated
-	 */
-
-	public void setAppDataisPulireTab(java.lang.Boolean value) {
-		getSession().put("appDataisPulireTab", value);
-	}
-
-	/**
-	 * legge il valore dell' ApplicationData 'appDataisPulireTab'
-	 * @generated
-	 */
-	public java.lang.Boolean getAppDataisPulireTab() {
-		return (java.lang.Boolean) (getSession().get("appDataisPulireTab"));
-	}
-
-	/**
-	 * imposta il valore dell' ApplicationData 'appDatacurrentUser'
-	 * @param value
-	 * @generated
-	 */
-
-	public void setAppDatacurrentUser(it.csi.sicee.siceeweb.dto.UserInfo value) {
-		getSession().put("appDatacurrentUser", value);
-	}
-
-	/**
-	 * legge il valore dell' ApplicationData 'appDatacurrentUser'
-	 * @generated
-	 */
-	public it.csi.sicee.siceeweb.dto.UserInfo getAppDatacurrentUser() {
-		return (it.csi.sicee.siceeweb.dto.UserInfo) (getSession().get("appDatacurrentUser"));
+	public it.csi.sicee.siceeweb.dto.certificatore.DatiOrdine getAppDatacerificatore() {
+		return (it.csi.sicee.siceeweb.dto.certificatore.DatiOrdine) (getSession().get("appDatacerificatore"));
 	}
 
 	/**
@@ -115,6 +61,96 @@ public class GlobalHomeModel extends BaseSessionAwareDTO {
 	 */
 	public java.lang.Boolean getAppDataflgEsitoVerifica() {
 		return (java.lang.Boolean) (getSession().get("appDataflgEsitoVerifica"));
+	}
+
+	/**
+	 * imposta il valore dell' ApplicationData 'appDatacertificatore'
+	 * @param value
+	 * @generated
+	 */
+
+	public void setAppDatacertificatore(it.csi.sicee.siceeweb.dto.certificatore.DatiCertificatore value) {
+		getSession().put("appDatacertificatore", value);
+	}
+
+	/**
+	 * legge il valore dell' ApplicationData 'appDatacertificatore'
+	 * @generated
+	 */
+	public it.csi.sicee.siceeweb.dto.certificatore.DatiCertificatore getAppDatacertificatore() {
+		return (it.csi.sicee.siceeweb.dto.certificatore.DatiCertificatore) (getSession().get("appDatacertificatore"));
+	}
+
+	/**
+	 * imposta il valore dell' ApplicationData 'appDataflagAutocert'
+	 * @param value
+	 * @generated
+	 */
+
+	public void setAppDataflagAutocert(java.lang.Boolean value) {
+		getSession().put("appDataflagAutocert", value);
+	}
+
+	/**
+	 * legge il valore dell' ApplicationData 'appDataflagAutocert'
+	 * @generated
+	 */
+	public java.lang.Boolean getAppDataflagAutocert() {
+		return (java.lang.Boolean) (getSession().get("appDataflagAutocert"));
+	}
+
+	/**
+	 * imposta il valore dell' ApplicationData 'appDatamsgEsitoVerificaMail'
+	 * @param value
+	 * @generated
+	 */
+
+	public void setAppDatamsgEsitoVerificaMail(java.lang.String value) {
+		getSession().put("appDatamsgEsitoVerificaMail", value);
+	}
+
+	/**
+	 * legge il valore dell' ApplicationData 'appDatamsgEsitoVerificaMail'
+	 * @generated
+	 */
+	public java.lang.String getAppDatamsgEsitoVerificaMail() {
+		return (java.lang.String) (getSession().get("appDatamsgEsitoVerificaMail"));
+	}
+
+	/**
+	 * imposta il valore dell' ApplicationData 'appDatanumeroTransazione'
+	 * @param value
+	 * @generated
+	 */
+
+	public void setAppDatanumeroTransazione(java.lang.String value) {
+		getSession().put("appDatanumeroTransazione", value);
+	}
+
+	/**
+	 * legge il valore dell' ApplicationData 'appDatanumeroTransazione'
+	 * @generated
+	 */
+	public java.lang.String getAppDatanumeroTransazione() {
+		return (java.lang.String) (getSession().get("appDatanumeroTransazione"));
+	}
+
+	/**
+	 * imposta il valore dell' ApplicationData 'appDataidTransazione'
+	 * @param value
+	 * @generated
+	 */
+
+	public void setAppDataidTransazione(java.lang.Long value) {
+		getSession().put("appDataidTransazione", value);
+	}
+
+	/**
+	 * legge il valore dell' ApplicationData 'appDataidTransazione'
+	 * @generated
+	 */
+	public java.lang.Long getAppDataidTransazione() {
+		return (java.lang.Long) (getSession().get("appDataidTransazione"));
 	}
 
 	/**
@@ -154,93 +190,57 @@ public class GlobalHomeModel extends BaseSessionAwareDTO {
 	}
 
 	/**
-	 * imposta il valore dell' ApplicationData 'appDatacerificatore'
+	 * imposta il valore dell' ApplicationData 'appDataisPulireTab'
 	 * @param value
 	 * @generated
 	 */
 
-	public void setAppDatacerificatore(it.csi.sicee.siceeweb.dto.certificatore.DatiOrdine value) {
-		getSession().put("appDatacerificatore", value);
+	public void setAppDataisPulireTab(java.lang.Boolean value) {
+		getSession().put("appDataisPulireTab", value);
 	}
 
 	/**
-	 * legge il valore dell' ApplicationData 'appDatacerificatore'
+	 * legge il valore dell' ApplicationData 'appDataisPulireTab'
 	 * @generated
 	 */
-	public it.csi.sicee.siceeweb.dto.certificatore.DatiOrdine getAppDatacerificatore() {
-		return (it.csi.sicee.siceeweb.dto.certificatore.DatiOrdine) (getSession().get("appDatacerificatore"));
+	public java.lang.Boolean getAppDataisPulireTab() {
+		return (java.lang.Boolean) (getSession().get("appDataisPulireTab"));
 	}
 
 	/**
-	 * imposta il valore dell' ApplicationData 'appDatacertificatore'
+	 * imposta il valore dell' ApplicationData 'appDatacurrentUser'
 	 * @param value
 	 * @generated
 	 */
 
-	public void setAppDatacertificatore(it.csi.sicee.siceeweb.dto.certificatore.DatiCertificatore value) {
-		getSession().put("appDatacertificatore", value);
+	public void setAppDatacurrentUser(it.csi.sicee.siceeweb.dto.UserInfo value) {
+		getSession().put("appDatacurrentUser", value);
 	}
 
 	/**
-	 * legge il valore dell' ApplicationData 'appDatacertificatore'
+	 * legge il valore dell' ApplicationData 'appDatacurrentUser'
 	 * @generated
 	 */
-	public it.csi.sicee.siceeweb.dto.certificatore.DatiCertificatore getAppDatacertificatore() {
-		return (it.csi.sicee.siceeweb.dto.certificatore.DatiCertificatore) (getSession().get("appDatacertificatore"));
+	public it.csi.sicee.siceeweb.dto.UserInfo getAppDatacurrentUser() {
+		return (it.csi.sicee.siceeweb.dto.UserInfo) (getSession().get("appDatacurrentUser"));
 	}
 
 	/**
-	 * imposta il valore dell' ApplicationData 'appDatanumeroTransazione'
+	 * imposta il valore dell' ApplicationData 'appDataflagDatiPers'
 	 * @param value
 	 * @generated
 	 */
 
-	public void setAppDatanumeroTransazione(java.lang.String value) {
-		getSession().put("appDatanumeroTransazione", value);
+	public void setAppDataflagDatiPers(java.lang.Boolean value) {
+		getSession().put("appDataflagDatiPers", value);
 	}
 
 	/**
-	 * legge il valore dell' ApplicationData 'appDatanumeroTransazione'
+	 * legge il valore dell' ApplicationData 'appDataflagDatiPers'
 	 * @generated
 	 */
-	public java.lang.String getAppDatanumeroTransazione() {
-		return (java.lang.String) (getSession().get("appDatanumeroTransazione"));
-	}
-
-	/**
-	 * imposta il valore dell' ApplicationData 'appDataflagAutocert'
-	 * @param value
-	 * @generated
-	 */
-
-	public void setAppDataflagAutocert(java.lang.Boolean value) {
-		getSession().put("appDataflagAutocert", value);
-	}
-
-	/**
-	 * legge il valore dell' ApplicationData 'appDataflagAutocert'
-	 * @generated
-	 */
-	public java.lang.Boolean getAppDataflagAutocert() {
-		return (java.lang.Boolean) (getSession().get("appDataflagAutocert"));
-	}
-
-	/**
-	 * imposta il valore dell' ApplicationData 'appDatamsgEsitoVerificaMail'
-	 * @param value
-	 * @generated
-	 */
-
-	public void setAppDatamsgEsitoVerificaMail(java.lang.String value) {
-		getSession().put("appDatamsgEsitoVerificaMail", value);
-	}
-
-	/**
-	 * legge il valore dell' ApplicationData 'appDatamsgEsitoVerificaMail'
-	 * @generated
-	 */
-	public java.lang.String getAppDatamsgEsitoVerificaMail() {
-		return (java.lang.String) (getSession().get("appDatamsgEsitoVerificaMail"));
+	public java.lang.Boolean getAppDataflagDatiPers() {
+		return (java.lang.Boolean) (getSession().get("appDataflagDatiPers"));
 	}
 
 	/**

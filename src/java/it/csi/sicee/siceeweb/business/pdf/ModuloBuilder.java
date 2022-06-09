@@ -7,9 +7,6 @@ package it.csi.sicee.siceeweb.business.pdf;
 import it.csi.sicee.siceeweb.business.dao.dto.SiceeDClasseEnergetica;
 import it.csi.sicee.siceeweb.business.dao.dto.SiceeTDatiEner2015;
 import it.csi.sicee.siceeweb.business.facade.CertificatoMgr;
-//import it.csi.modol.modolsrv.dto.Applicazione;
-//import it.csi.modol.modolsrv.dto.Utente;
-//import it.csi.modol.modolsrv.dto.XmlModel;
 import it.csi.sicee.siceeweb.business.facade.ServiziMgr;
 import it.csi.sicee.siceeweb.util.Constants;
 import it.csi.sicee.siceeweb.util.MapDto;
@@ -59,6 +56,7 @@ public class ModuloBuilder  implements Serializable {
 	private String idCertificatore;
 	private String progrCertificato;
 	private String anno;
+	private Integer idCredito;
 	
 	public String getIdCertificatore() {
 		return idCertificatore;
@@ -81,6 +79,12 @@ public class ModuloBuilder  implements Serializable {
 		this.anno = anno;
 	}
 
+	public Integer getIdCredito() {
+		return idCredito;
+	}
+	public void setIdCredito(Integer idCredito) {
+		this.idCredito = idCredito;
+	}
 	public ServiziMgr getServiziMgr() {
 		return serviziMgr;
 	}
@@ -97,75 +101,6 @@ public class ModuloBuilder  implements Serializable {
 		this.certificatoMgr = certificatoMgr;
 	}
 
-	/*
-	public byte[] showApeOld(){
-		log.debug("[ModuloBuilder::showApe] START");
-		Applicazione app;
-		Utente utente;
-		XmlModel model;
-		try {
-			app = new Applicazione();
-			app.setCodiceApplicazione(Constants.CODICE_APPLICAZIONE_MODOL);
-			utente = null;
-			model = getXmlApe();
-		
-			return getServiziMgr().showModuloModol(app,Constants.CODICE_MODULO_MODOL_APE,utente,model);
-		
-		}catch(Exception e){
-			log.error("Errore apertura file",e);
-			return null;
-		}finally{
-			log.debug("[ModuloBuilder::showApe] END");
-		}
-	}
-	*/
-	
-	/*
-	private XmlModel getXmlApe(){
-		log.debug("[ModuloBuilder::getXmlApe] START");
-
-		//recupero il modello xml dal documento
-		XmlModel model;
-		try {
-			model = new XmlModel();
-
-			// INIEZIONE FOTO - START
-			byte[] xmlByteArray = XmlBeanUtils.extractByteArray(getServiziMgr().getApe(getIdCertificatore(), getProgrCertificato(), getAnno()));
-			String indexImage = getCertificatoMgr().recuperaFoto(getIdCertificatore(), getProgrCertificato(), getAnno());
-			
-			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-			InputStream myInputStream = new ByteArrayInputStream(xmlByteArray);
-			Document doc = docBuilder.parse(myInputStream);
-			Node datiPrecompilati = doc.getElementsByTagName("data:datiPrecompilati").item(0);
-			NodeList list = datiPrecompilati.getChildNodes();
-			for (int i = 0; i < list.getLength(); i++) {
-				Node node = list.item(i);
-				if ("data:foto".equals(node.getNodeName())) {
-				   node.setTextContent(indexImage);
-			   }
-			}
-			TransformerFactory transformerFactory = TransformerFactory.newInstance();
-			Transformer transformer = transformerFactory.newTransformer();
-			DOMSource source = new DOMSource(doc);
-			ByteArrayOutputStream bos = new ByteArrayOutputStream();
-			StreamResult result = new StreamResult(bos);
-			transformer.transform(source, result);
-			model.setXmlContent(bos.toByteArray());
-			// INIEZIONE FOTO - END
-
-			//model.setXmlContent(xmlByteArray);
-			return model;
-			
-		}catch(Exception e){
-			log.error("Errore", e);
-			return null;
-		} finally{
-			log.debug("[ModuloBuilder::getXmlApe] END");
-		}
-	}
-	*/
-	
 	public byte[] showApeReadOnly() throws Exception {
 		log.debug("[ModuloBuilder::showApeReadOnly] START");
 
@@ -186,185 +121,24 @@ public class ModuloBuilder  implements Serializable {
 		}
 	}
 	
-	/*
-	public byte[] showApeReadOnlyOld(){
+	public byte[] getRicevutaApeReadOnly() throws Exception {
 		log.debug("[ModuloBuilder::showApeReadOnly] START");
 
 		try {
-			return getServiziMgr().showApeReadOnlyOld(getIdCertificatore(), getProgrCertificato(), getAnno());
+			
+			byte[] xmlModel = getCertificatoMgr().recuperaStampaRicevutaApeReadOnly(idCredito);
+		
+			return xmlModel;
 
 
 		}catch(Exception e){
 			log.error("Errore apertura file",e);
-			return null;
+			throw e;
 		}finally{
-			log.debug("[ModuloBuilder::showApeReadOnly] END");
+			log.debug("[ModuloBuilder::getRicevutaApeReadOnly] END");
 		}
 	}
-	*/
-	
-	/*
-	public byte[] showApeReadOnlyOLD(){
-		log.debug("[ModuloBuilder::showApeReadOnly] START");
-		Applicazione app;
-		Utente utente;
-		XmlModel model;
-		try {
-			app = new Applicazione();
-			app.setCodiceApplicazione(Constants.CODICE_APPLICAZIONE_MODOL);
-			utente = null;
-			model = getXmlApeReadOnly();
-		
-			//return getServiziMgr().showModuloModolStatico(app,Constants.CODICE_MODULO_MODOL_APE_2015,utente,model);
-			return getServiziMgr().showModuloModol(app,Constants.CODICE_MODULO_MODOL_APE_2015,utente,model);
-		
-		}catch(Exception e){
-			log.error("Errore apertura file",e);
-			return null;
-		}finally{
-			log.debug("[ModuloBuilder::showApeReadOnly] END");
-		}
-	}
-	
-	private XmlModel getXmlApeReadOnly(){
-		log.debug("[ModuloBuilder::getXmlApeReadOnly] START");
 
-		//recupero il modello xml dal documento
-		XmlModel model;
-		try {
-			model = new XmlModel();
-
-			// INIEZIONE FOTO - START
-			byte[] xmlByteArray = XmlBeanUtils.extractByteArray(getServiziMgr().getApeReadOnly(getIdCertificatore(), getProgrCertificato(), getAnno()));
-			String indexImage = getCertificatoMgr().recuperaFoto(getIdCertificatore(), getProgrCertificato(), getAnno());
-			
-			SiceeTDatiEner2015 datiEner2015 = getCertificatoMgr().recuperaDatiEner2015(getIdCertificatore(), getProgrCertificato(), getAnno());
-			List<SiceeDClasseEnergetica> classiEnergetiche = getCertificatoMgr()
-					.recuperaElencoClasseEnergetica();
-			String classeEnerg = MapDto.decodClasseEnergeticaId(datiEner2015.getFkClasseEnergetica(), classiEnergetiche);
-
-			String nomeImg = "classe" + classeEnerg + ".png";
-			
-			String classeImage = recuperaImmagine(nomeImg);
-			String smileInvernoImage = recuperaImmagine(recuperaNomeImmagineSmile(datiEner2015.getFlgSmileInverno()));
-			String smileEstateImage = recuperaImmagine(recuperaNomeImmagineSmile(datiEner2015.getFlgSmileEstate()));
-
-			log.debug("################");
-			log.debug("classeImage: "+classeImage);
-			log.debug("smileInvernoImage: "+smileInvernoImage);
-			log.debug("smileEstateImage: "+smileEstateImage);
-			log.debug("################");
-			
-			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-			InputStream myInputStream = new ByteArrayInputStream(xmlByteArray);
-			Document doc = docBuilder.parse(myInputStream);
-			Node datiPrecompilati = doc.getElementsByTagName("data:datiPrecompilati").item(0);
-			NodeList list = datiPrecompilati.getChildNodes();
-			for (int i = 0; i < list.getLength(); i++) {
-				Node node = list.item(i);
-				
-				log.debug("node - datiPrecompilati: "+node.getNodeName());
-				
-				if ("data:foto".equals(node.getNodeName())) {
-					node.setTextContent(indexImage);
-				} 
-				
-				
-			}
-			
-			datiPrecompilati = doc.getElementsByTagName(
-					"data:prestEnergFabb").item(0);
-			list = datiPrecompilati.getChildNodes();
-			for (int i = 0; i < list.getLength(); i++) {
-				Node node = list.item(i);
-
-				log.debug("Node - prestEnergFabb: " + node.getNodeName());
-
-				if ("data:frecciaClasse".equals(node.getNodeName())) {
-					node.setTextContent(classeImage);
-				} else if (smileInvernoImage != null
-						&& "data:smileInverno".equals(node.getNodeName())) {
-					node.setTextContent(smileInvernoImage);
-				} else if (smileEstateImage != null
-						&& "data:smileEstate".equals(node.getNodeName())) {
-					node.setTextContent(smileEstateImage);
-				}
-			}
-			
-			TransformerFactory transformerFactory = TransformerFactory.newInstance();
-			Transformer transformer = transformerFactory.newTransformer();
-			DOMSource source = new DOMSource(doc);
-			ByteArrayOutputStream bos = new ByteArrayOutputStream();
-			StreamResult result = new StreamResult(bos);
-			transformer.transform(source, result);
-			model.setXmlContent(bos.toByteArray());
-			// INIEZIONE FOTO - END
-
-			//model.setXmlContent(xmlByteArray);
-			return model;
-			
-		}catch(Exception e){
-			log.error("Errore", e);
-			return null;
-		} finally{
-			log.debug("[ModuloBuilder::getXmlApeReadOnly] END");
-		}
-		
-	}
-	
-	private String recuperaNomeImmagineSmile(
-			Integer idSmile) {
-
-		String smile = null;
-
-		if (idSmile != null) {
-
-			if (idSmile.intValue() == Constants.ID_SMILE_FELICE) {
-				smile = "smile_felice.png";
-			} else if (idSmile.intValue() == Constants.ID_SMILE_SERIO) {
-				smile = "smile_serio.png";
-			} else if (idSmile.intValue() == Constants.ID_SMILE_TRISTE) {
-				smile = "smile_triste.png";
-			}
-
-		}
-
-		return smile;
-
-	}
-
-	private String recuperaImmagine(String nome) {
-		String result = null;
-
-		if (nome != null) {
-			ServletContext sc = ServletActionContext.getServletContext();
-
-			log.debug("### sc: " + sc);
-			log.debug("### nome: " + nome);
-
-			InputStream is = sc.getResourceAsStream("/img/attestato2015/"
-					+ nome);
-
-			log.debug("### is: " + is);
-
-			byte[] input;
-			try {
-				input = IOUtils.toByteArray(is);
-
-				byte[] immagineEncodata = Base64.encode(input);
-				result = new String(immagineEncodata);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				log.error(e);
-			}
-		}
-		return result;
-
-	}
-	*/
-	
 	public byte[] getImmaginePrinciale()
 	{
 		log.debug("[ModuloBuilder::getImmaginePrinciale] START");

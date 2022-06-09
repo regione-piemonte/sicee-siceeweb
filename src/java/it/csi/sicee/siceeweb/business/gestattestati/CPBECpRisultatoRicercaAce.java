@@ -75,6 +75,24 @@ public class CPBECpRisultatoRicercaAce {
 	// ApplicationData: [idRigaSelezionata, scope:USER_SESSION]
 	public static final String APPDATA_IDRIGASELEZIONATA_CODE = "appDataidRigaSelezionata";
 
+	// ApplicationData: [idDocumentoSelezionato, scope:USER_SESSION]
+	public static final String APPDATA_IDDOCUMENTOSELEZIONATO_CODE = "appDataidDocumentoSelezionato";
+
+	// ApplicationData: [listTipiDoc, scope:USER_SESSION]
+	public static final String APPDATA_LISTTIPIDOC_CODE = "appDatalistTipiDoc";
+
+	// ApplicationData: [listDocumentazioneAggiuntiva, scope:USER_SESSION]
+	public static final String APPDATA_LISTDOCUMENTAZIONEAGGIUNTIVA_CODE = "appDatalistDocumentazioneAggiuntiva";
+
+	// ApplicationData: [uidDocumentoSelezionato, scope:USER_SESSION]
+	public static final String APPDATA_UIDDOCUMENTOSELEZIONATO_CODE = "appDatauidDocumentoSelezionato";
+
+	// ApplicationData: [documentoAggiuntivo, scope:USER_SESSION]
+	public static final String APPDATA_DOCUMENTOAGGIUNTIVO_CODE = "appDatadocumentoAggiuntivo";
+
+	// ApplicationData: [paginaProvenienza, scope:USER_SESSION]
+	public static final String APPDATA_PAGINAPROVENIENZA_CODE = "appDatapaginaProvenienza";
+
 	//////////////////////////////////////////////////////////////////////////////
 	/// Metodi associati alla U.I.
 	//////////////////////////////////////////////////////////////////////////////
@@ -425,6 +443,85 @@ public class CPBECpRisultatoRicercaAce {
 			/*PROTECTED REGION END*/
 		} catch (Exception e) {
 			log.error("[BackEndFacade::visualizzaAttestato] Errore occorso nell'esecuzione del metodo:" + e, e);
+			throw new BEException("Errore occorso nell'esecuzione del metodo:" + e, e);
+		}
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////
+
+	/**
+	 * Implementazione del metodo preparaAperturaDocAggiuntiva definito in un ExecCommand del
+	 * ContentPanel cpRisultatoRicercaAce
+	 */
+	public ExecResults preparaAperturaDocAggiuntiva(
+
+			it.csi.sicee.siceeweb.dto.gestattestati.CpRisultatoRicercaAceModel theModel
+
+	) throws BEException {
+		/// definizione costanti di outcome
+		final String PREPARAAPERTURADOCAGGIUNTIVA_OUTCOME_CODE__OK = //NOSONAR  Reason:EIAS
+				"OK"; //NOSONAR  Reason:EIAS
+		final String PREPARAAPERTURADOCAGGIUNTIVA_OUTCOME_CODE__KO = //NOSONAR  Reason:EIAS
+				"KO"; //NOSONAR  Reason:EIAS
+		///
+		try {
+			ExecResults result = new ExecResults();
+			/*PROTECTED REGION ID(R-4989600) ENABLED START*/
+			Integer idRigaTabella = theModel.getAppDataidRigaSelezionata();
+			log.debug("id riga: " + idRigaTabella);
+
+			String numeroCertificato = GenericUtil.getAceByIdRiga(idRigaTabella,
+					theModel.getAppDatacertificatiInviati());
+
+			log.debug("num certificato: " + numeroCertificato);
+
+			//String numeroCertificato = theModel.getAppDatacodAttestatoSelezionato();
+
+			if (numeroCertificato != null) {
+
+				theModel.setAppDatacodAttestatoSelezionato(numeroCertificato);
+
+				DatiCertificatore cert = theModel.getAppDatacertificatore();
+
+				String[] split = BaseMgr.recuperaChiaveAttestato(cert.getIdCertificatore(), numeroCertificato);
+
+				String idCertificatore = split[Constants.PK_ID_CERTIFICATORE];
+				String progrCertificato = split[Constants.PK_PROGR];
+				String anno = split[Constants.PK_ANNO];
+
+				log.debug(idCertificatore);
+				log.debug(progrCertificato);
+				log.debug(anno);
+
+				DatiAttestato dati = certificatoMgr.recuperaAttestato(cert, numeroCertificato);
+
+				if (dati.getStatus().equals(Constants.NUOVO)) {
+					result.setResultCode(PREPARAAPERTURADOCAGGIUNTIVA_OUTCOME_CODE__KO);
+					result.getGlobalErrors().add("Ape selezionato in stato nuovo.");
+				} else {
+					ArrayList<DocumentoAggiuntivo> documenti = getCertificatoMgr()
+							.findDocumentiAggiuntiviByAce(idCertificatore, progrCertificato, anno);
+					theModel.setAppDatalistDocumentazioneAggiuntiva(documenti);
+					DatiAttestato datiAttestato = new DatiAttestato();
+
+					datiAttestato.setNumeroAttestato(numeroCertificato);
+					theModel.setAppDatacertificato(datiAttestato);
+					result.setResultCode(PREPARAAPERTURADOCAGGIUNTIVA_OUTCOME_CODE__OK);
+				}
+			} else {
+				theModel.setAppDataidRigaSelezionata(null);
+				result.getGlobalErrors().add("E' necessario selezionare un A.P.E.");
+				result.setResultCode(PREPARAAPERTURADOCAGGIUNTIVA_OUTCOME_CODE__KO);
+			}
+			// modifica degli attributi del model (che verranno propagati allo strato
+			// di presentation). si puo' agire anche direttamente sull'attributo "session".
+
+			result.setModel(theModel);
+			return result;
+			/*PROTECTED REGION END*/
+		} catch (Exception e) {
+			log.error("[BackEndFacade::preparaAperturaDocAggiuntiva] Errore occorso nell'esecuzione del metodo:" + e,
+					e);
 			throw new BEException("Errore occorso nell'esecuzione del metodo:" + e, e);
 		}
 	}

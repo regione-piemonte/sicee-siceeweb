@@ -46,6 +46,24 @@ public class GlobalMenuModel extends BaseSessionAwareDTO {
 	}
 
 	/**
+	 * imposta il valore dell' ApplicationData 'appDatacertificatiTrovati'
+	 * @param value
+	 * @generated
+	 */
+
+	public void setAppDatacertificatiTrovati(java.util.ArrayList<it.csi.sicee.siceeweb.dto.ace.Ace> value) {
+		getSession().put("appDatacertificatiTrovati", value);
+	}
+
+	/**
+	 * legge il valore dell' ApplicationData 'appDatacertificatiTrovati'
+	 * @generated
+	 */
+	public java.util.ArrayList<it.csi.sicee.siceeweb.dto.ace.Ace> getAppDatacertificatiTrovati() {
+		return (java.util.ArrayList<it.csi.sicee.siceeweb.dto.ace.Ace>) (getSession().get("appDatacertificatiTrovati"));
+	}
+
+	/**
 	 * imposta il valore dell' ApplicationData 'appDatacertificatore'
 	 * @param value
 	 * @generated
@@ -82,21 +100,21 @@ public class GlobalMenuModel extends BaseSessionAwareDTO {
 	}
 
 	/**
-	 * imposta il valore dell' ApplicationData 'appDatacertificatiTrovati'
+	 * imposta il valore dell' ApplicationData 'appDatacurrentUser'
 	 * @param value
 	 * @generated
 	 */
 
-	public void setAppDatacertificatiTrovati(java.util.ArrayList<it.csi.sicee.siceeweb.dto.ace.Ace> value) {
-		getSession().put("appDatacertificatiTrovati", value);
+	public void setAppDatacurrentUser(it.csi.sicee.siceeweb.dto.UserInfo value) {
+		getSession().put("appDatacurrentUser", value);
 	}
 
 	/**
-	 * legge il valore dell' ApplicationData 'appDatacertificatiTrovati'
+	 * legge il valore dell' ApplicationData 'appDatacurrentUser'
 	 * @generated
 	 */
-	public java.util.ArrayList<it.csi.sicee.siceeweb.dto.ace.Ace> getAppDatacertificatiTrovati() {
-		return (java.util.ArrayList<it.csi.sicee.siceeweb.dto.ace.Ace>) (getSession().get("appDatacertificatiTrovati"));
+	public it.csi.sicee.siceeweb.dto.UserInfo getAppDatacurrentUser() {
+		return (it.csi.sicee.siceeweb.dto.UserInfo) (getSession().get("appDatacurrentUser"));
 	}
 
 	/**
@@ -118,21 +136,21 @@ public class GlobalMenuModel extends BaseSessionAwareDTO {
 	}
 
 	/**
-	 * imposta il valore dell' ApplicationData 'appDatacurrentUser'
+	 * imposta il valore dell' ApplicationData 'appDatadatiAnnullamento'
 	 * @param value
 	 * @generated
 	 */
 
-	public void setAppDatacurrentUser(it.csi.sicee.siceeweb.dto.UserInfo value) {
-		getSession().put("appDatacurrentUser", value);
+	public void setAppDatadatiAnnullamento(it.csi.sicee.siceeweb.dto.annullamento.DtAnnullamento value) {
+		getSession().put("appDatadatiAnnullamento", value);
 	}
 
 	/**
-	 * legge il valore dell' ApplicationData 'appDatacurrentUser'
+	 * legge il valore dell' ApplicationData 'appDatadatiAnnullamento'
 	 * @generated
 	 */
-	public it.csi.sicee.siceeweb.dto.UserInfo getAppDatacurrentUser() {
-		return (it.csi.sicee.siceeweb.dto.UserInfo) (getSession().get("appDatacurrentUser"));
+	public it.csi.sicee.siceeweb.dto.annullamento.DtAnnullamento getAppDatadatiAnnullamento() {
+		return (it.csi.sicee.siceeweb.dto.annullamento.DtAnnullamento) (getSession().get("appDatadatiAnnullamento"));
 	}
 
 	/**
@@ -151,24 +169,6 @@ public class GlobalMenuModel extends BaseSessionAwareDTO {
 	 */
 	public java.util.ArrayList<it.csi.sicee.siceeweb.dto.ace.Ace> getAppDatacarrelloAceNew() {
 		return (java.util.ArrayList<it.csi.sicee.siceeweb.dto.ace.Ace>) (getSession().get("appDatacarrelloAceNew"));
-	}
-
-	/**
-	 * imposta il valore dell' ApplicationData 'appDatadatiAnnullamento'
-	 * @param value
-	 * @generated
-	 */
-
-	public void setAppDatadatiAnnullamento(it.csi.sicee.siceeweb.dto.annullamento.DtAnnullamento value) {
-		getSession().put("appDatadatiAnnullamento", value);
-	}
-
-	/**
-	 * legge il valore dell' ApplicationData 'appDatadatiAnnullamento'
-	 * @generated
-	 */
-	public it.csi.sicee.siceeweb.dto.annullamento.DtAnnullamento getAppDatadatiAnnullamento() {
-		return (it.csi.sicee.siceeweb.dto.annullamento.DtAnnullamento) (getSession().get("appDatadatiAnnullamento"));
 	}
 
 }

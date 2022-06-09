@@ -44,6 +44,30 @@ public class BackEndFacade {
 	// ApplicationData: [idRigaSelezionata, scope:USER_SESSION]
 	public static final String APPDATA_IDRIGASELEZIONATA_CODE = "appDataidRigaSelezionata";
 
+	// ApplicationData: [idTipoDocumento, scope:USER_SESSION]
+	public static final String APPDATA_IDTIPODOCUMENTO_CODE = "appDataidTipoDocumento";
+
+	// ApplicationData: [listZoneClima, scope:USER_SESSION]
+	public static final String APPDATA_LISTZONECLIMA_CODE = "appDatalistZoneClima";
+
+	// ApplicationData: [idComuneZonaClima, scope:USER_SESSION]
+	public static final String APPDATA_IDCOMUNEZONACLIMA_CODE = "appDataidComuneZonaClima";
+
+	// ApplicationData: [descZonaClima, scope:USER_SESSION]
+	public static final String APPDATA_DESCZONACLIMA_CODE = "appDatadescZonaClima";
+
+	// ApplicationData: [documentoAggiuntivo, scope:USER_SESSION]
+	public static final String APPDATA_DOCUMENTOAGGIUNTIVO_CODE = "appDatadocumentoAggiuntivo";
+
+	// ApplicationData: [idDocumentoSelezionato, scope:USER_SESSION]
+	public static final String APPDATA_IDDOCUMENTOSELEZIONATO_CODE = "appDataidDocumentoSelezionato";
+
+	// ApplicationData: [listDocumentazioneAggiuntiva, scope:USER_SESSION]
+	public static final String APPDATA_LISTDOCUMENTAZIONEAGGIUNTIVA_CODE = "appDatalistDocumentazioneAggiuntiva";
+
+	// ApplicationData: [uidDocumentoSelezionato, scope:USER_SESSION]
+	public static final String APPDATA_UIDDOCUMENTOSELEZIONATO_CODE = "appDatauidDocumentoSelezionato";
+
 	// ApplicationData: [filtroAce, scope:USER_ACTION]
 	public static final String APPDATA_FILTROACE_CODE = "appDatafiltroAce";
 
@@ -64,6 +88,9 @@ public class BackEndFacade {
 
 	// ApplicationData: [certificatiSostituiti, scope:USER_SESSION]
 	public static final String APPDATA_CERTIFICATISOSTITUITI_CODE = "appDatacertificatiSostituiti";
+
+	// ApplicationData: [listTipiDoc, scope:USER_SESSION]
+	public static final String APPDATA_LISTTIPIDOC_CODE = "appDatalistTipiDoc";
 
 	// ApplicationData: [numACEDesiderati, scope:USER_SESSION]
 	public static final String APPDATA_NUMACEDESIDERATI_CODE = "appDatanumACEDesiderati";
@@ -649,6 +676,21 @@ public class BackEndFacade {
 	////////////////////////////////////////////////////////////////////////////////////
 
 	/**
+	 * richiama il metodo preparaAperturaDocAggiuntiva utilizzato in un ExecCommand
+	 * del ContentPanel cpGestCertificazioni
+	 */
+	public ExecResults preparaAperturaDocAggiuntiva(
+
+			it.csi.sicee.siceeweb.dto.gestattestati.CpGestCertificazioniModel theModel
+
+	) throws BEException {
+		// l'esecuzione viene delegata al bean corrispondente al ContentPanel cpGestCertificazioni
+		return getCPBECpGestCertificazioni().preparaAperturaDocAggiuntiva(theModel);
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////
+
+	/**
 	 * richiama il metodo invioCertificato utilizzato in un ExecCommand
 	 * del ContentPanel cpGestCertificazioni
 	 */
@@ -779,6 +821,126 @@ public class BackEndFacade {
 	) throws BEException {
 		// l'esecuzione viene delegata al bean corrispondente al ContentPanel cpGestCertificazioni
 		return getCPBECpGestCertificazioni().aggiornaDatiPagina(theModel);
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////
+
+	/**
+	 * richiama il metodo preparaDownloadDocumento utilizzato in un ExecCommand
+	 * del ContentPanel cpDocAggiuntiva
+	 */
+	public ExecResults preparaDownloadDocumento(
+
+			it.csi.sicee.siceeweb.dto.gestattestati.CpDocAggiuntivaModel theModel
+
+	) throws BEException {
+		// l'esecuzione viene delegata al bean corrispondente al ContentPanel cpDocAggiuntiva
+		return getCPBECpDocAggiuntiva().preparaDownloadDocumento(theModel);
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////
+
+	/**
+	 * richiama il metodo preparaInserisciDocumento utilizzato in un ExecCommand
+	 * del ContentPanel cpDocAggiuntiva
+	 */
+	public ExecResults preparaInserisciDocumento(
+
+			it.csi.sicee.siceeweb.dto.gestattestati.CpDocAggiuntivaModel theModel
+
+	) throws BEException {
+		// l'esecuzione viene delegata al bean corrispondente al ContentPanel cpDocAggiuntiva
+		return getCPBECpDocAggiuntiva().preparaInserisciDocumento(theModel);
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////
+
+	/**
+	 * richiama il metodo preparaEliminaDocumento utilizzato in un ExecCommand
+	 * del ContentPanel cpDocAggiuntiva
+	 */
+	public ExecResults preparaEliminaDocumento(
+
+			it.csi.sicee.siceeweb.dto.gestattestati.CpDocAggiuntivaModel theModel
+
+	) throws BEException {
+		// l'esecuzione viene delegata al bean corrispondente al ContentPanel cpDocAggiuntiva
+		return getCPBECpDocAggiuntiva().preparaEliminaDocumento(theModel);
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////
+
+	/**
+	 * richiama il metodo jumpBackDocAggiuntiva utilizzato in un ExecCommand
+	 * del ContentPanel cpDocAggiuntiva
+	 */
+	public ExecResults jumpBackDocAggiuntiva(
+
+			it.csi.sicee.siceeweb.dto.gestattestati.CpDocAggiuntivaModel theModel
+
+	) throws BEException {
+		// l'esecuzione viene delegata al bean corrispondente al ContentPanel cpDocAggiuntiva
+		return getCPBECpDocAggiuntiva().jumpBackDocAggiuntiva(theModel);
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////
+
+	/**
+	 * richiama il metodo eliminaDocAggiuntiva utilizzato in un ExecCommand
+	 * del ContentPanel cpDocAggiuntiva
+	 */
+	public ExecResults eliminaDocAggiuntiva(
+
+			it.csi.sicee.siceeweb.dto.gestattestati.CpDocAggiuntivaModel theModel
+
+	) throws BEException {
+		// l'esecuzione viene delegata al bean corrispondente al ContentPanel cpDocAggiuntiva
+		return getCPBECpDocAggiuntiva().eliminaDocAggiuntiva(theModel);
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////
+
+	/**
+	 * richiama il metodo initListaDocumentazione utilizzato in un ExecCommand
+	 * del ContentPanel cpDocAggiuntiva
+	 */
+	public ExecResults initListaDocumentazione(
+
+			it.csi.sicee.siceeweb.dto.gestattestati.CpDocAggiuntivaModel theModel
+
+	) throws BEException {
+		// l'esecuzione viene delegata al bean corrispondente al ContentPanel cpDocAggiuntiva
+		return getCPBECpDocAggiuntiva().initListaDocumentazione(theModel);
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////
+
+	/**
+	 * richiama il metodo uploadDocAggiuntiva utilizzato in un ExecCommand
+	 * del ContentPanel cpUploadDocAggiuntiva
+	 */
+	public ExecResults uploadDocAggiuntiva(
+
+			it.csi.sicee.siceeweb.dto.gestattestati.CpUploadDocAggiuntivaModel theModel
+
+	) throws BEException {
+		// l'esecuzione viene delegata al bean corrispondente al ContentPanel cpUploadDocAggiuntiva
+		return getCPBECpUploadDocAggiuntiva().uploadDocAggiuntiva(theModel);
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////
+
+	/**
+	 * richiama il metodo initListaTipiDocAggiuntiva utilizzato in un ExecCommand
+	 * del ContentPanel cpUploadDocAggiuntiva
+	 */
+	public ExecResults initListaTipiDocAggiuntiva(
+
+			it.csi.sicee.siceeweb.dto.gestattestati.CpUploadDocAggiuntivaModel theModel
+
+	) throws BEException {
+		// l'esecuzione viene delegata al bean corrispondente al ContentPanel cpUploadDocAggiuntiva
+		return getCPBECpUploadDocAggiuntiva().initListaTipiDocAggiuntiva(theModel);
 	}
 
 	////////////////////////////////////////////////////////////////////////////////////
@@ -944,6 +1106,21 @@ public class BackEndFacade {
 	) throws BEException {
 		// l'esecuzione viene delegata al bean corrispondente al ContentPanel cpRisultatoRicercaAce
 		return getCPBECpRisultatoRicercaAce().visualizzaAttestato(theModel);
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////
+
+	/**
+	 * richiama il metodo preparaAperturaDocAggiuntiva utilizzato in un ExecCommand
+	 * del ContentPanel cpRisultatoRicercaAce
+	 */
+	public ExecResults preparaAperturaDocAggiuntiva(
+
+			it.csi.sicee.siceeweb.dto.gestattestati.CpRisultatoRicercaAceModel theModel
+
+	) throws BEException {
+		// l'esecuzione viene delegata al bean corrispondente al ContentPanel cpRisultatoRicercaAce
+		return getCPBECpRisultatoRicercaAce().preparaAperturaDocAggiuntiva(theModel);
 	}
 
 	////////////////////////////////////////////////////////////////////////////////////
@@ -2374,6 +2551,21 @@ public class BackEndFacade {
 	////////////////////////////////////////////////////////////////////////////////////
 
 	/**
+	 * richiama il metodo bDtSalvaDataSopralluogo utilizzato in un ExecCommand
+	 * del ContentPanel cpCompilazApe
+	 */
+	public ExecResults bDtSalvaDataSopralluogo(
+
+			it.csi.sicee.siceeweb.dto.compilazattestatiape.CpCompilazApeModel theModel
+
+	) throws BEException {
+		// l'esecuzione viene delegata al bean corrispondente al ContentPanel cpCompilazApe
+		return getCPBECpCompilazApe().bDtSalvaDataSopralluogo(theModel);
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////
+
+	/**
 	 * richiama il metodo bDtFotoElimina utilizzato in un ExecCommand
 	 * del ContentPanel cpCompilazApe
 	 */
@@ -2489,6 +2681,21 @@ public class BackEndFacade {
 	) throws BEException {
 		// l'esecuzione viene delegata al bean corrispondente al ContentPanel cpCompilazApe
 		return getCPBECpCompilazApe().verificaApe(theModel);
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////
+
+	/**
+	 * richiama il metodo preparaAperturaDocAggiuntiva utilizzato in un ExecCommand
+	 * del ContentPanel cpCompilazApe
+	 */
+	public ExecResults preparaAperturaDocAggiuntiva(
+
+			it.csi.sicee.siceeweb.dto.compilazattestatiape.CpCompilazApeModel theModel
+
+	) throws BEException {
+		// l'esecuzione viene delegata al bean corrispondente al ContentPanel cpCompilazApe
+		return getCPBECpCompilazApe().preparaAperturaDocAggiuntiva(theModel);
 	}
 
 	////////////////////////////////////////////////////////////////////////////////////
@@ -2659,6 +2866,36 @@ public class BackEndFacade {
 	////////////////////////////////////////////////////////////////////////////////////
 
 	/**
+	 * richiama il metodo salvaZonaClima utilizzato in un ExecCommand
+	 * del ContentPanel cpZonaClima
+	 */
+	public ExecResults salvaZonaClima(
+
+			it.csi.sicee.siceeweb.dto.compilazattestatiape.CpZonaClimaModel theModel
+
+	) throws BEException {
+		// l'esecuzione viene delegata al bean corrispondente al ContentPanel cpZonaClima
+		return getCPBECpZonaClima().salvaZonaClima(theModel);
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////
+
+	/**
+	 * richiama il metodo initZonaClimaComboBox utilizzato in un ExecCommand
+	 * del ContentPanel cpZonaClima
+	 */
+	public ExecResults initZonaClimaComboBox(
+
+			it.csi.sicee.siceeweb.dto.compilazattestatiape.CpZonaClimaModel theModel
+
+	) throws BEException {
+		// l'esecuzione viene delegata al bean corrispondente al ContentPanel cpZonaClima
+		return getCPBECpZonaClima().initZonaClimaComboBox(theModel);
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////
+
+	/**
 	 * richiama il metodo stampaRicevutaReg utilizzato in un ExecCommand
 	 * del ContentPanel cpTransaz
 	 */
@@ -2774,6 +3011,21 @@ public class BackEndFacade {
 	) throws BEException {
 		// l'esecuzione viene delegata al bean corrispondente al ContentPanel cpTransaz
 		return getCPBECpTransaz().listaAttesaRT(theModel);
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////
+
+	/**
+	 * richiama il metodo gestisciRicevutaApe utilizzato in un ExecCommand
+	 * del ContentPanel cpTransaz
+	 */
+	public ExecResults gestisciRicevutaApe(
+
+			it.csi.sicee.siceeweb.dto.gestcertificatore.CpTransazModel theModel
+
+	) throws BEException {
+		// l'esecuzione viene delegata al bean corrispondente al ContentPanel cpTransaz
+		return getCPBECpTransaz().gestisciRicevutaApe(theModel);
 	}
 
 	////////////////////////////////////////////////////////////////////////////////////
@@ -4504,6 +4756,21 @@ public class BackEndFacade {
 	////////////////////////////////////////////////////////////////////////////////////
 
 	/**
+	 * richiama il metodo verificaIndirizzo utilizzato in un ExecCommand
+	 * del ContentPanel cpVisuraCIT
+	 */
+	public ExecResults verificaIndirizzo(
+
+			it.csi.sicee.siceeweb.dto.main.CpVisuraCITModel theModel
+
+	) throws BEException {
+		// l'esecuzione viene delegata al bean corrispondente al ContentPanel cpVisuraCIT
+		return getCPBECpVisuraCIT().verificaIndirizzo(theModel);
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////
+
+	/**
 	 * richiama il metodo visualizzaImpianto utilizzato in un ExecCommand
 	 * del ContentPanel cpVisuraCIT
 	 */
@@ -5411,6 +5678,45 @@ public class BackEndFacade {
 	}
 
 	/**
+	 * riferimento al CPBE del content panel cpDocAggiuntiva
+	 */
+	private it.csi.sicee.siceeweb.business.gestattestati.CPBECpDocAggiuntiva cPBECpDocAggiuntiva = null;
+
+	/**
+	 * riferimento al CPBE del content panel cpDocAggiuntiva
+	 */
+	public void setCPBECpDocAggiuntiva(it.csi.sicee.siceeweb.business.gestattestati.CPBECpDocAggiuntiva bean) {
+		this.cPBECpDocAggiuntiva = bean;
+	}
+
+	/**
+	 * riferimento al CPBE del content panel cpDocAggiuntiva
+	 */
+	public it.csi.sicee.siceeweb.business.gestattestati.CPBECpDocAggiuntiva getCPBECpDocAggiuntiva() {
+		return this.cPBECpDocAggiuntiva;
+	}
+
+	/**
+	 * riferimento al CPBE del content panel cpUploadDocAggiuntiva
+	 */
+	private it.csi.sicee.siceeweb.business.gestattestati.CPBECpUploadDocAggiuntiva cPBECpUploadDocAggiuntiva = null;
+
+	/**
+	 * riferimento al CPBE del content panel cpUploadDocAggiuntiva
+	 */
+	public void setCPBECpUploadDocAggiuntiva(
+			it.csi.sicee.siceeweb.business.gestattestati.CPBECpUploadDocAggiuntiva bean) {
+		this.cPBECpUploadDocAggiuntiva = bean;
+	}
+
+	/**
+	 * riferimento al CPBE del content panel cpUploadDocAggiuntiva
+	 */
+	public it.csi.sicee.siceeweb.business.gestattestati.CPBECpUploadDocAggiuntiva getCPBECpUploadDocAggiuntiva() {
+		return this.cPBECpUploadDocAggiuntiva;
+	}
+
+	/**
 	 * riferimento al CPBE del content panel cpRicercaAceInviati
 	 */
 	private it.csi.sicee.siceeweb.business.gestattestati.CPBECpRicercaAceInviati cPBECpRicercaAceInviati = null;
@@ -5642,6 +5948,25 @@ public class BackEndFacade {
 	 */
 	public it.csi.sicee.siceeweb.business.compilazattestatiape.CPBECpImpXml2015 getCPBECpImpXml2015() {
 		return this.cPBECpImpXml2015;
+	}
+
+	/**
+	 * riferimento al CPBE del content panel cpZonaClima
+	 */
+	private it.csi.sicee.siceeweb.business.compilazattestatiape.CPBECpZonaClima cPBECpZonaClima = null;
+
+	/**
+	 * riferimento al CPBE del content panel cpZonaClima
+	 */
+	public void setCPBECpZonaClima(it.csi.sicee.siceeweb.business.compilazattestatiape.CPBECpZonaClima bean) {
+		this.cPBECpZonaClima = bean;
+	}
+
+	/**
+	 * riferimento al CPBE del content panel cpZonaClima
+	 */
+	public it.csi.sicee.siceeweb.business.compilazattestatiape.CPBECpZonaClima getCPBECpZonaClima() {
+		return this.cPBECpZonaClima;
 	}
 
 	/**
